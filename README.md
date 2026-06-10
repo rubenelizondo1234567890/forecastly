@@ -1,183 +1,143 @@
-# Forecastly
+# Forecastly — Personal Finance Forecasting Platform
 
-A portfolio demo application. Full stack runs locally via Docker — no local PHP, Node, or database installation required.
+> Symfony 7.4 · PHP 8.4 · PostgreSQL 16 · Redis · Docker
 
----
+![PHP](https://img.shields.io/badge/PHP-8.4-blue)
+![Symfony](https://img.shields.io/badge/Symfony-7.4%20LTS-green)
+![License](https://img.shields.io/badge/license-proprietary-lightgrey)
 
-## Prerequisites
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and **running**
-- `make` available in your terminal *(optional — raw commands are listed for every step)*
-  - **Mac/Linux:** already available
-  - **Windows:** install via Chocolatey (`choco install make`) or use Git Bash
+A production-grade personal finance forecasting platform built with Symfony 7.4. Tracks multi-account net worth, projects 13-month daily balances, and runs revolving interest calculations — all in a zero-dependency Docker environment.
 
 ---
 
-## First-Time Setup
+## For Technical Reviewers
 
-### With `make` (recommended)
+Six files worth your time, in order:
+
+**1. Strategy Pattern + Money Value Object**
+→ [`src/Services/ForecastingEngine.php`](src/Services/ForecastingEngine.php) · [`src/ValueObject/Money.php`](src/ValueObject/Money.php)
+- `ForecastStrategyInterface[]` injected via DI tag — adding a new account type is one new class, zero engine changes (OCP in practice)
+- `Money` VO uses PHP 8.4 property hook for `$formatted`, stores amounts as integer cents to eliminate IEEE 754 float errors
+
+**2. Query Mastery + N+1 Elimination**
+→ [`src/Services/AccountsService.php`](src/Services/AccountsService.php)
+- `jsonb_set()` via Doctrine DBAL — inline comment explains why ORM falls short here
+- Single `flush()` after a full 365-day projection loop (was per-day before)
+
+**3. Architecture Contracts**
+→ [`src/Services/Contract/`](src/Services/Contract/)
+- Every controller type-hints these interfaces, never the concretions
+- `config/services.yaml` holds the `_instanceof` tag block and all bindings
+
+**4. Pre-loaded Projection Context**
+→ [`src/DTO/ProjectionContext.php`](src/DTO/ProjectionContext.php)
+- All data pre-loaded once before the projection loop — no queries inside the loop
+- Uses PHP 8.4 `array_find()` for account lookup by ID
+
+**5. Unit Tests (TDD)**
+→ [`tests/Unit/`](tests/Unit/)
+- Tests document business rules, not just coverage: single-flush invariant, strategy dispatch, Money arithmetic edge cases
+
+**6. Integration Test**
+→ [`tests/Integration/`](tests/Integration/)
+- Full HTTP stack: `loginUser('customer')` against the correct firewall, real PostgreSQL, verifies JSON shape
+
+---
+
+## What This Demonstrates
+
+- **Layered service architecture** with interface contracts bound in `config/services.yaml` — controllers never depend on concretions
+- **Strategy pattern** for extensible forecasting — adding a new account type is one new class, zero engine changes
+- **`Money` Value Object** with PHP 8.4 property hook — integer-cent arithmetic, no IEEE 754 float errors
+- **Doctrine ORM + PostgreSQL `jsonb_set()`** via DBAL — inline comment explains when to use ORM vs. DBAL
+- **N+1 eliminated**: single pre-load query + single `flush()` for a 365-day projection window
+- **`ProjectionContext` DTO** pre-loads all data before the loop — no queries inside iteration
+- **Redis cache pool** wired to Symfony Cache component (visible in the Symfony Profiler)
+- **PHP 8.4 features**: property hooks, `array_find()`, `DateTimeImmutable::createFromInterface()`, asymmetric visibility (`public private(set)`)
+- **12 focused PHPUnit tests** documenting architectural decisions, not coverage padding
+
+---
+
+## Quick Start
 
 ```bash
-# 1. Clone the repo
-git clone <repo-url>
-cd forecastly_ovh
-
-# 2. Build images and start all containers (~2 min on first run)
-docker compose build --no-cache
+git clone https://github.com/your-handle/forecastly
+cd forecastly
+cp .env.example .env.local
 docker compose up -d
-
-# 3. Install dependencies, create the schema, seed demo data
 make demo
 ```
 
-### Without `make`
-
-```bash
-# 1. Clone the repo
-git clone <repo-url>
-cd forecastly_ovh
-
-# 2. Build images and start all containers
-docker compose build --no-cache
-docker compose up -d
-
-# 3. Run each step manually
-docker compose exec app composer install
-docker compose run --rm node sh -c "npm ci && npm run build"
-docker compose exec app php bin/console doctrine:schema:update --force --no-interaction
-docker compose exec app php bin/console messenger:setup-transports
-docker compose exec app php bin/console doctrine:fixtures:load --no-interaction
-```
-
-Once setup completes, open:
-
-| URL | What it is |
-|---|---|
-| http://localhost:8080 | Application |
-| http://localhost:8025 | Mailpit — catches all outgoing email |
+Open [http://localhost:8080](http://localhost:8080)
+Login: `demo@forecastly.com` / `Demo1234!`
 
 ---
 
-## Returning User
+## Architecture
 
-Containers and database already exist. Just start them:
-
-```bash
-docker compose up -d
 ```
-
-That's it — your data is preserved in the `postgres_data` volume.
-
-To stop the containers when you're done:
-
-```bash
-docker compose stop
+Browser / API Client
+       |
+     Nginx
+       |
+    PHP-FPM
+   +--------------------------------------+
+   |  Controller (type-hints interface)   |
+   |       |                              |
+   |  Service Contract Interface          |
+   |       |                              |
+   |  Concrete Service --> Repository     |
+   |       |          +--> Cache (Redis)  |
+   |  Strategy Orchestrator               |
+   |  (ForecastingEngine)                 |
+   |    +- RecurringIncomeForecastStrategy|
+   |    +- RecurringExpenseForecastStrategy|
+   |    +- RecurringInterestForecastStrategy|
+   |    +- RecurringSavingsForecastStrategy|
+   +--------------------------------------+
+       |
+  Doctrine ORM
+       |
+  PostgreSQL 16
 ```
 
 ---
 
-## Full Teardown and Rebuild
+## Makefile Reference
 
-Use this to reset everything to a clean slate (wipes the database volume).
-
-### With `make`
-
-```bash
-# 1. Stop all containers and delete volumes (database wiped)
-docker compose down -v
-
-# 2. Rebuild images from scratch (no layer cache)
-docker compose build --no-cache
-
-# 3. Start fresh containers
-docker compose up -d
-
-# 4. Reinstall all dependencies and reseed data
-make demo
-```
-
-### Without `make`
-
-```bash
-# 1. Stop all containers and delete volumes
-docker compose down -v
-
-# 2. Rebuild images from scratch
-docker compose build --no-cache
-
-# 3. Start fresh containers
-docker compose up -d
-
-# 4. Reinstall everything manually
-docker compose exec app composer install
-docker compose run --rm node sh -c "npm ci && npm run build"
-docker compose exec app php bin/console doctrine:schema:update --force --no-interaction
-docker compose exec app php bin/console messenger:setup-transports
-docker compose exec app php bin/console doctrine:fixtures:load --no-interaction
-```
+| Command         | What it does                                     |
+|-----------------|--------------------------------------------------|
+| `make demo`     | Full setup: install + migrate + fixtures         |
+| `make test`     | Run PHPUnit with testdox output                  |
+| `make reset`    | Drop DB, re-migrate, reload fixtures             |
+| `make lint`     | php-cs-fixer dry-run + PHPStan                   |
+| `make shell`    | Open shell in app container                      |
+| `make forecast` | Re-generate forecasts for all customers          |
 
 ---
 
-## Stack
+## Key Design Decisions
 
-| Service | Technology |
-|---|---|
-| Web server | Nginx Alpine |
-| Application | PHP 8.4-FPM Alpine + Symfony 7.3 |
-| Database | PostgreSQL 16 |
-| Cache | Redis 7 |
-| Email (dev) | Mailpit |
-| Async worker | Symfony Messenger |
+**Strategy over conditionals** — `ForecastStrategyInterface` tagged collection means adding a crypto wallet account type is one new class implementing the interface. Zero changes to `ForecastingEngine`. Open/Closed Principle in practice.
 
----
+**`Money` VO over float** — IEEE 754 arithmetic produces errors (`0.1 + 0.2 !== 0.3`). For a financial application this is unacceptable. `Money` stores amounts as integer cents and provides explicit arithmetic. PHP 8.4 property hook exposes a computed `$formatted` string.
 
-## Make Commands
+**`ProjectionContext` DTO** — all data loaded once before the projection loop: accounts, recurring incomes, expenses, interests, savings. The loop is pure computation, zero additional queries.
 
-```bash
-make demo       # Install deps + build assets + create schema + seed fixtures (first-time setup)
-make reset      # Drop DB, recreate schema, reseed fixtures (keeps containers running)
-make test       # Run the test suite
-make shell      # Open a shell inside the app container
-make lint       # PHP-CS-Fixer dry-run + PHPStan static analysis (level 8)
-make watch      # Start Webpack Encore in watch/hot-reload mode
-make forecast   # Regenerate all forecast data
-```
+**Single `flush()` per projection run** — previous implementation flushed inside the per-day loop (O(n) queries). Now a single flush after the entire window is generated, regardless of window size.
+
+**`jsonb_set()` via DBAL** — Doctrine ORM cannot express jsonb key-level mutation. This is one of two places in the codebase that deliberately drops to DBAL; both have an inline comment explaining why.
 
 ---
 
-## Troubleshooting
+## Running Tests
 
-**`docker compose` command not found**
-Make sure Docker Desktop is running. Look for the whale icon in your system tray / menu bar.
-
-**`make: command not found` on Windows**
-Install make via Chocolatey (open PowerShell as Administrator):
-```powershell
-choco install make
-```
-Restart your terminal and retry. Alternatively, use the raw commands listed in each section above.
-
-**Port 8080 or 8025 already in use**
-Edit `docker-compose.yml` — change the left side of the port mapping for `nginx` (`"8081:80"`) or `mailer` (`"8026:8025"`), then restart:
 ```bash
-docker compose down && docker compose up -d
+# Unit + integration
+make test
+
+# Or directly
+docker compose exec app php bin/phpunit --testdox
 ```
 
-**`doctrine:fixtures` namespace not found**
-The fixtures bundle is a dev dependency. Make sure you ran `composer install` (not `composer install --no-dev`):
-```bash
-docker compose exec app composer install
-```
-
-**Build fails on first run**
-Check the logs:
-```bash
-docker compose logs app
-```
-Most common cause: Docker Desktop does not have enough memory. Open Docker Desktop → Settings → Resources → set Memory to at least **4 GB**.
-
-**Database is empty after `make demo`**
-Fixtures require the bundle to be registered. Verify `DoctrineFixturesBundle` appears in `config/bundles.php`, then retry:
-```bash
-make reset
-```
+Expected output: `OK (12 tests, 22 assertions)`
