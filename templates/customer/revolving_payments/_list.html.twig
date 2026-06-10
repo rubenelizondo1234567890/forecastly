@@ -1,0 +1,65 @@
+{# templates/customer/revolving_payments/_list.html.twig #}
+<div class="revolving-payments-list">
+    <div class="section-header">
+        <h2 class="section-title">Your Revolving Payments</h2>
+        <span class="accounts-count">{{ revolvingPayments|length }} revolving payments</span>
+    </div>
+
+    <div class="accounts-table-container">
+        {% if revolvingPayments is not empty %}
+            <table class="accounts-table">
+                <thead>
+                <tr>
+                    <th>Payment Name</th>
+                    <th>Strategy</th>
+                    <th>Payment Day</th>
+                    <th>From Account</th>
+                    <th>To Account</th>
+                    <th>Start Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for payment in revolvingPayments %}
+                    <tr>
+                        <td data-label="Payment Name">
+                            <div class="account-type">
+                                <div class="account-type-icon">
+                                    <i class="fas fa-money-check-alt"></i>
+                                </div>
+                                <div>
+                                    <div>{{ payment.name }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Strategy">{{ payment.paymentStrategy }}</td>
+                        <td data-label="Payment Day">{{ payment.dayOfMonthToMakePayment }}</td>
+                        <td data-label="From Account">{{ payment.accountToWithdraw.name }}</td>
+                        <td data-label="To Account">{{ payment.accountToPay.name }}</td>
+                        <td data-label="Start Date">{{ payment.startOn|date('Y-m-d') }}</td>
+                        <td data-label="Actions">
+                            <div class="action-buttons">
+                                <a href="{{ path('customer_revolving_payments_edit', {'id': payment.id}) }}" class="action-btn edit-btn">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form method="post" action="{{ path('customer_revolving_payments_delete', {'id': payment.id}) }}" onsubmit="return confirm('Are you sure you want to delete this revolving payment?');" style="display: inline-block;">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ payment.id) }}">
+                                    <button type="submit" class="action-btn delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <i class="fas fa-money-check-alt"></i>
+                <p>No revolving payments found.</p>
+                <a href="{{ path('customer_revolving_payments_index') }}" class="btn btn-primary">Add Your First Revolving Payment</a>
+            </div>
+        {% endif %}
+    </div>
+</div>

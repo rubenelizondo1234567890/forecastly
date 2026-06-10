@@ -1,0 +1,255 @@
+{# templates/roadmaps/career-capital/protecting-your-reputation-and-personal-brand.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-shield-alt" style="color: var(--career-color);"></i>
+                </div>
+                <h1>Protecting Your Reputation <span>& Personal Brand</span></h1>
+                <p class="hero-description">
+                    Your reputation is your most valuable (and fragile) career asset. Learn practical strategies to build a powerful personal brand while protecting yourself from digital landmines.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(156,136,255,0.2); color: #c3b9ff;">
+                    <i class="fas fa-layer-group"></i> Phase 2: Risk Management · 10 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">Why Reputation Is Career Capital’s Silent Multiplier</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Skills get you in the door. Network opens opportunities. But <strong>reputation</strong> decides whether doors stay open and how wide they swing. A strong personal brand compounds over time — the right people seek you out, opportunities find you, and you can command premium compensation.
+            </p>
+            <p>
+                In today’s digital world, your reputation lives online 24/7. One careless post or negative review can erase years of hard work. This article gives you a complete protection + amplification system.
+            </p>
+        </section>
+
+        <!-- reputation pillars grid -->
+        <div class="rule-grid animate" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-globe"></i> Digital Footprint</h3>
+                <div class="percentage" style="color: var(--career-color);">Google & LinkedIn</div>
+                <p>What appears when someone searches your name? Control your narrative before others do.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-users"></i> Professional Network</h3>
+                <div class="percentage" style="color: var(--career-color);">Testimonials & Referrals</div>
+                <p>People talk. Make sure they’re saying the right things.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-star"></i> Personal Conduct</h3>
+                <div class="percentage" style="color: var(--career-color);">Offline & Online Consistency</div>
+                <p>Reputation is what people say about you when you’re not in the room.</p>
+            </div>
+        </div>
+
+        <!-- interactive reputation health calculator -->
+        <div class="calc-card animate" style="border: 1px solid rgba(156,136,255,0.3);">
+            <h2 class="calc-title"><i class="fas fa-sliders-h" style="color: var(--career-color); margin-right: 10px;"></i> Reputation Health Score</h2>
+            <p style="font-size: 1.1rem;">Rate yourself on each pillar (0–10). Click Calculate to see your overall reputation health.</p>
+
+            <div class="calc-input">
+                <label>Digital Footprint (LinkedIn, Google results, personal site)</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="digital" class="cat-input" min="0" max="10" value="5" step="1">
+                    </div>
+                    <span class="slider-value" id="digitalVal">5</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>Professional Network (recommendations, referrals, visibility)</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="network" class="cat-input" min="0" max="10" value="4" step="1">
+                    </div>
+                    <span class="slider-value" id="networkVal">4</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>Consistency (online vs offline behaviour)</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="consistency" class="cat-input" min="0" max="10" value="6" step="1">
+                    </div>
+                    <span class="slider-value" id="consistencyVal">6</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>Crisis Preparedness (how you handle mistakes)</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="crisis" class="cat-input" min="0" max="10" value="3" step="1">
+                    </div>
+                    <span class="slider-value" id="crisisVal">3</span>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="reputationCalculate" class="btn" style="background-color: var(--career-color);">Calculate Reputation Score</button>
+            </div>
+
+            <div class="calc-result" style="border: 2px dashed var(--career-color);">
+                <p class="result-label" style="font-size:1.2rem;">🛡️ Your Reputation Health</p>
+                <div id="reputationResult" style="font-size:1.5rem; font-weight:600; color:var(--dark-color);">Adjust sliders & click to see your score</div>
+            </div>
+        </div>
+
+        <!-- practical strategies -->
+        <div class="card animate" style="border-top: 4px solid var(--career-color);">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Practical Protection Strategies</h3>
+            <ul class="checklist">
+                <li><i class="fas fa-check-circle"></i> <strong>Google yourself monthly</strong> – set Google Alerts for your name.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Own your LinkedIn</strong> – professional photo, headline with value proposition, featured section with wins.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Collect testimonials proactively</strong> – after every successful project, ask for a short LinkedIn recommendation.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Build a personal site</strong> – one-page portfolio that ranks for your name (use Carrd or WordPress).</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Handle mistakes with grace</strong> – own it publicly, fix it fast, share the lesson.</li>
+            </ul>
+        </div>
+
+        <!-- interactive reputation audit checklist -->
+        <div class="card animate" style="border-top: 4px solid var(--career-color);">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Quick Reputation Audit Checklist</h3>
+            <p>Check off what you’ve done — watch your protection score rise.</p>
+
+            <div class="checklist-container" id="reputationChecklist">
+                <div class="checklist-item" data-checked="false">
+                    <span class="check-circle"><i class="fas fa-check"></i></span>
+                    <span>I have a professional LinkedIn profile with recent activity</span>
+                </div>
+                <div class="checklist-item" data-checked="false">
+                    <span class="check-circle"><i class="fas fa-check"></i></span>
+                    <span>I monitor my Google search results monthly</span>
+                </div>
+                <div class="checklist-item" data-checked="false">
+                    <span class="check-circle"><i class="fas fa-check"></i></span>
+                    <span>I have at least 5 recent LinkedIn recommendations</span>
+                </div>
+                <div class="checklist-item" data-checked="false">
+                    <span class="check-circle"><i class="fas fa-check"></i></span>
+                    <span>I have a personal website or portfolio that ranks for my name</span>
+                </div>
+                <div class="checklist-item" data-checked="false">
+                    <span class="check-circle"><i class="fas fa-check"></i></span>
+                    <span>I respond professionally to all public feedback</span>
+                </div>
+                <div class="checklist-progress">
+                    <div class="progress-fill" id="reputationProgressFill" style="width: 0%;"></div>
+                </div>
+                <div class="progress-text" id="reputationProgressText">0/5 — start building protection</div>
+            </div>
+        </div>
+
+        <!-- myths vs reality -->
+        <section class="animate">
+            <h2 class="section-title">🚫 Reputation Myths vs Reality</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-exclamation-triangle" style="color: var(--career-color);"></i> <strong>Myth:</strong> “Nobody will notice one negative post.” <strong>Reality:</strong> Recruiters and clients Google you. One bad result can cost opportunities.</li>
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> <strong>Myth:</strong> “I can delete anything later.” <strong>Reality:</strong> Screenshots live forever. Think before you post.</li>
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> <strong>Myth:</strong> “Only my work matters.” <strong>Reality:</strong> People hire humans they like and trust.</li>
+            </ul>
+        </section>
+
+        <!-- Quiz -->
+        {% if app.user and quiz %}
+            <div class="quiz-container animate" style="background-color: #1e293b;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'protecting-your-reputation-and-personal-brand', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background-color: #1e293b;">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your reputation IQ</h3>
+
+                <div class="quiz-question">1. What should you do first when protecting your personal brand?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Post more content</div>
+                    <div class="quiz-option" data-answer="correct">Google yourself and audit results</div>
+                    <div class="quiz-option" data-answer="wrong">Change your profile picture</div>
+                </div>
+
+                <div class="quiz-question">2. Which is the best way to build credibility online?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Buy followers</div>
+                    <div class="quiz-option" data-answer="correct">Collect genuine testimonials and recommendations</div>
+                    <div class="quiz-option" data-answer="wrong">Post daily selfies</div>
+                </div>
+
+                <div class="quiz-question">3. If you receive negative feedback online, the best response is:</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Delete the comment</div>
+                    <div class="quiz-option" data-answer="correct">Respond professionally, own it, and offer a solution</div>
+                    <div class="quiz-option" data-answer="wrong">Ignore it completely</div>
+                </div>
+
+                <div class="quiz-question">4. What should your LinkedIn headline focus on?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Your current job title only</div>
+                    <div class="quiz-option" data-answer="correct">The value you deliver + keywords</div>
+                    <div class="quiz-option" data-answer="wrong">Your hobbies</div>
+                </div>
+
+                <div class="quiz-question">5. How often should you review your online reputation?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Once a year</div>
+                    <div class="quiz-option" data-answer="correct">At least monthly</div>
+                    <div class="quiz-option" data-answer="wrong">Only when job hunting</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next articles in Phase 2 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Risk Management phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'job-security-volatile-economy' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-shield-virus"></i>
+                    <h3>Job Security in a Volatile Economy</h3>
+                    <p style="color: var(--gray-color);">Future-proof your role and stay relevant.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'avoid-burnout' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Avoid Burnout While Upskilling</h3>
+                    <p style="color: var(--gray-color);">Sustainable learning habits that last.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'diversify-income' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-random"></i>
+                    <h3>Diversify Your Income</h3>
+                    <p style="color: var(--gray-color);">Side hustle fundamentals without quitting your job.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

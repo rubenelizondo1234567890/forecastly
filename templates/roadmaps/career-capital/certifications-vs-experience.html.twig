@@ -1,0 +1,294 @@
+{# templates/roadmaps/career-capital/certifications-vs-experience.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+    {# Inline script: live slider value updates (works for everyone) #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = [
+                { slider: 'certCost', display: 'certCostVal' },
+                { slider: 'certTime', display: 'certTimeVal' },
+                { slider: 'certRaise', display: 'certRaiseVal' },
+                { slider: 'expTime', display: 'expTimeVal' },
+                { slider: 'expRaise', display: 'expRaiseVal' }
+            ];
+            sliders.forEach(item => {
+                const s = document.getElementById(item.slider);
+                const d = document.getElementById(item.display);
+                if (s && d) {
+                    s.addEventListener('input', () => { d.textContent = s.value; });
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-certificate" style="color: var(--career-color);"></i>
+                </div>
+                <h1>Certifications vs. Experience: <span>What Moves the Needle?</span></h1>
+                <p class="hero-description">
+                    Evaluate which credentials actually boost income in your field, and how to signal competence without wasting money.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">The great debate</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Should you invest time and money in a certification, or just build experience through projects and work? The answer isn't one‑size‑fits‑all. In some fields, certifications are table stakes; in others, they're meaningless without a track record.
+            </p>
+            <div class="highlight-box">
+                <i class="fas fa-chart-line"></i>
+                <strong>Did you know?</strong> According to a 2023 survey, 72% of employers consider certifications a “strong signal” for entry‑level roles, but for senior positions, experience outweighs credentials 3 to 1.
+            </div>
+        </section>
+
+        <!-- Key factors to consider -->
+        <section class="animate">
+            <h2 class="section-title">⚖️ Key factors to weigh</h2>
+            <div class="rule-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="rule-item">
+                    <h3><i class="fas fa-dollar-sign"></i> Cost</h3>
+                    <p>Certifications can range from $100 to $5,000+. Experience costs time, but often pays you instead.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-clock"></i> Time</h3>
+                    <p>A certification might take 3–6 months. Building a portfolio project can take weeks.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-medal"></i> Credibility</h3>
+                    <p>Some industries (IT, project management) value certs; others (design, writing) value proven work.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-brain"></i> Skill depth</h3>
+                    <p>Experience often forces you to solve real problems, while certs may test theory only.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-users"></i> Network</h3>
+                    <p>Certification programs can connect you with peers and instructors; experience builds client/employer references.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison table -->
+        <section class="animate">
+            <h2 class="section-title">📊 Certifications vs. Experience: Head‑to‑head</h2>
+            <table style="width:100%; border-collapse: collapse; background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); margin: 20px 0;">
+                <thead style="background-color: var(--career-color); color: white;">
+                <tr>
+                    <th style="padding: 15px; text-align: left;">Factor</th>
+                    <th style="padding: 15px; text-align: left;">Certifications</th>
+                    <th style="padding: 15px; text-align: left;">Experience</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 15px;"><strong>Entry‑level jobs</strong></td>
+                    <td style="padding: 15px;">✅ Can compensate for lack of experience</td>
+                    <td style="padding: 15px;">✅ Internships, freelance, projects</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 15px;"><strong>Salary bump</strong></td>
+                    <td style="padding: 15px;">Varies; some certs add 5–10%</td>
+                    <td style="padding: 15px;">Promotions and job hops can add 10–30%</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 15px;"><strong>Skill applicability</strong></td>
+                    <td style="padding: 15px;">May be theoretical or vendor‑specific</td>
+                    <td style="padding: 15px;">Directly applicable to real challenges</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 15px;"><strong>Signal to employers</strong></td>
+                    <td style="padding: 15px;">Shows commitment and baseline knowledge</td>
+                    <td style="padding: 15px;">Shows proven ability to deliver</td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px;"><strong>Long‑term value</strong></td>
+                    <td style="padding: 15px;">May expire; need renewal</td>
+                    <td style="padding: 15px;">Compounds; each project builds on previous</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- When to choose each -->
+        <section class="animate">
+            <h2 class="section-title">🧭 When to choose certifications</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> You're entering a regulated field (e.g., accounting, cybersecurity, HR).</li>
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> A specific certification is listed as a requirement in job descriptions.</li>
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> You need structured learning and a credential to stand out.</li>
+            </ul>
+            <h2 class="section-title" style="margin-top: 30px;">🧭 When to focus on experience</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> You already have a portfolio or can create one quickly.</li>
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> The field values demonstrable results (design, development, sales).</li>
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> You’re aiming for senior roles where experience dominates.</li>
+            </ul>
+        </section>
+
+        <!-- INTERACTIVE TOOL: Certification ROI Estimator -->
+        <div class="calc-card animate">
+            <h2 class="calc-title"><i class="fas fa-calculator" style="color: var(--career-color);"></i> Certification ROI Estimator</h2>
+            <p>Compare the return on investment of a certification vs. gaining experience through projects. Adjust the sliders to match your situation.</p>
+
+            <h3 style="margin: 20px 0 10px;">📜 Certification Path</h3>
+            <div class="calc-input">
+                <label for="certCost">Cost of certification ($)</label>
+                <div class="slider-container">
+                    <input type="range" id="certCost" class="cat-input" min="0" max="5000" value="1500" step="100">
+                    <span class="slider-value" id="certCostVal">1500</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="certTime">Time investment (months)</label>
+                <div class="slider-container">
+                    <input type="range" id="certTime" class="cat-input" min="0" max="12" value="4" step="1">
+                    <span class="slider-value" id="certTimeVal">4</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="certRaise">Expected annual raise after certification ($)</label>
+                <div class="slider-container">
+                    <input type="range" id="certRaise" class="cat-input" min="0" max="20000" value="3000" step="500">
+                    <span class="slider-value" id="certRaiseVal">3000</span>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 10px;">💼 Experience Path (projects, freelance, etc.)</h3>
+            <div class="calc-input">
+                <label for="expTime">Time to build portfolio (months)</label>
+                <div class="slider-container">
+                    <input type="range" id="expTime" class="cat-input" min="0" max="12" value="3" step="1">
+                    <span class="slider-value" id="expTimeVal">3</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="expRaise">Expected annual raise from new opportunities ($)</label>
+                <div class="slider-container">
+                    <input type="range" id="expRaise" class="cat-input" min="0" max="20000" value="5000" step="500">
+                    <span class="slider-value" id="expRaiseVal">5000</span>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="certROIBtn" class="btn" style="background-color: var(--career-color);">Calculate ROI</button>
+            </div>
+
+            <div class="calc-result" id="certResult" style="border: 2px dashed var(--career-color);">
+                <p class="result-label">ROI comparison</p>
+                <p style="font-size: 1rem;">Adjust the sliders and click "Calculate" to see which path pays off more.</p>
+            </div>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user who already took the quiz #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'certifications-vs-experience', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Quiz for everyone – interactivity blocked by home.js if not logged in #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: certifications vs. experience</h3>
+
+                <div class="quiz-question">1. In which field are certifications often required for entry‑level roles?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Graphic design</div>
+                    <div class="quiz-option" data-answer="correct">Cybersecurity</div>
+                    <div class="quiz-option" data-answer="wrong">Copywriting</div>
+                    <div class="quiz-option" data-answer="wrong">Sales</div>
+                </div>
+
+                <div class="quiz-question">2. What is a key advantage of gaining experience through projects?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">It’s cheaper than certifications</div>
+                    <div class="quiz-option" data-answer="wrong">You get a certificate at the end</div>
+                    <div class="quiz-option" data-answer="correct">You solve real problems and build a portfolio</div>
+                    <div class="quiz-option" data-answer="wrong">It takes less time</div>
+                </div>
+
+                <div class="quiz-question">3. Which factor tends to be more important for senior roles?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Certifications</div>
+                    <div class="quiz-option" data-answer="correct">Proven experience</div>
+                    <div class="quiz-option" data-answer="wrong">Academic degrees</div>
+                    <div class="quiz-option" data-answer="wrong">Online courses</div>
+                </div>
+
+                <div class="quiz-question">4. What is a potential downside of certifications?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">They expire and need renewal</div>
+                    <div class="quiz-option" data-answer="wrong">They can be expensive</div>
+                    <div class="quiz-option" data-answer="wrong">They may not reflect real‑world skills</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+
+                <div class="quiz-question">5. When should you prioritize certifications over experience?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">When you already have a strong portfolio</div>
+                    <div class="quiz-option" data-answer="correct">When job descriptions frequently list a specific cert as required</div>
+                    <div class="quiz-option" data-answer="wrong">When you want to start a side hustle</div>
+                    <div class="quiz-option" data-answer="wrong">When you’re aiming for a senior role</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next articles in Phase 4 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue Phase 4: Skill Building</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'master-one-skill' }) }}" class="next-card">
+                    <i class="fas fa-crown"></i>
+                    <h3>Master One Skill Deeply</h3>
+                    <p>Move from intermediate to expert.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'leverage-ai-automation' }) }}" class="next-card">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Leverage AI & Automation</h3>
+                    <p>10x your output with modern tools.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'personal-website' }) }}" class="next-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Build a Personal Website</h3>
+                    <p>Establish thought leadership online.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

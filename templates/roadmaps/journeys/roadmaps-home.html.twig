@@ -1,0 +1,451 @@
+{# templates/roadmaps/journeys/roadmaps-home.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block headmeta %}
+    {{ parent() }}
+    <meta name="description" content="{{ page.seoDescription }}">
+    <meta name="keywords" content="{{ page.seoKeywords }}">
+    <meta property="og:image" content="{{ page.getOgImgUrl }}">
+{% endblock %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-content">
+                <h1>Your Financial Journey <span class="hero-highlight">Starts Here</span></h1>
+                <p class="hero-subtitle">Choose Your Path to Financial Confidence</p>
+                <p class="hero-description">
+                    Overwhelmed by financial choices? Start with our beginner-friendly roadmaps.
+                    Each is a step-by-step guide designed to take you from confused to confident,
+                    no matter where you are in your financial journey.
+                </p>
+
+                <div class="journey-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>   <!-- updated from 11 to 12 -->
+                        <div class="stat-label">Specialized Roadmaps</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Step-by-Step Guides</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15,000+</div>
+                        <div class="stat-label">Community Members</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Roadmaps Grid -->
+        <section>
+            <h2 class="section-title">Choose Your Learning Path</h2>
+            <p class="section-subtitle">Each roadmap is designed with beginners in mind. Start with the one that matches your current goals.</p>
+
+            <div class="roadmap-grid">
+                <!-- Personal Finance Card -->
+                <div class="roadmap-card personal-finance animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <h3 class="card-title">Personal Finance</h3>
+                        <p class="card-subtitle">Build a solid financial foundation</p>
+                        <span class="card-tag">Beginner Friendly</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Master budgeting, saving, and debt management before diving into investing.
+                            This is the essential first step for anyone wanting financial security.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Create a stress-free budget system</li>
+                            <li><i class="fas fa-check"></i> Build an emergency fund that works</li>
+                            <li><i class="fas fa-check"></i> Eliminate bad debt strategically</li>
+                            <li><i class="fas fa-check"></i> Automate your savings and investing</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'personal-finance-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- NEW: Career Capital & High-Income Skills Card -->
+                <div class="roadmap-card career animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="card-title">Career Capital & High-Income Skills</h3>
+                        <p class="card-subtitle">Increase your earning potential strategically</p>
+                        <span class="card-tag">Income Engine</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            The fastest way to improve your financial situation is often to increase your income, not just cut your latte budget. This roadmap guides you on how to invest in yourself, negotiate better compensation, and build skills that the market values.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Identify high-demand skills that align with your interests</li>
+                            <li><i class="fas fa-check"></i> Master negotiation tactics for raises and job offers</li>
+                            <li><i class="fas fa-check"></i> Navigate side hustles vs. freelancing vs. starting a business</li>
+                            <li><i class="fas fa-check"></i> Build a personal brand that attracts opportunities</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'career-capital-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Forex Trading Card -->
+                <div class="roadmap-card forex animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3 class="card-title">Forex Trading</h3>
+                        <p class="card-subtitle">Trade global currency markets</p>
+                        <span class="card-tag">Step-by-Step</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Learn to trade currency pairs with a focus on risk management and psychology.
+                            Start with as little as $100 and build your skills systematically.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Start trading with just $100</li>
+                            <li><i class="fas fa-check"></i> Master risk management first</li>
+                            <li><i class="fas fa-check"></i> Develop unemotional trading systems</li>
+                            <li><i class="fas fa-check"></i> Avoid common beginner pitfalls</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'forex-trading-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Crypto Card -->
+                <div class="roadmap-card crypto animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3 class="card-title">Crypto Investing</h3>
+                        <p class="card-subtitle">Navigate digital assets safely</p>
+                        <span class="card-tag">Security First</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Enter the world of cryptocurrencies with emphasis on security and fundamentals.
+                            Learn self-custody before you invest your first dollar.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Secure your assets with self-custody</li>
+                            <li><i class="fas fa-check"></i> Understand blockchain fundamentals</li>
+                            <li><i class="fas fa-check"></i> Navigate exchanges and wallets safely</li>
+                            <li><i class="fas fa-check"></i> Spot and avoid common crypto scams</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'crypto-investing-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stocks Card -->
+                <div class="roadmap-card stocks animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="card-title">Stock Investing</h3>
+                        <p class="card-subtitle">Build wealth in the stock market</p>
+                        <span class="card-tag">Long-Term Focus</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Learn to invest in stocks with a long-term, systematic approach.
+                            Focus on fundamentals, diversification, and disciplined strategy.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Build a diversified portfolio</li>
+                            <li><i class="fas fa-check"></i> Master dollar-cost averaging</li>
+                            <li><i class="fas fa-check"></i> Understand company fundamentals</li>
+                            <li><i class="fas fa-check"></i> Develop an investor's mindset</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'stock-investment-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Retirement & Long-Term Wealth -->
+                <div class="roadmap-card retirement animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-umbrella-beach"></i>
+                        </div>
+                        <h3 class="card-title">Retirement & Long‑Term Wealth</h3>
+                        <p class="card-subtitle">Secure your future, starting today</p>
+                        <span class="card-tag">Future-Focused</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Demystify 401(k)s, IRAs, and compound interest. No jargon – just a clear path from your first contribution to a comfortable retirement.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Choose the right retirement account for your situation</li>
+                            <li><i class="fas fa-check"></i> Harness employer matching as free money</li>
+                            <li><i class="fas fa-check"></i> Understand target‑date funds and asset allocation</li>
+                            <li><i class="fas fa-check"></i> Calculate how much you really need to retire</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'retirement', slug: 'retirement-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Real Estate Fundamentals -->
+                <div class="roadmap-card real-estate animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="card-title">Real Estate Fundamentals</h3>
+                        <p class="card-subtitle">From renter to real estate investor</p>
+                        <span class="card-tag">From Renter to Investor</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Whether you’re saving for a first home or curious about REITs, this roadmap gives you the vocabulary and strategies to start smart.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Rent vs. buy – make the right decision for your life</li>
+                            <li><i class="fas fa-check"></i> How to evaluate a property’s true profitability</li>
+                            <li><i class="fas fa-check"></i> REITs: invest in real estate without a down payment</li>
+                            <li><i class="fas fa-check"></i> Avoid the most common first‑time buyer mistakes</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'real-state-fundamentals-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tax-Smart Investing -->
+                <div class="roadmap-card tax-smart animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <h3 class="card-title">Tax‑Smart Investing</h3>
+                        <p class="card-subtitle">Keep more of what you earn</p>
+                        <span class="card-tag">Keep More of What You Earn</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Taxes don’t have to be scary. Learn how to structure your investments so you pay less to the government – completely legally.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Tax‑loss harvesting explained simply</li>
+                            <li><i class="fas fa-check"></i> How to use tax‑advantaged accounts to the fullest</li>
+                            <li><i class="fas fa-check"></i> Understand capital gains rates before you sell</li>
+                            <li><i class="fas fa-check"></i> Simple strategies for side‑hustle income</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'tax', slug: 'tax-smart-investing-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Financial Independence (FIRE) -->
+                <div class="roadmap-card fire animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3 class="card-title">Financial Independence (FIRE)</h3>
+                        <p class="card-subtitle">Design your freedom number</p>
+                        <span class="card-tag">Design Your Freedom</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            The core principles of the FIRE movement, stripped of extremism. A practical plan for anyone who wants more options, not just early retirement.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Calculate your “enough” number</li>
+                            <li><i class="fas fa-check"></i> Boost your savings rate without deprivation</li>
+                            <li><i class="fas fa-check"></i> The 4% rule – what it really means</li>
+                            <li><i class="fas fa-check"></i> Build a portfolio that can outlive you</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'fire', slug: 'fire-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bond & Fixed Income Basics -->
+                <div class="roadmap-card bonds animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h3 class="card-title">Bond & Fixed Income Basics</h3>
+                        <p class="card-subtitle">Portfolio ballast</p>
+                        <span class="card-tag">Portfolio Ballast</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Bonds aren’t boring – they’re ballast. Learn how government and corporate bonds work, and when to add them to your mix.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> What bond ratings actually tell you</li>
+                            <li><i class="fas fa-check"></i> Laddering strategy for steady income</li>
+                            <li><i class="fas fa-check"></i> I‑bonds vs. TIPS vs. corporate bonds</li>
+                            <li><i class="fas fa-check"></i> When bonds beat cash (and when they don’t)</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'bonds', slug: 'bond-and-fixed-income-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Behavioural Finance & Investor Psychology -->
+                <div class="roadmap-card psychology animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="card-title">Behavioural Finance & Investor Psychology</h3>
+                        <p class="card-subtitle">Master your money mindset</p>
+                        <span class="card-tag">Master Your Mindset</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            The biggest threat to your wealth is between your ears. Recognise cognitive biases and build systems that keep your emotions in check.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Why we buy high and sell low (and how to stop)</li>
+                            <li><i class="fas fa-check"></i> Create a personal investment policy statement</li>
+                            <li><i class="fas fa-check"></i> Separate media noise from market signal</li>
+                            <li><i class="fas fa-check"></i> Build habits that automate good decisions</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'psychology', slug: 'behavioural-finance-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Smart Credit & Debt Optimization -->
+                <div class="roadmap-card credit animate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3 class="card-title">Smart Credit & Debt Optimization</h3>
+                        <p class="card-subtitle">Use credit as a tool, not a trap</p>
+                        <span class="card-tag">Credit as a Tool</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Not all debt is bad. Learn to leverage good debt, crush high‑interest debt, and build a credit score that saves you money.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> The avalanche vs. snowball method – pick the right one</li>
+                            <li><i class="fas fa-check"></i> How to use credit cards for rewards, not interest</li>
+                            <li><i class="fas fa-check"></i> Repair credit myths that actually work</li>
+                            <li><i class="fas fa-check"></i> When a loan can actually make you richer</li>
+                        </ul>
+                        <a href="{{ url('app_page_show', { journey: 'credit', slug: 'smart-credit-and-debt-journey' }) }}" class="card-button">
+                            <i class="fas fa-road"></i> Start This Journey
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works">
+            <h2 class="section-title">How Our Roadmaps Work</h2>
+            <p class="section-subtitle">Each roadmap follows the same proven structure to ensure you build skills in the right order.</p>
+
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-circle">1</div>
+                    <h3 class="step-title">Foundation First</h3>
+                    <p class="step-description">Learn the essential concepts and terminology before risking any money.</p>
+                </div>
+                <div class="step">
+                    <div class="step-circle">2</div>
+                    <h3 class="step-title">Risk Management</h3>
+                    <p class="step-description">Master protection strategies to preserve your capital in all market conditions.</p>
+                </div>
+                <div class="step">
+                    <div class="step-circle">3</div>
+                    <h3 class="step-title">Practical Execution</h3>
+                    <p class="step-description">Apply what you've learned with guided, real-world actions and exercises.</p>
+                </div>
+                <div class="step">
+                    <div class="step-circle">4</div>
+                    <h3 class="step-title">Skill Building</h3>
+                    <p class="step-description">Advance your knowledge with specialized topics and continued learning paths.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <h2 class="section-title">What Our Community Says</h2>
+            <p class="section-subtitle">Join thousands who have transformed their financial journey with our structured roadmaps.</p>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card animate">
+                    <div class="testimonial-text">
+                        "The personal finance roadmap completely changed how I manage money. I went from living paycheck-to-paycheck to having a 3-month emergency fund in just 4 months."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <h4>Maria Johnson</h4>
+                            <p>Started with Personal Finance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card animate">
+                    <div class="testimonial-text">
+                        "As a complete beginner to trading, the Forex roadmap saved me from costly mistakes. The emphasis on risk management first was a game-changer for my results."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DR</div>
+                        <div class="author-info">
+                            <h4>David Rodriguez</h4>
+                            <p>Started with Forex Trading</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card animate">
+                    <div class="testimonial-text">
+                        "The crypto roadmap taught me security first. I avoided two major scams that caught my friends because I knew the red flags. This education paid for itself."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SK</div>
+                        <div class="author-info">
+                            <h4>Sarah Kim</h4>
+                            <p>Started with Crypto Investing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

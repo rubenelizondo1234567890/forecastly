@@ -1,0 +1,246 @@
+{# templates/roadmaps/forex/fundamental-analysis-central-banks.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('forex_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('forex_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – forex style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h1>Fundamental Analysis: <span>Central Banks and Economic Data</span></h1>
+                <p class="hero-description">
+                    Central banks set interest rates; economic data reveals the health of an economy. Learn how these
+                    forces move currency pairs and how to trade the news with confidence.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 12 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🏦 What is Fundamental Analysis?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Fundamental analysis in forex means evaluating a country's economic health to determine the fair value
+                of its currency. Unlike technical analysis, which focuses on price charts, fundamentals look at the
+                “big picture” – interest rates, employment, inflation, and geopolitical events.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                Central banks (like the Fed, ECB, BoJ) are the most powerful players. Their policy decisions create
+                long‑term trends. Economic data releases (like GDP, CPI, Non‑Farm Payrolls) cause short‑term volatility.
+                Understanding both helps you anticipate market moves and avoid getting caught on the wrong side of a trade.
+            </p>
+        </section>
+
+        <!-- key concepts grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-dollar-sign"></i> Interest Rates</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Central bank tool</div>
+                <p>Higher rates attract foreign capital, strengthening the currency. Lower rates weaken it. Markets obsess over rate decisions and future guidance.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-briefcase"></i> Employment Data</h3>
+                <div class="percentage" style="font-size: 1.2rem;">NFP, unemployment</div>
+                <p>Strong job growth signals a healthy economy and can lead to rate hikes. The US Non‑Farm Payrolls (NFP) is the most market‑moving release.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-chart-line"></i> Inflation (CPI, PPI)</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Consumer Price Index</div>
+                <p>High inflation forces central banks to raise rates. Low inflation may lead to cuts. Inflation data is closely watched.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-chart-pie"></i> GDP</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Economic growth</div>
+                <p>Gross Domestic Product measures the economy's output. Above‑trend growth supports a stronger currency.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-comment"></i> Central Bank Speeches</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Forward guidance</div>
+                <p>Statements from policymakers (e.g., Fed Chair Powell) can hint at future policy moves, often moving markets instantly.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive: central bank focus -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🔍 Major Central Banks and Their Influence</h3>
+            <p style="margin-bottom: 20px;">
+                Each central bank has a dual mandate (price stability and maximum employment) and meets regularly to set policy.
+            </p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Federal Reserve (Fed)</strong> – US dollar. Most influential. Rate decisions affect all markets.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>European Central Bank (ECB)</strong> – Euro. Focus on price stability.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Bank of Japan (BoJ)</strong> – Yen. Known for ultra‑loose policy and interventions.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Bank of England (BoE)</strong> – Pound. Often hikes or cuts ahead of others.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Reserve Bank of Australia (RBA)</strong> – Aussie. Sensitive to commodity prices.</li>
+                </ul>
+                <p class="pro-tip" style="margin-top: 15px; background-color: #eef2ff; border-left-color: #3182ce;"><i class="fas fa-lightbulb"></i> Keep an economic calendar bookmarked. Know which releases are coming and their consensus forecasts.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Fundamental Data Impact Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="fundamental-simulator">
+            <h3><i class="fas fa-chart-bar"></i> Fundamental Data Impact Simulator</h3>
+            <p>Select an economic indicator and a currency pair to see a typical market reaction.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
+                <div style="flex: 1 1 200px;">
+                    <label style="display: block; font-weight: 600;">Indicator</label>
+                    <select id="indicatorSelect" class="cat-input" style="width: 100%;">
+                        <option value="rate">Interest Rate Decision</option>
+                        <option value="nfp">Non‑Farm Payrolls (NFP)</option>
+                        <option value="cpi">CPI Inflation</option>
+                        <option value="gdp">GDP Growth</option>
+                        <option value="unemployment">Unemployment Rate</option>
+                        <option value="retail">Retail Sales</option>
+                    </select>
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label style="display: block; font-weight: 600;">Currency Pair</label>
+                    <select id="pairSelectFundamental" class="cat-input" style="width: 100%;">
+                        <option value="EUR/USD">EUR/USD</option>
+                        <option value="GBP/USD">GBP/USD</option>
+                        <option value="USD/JPY">USD/JPY</option>
+                        <option value="AUD/USD">AUD/USD</option>
+                        <option value="USD/CAD">USD/CAD</option>
+                        <option value="NZD/USD">NZD/USD</option>
+                    </select>
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label style="display: block; font-weight: 600;">Actual vs Forecast</label>
+                    <select id="actualSelect" class="cat-input" style="width: 100%;">
+                        <option value="beat">Beat expectations (stronger)</option>
+                        <option value="miss">Miss expectations (weaker)</option>
+                        <option value="inline">In line with expectations</option>
+                    </select>
+                </div>
+                <div style="flex: 0 0 auto; align-self: flex-end;">
+                    <button id="fundamentalCalcBtn" class="btn-outline" style="padding: 12px 30px;">Simulate</button>
+                </div>
+            </div>
+
+            <div id="fundamentalResult" style="margin-top: 25px; padding: 15px; background: var(--light-color); border-radius: 12px; font-size: 1.2rem; text-align: center;">
+                Select options and click simulate.
+            </div>
+        </div>
+
+        <!-- example trade box -->
+        <div class="highlight-box animate">
+            <h3><i class="fas fa-bolt"></i> Example – Trading NFP Friday</h3>
+            <p>NFP is forecast at 180,000 jobs. The actual release comes out at 250,000 – a strong beat. You expect USD to strengthen. You go long USD/JPY at 148.50 with a 30‑pip stop. Within an hour, price rallies to 149.20, hitting your take profit. The move was driven by the market pricing in a more hawkish Fed.</p>
+        </div>
+
+        <!-- pro tip: don't chase the spike -->
+        <div class="pro-tip animate" style="background-color: #fff5f0; border-left-color: #ff6b35;">
+            <h4 style="margin-top: 0;"><i class="fas fa-exclamation-triangle" style="color:#ff6b35;"></i> The Initial Spike Trap</h4>
+            <p>When a big number drops, price often spikes in one direction, then reverses violently within minutes. This is caused by algorithms and liquidity gaps. <strong>Wait 15‑30 minutes for the market to settle before entering, or use pending orders with wider stops.</strong></p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Fundamental Analysis</h3>
+
+                <div class="quiz-question">1. Which central bank sets monetary policy for the US dollar?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">European Central Bank (ECB)</div>
+                    <div class="quiz-option" data-answer="correct">Federal Reserve (Fed)</div>
+                    <div class="quiz-option" data-answer="wrong">Bank of England (BoE)</div>
+                    <div class="quiz-option" data-answer="wrong">Bank of Japan (BoJ)</div>
+                </div>
+
+                <div class="quiz-question">2. If a country raises interest rates, what typically happens to its currency?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="correct">It tends to strengthen</div>
+                    <div class="quiz-option" data-answer="wrong">It tends to weaken</div>
+                    <div class="quiz-option" data-answer="wrong">No effect</div>
+                    <div class="quiz-option" data-answer="wrong">It becomes more volatile only</div>
+                </div>
+
+                <div class="quiz-question">3. What is Non‑Farm Payrolls (NFP)?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">A measure of inflation</div>
+                    <div class="quiz-option" data-answer="correct">A US employment report released monthly</div>
+                    <div class="quiz-option" data-answer="wrong">A central bank meeting</div>
+                    <div class="quiz-option" data-answer="wrong">A type of currency order</div>
+                </div>
+
+                <div class="quiz-question">4. Which economic indicator measures inflation?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="correct">Consumer Price Index (CPI)</div>
+                    <div class="quiz-option" data-answer="wrong">Gross Domestic Product (GDP)</div>
+                    <div class="quiz-option" data-answer="wrong">Non‑Farm Payrolls (NFP)</div>
+                    <div class="quiz-option" data-answer="wrong">Retail Sales</div>
+                </div>
+
+                <div class="quiz-question">5. Why is it risky to enter a trade immediately after a major news release?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">The market is closed</div>
+                    <div class="quiz-option" data-answer="correct">Price may spike and reverse quickly due to low liquidity</div>
+                    <div class="quiz-option" data-answer="wrong">Brokers disable trading</div>
+                    <div class="quiz-option" data-answer="wrong">You need a special account</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 4 (skill building) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue building your skills</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'developing-trading-strategy' }) }}" class="next-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Developing a Simple Trading Strategy</h3>
+                    <p style="color: var(--gray-color);">Combine indicators and rules into a plan.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'advanced-risk-management' }) }}" class="next-card">
+                    <i class="fas fa-link"></i>
+                    <h3>Advanced Risk Management</h3>
+                    <p style="color: var(--gray-color);">Hedging and correlations.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'demo-to-live' }) }}" class="next-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>From Demo to Live</h3>
+                    <p style="color: var(--gray-color);">When and how to transition.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

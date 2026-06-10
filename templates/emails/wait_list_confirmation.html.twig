@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <title>Welcome to the Forecastly Waitlist!</title>
+    <style>
+        /* Base styles with dark mode prevention */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #4A5568;
+            background-color: #FAFAFC !important;
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        /* Force light mode in supported email clients */
+        :root {
+            color-scheme: light;
+            supported-color-schemes: light;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            background-color: #5E60CE;
+            padding: 30px;
+            text-align: center;
+            color: white !important;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: #F8FAFC !important;
+            border-radius: 8px;
+            border-left: 4px solid #5E60CE !important;
+        }
+
+        .benefit-icon {
+            font-size: 24px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .benefit-content h3 {
+            margin: 0 0 8px 0;
+            color: #2D3748 !important;
+            font-size: 1.1rem;
+        }
+
+        .benefit-content p {
+            margin: 0;
+            color: #4A5568 !important;
+            font-size: 0.95rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #5E60CE15 0%, #56CFE115 100%) !important;
+            border: 1px solid #5E60CE20 !important;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .position-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #5E60CE 0%, #56CFE1 100%) !important;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 15px 0;
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #718096 !important;
+            background-color: #F7FAFC !important;
+        }
+
+        .footer-links {
+            margin: 15px 0;
+        }
+
+        .footer-links a {
+            color: #5E60CE !important;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #5E60CE !important;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Mobile Responsive Styles */
+        @media only screen and (max-width: 640px) {
+            body {
+                background-color: #FAFAFC !important;
+                padding: 10px !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                width: 100% !important;
+                border-radius: 8px !important;
+            }
+
+            .header {
+                padding: 20px 15px !important;
+            }
+
+            .header h2 {
+                font-size: 1.3rem !important;
+                margin: 10px 0 !important;
+            }
+
+            .content {
+                padding: 20px 15px !important;
+            }
+
+            .benefits-grid {
+                gap: 15px !important;
+                margin: 20px 0 !important;
+            }
+
+            .benefit-item {
+                padding: 12px !important;
+                flex-direction: row !important;
+                align-items: flex-start !important;
+                gap: 12px !important; /* Reduced gap for mobile */
+            }
+
+            .benefit-icon {
+                font-size: 18px !important; /* Smaller icons on mobile */
+                min-width: 24px !important; /* Smaller width for mobile */
+                padding-top: 2px; /* Better vertical alignment */
+                padding-right: 4px;
+                text-align: center;
+            }
+
+            .benefit-content h3 {
+                font-size: 1rem !important;
+                margin-bottom: 6px !important; /* Tighter spacing on mobile */
+            }
+
+            .benefit-content p {
+                font-size: 0.9rem !important;
+                line-height: 1.5 !important; /* Better readability on mobile */
+            }
+
+            .highlight-box {
+                padding: 15px !important;
+                margin: 20px 0 !important;
+            }
+
+            .position-badge {
+                padding: 8px 16px !important;
+                font-size: 1.1rem !important;
+            }
+
+            .footer {
+                padding: 15px !important;
+            }
+
+            .footer-links a {
+                display: block !important;
+                margin: 5px 0 !important;
+            }
+
+            .social-links a {
+                display: inline-block !important;
+                margin: 0 5px !important;
+            }
+        }
+
+        /* Additional dark mode prevention */
+        [data-ogsc] .container,
+        [data-ogsb] .container {
+            background-color: #FFFFFF !important;
+        }
+
+        [data-ogsc] body,
+        [data-ogsb] body {
+            background-color: #FAFAFC !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">
+            <img src="https://forecastly.online/template/img/forecastly_logo_64x64.png" width="24px" height="24px" alt="Forecastly" style="border:0; display:inline-block;" />
+            <span>Forecastly</span>
+        </div>
+        <h2 style="margin:15px 0; color:white !important;">Welcome to the Future of Financial Planning!</h2>
+    </div>
+
+    <div class="content">
+        <p>Hello <strong>{{ waitList.fullName }}</strong>,</p>
+
+        <p>Thank you for joining the Forecastly waitlist! You've taken the first step toward transforming how you manage and grow your wealth.</p>
+
+        <div class="highlight-box">
+            <h3 style="margin-top: 0; color: #5E60CE !important;">🎉 You're In!</h3>
+            <p>We're excited to have you on board. While you wait, here's what being on our waitlist means for you:</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-icon">🚀</div>
+                <div class="benefit-content">
+                    <h3>Priority Access</h3>
+                    <p>Be among the first to experience our AI-assisted Algorithms for financial forecasting platform before anyone else.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon">💰</div>
+                <div class="benefit-content">
+                    <h3>Exclusive Launch Benefits</h3>
+                    <p>Waitlist members receive special pricing and premium features at no extra cost during our launch period.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon">🤖</div>
+                <div class="benefit-content">
+                    <h3>AI-Powered Insights</h3>
+                    <p>Get personalized financial forecasts and money management powered by cutting-edge machine learning.</p>
+                </div>
+            </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <div class="position-badge">
+                You're Position #{{ waitlist_position ?? 'Among the First' }}
+            </div>
+            <p style="font-size: 0.9rem; color: #718096 !important; margin-top: 10px;">
+                The closer we get to launch, the more exclusive updates you'll receive!
+            </p>
+        </div>
+
+        <div style="background: #F7FAFC !important; padding: 20px; border-radius: 8px; margin: 25px 0;">
+            <h4 style="margin-top: 0; color: #5E60CE !important;">What's Next?</h4>
+            <p>Keep an eye on your inbox for:</p>
+            <ul style="color: #4A5568 !important;">
+                <li>Exclusive platform sneak peeks</li>
+                <li>Early feature announcements</li>
+                <li>Your personal launch invitation</li>
+            </ul>
+        </div>
+
+        <div class="social-links">
+            <p><strong>Stay connected with us:</strong></p>
+            <a href="#" style="color: #5E60CE !important;">LinkedIn</a> •
+            <a href="#" style="color: #5E60CE !important;">Twitter</a> •
+            <a href="#" style="color: #5E60CE !important;">Facebook</a> •
+            <a href="#" style="color: #5E60CE !important;">Instagram</a>
+        </div>
+
+        <p>Thank you for choosing Forecastly,<br><strong>The Forecastly Team</strong></p>
+    </div>
+
+    <div class="footer">
+        <small>&copy; {{ "now"|date("Y") }} Forecastly by Meridian Wealth Technologies, LLC. All rights reserved.</small>
+
+        <div class="footer-links">
+            <a href="{{ url('privacy_policy') }}" style="color: #5E60CE !important;">Privacy Policy</a> |
+            <a href="{{ url('terms_of_service') }}" style="color: #5E60CE !important;">Terms of Service</a> |
+            <a href="{{ url('main_contact_support') }}" style="color: #5E60CE !important;">Contact Us</a> |
+            <a href="{{ unsubscribeUrl }}" style="color: #5E60CE !important;">Unsubscribe</a>
+        </div>
+
+        <p>Meridian Wealth Technologies, LLC<br>
+            600 West Broadway Suite 700-100A PMB 70148<br>
+            San Diego, CA 92101</p>
+
+        <p><em>This is a transactional email. You're receiving this because you joined the Forecastly waitlist.</em></p>
+    </div>
+</div>
+</div>
+</body>
+</html>

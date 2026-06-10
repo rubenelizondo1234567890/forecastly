@@ -1,0 +1,74 @@
+/* assets/styles/recurring_expenses.css */
+
+/* Recurring Expenses Styles */
+.recurring-expenses-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 992px) {
+    .recurring-expenses-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.recurring-expenses-table th, .recurring-expenses-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.recurring-expenses-table thead {
+    background-color: var(--background);
+}
+
+.recurring-expenses-table th {
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 2px solid var(--border);
+}
+
+.recurring-expenses-table tbody tr {
+    border-bottom: 1px solid var(--border);
+}
+
+.recurring-expenses-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.recurring-expenses-table tbody tr:hover {
+    background-color: rgba(94, 96, 206, 0.03);
+}
+
+/* Section Styles */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.accounts-count {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .recurring-expenses-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

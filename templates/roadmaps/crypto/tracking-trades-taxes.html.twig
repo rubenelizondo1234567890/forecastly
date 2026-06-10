@@ -1,0 +1,200 @@
+{# templates/roadmaps/crypto/tracking-trades-taxes.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('crypto_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('crypto_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – crypto style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <h1>Tracking Your Trades <span>for Taxes</span></h1>
+                <p class="hero-description">
+                    Crypto tax rules are complex – but ignoring them can lead to penalties. Learn what records to keep, which transactions are taxable, and how to simplify your crypto tax reporting.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 9 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">📋 Why Tax Tracking Matters</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                In many countries, cryptocurrencies are treated as property for tax purposes. That means every time you sell, trade, or spend crypto, it's a taxable event – even if you don't convert to cash. Without accurate records, you could overpay or underpay, triggering audits and penalties.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                The good news: with a simple system, you can track everything from day one. This article covers what to record, how to calculate gains, and tools that do the heavy lifting.
+            </p>
+        </section>
+
+        <!-- key concepts -->
+        <div class="rule-grid animate" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 40px 0;">
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-calendar-alt"></i> Taxable Events</h3>
+                <p>Selling crypto for fiat, trading one crypto for another, spending crypto on goods/services, earning crypto (mining, staking, airdrops).</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-file-invoice-dollar"></i> Cost Basis</h3>
+                <p>The original value of your crypto when you acquired it (including fees). This is subtracted from the sale price to determine your gain or loss.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-clock"></i> Holding Period</h3>
+                <p>If you hold crypto for more than a year, you may qualify for lower long‑term capital gains rates (in many jurisdictions).</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-robot"></i> Crypto Tax Software</h3>
+                <p>Tools like CoinTracker, Koinly, or TokenTax can import your transactions and generate tax reports automatically.</p>
+            </div>
+        </div>
+
+        <!-- what to record -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">📝 Essential Records to Keep</h3>
+            <ul style="font-size: 1.1rem; list-style: none; padding: 0;">
+                <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Date and time</strong> of each transaction</li>
+                <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Type</strong> (buy, sell, trade, spend, receive)</li>
+                <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Asset</strong> (BTC, ETH, etc.) and <strong>amount</strong></li>
+                <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Price in your local currency</strong> at the time of transaction</li>
+                <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Fees</strong> paid (exchange fees, network fees)</li>
+                <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Wallet addresses</strong> and transaction IDs (TXID) for reference</li>
+            </ul>
+            <div style="background: #e6f7f2; padding: 20px; border-radius: 16px; margin-top: 20px;">
+                <p><i class="fas fa-lightbulb" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Pro tip:</strong> Export transaction history from exchanges regularly (CSV files) and store them securely. Some exchanges even integrate with tax software.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Taxable Gain Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="tax-simulator">
+            <h3><i class="fas fa-calculator"></i> Taxable Gain Simulator</h3>
+            <p>See how a trade would be taxed based on your purchase price, sale price, and holding period. (For educational purposes only – consult a tax professional.)</p>
+
+            <div style="margin: 30px 0;">
+                <div style="margin-bottom: 20px;">
+                    <label for="buyPrice" style="display: block; font-weight: 600;">📉 Purchase Price (per coin, USD):</label>
+                    <input type="number" id="buyPrice" class="cat-input" min="1" max="100000" value="10000" step="100" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="sellPrice" style="display: block; font-weight: 600;">📈 Sale Price (per coin, USD):</label>
+                    <input type="number" id="sellPrice" class="cat-input" min="1" max="100000" value="15000" step="100" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="holdingPeriod" style="display: block; font-weight: 600;">⏳ Holding Period:</label>
+                    <select id="holdingPeriod" class="cat-input" style="width: 100%;">
+                        <option value="short">Less than 1 year (short‑term)</option>
+                        <option value="long">More than 1 year (long‑term)</option>
+                    </select>
+                </div>
+                <button id="calculateTaxBtn" class="btn-outline" style="width: 100%;">Calculate Gain</button>
+            </div>
+
+            <div id="taxResult" style="background: #f0f4f8; border-radius: 16px; padding: 25px; min-height: 80px; border-left: 6px solid var(--crypto-color);">
+                <i class="fas fa-arrow-left"></i> Fill in the details and click "Calculate Gain".
+            </div>
+            <p style="font-style: italic; color: var(--gray-color); margin-top: 20px;">💡 This is a simplified illustration. Tax rates vary by country and income level.</p>
+        </div>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Crypto Taxes</h3>
+
+                <div class="quiz-question">1. Which of these is typically a taxable event?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Buying Bitcoin with USD</div>
+                    <div class="quiz-option" data-answer="correct">Trading Bitcoin for Ethereum</div>
+                    <div class="quiz-option" data-answer="wrong">Transferring crypto between your own wallets</div>
+                    <div class="quiz-option" data-answer="wrong">Gifting crypto to a friend (in some jurisdictions)</div>
+                </div>
+
+                <div class="quiz-question">2. What is “cost basis”?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">The current market price of crypto</div>
+                    <div class="quiz-option" data-answer="correct">The original value you paid for the crypto, including fees</div>
+                    <div class="quiz-option" data-answer="wrong">The fee charged by the exchange</div>
+                    <div class="quiz-option" data-answer="wrong">The difference between buy and sell price</div>
+                </div>
+
+                <div class="quiz-question">3. Why does holding period matter for taxes?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">It doesn't – all gains are taxed the same</div>
+                    <div class="quiz-option" data-answer="correct">Long‑term holdings may qualify for lower capital gains rates</div>
+                    <div class="quiz-option" data-answer="wrong">Short‑term holdings are tax‑free</div>
+                    <div class="quiz-option" data-answer="wrong">You must hold at least one year to pay any tax</div>
+                </div>
+
+                <div class="quiz-question">4. Which record is LEAST important for tax purposes?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Date and time of transaction</div>
+                    <div class="quiz-option" data-answer="wrong">Amount and type of crypto</div>
+                    <div class="quiz-option" data-answer="correct">The color of the exchange's website</div>
+                    <div class="quiz-option" data-answer="wrong">Transaction ID (TXID)</div>
+                </div>
+
+                <div class="quiz-question">5. What should you do if you receive crypto from an airdrop or staking?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Ignore it – it's free money</div>
+                    <div class="quiz-option" data-answer="correct">Report it as income at its fair market value on the day you received it</div>
+                    <div class="quiz-option" data-answer="wrong">Wait until you sell it to report</div>
+                    <div class="quiz-option" data-answer="wrong">Send it to a different wallet to avoid taxes</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 3 (practical execution) – only previous ones, maybe return to phase overview -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue your practical journey</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'opening-first-exchange-account' }) }}" class="next-card">
+                    <i class="fas fa-user-plus"></i>
+                    <h3>Open Exchange Account</h3>
+                    <p style="color: var(--gray-color);">Start with the first step.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'your-first-crypto-purchase' }) }}" class="next-card">
+                    <i class="fas fa-cart-shopping"></i>
+                    <h3>Your First Purchase</h3>
+                    <p style="color: var(--gray-color);">Buy crypto safely.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'moving-crypto-to-wallet' }) }}" class="next-card">
+                    <i class="fas fa-right-left"></i>
+                    <h3>Move to Your Wallet</h3>
+                    <p style="color: var(--gray-color);">Take self‑custody.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

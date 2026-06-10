@@ -1,0 +1,213 @@
+{# templates/roadmaps/personal-finance/insurance-essentials.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="article-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1>Insurance Essentials: <span>What You Actually Need</span></h1>
+                <p class="hero-description">
+                    No jargon, no upsells — just the clear truth about health, auto, renters, life, and disability insurance. Learn to protect yourself without wasting money.
+                </p>
+                <div class="article-meta-hero">
+                    <span><i class="far fa-clock"></i> 10 min read</span>
+                    <span><i class="fas fa-calendar-alt"></i> Updated March 2025</span>
+                    <span><i class="fas fa-signal"></i> Beginner friendly</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- main article -->
+        <article class="article-main animate">
+            <h2>🛡️ Why insurance matters (and why you don't need "all of it")</h2>
+            <p>Insurance is about transferring risk: you pay a small, predictable amount to avoid a huge financial hit. But the industry loves to bundle and upsell. The goal is to be <strong>adequately covered, not over-covered</strong>. This guide cuts through the noise.</p>
+
+            <div class="insight-callout">
+                <i class="fas fa-lightbulb"></i>
+                <div><strong>The golden rule:</strong> Insure against what would financially devastate you. Skip insurance for small, frequent costs (like extended warranties).</div>
+            </div>
+
+            <h2>🔑 The big five: policies you should know</h2>
+            <div class="insurance-grid">
+                <div class="insurance-card">
+                    <i class="fas fa-hospital"></i>
+                    <span class="badge">Essential for everyone</span>
+                    <h3>Health insurance</h3>
+                    <p>Covers doctor visits, hospital stays, prescriptions. Without it, one medical emergency can bankrupt you. Employer plan, marketplace, or Medicaid.</p>
+                </div>
+                <div class="insurance-card">
+                    <i class="fas fa-car"></i>
+                    <span class="badge">Legally required</span>
+                    <h3>Auto insurance</h3>
+                    <p>Required in almost every state. Liability covers damage you cause; collision/comprehensive cover your own car. Don't skimp on liability.</p>
+                </div>
+                <div class="insurance-card">
+                    <i class="fas fa-home"></i>
+                    <span class="badge">Renters too</span>
+                    <h3>Home / Renters insurance</h3>
+                    <p>Homeowners: covers structure & belongings. Renters: dirt‑cheap (≈$15/month) and covers your stuff plus liability if someone gets hurt in your apartment.</p>
+                </div>
+                <div class="insurance-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <span class="badge">If others depend on you</span>
+                    <h3>Life insurance</h3>
+                    <p>Provides money to dependents after you die. Term life (10–30 years) is usually the smart, low‑cost choice. Skip whole life (expensive, confusing).</p>
+                </div>
+                <div class="insurance-card">
+                    <i class="fas fa-wheelchair"></i>
+                    <span class="badge">Most overlooked</span>
+                    <h3>Disability insurance</h3>
+                    <p>Replaces income if you can't work due to illness or injury. Your ability to earn is your biggest asset — protect it. Often available through employer.</p>
+                </div>
+            </div>
+
+            <h2>🧭 Your life stage insurance checkup</h2>
+            <p>Not everyone needs every type. Click the stage that fits you best to see a personalized checklist.</p>
+
+            <div class="stage-selector" id="stageSelector">
+                <div class="stage-btn active" data-stage="young">🌟 Starting out (18–30)</div>
+                <div class="stage-btn" data-stage="family">🏡 Family & homeowners</div>
+                <div class="stage-btn" data-stage="retire">🧓 Approaching retirement</div>
+            </div>
+
+            <div class="stage-recommendation" id="stageRecommendation">
+                <!-- dynamic content by JS -->
+                <p><i class="fas fa-hand-pointer" style="color:#ff6b35;"></i> Select a life stage above for tailored insurance advice.</p>
+            </div>
+
+            <h2>📋 How to buy insurance wisely</h2>
+            <ul>
+                <li><strong>Bundle for discounts:</strong> Same company for auto + renters/home often saves 10–15%.</li>
+                <li><strong>Raise deductibles:</strong> A higher deductible lowers premium — just have the cash set aside.</li>
+                <li><strong>Shop around every 1–2 years:</strong> Loyalty penalties are real; compare quotes from at least three insurers.</li>
+                <li><strong>Check for group plans:</strong> Employer, alumni, or professional organizations often have better rates.</li>
+                <li><strong>Understand what's NOT covered:</strong> Flood, earthquake, etc. usually separate.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <i class="fas fa-file-invoice" style="font-size: 2rem; color: var(--personal-color); margin-bottom: 15px; display: inline-block;"></i>
+                <h3 style="margin-top: 0;">Quick term cheat sheet</h3>
+                <ul style="margin-bottom: 0;">
+                    <li><strong>Premium:</strong> What you pay monthly/annually.</li>
+                    <li><strong>Deductible:</strong> You pay this amount before insurance kicks in.</li>
+                    <li><strong>Copay:</strong> Fixed fee for a service (like $20 for doctor).</li>
+                    <li><strong>Out‑of‑pocket maximum:</strong> Most you'll pay in a year; after that, 100% covered.</li>
+                </ul>
+            </div>
+
+            <h2>❌ Common insurance myths</h2>
+            <div class="myth-grid">
+                <div class="myth-item"><i class="fas fa-times-circle"></i><span class="myth">"I'm young, I don't need health insurance."</span><span class="fact">Fact: An unexpected appendicitis can cost $50k+. A marketplace plan with subsidy can be very cheap.</span></div>
+                <div class="myth-item"><i class="fas fa-times-circle"></i><span class="myth">"Renters insurance is for landlords."</span><span class="fact">Fact: Your landlord's insurance doesn't cover your laptop or bike. Renters insurance is ~$150/year.</span></div>
+                <div class="myth-item"><i class="fas fa-times-circle"></i><span class="myth">"Life insurance is an investment."</span><span class="fact">Fact: Term life is pure protection, low cost. "Cash value" policies are complex and often underperform.</span></div>
+                <div class="myth-item"><i class="fas fa-times-circle"></i><span class="myth">"Disability insurance? I'm healthy."</span><span class="fact">Fact: 1 in 4 of today's 20‑year‑olds will become disabled before retirement. Social Security is hard to qualify for.</span></div>
+            </div>
+
+            <!-- Quick quiz -->
+            {% if app.user and quiz %}
+                {# Logged in user #}
+                {# Quiz already taken – show summary and retake button #}
+                <div class="quiz-container animate">
+                    <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                    <p style="color: #e2e8f0; font-size: 1.2rem;">
+                        Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                    </p>
+                    <p style="color: #cbd5e0;">
+                        You can retake the quiz to improve your score. Click the button below to reset it.
+                    </p>
+                    <div class="quiz-actions">
+                        <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                           class="btn"
+                           style="background-color: #ff6b35; color: white; text-decoration: none;">
+                            Retake Quiz
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+                <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                    <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your insurance smarts</h3>
+                    <div class="quiz-question">1. Which policy covers your stolen laptop from a coffee shop?</div>
+                    <div class="quiz-options" data-question="1">
+                        <div class="quiz-option" data-answer="wrong">Homeowners (only if at home)</div>
+                        <div class="quiz-option" data-answer="correct">Renters or homeowners (off‑premises coverage)</div>
+                        <div class="quiz-option" data-answer="wrong">Auto insurance</div>
+                        <div class="quiz-option" data-answer="wrong">Life insurance</div>
+                    </div>
+                    <div class="quiz-question" style="margin-top: 30px;">2. What is the most overlooked insurance for working people?</div>
+                    <div class="quiz-options" data-question="2">
+                        <div class="quiz-option" data-answer="wrong">Life insurance</div>
+                        <div class="quiz-option" data-answer="wrong">Pet insurance</div>
+                        <div class="quiz-option" data-answer="correct">Disability insurance</div>
+                        <div class="quiz-option" data-answer="wrong">Travel insurance</div>
+                    </div>
+                    <div class="quiz-question">3. What type of life insurance is usually recommended for most people?</div>
+                    <div class="quiz-options" data-question="3">
+                        <div class="quiz-option" data-answer="wrong">Whole life</div>
+                        <div class="quiz-option" data-answer="correct">Term life</div>
+                        <div class="quiz-option" data-answer="wrong">Universal life</div>
+                        <div class="quiz-option" data-answer="wrong">Variable life</div>
+                    </div>
+                    <div class="quiz-question">4. What does a deductible refer to?</div>
+                    <div class="quiz-options" data-question="4">
+                        <div class="quiz-option" data-answer="wrong">The monthly premium</div>
+                        <div class="quiz-option" data-answer="correct">The amount you pay before insurance kicks in</div>
+                        <div class="quiz-option" data-answer="wrong">The maximum out‑of‑pocket</div>
+                        <div class="quiz-option" data-answer="wrong">The co‑pay</div>
+                    </div>
+                    <div class="quiz-question">5. Which insurance is legally required if you drive a car?</div>
+                    <div class="quiz-options" data-question="5">
+                        <div class="quiz-option" data-answer="wrong">Health insurance</div>
+                        <div class="quiz-option" data-answer="wrong">Life insurance</div>
+                        <div class="quiz-option" data-answer="correct">Auto liability insurance</div>
+                        <div class="quiz-option" data-answer="wrong">Renters insurance</div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback">👉 Click any answer to check yourself.</div>
+                </div>
+            {% endif %}
+
+            <!-- Next steps: continue Phase 2 -->
+            <section style="margin: 60px 0;">
+                <h2 class="section-title" style="text-align: center;">Continue your Risk Management phase</h2>
+                <div class="next-steps">
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'debt-avalanche-vs-snowball' }) }}" class="next-card">
+                        <i class="fas fa-balance-scale" style="color: var(--personal-color);"></i>
+                        <h3>Debt avalanche vs. snowball</h3>
+                        <p style="color: var(--gray-color);">Compare the maths‑focused avalanche and the motivational snowball. Pick the strategy that matches your personality.</p>
+                    </a>
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'protecting-your-identity' }) }}" class="next-card">
+                        <i class="fas fa-id-card" style="color: var(--personal-color);"></i>
+                        <h3>Protecting your identity</h3>
+                        <p style="color: var(--gray-color);">Practical habits to safeguard personal data – from password managers to freezing credit reports.</p>
+                    </a>
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'emergency-fund-deep-dive' }) }}" class="next-card">
+                        <i class="fas fa-piggy-bank" style="color: var(--personal-color);"></i>
+                        <h3>Emergency fund deep dive</h3>
+                        <p style="color: var(--gray-color);">Go beyond the basics – how a cash cushion protects you from job loss, medical bills, and market downturns.</p>
+                    </a>
+                </div>
+            </section>
+        </article>
+
+        <!-- CTA -->
+        <div class="journey-cta animate" style="background: linear-gradient(145deg, #fceae5, #ffffff); text-align: center; padding: 50px 40px; border-radius: 40px; margin: 60px 0;">
+            <h2>Ready to lock in your protection?</h2>
+            <p style="font-size: 1.2rem; color: #2d3748;">Get a free insurance review checklist and compare quotes.</p>
+            <a href="#" class="cta-button" style="display: inline-block; padding: 16px 40px; background-color: #ff6b35; color: white; text-decoration: none; border-radius: 60px; font-weight: 600; font-size: 1.2rem; box-shadow: 0 8px 18px rgba(255,107,53,0.3);"><i class="fas fa-clipboard-list"></i> Get your checkup</a>
+        </div>
+    </div>
+{% endblock %}

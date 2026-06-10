@@ -1,0 +1,215 @@
+{# templates/roadmaps/tax/tax-implications-of-rebalancing.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('tax_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('tax_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – tax style -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #1e2b37 0%, #2c3e50 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--tax-smart-color);">
+                    <i class="fas fa-arrows-rotate"></i>
+                </div>
+                <h1>Tax Implications <span>of Rebalancing</span></h1>
+                <p class="hero-description">
+                    Rebalancing keeps your portfolio aligned with your goals, but it can trigger unwanted taxes.
+                    Learn how to rebalance intelligently – using tax‑advantaged accounts, tax‑loss harvesting,
+                    and smart order‑of‑operations to minimize the tax bite.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(44,62,80,0.2); color: #b0c4de;">
+                    <i class="fas fa-layer-group"></i> Phase 2: Risk Management · 7 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">📖 Stay Balanced, Stay Tax‑Smart</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Rebalancing is essential for controlling risk, but if done carelessly, it can generate unnecessary capital gains taxes.
+                The good news: with a few strategies, you can rebalance effectively while keeping more of your returns.
+                This article shows you how to navigate the tax consequences and even use rebalancing as a tax‑management tool.
+            </p>
+        </section>
+
+        <!-- key takeaways in rule‑grid style -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-university"></i> Use Tax‑Advantaged Accounts</h4>
+                <p>Rebalance inside your 401(k), IRA, or HSA first – no tax consequences for trades within these accounts.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-leaf"></i> Harvest Losses to Offset Gains</h4>
+                <p>Sell underperforming assets to realize losses that can offset gains from winners you sell to rebalance.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-hand-holding-usd"></i> Direct New Contributions</h4>
+                <p>Instead of selling, use new money to buy underweight assets. This avoids taxes entirely.</p>
+            </div>
+        </div>
+
+        <!-- interactive tool: Rebalancing Tax Cost Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="rebalancing-tax-tool">
+            <h3><i class="fas fa-chart-line"></i> Interactive: Rebalancing Tax Cost Simulator</h3>
+            <p>Estimate the tax cost of rebalancing your portfolio. Enter your current portfolio, target allocations, and tax rates to see the impact of selling appreciated assets.</p>
+
+            <div style="margin-bottom: 25px;">
+                <h4 style="margin-bottom: 10px;">Portfolio Details</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <div style="flex: 1 1 300px;">
+                        <label>Asset A Current Value ($)</label>
+                        <input type="number" id="assetAVal" class="cat-input" style="width:100%;" value="60000" step="1000">
+                    </div>
+                    <div style="flex: 1 1 300px;">
+                        <label>Asset A Cost Basis ($)</label>
+                        <input type="number" id="assetABasis" class="cat-input" style="width:100%;" value="40000" step="1000">
+                    </div>
+                    <div style="flex: 1 1 300px;">
+                        <label>Asset A Target %</label>
+                        <input type="number" id="assetATarget" class="cat-input" style="width:100%;" value="40" step="5">
+                    </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+                    <div style="flex: 1 1 300px;">
+                        <label>Asset B Current Value ($)</label>
+                        <input type="number" id="assetBVal" class="cat-input" style="width:100%;" value="40000" step="1000">
+                    </div>
+                    <div style="flex: 1 1 300px;">
+                        <label>Asset B Cost Basis ($)</label>
+                        <input type="number" id="assetBBasis" class="cat-input" style="width:100%;" value="30000" step="1000">
+                    </div>
+                    <div style="flex: 1 1 300px;">
+                        <label>Asset B Target %</label>
+                        <input type="number" id="assetBTarget" class="cat-input" style="width:100%;" value="60" step="5">
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <h4>Tax Settings</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <div style="flex: 1 1 300px;">
+                        <label>Short‑Term Capital Gains Rate <span id="shortRateVal">24</span>%</label>
+                        <input type="range" id="shortTermRate" min="0" max="37" value="24" step="1" class="cat-input" style="width:100%;">
+                    </div>
+                    <div style="flex: 1 1 300px;">
+                        <label>Long‑Term Capital Gains Rate <span id="longRateVal">15</span>%</label>
+                        <input type="range" id="longTermRate" min="0" max="20" value="15" step="1" class="cat-input" style="width:100%;">
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="calcRebalancingTax" class="btn-outline">Calculate Tax Impact</button>
+            </div>
+
+            <div id="rebalancingResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                <p>Enter your portfolio details and click the button to see results.</p>
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px; background-color: #eef2f5; border-left-color: var(--tax-smart-color);">
+                <i class="fas fa-lightbulb"></i> This tool assumes you sell assets to rebalance, and that gains are realized in a taxable account. In reality, you can rebalance inside tax‑advantaged accounts or use new contributions to avoid taxes.
+            </p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate" style="background: #1e1a3a;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'tax', slug: 'tax-implications-of-rebalancing', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #2c3e50; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background: #1e2b37;">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Tax Implications of Rebalancing</h3>
+
+                <div class="quiz-question">1. Which account type allows you to rebalance without any immediate tax consequences?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Taxable brokerage account</div>
+                    <div class="quiz-option" data-answer="correct">Traditional IRA</div>
+                    <div class="quiz-option" data-answer="wrong">529 plan</div>
+                    <div class="quiz-option" data-answer="wrong">Both Traditional IRA and Roth IRA</div>
+                </div>
+
+                <div class="quiz-question">2. What is one way to rebalance without selling appreciated assets?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="correct">Direct new contributions to underweight assets</div>
+                    <div class="quiz-option" data-answer="wrong">Sell all winners and buy losers</div>
+                    <div class="quiz-option" data-answer="wrong">Use margin to buy more</div>
+                    <div class="quiz-option" data-answer="wrong">Ignore the target allocation</div>
+                </div>
+
+                <div class="quiz-question">3. How can tax‑loss harvesting help with rebalancing?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">It eliminates the need to rebalance</div>
+                    <div class="quiz-option" data-answer="correct">Losses can offset gains from selling appreciated assets</div>
+                    <div class="quiz-option" data-answer="wrong">It creates additional tax liability</div>
+                    <div class="quiz-option" data-answer="wrong">It allows you to defer rebalancing indefinitely</div>
+                </div>
+
+                <div class="quiz-question">4. If you hold the same asset in both taxable and tax‑advantaged accounts, where should you rebalance first?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Taxable account</div>
+                    <div class="quiz-option" data-answer="correct">Tax‑advantaged account</div>
+                    <div class="quiz-option" data-answer="wrong">Both equally</div>
+                    <div class="quiz-option" data-answer="wrong">It doesn't matter</div>
+                </div>
+
+                <div class="quiz-question">5. What is the tax impact of selling a long‑term holding (held >1 year) in a taxable account?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Taxed at ordinary income rates</div>
+                    <div class="quiz-option" data-answer="correct">Taxed at preferential long‑term capital gains rates</div>
+                    <div class="quiz-option" data-answer="wrong">No tax if you reinvest the proceeds</div>
+                    <div class="quiz-option" data-answer="wrong">Taxed as a dividend</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--tax-smart-color);">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 2 (Risk Management) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 2: Risk Management</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'tax-loss-harvesting' }) }}" class="next-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Tax‑Loss Harvesting</h3>
+                    <p>Turn losses into savings – the basics.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'avoiding-the-wash-sale-rule' }) }}" class="next-card">
+                    <i class="fas fa-broom"></i>
+                    <h3>Avoiding the Wash Sale Rule</h3>
+                    <p>Stay compliant while harvesting losses.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'asset-location-which-investments-go-where' }) }}" class="next-card">
+                    <i class="fas fa-location-dot"></i>
+                    <h3>Asset Location</h3>
+                    <p>Which investments go where.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

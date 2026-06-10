@@ -1,0 +1,258 @@
+{# templates/roadmaps/real-state/mortgage-guide.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('real_state_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('real_state_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #2f2a24 0%, #5e4b3f 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--real-estate-color);">
+                    <i class="fas fa-file-signature"></i>
+                </div>
+                <h1>How to Get a Mortgage <span>Credit, Pre‑approval, and Loan Types</span></h1>
+                <p class="hero-description">
+                    Walk through the mortgage process: what credit score you need, how to get pre‑approved, and the differences between conventional, FHA, VA, and more.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(225,112,85,0.2); color: #f7b9a9;">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 12 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">🏦 Your Roadmap to Financing</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                A mortgage is the biggest loan you'll ever take. Understanding the process, your options, and how lenders evaluate you can save thousands of dollars and reduce stress.
+                <strong>Let's demystify credit scores, pre‑approval, and loan types.</strong>
+            </p>
+        </section>
+
+        <!-- Key Steps Grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-chart-line"></i> Credit Scores & Reports</h4>
+                <p>Your credit score (FICO) determines eligibility and interest rate. Conventional loans typically require 620+, FHA 580+, VA/USDA no minimum but lenders prefer 620+. Check your reports for errors.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-check-circle"></i> Pre‑Approval</h4>
+                <p>A lender reviews your finances and gives a conditional commitment. It shows sellers you're serious and helps you know your budget. Requires income, asset, and credit verification.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-building"></i> Loan Types</h4>
+                <p>Conventional (3% down), FHA (3.5%, MIP), VA (0%, funding fee), USDA (0%, income limits), Jumbo (exceeds conforming limits). Each has different requirements and costs.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-percent"></i> Interest Rates & APR</h4>
+                <p>Rates depend on market, credit, down payment, loan type. APR includes fees and points – a better comparison tool than rate alone.</p>
+            </div>
+        </div>
+
+        <!-- Deeper Dive Card -->
+        <div class="card animate">
+            <h3><i class="fas fa-magnifying-glass"></i> The Pre‑Approval Process</h3>
+            <p><strong>Pre‑qualification</strong> is a quick estimate based on self‑reported data. <strong>Pre‑approval</strong> involves a hard credit pull and document review (W2s, pay stubs, bank statements, tax returns). It's valid for 60–90 days.</p>
+            <p style="background: var(--light-gray); padding: 15px; border-radius: 12px;">
+                <strong>Pro Tip:</strong> Get pre‑approved before house hunting. Sellers won't consider offers without it. Compare offers from 3–5 lenders to find the best rate and fees.
+            </p>
+        </div>
+
+        <!-- Interactive Tool: Mortgage Payment & Loan Comparison (disabled for non-logged-in) -->
+        <div class="card animate" id="mortgage-calculator">
+            <h3><i class="fas fa-calculator"></i> Interactive: Mortgage Payment & Loan Comparison</h3>
+            <p>Adjust the sliders to see estimated monthly payments for different loan types.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1 1 200px;">
+                    <label>Home Price ($) <span id="homePriceValMort">300000</span></label>
+                    <input type="range" id="homePriceMort" min="50000" max="1000000" value="300000" step="5000" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Down Payment (%) <span id="downPercentValMort">10</span></label>
+                    <input type="range" id="downPercentMort" min="0" max="50" value="10" step="1" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Interest Rate (%) <span id="rateValMort">6.5</span></label>
+                    <input type="range" id="rateMort" min="2" max="10" value="6.5" step="0.125" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Loan Term (years) </label>
+                    <select id="termMort" class="cat-input" style="width:100%;">
+                        <option value="15">15 years</option>
+                        <option value="30" selected>30 years</option>
+                    </select>
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Loan Type </label>
+                    <select id="loanTypeMort" class="cat-input" style="width:100%;">
+                        <option value="conventional">Conventional</option>
+                        <option value="fha">FHA</option>
+                        <option value="va">VA</option>
+                        <option value="usda">USDA</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="calcMortgage" class="btn-outline">Calculate Payment</button>
+            </div>
+
+            <div id="mortgageResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                <p>Adjust the values and click the button.</p>
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px;">
+                <i class="fas fa-lightbulb"></i> This calculator estimates principal & interest only. Actual payments include property taxes, insurance, and possibly PMI/MIP/funding fees. Consult a lender for precise numbers.
+            </p>
+        </div>
+
+        <!-- Loan Type Comparison Table -->
+        <div class="card animate">
+            <h3><i class="fas fa-table"></i> Loan Type Comparison</h3>
+            <table style="width:100%; border-collapse: collapse;">
+                <thead>
+                <tr style="border-bottom: 2px solid var(--real-estate-color);">
+                    <th style="text-align: left; padding: 8px;">Loan Type</th>
+                    <th style="text-align: left; padding: 8px;">Min Down Payment</th>
+                    <th style="text-align: left; padding: 8px;">Min Credit Score</th>
+                    <th style="text-align: left; padding: 8px;">Mortgage Insurance</th>
+                    <th style="text-align: left; padding: 8px;">Best For</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="padding: 8px;">Conventional</td>
+                    <td style="padding: 8px;">3% (first-time) / 5%</td>
+                    <td style="padding: 8px;">620</td>
+                    <td style="padding: 8px;">PMI if <20% down</td>
+                    <td style="padding: 8px;">Good credit, stable income</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;">FHA</td>
+                    <td style="padding: 8px;">3.5%</td>
+                    <td style="padding: 8px;">580 (500 with 10%)</td>
+                    <td style="padding: 8px;">MIP (upfront + annual)</td>
+                    <td style="padding: 8px;">Lower credit, smaller down payment</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;">VA</td>
+                    <td style="padding: 8px;">0%</td>
+                    <td style="padding: 8px;">No minimum (lender may want 620)</td>
+                    <td style="padding: 8px;">No PMI, but funding fee</td>
+                    <td style="padding: 8px;">Veterans, active military</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;">USDA</td>
+                    <td style="padding: 8px;">0%</td>
+                    <td style="padding: 8px;">640 (lender dependent)</td>
+                    <td style="padding: 8px;">Guarantee fee (upfront + annual)</td>
+                    <td style="padding: 8px;">Rural buyers, income limits</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Quiz Section -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'mortgage-guide', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #e17055; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">📝 Test Your Knowledge: Mortgages</h3>
+
+                <div class="quiz-question">1. What is the minimum credit score typically required for a conventional loan?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">580</div>
+                    <div class="quiz-option" data-answer="correct">620</div>
+                    <div class="quiz-option" data-answer="wrong">660</div>
+                    <div class="quiz-option" data-answer="wrong">700</div>
+                </div>
+
+                <div class="quiz-question">2. Which loan type offers 0% down for veterans and active military?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">FHA</div>
+                    <div class="quiz-option" data-answer="correct">VA</div>
+                    <div class="quiz-option" data-answer="wrong">USDA</div>
+                    <div class="quiz-option" data-answer="wrong">Conventional</div>
+                </div>
+
+                <div class="quiz-question">3. The difference between pre‑qualification and pre‑approval is:</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">They are the same</div>
+                    <div class="quiz-option" data-answer="correct">Pre‑approval involves document verification and a hard credit pull</div>
+                    <div class="quiz-option" data-answer="wrong">Pre‑qualification requires a fee</div>
+                    <div class="quiz-option" data-answer="wrong">Pre‑approval is only for FHA loans</div>
+                </div>
+
+                <div class="quiz-question">4. What does PMI stand for?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Primary Mortgage Insurance</div>
+                    <div class="quiz-option" data-answer="correct">Private Mortgage Insurance</div>
+                    <div class="quiz-option" data-answer="wrong">Property Mortgage Interest</div>
+                    <div class="quiz-option" data-answer="wrong">Premium Mortgage Investment</div>
+                </div>
+
+                <div class="quiz-question">5. Which loan type requires an upfront guarantee fee and annual fee but no down payment?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Conventional</div>
+                    <div class="quiz-option" data-answer="wrong">FHA</div>
+                    <div class="quiz-option" data-answer="wrong">VA</div>
+                    <div class="quiz-option" data-answer="correct">USDA</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--real-estate-color);">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next Steps in Phase 3 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 3: Practical Execution</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'saving-for-down-payment' }) }}" class="next-card">
+                    <i class="fas fa-piggy-bank"></i>
+                    <h3>Saving for Your Down Payment</h3>
+                    <p>A step‑by‑step plan to build your fund.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'first-time-buyer-programs' }) }}" class="next-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>First‑Time Buyer Programs</h3>
+                    <p>Grants and assistance you may qualify for.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'analyze-rental-property' }) }}" class="next-card">
+                    <i class="fas fa-chart-simple"></i>
+                    <h3>How to Analyze a Rental Property</h3>
+                    <p>A practical template for investors.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{# templates/admin/doc_page/_form.html.twig #}
+{{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.slug) }}
+    {{ form_row(form.content, { 'attr': {'id': 'editor'} }) }}
+
+<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

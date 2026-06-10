@@ -1,0 +1,218 @@
+{# templates/roadmaps/real-state/house-hacking.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('real_state_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('real_state_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #2f2a24 0%, #5e4b3f 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--real-estate-color);">
+                    <i class="fas fa-people-roof"></i>
+                </div>
+                <h1>House Hacking <span>Live for Free and Build Wealth</span></h1>
+                <p class="hero-description">
+                    Buy a multi‑unit property, live in one unit, and rent the others. Learn how house hacking can drastically reduce your living expenses and jumpstart your real estate investing journey.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(225,112,85,0.2); color: #f7b9a9;">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">🏘️ What is House Hacking?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                House hacking is the strategy of buying a small multi‑family property (duplex, triplex, fourplex), living in one unit, and renting out the others.
+                The rental income can cover most or all of your mortgage, letting you live for free while building equity and landlord experience.
+            </p>
+        </section>
+
+        <!-- Key Benefits Grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-home"></i> Live for Free (or Cheap)</h4>
+                <p>Rental income from other units can offset your housing costs, sometimes turning a negative expense into positive cash flow.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-chart-line"></i> Build Equity</h4>
+                <p>Your tenants pay down your mortgage, building wealth while you sleep. Over time, appreciation adds to your net worth.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-graduation-cap"></i> Learn Landlording</h4>
+                <p>Start small with tenants next door. You'll learn maintenance, tenant management, and the ropes without a huge portfolio.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-hand-holding-usd"></i> Low Down Payment</h4>
+                <p>FHA loans allow as little as 3.5% down on 2‑4 unit properties if you live in one. Conventional loans also have low down payment options for owner‑occupants.</p>
+            </div>
+        </div>
+
+        <!-- Deeper Dive Card -->
+        <div class="card animate">
+            <h3><i class="fas fa-lightbulb"></i> How to Get Started</h3>
+            <p><strong>1. Find a property</strong> – Look for duplexes, triplexes, or fourplexes in your area. Use an FHA loan if you're a first‑timer.</p>
+            <p><strong>2. Run the numbers</strong> – Estimate rental income from other units, factor in expenses, and ensure you can cover the mortgage even if vacant.</p>
+            <p><strong>3. Live there</strong> – You must occupy the property for at least one year to satisfy owner‑occupancy requirements.</p>
+            <p><strong>4. Rinse and repeat</strong> – After a year, you can move out, rent your unit, and repeat the process with another property.</p>
+            <p style="background: var(--light-gray); padding: 15px; border-radius: 12px;">
+                <strong>Pro Tip:</strong> Some investors start with a single‑family home and rent out rooms. That's also house hacking! The principle is the same: use rental income to reduce your living costs.
+            </p>
+        </div>
+
+        <!-- Interactive Tool: House Hacking Savings Calculator (disabled for non-logged-in) -->
+        <div class="card animate" id="house-hacking-calculator">
+            <h3><i class="fas fa-calculator"></i> Interactive: House Hacking Savings Calculator</h3>
+            <p>See how much you can save (or earn) by renting out part of your property.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1 1 200px;">
+                    <label>Purchase Price ($) <span id="priceValHH">300000</span></label>
+                    <input type="range" id="priceHH" min="50000" max="1000000" value="300000" step="5000" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Down Payment (%) <span id="downPercentValHH">10</span></label>
+                    <input type="range" id="downPercentHH" min="3" max="50" value="10" step="1" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Interest Rate (%) <span id="rateValHH">6.5</span></label>
+                    <input type="range" id="rateHH" min="2" max="10" value="6.5" step="0.125" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Loan Term (years) </label>
+                    <select id="termHH" class="cat-input" style="width:100%;">
+                        <option value="15">15 years</option>
+                        <option value="30" selected>30 years</option>
+                    </select>
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Monthly Rent from Other Units ($) <span id="rentValHH">1500</span></label>
+                    <input type="range" id="rentHH" min="0" max="5000" value="1500" step="50" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Your Current Rent/Living Cost ($) <span id="currentRentValHH">1200</span></label>
+                    <input type="range" id="currentRentHH" min="0" max="5000" value="1200" step="50" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Other Monthly Expenses (tax/ins/maintenance) <span id="expensesValHH">500</span></label>
+                    <input type="range" id="expensesHH" min="0" max="2000" value="500" step="50" class="cat-input" style="width:100%;">
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="calcHouseHack" class="btn-outline">Calculate Savings</button>
+            </div>
+
+            <div id="houseHackResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                <p>Adjust the values and click the button.</p>
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px;">
+                <i class="fas fa-lightbulb"></i> This calculator estimates your mortgage payment and compares your net housing cost after rental income to your current rent. It does not include vacancy, repairs, or property management – always budget for those.
+            </p>
+        </div>
+
+        <!-- Quiz Section -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'house-hacking', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #e17055; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">📝 Test Your Knowledge: House Hacking</h3>
+
+                <div class="quiz-question">1. What is house hacking?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Breaking into a house illegally</div>
+                    <div class="quiz-option" data-answer="correct">Living in one unit of a multi‑unit property while renting the others</div>
+                    <div class="quiz-option" data-answer="wrong">Flipping houses quickly</div>
+                    <div class="quiz-option" data-answer="wrong">Using Airbnb to rent your primary residence</div>
+                </div>
+
+                <div class="quiz-question">2. Which loan type is commonly used by first‑time house hackers?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="correct">FHA (3.5% down)</div>
+                    <div class="quiz-option" data-answer="wrong">VA (requires military)</div>
+                    <div class="quiz-option" data-answer="wrong">USDA (rural only)</div>
+                    <div class="quiz-option" data-answer="wrong">Jumbo</div>
+                </div>
+
+                <div class="quiz-question">3. To qualify for owner‑occupant financing, you typically must live in the property for at least:</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">6 months</div>
+                    <div class="quiz-option" data-answer="correct">1 year</div>
+                    <div class="quiz-option" data-answer="wrong">2 years</div>
+                    <div class="quiz-option" data-answer="wrong">No requirement</div>
+                </div>
+
+                <div class="quiz-question">4. Which of the following is a benefit of house hacking?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">No maintenance responsibilities</div>
+                    <div class="quiz-option" data-answer="correct">Rental income reduces your housing costs</div>
+                    <div class="quiz-option" data-answer="wrong">You never have to deal with tenants</div>
+                    <div class="quiz-option" data-answer="wrong">Property taxes are eliminated</div>
+                </div>
+
+                <div class="quiz-question">5. After one year of house hacking, you can:</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Sell the property tax‑free</div>
+                    <div class="quiz-option" data-answer="correct">Move out, rent your unit, and repeat the process</div>
+                    <div class="quiz-option" data-answer="wrong">Refinance with no costs</div>
+                    <div class="quiz-option" data-answer="wrong">Stop paying mortgage</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--real-estate-color);">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next Steps in Phase 4 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 4: Skill Building</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'brrrr-method' }) }}" class="next-card">
+                    <i class="fas fa-arrows-rotate"></i>
+                    <h3>BRRRR Method</h3>
+                    <p>Buy, Rehab, Rent, Refinance, Repeat.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'syndications-crowdfunding' }) }}" class="next-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Real Estate Syndications</h3>
+                    <p>Pool money to buy larger properties.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'scaling-real-estate-portfolio' }) }}" class="next-card">
+                    <i class="fas fa-chart-gantt"></i>
+                    <h3>Scaling Your Portfolio</h3>
+                    <p>Grow without burning out.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{# templates/customer/forecasting/net_balance_projections.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Net Balance Projections - Forecastly. Grow your Wealth.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_net_balance_forecasting_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        window.NET_BALANCE_PROJECTIONS_URL = "{{ path('customer_forecasting_net_balance_projections') }}";
+    </script>
+    {{ encore_entry_script_tags('customer_net_balance_forecasting_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <div class="page-title">
+            <h1>Net Balance Projections</h1>
+            <p>Forecast your overall financial position over time</p>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="forecasting-form-section form-section">
+        <div class="section-header">
+            <h2 class="section-title">Projection Settings</h2>
+        </div>
+
+        <div class="form-row" style="display: flex; gap: 20px;">
+            <div class="form-group" style="flex: 1;">
+                <label for="periodSelect">Select Period</label>
+                <select id="periodSelect" class="form-control">
+                    <option value="">Select Period...</option>
+                    <option value="1">1 Year</option>
+                    <option value="3">3 Years</option>
+                    <option value="5">5 Years</option>
+                    <option value="10">10 Years</option>
+                    <option value="15">15 Years</option>
+                    <option value="20">20 Years</option>
+                    <option value="30">30 Years</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="forecasting-results form-section" style="margin-top: 30px;">
+        <div class="section-header">
+            <h2 class="section-title">Projection Results</h2>
+        </div>
+
+        <div id="summaryInfo" style="display: none;">
+            <div class="net-balance-summary">
+                <div class="summary-card income">
+                    <div class="summary-label">Total Income</div>
+                    <div class="summary-value income-value" id="totalIncome">$0.00</div>
+                </div>
+                <div class="summary-card expense">
+                    <div class="summary-label">Total Expenses</div>
+                    <div class="summary-value expense-value" id="totalExpense">$0.00</div>
+                </div>
+                <div class="summary-card net">
+                    <div class="summary-label">Net Balance</div>
+                    <div class="summary-value" id="netBalance">$0.00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="net-balance-chart-container">
+            <canvas id="projectionChart"></canvas>
+        </div>
+
+        <div class="legend-container">
+            <div class="legend-item">
+                <div class="legend-color legend-income"></div>
+                <span>Income</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color legend-expense"></div>
+                <span>Expense</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color legend-net"></div>
+                <span>Net Balance</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

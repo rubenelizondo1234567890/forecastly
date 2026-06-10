@@ -1,0 +1,243 @@
+/* assets/styles/customer_forecasting.css */
+
+.forecasting-form-section {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.forecasting-results {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin-top: 20px;
+}
+
+.account-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.account-detail {
+    text-align: center;
+}
+
+.account-detail .label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.account-detail .value {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .account-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.alert-warning i {
+    color: #f39c12;
+    margin-right: 8px;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin-top: 20px;
+}
+
+#accountInfo {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid #5E60CE;
+}
+
+.account-info {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.account-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-detail .label {
+    font-size: 12px;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.account-detail .value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #495057;
+}
+
+.forecasting-form-section {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.forecasting-results {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin-top: 20px;
+}
+
+.account-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.account-detail {
+    text-align: center;
+}
+
+.account-detail .label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.account-detail .value {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Warning styles */
+.alert-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.alert-warning i {
+    color: #f39c12;
+    margin-right: 8px;
+}
+
+/* Ensure the account info section is visible when we have data */
+#accountInfo {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid #5E60CE;
+}
+
+.account-info {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.account-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-detail .label {
+    font-size: 12px;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.account-detail .value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #495057;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .account-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+}

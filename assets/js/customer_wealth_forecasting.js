@@ -1,0 +1,1 @@
+// assets/js/customer_wealth_forecasting.js

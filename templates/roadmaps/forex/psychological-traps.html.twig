@@ -1,0 +1,216 @@
+{# templates/roadmaps/forex/psychological-traps.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('forex_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('forex_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – forex style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h1>Common <span>Psychological Traps</span> in Forex</h1>
+                <p class="hero-description">
+                    The market is a battlefield – and your biggest enemy is often yourself. Learn to identify and overcome
+                    revenge trading, FOMO, overconfidence, and fear before they destroy your account.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 2: Risk Management · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🧠 Why Psychology Matters More Than Strategy</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                You can have the best trading strategy in the world, but if you can’t control your emotions, you will lose.
+                Studies show that <strong>80% of traders fail within the first two years</strong> – and the primary reason isn’t lack of knowledge,
+                but poor psychological discipline.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                This article covers the four most destructive emotional traps: revenge trading, FOMO (fear of missing out),
+                overconfidence, and fear. Recognise them in yourself, and you’ll be well on your way to becoming a consistent trader.
+            </p>
+        </section>
+
+        <!-- traps grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-fire"></i> Revenge Trading</h3>
+                <div class="percentage" style="font-size: 1.4rem;">"I'll get it back!"</div>
+                <p>After a loss, you jump into a new trade immediately, often larger, to recover quickly. This leads to even bigger losses.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-rocket"></i> FOMO</h3>
+                <div class="percentage" style="font-size: 1.4rem;">Fear Of Missing Out</div>
+                <p>You see a big move and enter late, just before the reversal. FOMO makes you chase price instead of waiting for a setup.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-crown"></i> Overconfidence</h3>
+                <div class="percentage" style="font-size: 1.4rem;">After a winning streak</div>
+                <p>You start taking excessive risk, ignoring your stop loss and position sizing. A few wins can make you feel invincible – then a big loss wipes out gains.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-frown"></i> Fear</h3>
+                <div class="percentage" style="font-size: 1.4rem;">Paralysis & hesitation</div>
+                <p>After a loss, you become afraid to pull the trigger. You miss good setups, or you close winning trades too early out of fear.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive: the cycle -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🔄 The Emotional Cycle of a Trader</h3>
+            <p style="margin-bottom: 20px;">
+                Most traders go through a predictable emotional cycle:
+            </p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <ol style="list-style-position: inside; line-height: 2;">
+                    <li><strong>Hope</strong> – You enter a trade expecting it to work.</li>
+                    <li><strong>Fear</strong> – Price moves against you; you hope it comes back.</li>
+                    <li><strong>Panic</strong> – Stop loss hits; you feel regret.</li>
+                    <li><strong>Desperation</strong> – You revenge trade to recover.</li>
+                    <li><strong>Euphoria</strong> – A winning streak makes you overconfident.</li>
+                    <li><strong>Greed</strong> – You increase size, ignore rules.</li>
+                    <li><strong>Denial</strong> – Losses pile up, but you refuse to accept you're wrong.</li>
+                </ol>
+                <p class="pro-tip" style="margin-top: 15px; background-color: #eef2ff; border-left-color: #3182ce;"><i class="fas fa-lightbulb"></i> The key is to recognise which stage you're in and step away from the screen.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Trading Psychology Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="psychology-simulator">
+            <h3><i class="fas fa-gamepad"></i> Trading Psychology Simulator</h3>
+            <p>Choose a scenario and see how emotions can affect your decisions.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                <button id="psychoRevenge" class="btn-outline" style="flex: 1 1 150px;">Revenge after loss</button>
+                <button id="psychoFomo" class="btn-outline" style="flex: 1 1 150px;">FOMO on a breakout</button>
+                <button id="psychoOverconf" class="btn-outline" style="flex: 1 1 150px;">Overconfident streak</button>
+                <button id="psychoFear" class="btn-outline" style="flex: 1 1 150px;">Fear & hesitation</button>
+            </div>
+            <div id="psychoResult" style="margin-top: 25px; padding: 15px; background: var(--light-color); border-radius: 12px; font-size: 1.2rem; text-align: center;">
+                Click a button to simulate the outcome.
+            </div>
+        </div>
+
+        <!-- example trap story -->
+        <div class="highlight-box animate">
+            <h3><i class="fas fa-bolt"></i> Real‑Life Example: Revenge Trading</h3>
+            <p>Tom had a $5,000 account. He lost $300 on a trade due to a sudden news spike. Angry, he immediately entered a new trade with double the size to "get it back". Price moved against him again – he doubled down again. Within an hour, he had lost $1,500, nearly a third of his account. <strong>All because he couldn't accept a single loss.</strong></p>
+        </div>
+
+        <!-- pro tip: solutions -->
+        <div class="pro-tip animate" style="background-color: #eef2ff; border-left-color: #3182ce;">
+            <h4 style="margin-top: 0;"><i class="fas fa-tools" style="color:#3182ce;"></i> How to Fight Back</h4>
+            <ul style="margin-left: 20px;">
+                <li><strong>Keep a trading journal</strong> – Write down your emotions before and after each trade.</li>
+                <li><strong>Step away after a loss</strong> – Take at least 15 minutes before the next trade.</li>
+                <li><strong>Stick to your plan</strong> – If it’s not in your plan, don’t trade it.</li>
+                <li><strong>Meditate or exercise</strong> – Reduce overall stress levels.</li>
+            </ul>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Psychological Traps</h3>
+
+                <div class="quiz-question">1. What is revenge trading?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Taking a trade based on a friend's tip</div>
+                    <div class="quiz-option" data-answer="correct">Trading impulsively after a loss to recover quickly</div>
+                    <div class="quiz-option" data-answer="wrong">Holding a losing trade forever</div>
+                    <div class="quiz-option" data-answer="wrong">Scalping during low volatility</div>
+                </div>
+
+                <div class="quiz-question">2. FOMO in trading stands for:</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Fear Of Making Offers</div>
+                    <div class="quiz-option" data-answer="wrong">Fear Of Moving Orders</div>
+                    <div class="quiz-option" data-answer="correct">Fear Of Missing Out</div>
+                    <div class="quiz-option" data-answer="wrong">Fear Of Major Outcomes</div>
+                </div>
+
+                <div class="quiz-question">3. Why is overconfidence dangerous after a winning streak?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="correct">It leads to taking excessive risk and ignoring rules</div>
+                    <div class="quiz-option" data-answer="wrong">It makes you close winners too early</div>
+                    <div class="quiz-option" data-answer="wrong">It causes you to stop trading</div>
+                    <div class="quiz-option" data-answer="wrong">It improves your analysis skills</div>
+                </div>
+
+                <div class="quiz-question">4. What is a good way to combat emotional trading?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Ignore all losses</div>
+                    <div class="quiz-option" data-answer="wrong">Double down after a loss</div>
+                    <div class="quiz-option" data-answer="correct">Keep a trading journal and step away after losses</div>
+                    <div class="quiz-option" data-answer="wrong">Only trade during high volatility</div>
+                </div>
+
+                <div class="quiz-question">5. Which emotion might cause a trader to hesitate entering a valid setup?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Overconfidence</div>
+                    <div class="quiz-option" data-answer="wrong">FOMO</div>
+                    <div class="quiz-option" data-answer="correct">Fear</div>
+                    <div class="quiz-option" data-answer="wrong">Greed</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 2 (risk management) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue mastering risk</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'stop-losses-take-profits' }) }}" class="next-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Stop Losses & Take Profits</h3>
+                    <p style="color: var(--gray-color);">Master the essential orders that protect your capital.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'position-sizing' }) }}" class="next-card">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Position Sizing</h3>
+                    <p style="color: var(--gray-color);">Learn how much to risk per trade.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'risk-reward-ratio' }) }}" class="next-card">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Risk‑Reward Ratio</h3>
+                    <p style="color: var(--gray-color);">Set realistic targets.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

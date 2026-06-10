@@ -1,0 +1,231 @@
+{# templates/roadmaps/tax/tax-smart-investing-journey.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('tax_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('tax_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- hero section specific for tax‑smart investing -->
+        <div class="journey-hero animate">
+            <div class="hero-content">
+                <div class="journey-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <h1>Tax‑Smart <span>Investing</span></h1>
+                <p class="hero-description">
+                    Keep more of what you earn. Learn how to structure investments, use tax‑advantaged accounts,
+                    and legally reduce your tax bill — completely demystified.
+                </p>
+            </div>
+        </div>
+
+        <!-- intro text: how our roadmaps work (tax‑smart version) -->
+        <div style="text-align: center; margin: 40px 0 20px;" class="animate">
+            <h2 class="section-title">📋 Your 4‑phase tax‑smart roadmap</h2>
+            <p class="section-subtitle">
+                Each phase follows the proven <strong>Foundation → Risk → Execution → Skill Building</strong> structure.
+                Complete the articles in order or jump to what you need most.
+            </p>
+        </div>
+
+        <!-- ===== PHASE 1 – FOUNDATION FIRST ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">1</span>
+                <span>Foundation First · Tax basics every investor needs</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <h3>Tax Basics Every Investor Must Know</h3>
+                    <p class="article-brief">Understand ordinary income vs. capital gains, how tax brackets work, and why your investment account type matters.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'tax', slug: 'tax-basics-every-investor-must-know' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <h3>Tax‑Advantaged Accounts 101: 401(k), IRA, HSA</h3>
+                    <p class="article-brief">Overview of accounts that let your money grow tax‑free or tax‑deferred. Learn which one fits your situation.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 11 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'tax', slug: 'tax-advantaged-accounts-101' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Capital Gains Tax: Short‑Term vs. Long‑Term</h3>
+                    <p class="article-brief">Why holding investments longer than a year can slash your tax bill. Clear examples with real numbers.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-coins"></i></div>
+                    <h3>The Tax Impact of Dividends: Qualified vs. Ordinary</h3>
+                    <p class="article-brief">Not all dividends are taxed equally. Identify which stocks generate tax‑friendly dividends.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 2 – RISK MANAGEMENT ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">2</span>
+                <span>Risk Management · Protect gains, avoid tax traps</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Tax‑Loss Harvesting: Turn Losses into Savings</h3>
+                    <p class="article-brief">How to use investment losses to offset gains (and even ordinary income). Rules and the wash sale trap.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-broom"></i></div>
+                    <h3>Avoiding the Wash Sale Rule</h3>
+                    <p class="article-brief">Detailed explanation of the 30‑day window and how to work around it without breaking IRS rules.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-location-dot"></i></div>
+                    <h3>Asset Location: Which Investments Go Where</h3>
+                    <p class="article-brief">Why holding bonds in taxable accounts can be inefficient. Place assets strategically across accounts.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-arrows-rotate"></i></div>
+                    <h3>Tax Implications of Rebalancing</h3>
+                    <p class="article-brief">How to rebalance your portfolio without triggering unnecessary taxes — smart tactics inside.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 3 – PRACTICAL EXECUTION ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">3</span>
+                <span>Practical Execution · Take real‑world action</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-check-double"></i></div>
+                    <h3>Step‑by‑Step: Harvesting Your First Tax Loss</h3>
+                    <p class="article-brief">Walk through identifying a losing position, selling, and buying a suitable replacement — with screenshots/checklist.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 11 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-gear"></i></div>
+                    <h3>How to Set Up & Maximize Tax‑Advantaged Accounts</h3>
+                    <p class="article-brief">Practical guide to opening a Roth IRA, increasing 401(k) contributions, and getting the full employer match.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-calendar-check"></i></div>
+                    <h3>Year‑End Tax Planning Checklist</h3>
+                    <p class="article-brief">What to do in November/December: bunching deductions, harvesting losses, making charitable contributions.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-laptop"></i></div>
+                    <h3>Tax Software or a Professional? What You Need</h3>
+                    <p class="article-brief">Decide whether to DIY with software or hire a CPA, and how to prepare for tax season like a pro.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 4 – SKILL BUILDING ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">4</span>
+                <span>Skill Building · Advanced tax‑savvy strategies</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-umbrella-beach"></i></div>
+                    <h3>Tax‑Efficient Withdrawal Strategies in Retirement</h3>
+                    <p class="article-brief">How to draw from taxable, tax‑deferred, and tax‑free accounts to minimise taxes in retirement.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 13 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Side Hustle Tax Strategies: Deductions & Retirement</h3>
+                    <p class="article-brief">Write off legitimate expenses, consider SEP IRA or Solo 401(k) if you're self‑employed.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 11 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-tree"></i></div>
+                    <h3>Estate Planning Basics: Step‑Up in Basis & Gift Taxes</h3>
+                    <p class="article-brief">How assets transfer at death, the step‑up rule, and gifting strategies to minimise taxes.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-city"></i></div>
+                    <h3>Advanced: Tax‑Managed Funds & Municipal Bonds</h3>
+                    <p class="article-brief">When to consider tax‑exempt bonds and funds designed to minimise taxable distributions.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- call to action – start journey / community -->
+        <div class="journey-cta animate">
+            <h2>Ready to keep more of what you earn?</h2>
+            <p style="font-size: 1.2rem; color: #2d3748; margin-bottom: 10px;">Start with phase 1 – clear, practical, and no jargon.</p>
+            <a href="{{ url('app_page_show', { journey: 'tax', slug: 'tax-basics-every-investor-must-know' }) }}" class="cta-button"><i class="fas fa-road"></i> Begin the tax‑smart journey</a>
+            <p style="margin-top: 25px; color: #718096;"><i class="fas fa-users"></i> 15,000+ members started here</p>
+        </div>
+    </div>
+{% endblock %}

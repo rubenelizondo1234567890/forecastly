@@ -1,0 +1,36 @@
+/* assets/styles/recurring_interest.css */
+
+/* Recurring Interests Styles */
+.recurring-interest-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 992px) {
+    .recurring-interest-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.info-message {
+    background-color: #e3f2fd;
+    border: 1px solid #2196f3;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.info-message i {
+    color: #2196f3;
+    margin-top: 2px;
+}
+
+.info-message p {
+    margin: 0;
+    color: #1565c0;
+    font-size: 14px;
+}

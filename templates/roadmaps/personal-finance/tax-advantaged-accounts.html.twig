@@ -1,0 +1,206 @@
+{# templates/roadmaps/personal-finance/tax-advantaged-accounts.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="article-icon">
+                    <i class="fas fa-shield-alt"></i> <!-- shield for protection/tax advantage -->
+                </div>
+                <h1>Tax‑Advantaged Accounts: <span>401(k), IRA, HSA</span></h1>
+                <p class="hero-description">
+                    Keep more of what you earn. Learn how retirement and health accounts can supercharge your savings with powerful tax breaks.
+                </p>
+                <span class="read-time"><i class="far fa-clock"></i> 11 min read · Skill building</span>
+            </div>
+        </div>
+
+        <!-- main article content -->
+        <article class="article-body animate">
+            <h2>Why tax‑advantaged accounts matter</h2>
+            <p>Ordinary investment accounts are good. Accounts that shield you from taxes are <strong>superpowers</strong>. With a 401(k), IRA, or HSA, you either avoid taxes on the money you put in, or you never pay taxes on the growth — sometimes both. Over decades, this can mean tens or hundreds of thousands of extra dollars in your pocket.</p>
+
+            <div class="highlight-box">
+                <p><i class="fas fa-calculator"></i> <strong>The power of tax deferral:</strong> If you invest $6,000/year for 30 years earning 7%, a taxable account might grow to ~$520,000 (after taxes). The same in a Roth IRA could be <strong>$610,000 tax‑free</strong>. That’s the magic.</p>
+            </div>
+
+            <h2>1. 401(k) — the employer‑sponsored powerhouse</h2>
+            <p>A 401(k) is a retirement account offered by many employers. You contribute pre‑tax (or Roth after‑tax if available), and the money grows tax‑deferred until withdrawal.</p>
+            <h3>Key features</h3>
+            <ul>
+                <li><strong>Employer match:</strong> Free money! If your employer matches 50% of your contributions up to 6%, that’s an instant 50% return.</li>
+                <li><strong>Contribution limit (2025):</strong> $23,500 ($30,500 if age 50+).</li>
+                <li><strong>Traditional 401(k):</strong> Contributions reduce your taxable income now; withdrawals in retirement are taxed as ordinary income.</li>
+                <li><strong>Roth 401(k):</strong> After‑tax contributions; qualified withdrawals are tax‑free (if offered).</li>
+            </ul>
+
+            <h2>2. IRA — your individual retirement account</h2>
+            <p>Anyone with earned income can open an IRA. You control the investments, and you have two main flavours.</p>
+            <table class="limits-table">
+                <tr><th>Type</th><th>Tax benefit</th><th>2025 contribution limit</th><th>Income limits?</th></tr>
+                <tr><td><strong>Traditional IRA</strong></td><td>Tax‑deductible now (if income limits), tax‑deferred growth</td><td rowspan="2">$7,000 ($8,000 if 50+)</td><td>Deduction phases out if you or spouse have a workplace plan</td></tr>
+                <tr><td><strong>Roth IRA</strong></td><td>After‑tax contributions, tax‑free growth & withdrawals</td><td>Contribution phases out at higher incomes (e.g., $150‑160k single)</td></tr>
+            </table>
+            <p>Roth IRAs are especially powerful for young investors because you lock in today’s tax rate and never pay taxes again.</p>
+
+            <div class="tip-box">
+                <div class="tip-icon"><i class="fas fa-lightbulb"></i></div>
+                <div class="tip-content">
+                    <h4>Backdoor Roth strategy</h4>
+                    <p>If your income is too high for a direct Roth IRA, you can still contribute to a Traditional IRA and immediately convert it to Roth — the “backdoor” method. Always check with a tax pro.</p>
+                </div>
+            </div>
+
+            <h2>3. HSA — the triple‑threat account</h2>
+            <p>A Health Savings Account (HSA) is available if you have a high‑deductible health plan (HDHP). It offers three layers of tax benefits:</p>
+            <ol>
+                <li><strong>Pre‑tax contributions</strong> (or tax‑deductible if you contribute yourself)</li>
+                <li><strong>Tax‑free growth</strong> — investments inside the HSA grow without being taxed</li>
+                <li><strong>Tax‑free withdrawals</strong> for qualified medical expenses (now or in retirement)</li>
+            </ol>
+            <p>After age 65, you can withdraw for any reason (pay income tax on non‑medical withdrawals) — making it a powerful retirement account.</p>
+            <p><strong>2025 contribution limits:</strong> $4,150 self‑only, $8,300 family (+$1,000 catch‑up 55+).</p>
+
+            <h2>Side‑by‑side comparison</h2>
+            <table class="comparison-table">
+                <thead>
+                <tr><th>Account</th><th>Tax benefit (up front)</th><th>Tax benefit (growth)</th><th>Tax benefit (withdrawal)</th><th>Best for</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Traditional 401(k)/IRA</td><td>✅ Deduct now</td><td>✅ Tax‑deferred</td><td>❌ Taxed as income</td><td>Lower current income / want immediate deduction</td></tr>
+                <tr><td>Roth 401(k)/IRA</td><td>❌ No deduction</td><td>✅ Tax‑free growth</td><td>✅ Tax‑free</td><td>Expect higher future tax rate / young investors</td></tr>
+                <tr><td>HSA</td><td>✅ Deduct now</td><td>✅ Tax‑free growth</td><td>✅ Tax‑free (medical)</td><td>Those with HDHP / retirement healthcare</td></tr>
+                </tbody>
+            </table>
+
+            <h2>How to prioritize — the ideal order</h2>
+            <p>If you have access to all three, here’s a smart hierarchy:</p>
+            <ol>
+                <li><strong>401(k) match:</strong> Always contribute enough to get the full employer match — it’s instant 100%+ return.</li>
+                <li><strong>HSA:</strong> If you have an HDHP, max out HSA after the match (triple tax advantage).</li>
+                <li><strong>Roth IRA or Traditional IRA:</strong> Depending on your income and tax situation.</li>
+                <li><strong>Back to 401(k):</strong> Increase 401(k) contributions up to the limit.</li>
+                <li><strong>Taxable brokerage:</strong> After all tax‑advantaged space is filled.</li>
+            </ol>
+
+            <div class="callout">
+                <p>📈 <strong>Example:</strong> At age 25, you put $7,000 into a Roth IRA and it grows at 8% for 40 years. That becomes <strong>$152,000 tax‑free</strong>. No taxes on withdrawals — ever.</p>
+            </div>
+
+            <h2>Common beginner mistakes</h2>
+            <ul>
+                <li><strong>Not contributing enough to get the match:</strong> It’s like refusing a raise.</li>
+                <li><strong>Leaving an old 401(k) without rolling it over:</strong> You might lose control and pay unnecessary fees.</li>
+                <li><strong>Forgetting HSA investment options:</strong> Many HSAs let you invest once your balance is above a threshold. Don’t leave it in cash.</li>
+                <li><strong>Ignoring Roth when in a low tax bracket:</strong> If you’re just starting, paying taxes now at 12% is probably a steal.</li>
+            </ul>
+
+            <h2>Your next steps</h2>
+            <p>Now that you understand the tools, it’s time to take action:</p>
+            <ul>
+                <li>Log into your employer benefits and see if a 401(k) match is available.</li>
+                <li>Open a Roth IRA at a low‑cost provider (Vanguard, Fidelity, Schwab) and set up automatic contributions.</li>
+                <li>If you have a high‑deductible health plan, open an HSA and start investing.</li>
+            </ul>
+
+            <!-- Quick quiz -->
+            {% if app.user and quiz %}
+                {# Logged in user #}
+                {# Quiz already taken – show summary and retake button #}
+                <div class="quiz-container animate">
+                    <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                    <p style="color: #e2e8f0; font-size: 1.2rem;">
+                        Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                    </p>
+                    <p style="color: #cbd5e0;">
+                        You can retake the quiz to improve your score. Click the button below to reset it.
+                    </p>
+                    <div class="quiz-actions">
+                        <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                           class="btn"
+                           style="background-color: #ff6b35; color: white; text-decoration: none;">
+                            Retake Quiz
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+                <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                    <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your tax‑advantaged account knowledge</h3>
+                    <div class="quiz-question">1. What is the main benefit of a traditional 401(k)?</div>
+                    <div class="quiz-options" data-question="1">
+                        <div class="quiz-option" data-answer="wrong">Tax‑free withdrawals</div>
+                        <div class="quiz-option" data-answer="correct">Tax‑deductible contributions</div>
+                        <div class="quiz-option" data-answer="wrong">No contribution limits</div>
+                        <div class="quiz-option" data-answer="wrong">Employer guarantee</div>
+                    </div>
+                    <div class="quiz-question">2. What is the contribution limit for a Roth IRA in 2025 (under 50)?</div>
+                    <div class="quiz-options" data-question="2">
+                        <div class="quiz-option" data-answer="wrong">$6,000</div>
+                        <div class="quiz-option" data-answer="correct">$7,000</div>
+                        <div class="quiz-option" data-answer="wrong">$8,000</div>
+                        <div class="quiz-option" data-answer="wrong">$10,000</div>
+                    </div>
+                    <div class="quiz-question">3. Which account offers triple tax advantages?</div>
+                    <div class="quiz-options" data-question="3">
+                        <div class="quiz-option" data-answer="wrong">401(k)</div>
+                        <div class="quiz-option" data-answer="wrong">IRA</div>
+                        <div class="quiz-option" data-answer="correct">HSA</div>
+                        <div class="quiz-option" data-answer="wrong">Roth IRA</div>
+                    </div>
+                    <div class="quiz-question">4. What should you prioritize first if your employer offers a 401(k) match?</div>
+                    <div class="quiz-options" data-question="4">
+                        <div class="quiz-option" data-answer="wrong">Max out HSA</div>
+                        <div class="quiz-option" data-answer="correct">Contribute enough to get the full match</div>
+                        <div class="quiz-option" data-answer="wrong">Open a Roth IRA</div>
+                        <div class="quiz-option" data-answer="wrong">Invest in taxable account</div>
+                    </div>
+                    <div class="quiz-question">5. At age 65, an HSA can be used for non‑medical expenses with what consequence?</div>
+                    <div class="quiz-options" data-question="5">
+                        <div class="quiz-option" data-answer="wrong">No tax</div>
+                        <div class="quiz-option" data-answer="correct">Income tax</div>
+                        <div class="quiz-option" data-answer="wrong">Penalty</div>
+                        <div class="quiz-option" data-answer="wrong">Forfeiture</div>
+                    </div>
+                    <div class="quiz-feedback">👉 Click any answer to check yourself.</div>
+                </div>
+            {% endif %}
+
+        </article>
+
+
+        <!-- Next steps: continue Phase 4 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Skill Building phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'intro-to-investing' }) }}" class="next-card">
+                    <i class="fas fa-chart-pie" style="color: var(--personal-color);"></i>
+                    <h3>Introduction to Investing</h3>
+                    <p style="color: var(--gray-color);">Bridge from saving to investing – asset classes, compound interest, and how to open a brokerage account.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'goal-setting-short-medium-long-term' }) }}" class="next-card">
+                    <i class="fas fa-bullseye" style="color: var(--personal-color);"></i>
+                    <h3>Goal Setting</h3>
+                    <p style="color: var(--gray-color);">Framework to define and prioritise financial goals – from a vacation to buying a home to early retirement.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'mindset-shifting-building-wealth-habits' }) }}" class="next-card">
+                    <i class="fas fa-brain" style="color: var(--personal-color);"></i>
+                    <h3>Mindset Shift</h3>
+                    <p style="color: var(--gray-color);">Psychological strategies to maintain discipline, avoid lifestyle inflation, and keep growing.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,146 @@
+{# templates/roadmaps/psychology/behavioural-finance-journey.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('psychology_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('psychology_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- hero section with behavioural finance palette -->
+        <div class="journey-hero animate">
+            <div class="hero-content">
+                <div class="journey-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h1>Behavioural Finance <span>& Psychology</span></h1>
+                <p class="hero-description">
+                    Master the mind behind the money — a step‑by‑step journey through biases, emotions, and rational decision‑making.
+                </p>
+            </div>
+        </div>
+
+        <!-- intro text: how our roadmaps work (adapted) -->
+        <div style="text-align: center; margin: 40px 0 20px;" class="animate">
+            <h2 class="section-title">🧠 Your 2‑phase investor psychology roadmap</h2>
+            <p class="section-subtitle">
+                Each phase follows the <strong>Foundational Biases → Advanced Application</strong> structure.
+                Go step by step or explore what intrigues you.
+            </p>
+        </div>
+
+        <!-- ===== PHASE 1 – FOUNDATIONAL BIASES ===== (articles 1‑4) -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">1</span>
+                <span>Core psychological biases</span>
+            </div>
+            <div class="article-grid">
+                <!-- article 1: The Psychology of Money -->
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-brain"></i></div>
+                    <h3>The Psychology of Money</h3>
+                    <p class="article-brief">Foundations of financial behaviour: how emotions, upbringing, and mental shortcuts shape every money decision — for better or worse.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <!-- article 2: Overconfidence & Illusion of Control -->
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Overconfidence & Illusion of Control</h3>
+                    <p class="article-brief">Why we overestimate our skill, trade too much, and ignore market reality. Learn to calibrate confidence with evidence.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <!-- article 3: Loss Aversion & The Endowment Effect -->
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <h3>Loss Aversion & The Endowment Effect</h3>
+                    <p class="article-brief">The pain of loss is twice as strong as gain — discover how this triggers irrational hold/sell decisions and how to neutralise it.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 14 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <!-- article 4: Herding & Social Influence -->
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-people-group"></i></div>
+                    <h3>Herding & Social Influence</h3>
+                    <p class="article-brief">From tulip mania to meme stocks: why we follow the crowd, and how to spot (and avoid) bubble behaviour.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 11 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 2 – COGNITIVE BIASES & INTEGRATION ===== (articles 5‑8) -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">2</span>
+                <span>Decision making & rational investing</span>
+            </div>
+            <div class="article-grid">
+                <!-- article 5: Anchoring & Adjustment -->
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-anchor"></i></div>
+                    <h3>Anchoring & Adjustment</h3>
+                    <p class="article-brief">How irrelevant price tags, past prices, or first impressions distort your estimates — and techniques to reset your anchor.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <!-- article 6: Mental Accounting -->
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>Mental Accounting</h3>
+                    <p class="article-brief">Why we treat “bonus money” differently from salary, and how this mental budgeting leads to irrational portfolios.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <!-- article 7: Framing & Presentation Effects -->
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-frame"></i></div>
+                    <h3>Framing & Presentation Effects</h3>
+                    <p class="article-brief">The same facts, different words: how gain/loss framing changes your risk appetite. Learn to reframe objectively.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <!-- article 8: Building a Behavioural Investment Plan -->
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-clipboard-list"></i></div>
+                    <h3>Building a Behavioural Investment Plan</h3>
+                    <p class="article-brief">Synthesise everything into a personal checklist — rules, routines, and mental models to stay disciplined in any market.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 15 min read</span>
+                        <a href="#" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- call to action – start behavioural journey -->
+        <div class="journey-cta animate">
+            <h2>Ready to master your investor psychology?</h2>
+            <p style="font-size: 1.2rem; color: #1f4a6e; margin-bottom: 10px;">Start with phase 1 – no jargon, just clear, actionable insights.</p>
+            <a href="#" class="cta-button"><i class="fas fa-road"></i> Begin the psychology journey</a>
+            <p style="margin-top: 25px; color: #2c506a;"><i class="fas fa-users"></i> Join 4,200+ investors sharpening their mindset</p>
+        </div>
+    </div>
+{% endblock %}

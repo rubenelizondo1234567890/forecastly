@@ -1,0 +1,45 @@
+{# templates/customer/interest/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Manage Recurring Interest for Your Accounts - Forecastly{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_recurring_interest_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_recurring_interest_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <div class="page-title">
+            <h1>Manage Recurring Interest for Your Accounts</h1>
+            <p>View and manage your recurring interest earnings</p>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="recurring-interest-container">
+        <!-- Interests List Only -->
+        {% include 'customer/interest/_list.html.twig' with {
+            'interests': interests,
+            'isIncomeOrExpense': isIncomeOrExpense
+        } %}
+    </div>
+{% endblock %}

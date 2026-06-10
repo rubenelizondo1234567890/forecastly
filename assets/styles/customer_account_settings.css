@@ -1,0 +1,254 @@
+/* assets/styles/customer_account_settings.css */
+/* Modal form styles */
+.modal form .form-group {
+    margin-bottom: 1rem;
+}
+
+.modal form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.modal form .form-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+/* Responsive modal adjustments */
+@media (max-width: 576px) {
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+
+    .modal form .form-actions {
+        flex-direction: column;
+    }
+
+    .modal form .form-actions button {
+        width: 100%;
+    }
+}
+.profile-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.avatar-container {
+    flex-shrink: 0;
+}
+
+.avatar-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+}
+
+.profile-details {
+    flex-grow: 1;
+}
+
+.profile-details p {
+    margin-bottom: 8px;
+    display: flex;
+}
+
+.profile-details strong {
+    min-width: 120px;
+    color: var(--text);
+}
+
+.profile-details span {
+    color: var(--text-light);
+}
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.subscription-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--background);
+    border-radius: 5px;
+    border-left: 4px solid var(--primary);
+}
+
+.subscription-info.hidden {
+    display: none;
+}
+
+.subscription-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.subscription-detail-item {
+    padding: 10px;
+    background: var(--white);
+    border-radius: 5px;
+    border: 1px solid var(--border);
+}
+
+.subscription-detail-item strong {
+    display: block;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.plan-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.plan-feature-item {
+    display: block;
+    padding: 2px 0;
+    color: var(--text-light);
+}
+
+.plan-feature-item:before {
+    content: none;
+    color: var(--primary);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.no-features {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.plan-features-container {
+    text-align: center;
+}
+
+.plan-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.plan-feature-item {
+    display: block;
+    padding: 4px 0;
+    color: var(--text-light);
+    width: 100%;
+}
+
+/* Quiz progress styles */
+.quiz-progress-container {
+    margin-top: 15px;
+}
+
+.journey-item {
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.journey-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: var(--background);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.journey-header:hover {
+    background-color: rgba(94, 96, 206, 0.05);
+}
+
+.journey-title {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.journey-toggle {
+    transition: transform 0.3s;
+}
+
+.journey-header.active .journey-toggle {
+    transform: rotate(90deg);
+}
+
+.journey-average {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.average-score {
+    font-weight: 600;
+    min-width: 45px;
+}
+
+.progress-bar-container {
+    width: 150px;
+    height: 8px;
+    background-color: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.journey-details {
+    padding: 15px;
+    border-top: 1px solid var(--border);
+    background-color: var(--white);
+}
+
+.quizzes-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.quizzes-table th {
+    text-align: left;
+    padding: 8px;
+    background-color: var(--background);
+    font-weight: 600;
+}
+
+.quizzes-table td {
+    padding: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.quizzes-table tr:last-child td {
+    border-bottom: none;
+}
+
+.quizzes-table a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.quizzes-table a:hover {
+    text-decoration: underline;
+}

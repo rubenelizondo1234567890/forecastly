@@ -1,0 +1,84 @@
+{# templates/customer/budget_tracking_groups/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Budget Tracking Groups - Forecastly{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_budget_groups_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_budget_groups_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <div class="page-title">
+            <h1>Budget Tracking Groups</h1>
+            <p>Manage your income and expense categories</p>
+        </div>
+        <div class="actions">
+            {% if not app.user.getCustomersAccount().isMasterBudgetTrackingGroupLoaded() %}
+                <form action="{{ path('customer_budget_load_master') }}" method="POST" class="d-inline" id="load-master-form">
+                    <input type="hidden" name="_token" value="{{ csrf_token('load_master') }}">
+                    <button type="submit" class="btn btn-secondary" id="load-master-btn">
+                        <i class="fas fa-download"></i> Load Master Groups
+                    </button>
+                </form>
+            {% else %}
+                <button class="btn btn-secondary" disabled title="Master groups already loaded">
+                    <i class="fas fa-download"></i> Load Master Groups
+                </button>
+                <small class="text-muted d-block mt-1">Master groups can only be loaded once</small>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="groups-container">
+        <!-- Add/Edit Group Form -->
+        <div class="form-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    {% if group and group.id %}Edit Group{% else %}Add New Group{% endif %}
+                </h2>
+            </div>
+
+            <div id="group-form-container">
+                {{ include('customer/budget_tracking_groups/_form.html.twig', {
+                    isInUse: false
+                }) }}
+            </div>
+        </div>
+
+        <!-- Groups List -->
+        <div class="groups-list">
+            <div class="section-header">
+                <h2 class="section-title">Your Groups</h2>
+                <span class="groups-count">{{ groups|length }} groups</span>
+            </div>
+
+            <div id="groups-list-container">
+                {{ include('customer/budget_tracking_groups/_list.html.twig', {
+                    groups: groups,
+                    groupsInUse: groupsInUse
+                }) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

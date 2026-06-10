@@ -1,0 +1,455 @@
+{# templates/admin/doc_page/new.html.twig #}
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New Documentation Page{% endblock %}
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/46.1.1/ckeditor5.css" crossorigin>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+            @media print {
+                body {
+                    margin: 0 !important;
+                }
+            }
+
+            :root {
+                --ck-content-font-family: 'Lato';
+            }
+
+            .main-container {
+                font-family: var(--ck-content-font-family);
+                width: fit-content;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .editor-container_classic-editor .editor-container__editor {
+                min-width: 795px;
+                max-width: 795px;
+            }
+
+            .editor_container__word-count .ck-word-count {
+                color: var(--ck-color-text);
+                display: flex;
+                height: 20px;
+                gap: var(--ck-spacing-small);
+                justify-content: flex-end;
+                font-size: var(--ck-font-size-base);
+                line-height: var(--ck-line-height-base);
+                font-family: var(--ck-font-face);
+                padding: var(--ck-spacing-small) var(--ck-spacing-standard);
+            }
+
+            .editor-container_include-word-count.editor-container_classic-editor .editor_container__word-count {
+                border: 1px solid var(--ck-color-base-border);
+                border-radius: var(--ck-border-radius);
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                border-top: none;
+            }
+
+            .editor-container_include-word-count.editor-container_classic-editor .editor-container__editor .ck-editor .ck-editor__editable {
+                border-radius: 0;
+            }
+        </style>
+    {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {# Include CKEditor 5 with SimpleUploadAdapter #}
+    <script src="https://cdn.ckeditor.com/ckeditor5/46.1.1/ckeditor5.umd.js" crossorigin></script>
+    <script>
+        // Define CSRF token and upload URL
+        const csrfToken = '{{ csrf_token('doc_image_upload') }}';
+        const imageUploadUrl = '{{ path('admin_doc_image_upload') }}';
+
+        /**
+         * This configuration was generated using the CKEditor 5 Builder. You can modify it anytime using this link:
+         * https://ckeditor.com/ckeditor-5/builder/?redirect=portal#installation/NoNgNARATAdA7DArBSBmALADnYxVWogYgCMmADFHHKiXIiYubhujQJxSZSXpTooIAUwB2KcmGAkwEidLkBdSCHLkARonQkICoA==
+         */
+
+        const {
+            ClassicEditor,
+            Alignment,
+            Autoformat,
+            AutoImage,
+            Autosave,
+            BlockQuote,
+            Bold,
+            CloudServices,
+            Code,
+            CodeBlock,
+            Essentials,
+            FontBackgroundColor,
+            FontColor,
+            FontFamily,
+            FontSize,
+            FullPage,
+            GeneralHtmlSupport,
+            Heading,
+            Highlight,
+            HorizontalLine,
+            HtmlComment,
+            HtmlEmbed,
+            ImageBlock,
+            ImageCaption,
+            ImageInline,
+            ImageInsertViaUrl,
+            ImageResize,
+            ImageStyle,
+            ImageTextAlternative,
+            ImageToolbar,
+            ImageUpload,
+            Indent,
+            IndentBlock,
+            Italic,
+            Link,
+            LinkImage,
+            List,
+            ListProperties,
+            MediaEmbed,
+            Paragraph,
+            PasteFromMarkdownExperimental,
+            PasteFromOffice,
+            PlainTableOutput,
+            RemoveFormat,
+            SourceEditing,
+            Strikethrough,
+            Subscript,
+            Superscript,
+            Table,
+            TableCaption,
+            TableCellProperties,
+            TableColumnResize,
+            TableProperties,
+            TableToolbar,
+            TextTransformation,
+            TodoList,
+            Underline,
+            WordCount
+        } = window.CKEDITOR;
+
+        const LICENSE_KEY =
+            'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NTk1MzU5OTksImp0aSI6IjY2MzAyZmRjLTExMTEtNGJiNy04ZThhLTM5MzgyMDIwZjA5OSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LmV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6ImJjZDRhYmI0In0.dLkH857NShW603U1_0WwxcrWPOEztLoCuagMWIGt-TUcmBZsigH1ZkCZmRjdNV1mn9CBxFfs2vBOO5W_gpLO6A';
+
+        // Custom upload adapter
+        class MyUploadAdapter {
+            constructor(loader) {
+                this.loader = loader;
+            }
+
+            upload() {
+                return this.loader.file
+                    .then(file => new Promise((resolve, reject) => {
+                        this._initRequest();
+                        this._initListeners(resolve, reject, file);
+                        this._sendRequest(file);
+                    }));
+            }
+
+            abort() {
+                if (this.xhr) {
+                    this.xhr.abort();
+                }
+            }
+
+            _initRequest() {
+                const xhr = this.xhr = new XMLHttpRequest();
+                xhr.open('POST', imageUploadUrl, true);
+                xhr.responseType = 'json';
+                xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+            }
+
+            _initListeners(resolve, reject, file) {
+                const xhr = this.xhr;
+                const loader = this.loader;
+                const genericErrorText = `Couldn't upload file: ${file.name}.`;
+
+                xhr.addEventListener('error', () => reject(genericErrorText));
+                xhr.addEventListener('abort', () => reject());
+                xhr.addEventListener('load', () => {
+                    const response = xhr.response;
+
+                    if (!response || response.error) {
+                        return reject(response && response.error ? response.error.message : genericErrorText);
+                    }
+
+                    resolve({
+                        default: response.url
+                    });
+                });
+
+                if (xhr.upload) {
+                    xhr.upload.addEventListener('progress', evt => {
+                        if (evt.lengthComputable) {
+                            loader.uploadTotal = evt.total;
+                            loader.uploaded = evt.loaded;
+                        }
+                    });
+                }
+            }
+
+            _sendRequest(file) {
+                const data = new FormData();
+                data.append('upload', file);
+                this.xhr.send(data);
+            }
+        }
+
+        function MyCustomUploadAdapterPlugin(editor) {
+            editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                return new MyUploadAdapter(loader);
+            };
+        }
+
+        const editorConfig = {
+            licenseKey: LICENSE_KEY,
+            toolbar: {
+                items: [
+                    'undo',
+                    'redo',
+                    '|',
+                    'sourceEditing',
+                    '|',
+                    'heading',
+                    '|',
+                    'fontSize',
+                    'fontFamily',
+                    'fontColor',
+                    'fontBackgroundColor',
+                    '|',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strikethrough',
+                    'subscript',
+                    'superscript',
+                    'code',
+                    'removeFormat',
+                    '|',
+                    'horizontalLine',
+                    'link',
+                    'mediaEmbed',
+                    'insertTable',
+                    'highlight',
+                    'blockQuote',
+                    'codeBlock',
+                    'htmlEmbed',
+                    '|',
+                    'alignment',
+                    '|',
+                    'bulletedList',
+                    'numberedList',
+                    'todoList',
+                    'outdent',
+                    'indent'
+                ],
+                shouldNotGroupWhenFull: false
+            },
+            plugins: [
+                // Essentials must come first as it provides core functionality
+                Essentials,
+                // Then add other plugins
+                Alignment,
+                Autoformat,
+                AutoImage,
+                Autosave,
+                BlockQuote,
+                Bold,
+                CloudServices,
+                Code,
+                CodeBlock,
+                FontBackgroundColor,
+                FontColor,
+                FontFamily,
+                FontSize,
+                FullPage,
+                GeneralHtmlSupport,
+                Heading,
+                Highlight,
+                HorizontalLine,
+                HtmlComment,
+                HtmlEmbed,
+                ImageBlock,
+                ImageCaption,
+                ImageInline,
+                ImageInsertViaUrl,
+                ImageResize,
+                ImageStyle,
+                ImageTextAlternative,
+                ImageToolbar,
+                ImageUpload,
+                Indent,
+                IndentBlock,
+                Italic,
+                Link,
+                LinkImage,
+                List,
+                ListProperties,
+                MediaEmbed,
+                Paragraph,
+                PasteFromMarkdownExperimental,
+                PasteFromOffice,
+                PlainTableOutput,
+                RemoveFormat,
+                SourceEditing,
+                Strikethrough,
+                Subscript,
+                Superscript,
+                Table,
+                TableCaption,
+                TableCellProperties,
+                TableColumnResize,
+                TableProperties,
+                TableToolbar,
+                TextTransformation,
+                TodoList,
+                Underline,
+                WordCount,
+                // Add custom upload adapter last
+                MyCustomUploadAdapterPlugin
+            ],
+            fontFamily: {
+                supportAllValues: true
+            },
+            fontSize: {
+                options: [10, 12, 14, 'default', 18, 20, 22],
+                supportAllValues: true
+            },
+            heading: {
+                options: [
+                    {
+                        model: 'paragraph',
+                        title: 'Paragraph',
+                        class: 'ck-heading_paragraph'
+                    },
+                    {
+                        model: 'heading1',
+                        view: 'h1',
+                        title: 'Heading 1',
+                        class: 'ck-heading_heading1'
+                    },
+                    {
+                        model: 'heading2',
+                        view: 'h2',
+                        title: 'Heading 2',
+                        class: 'ck-heading_heading2'
+                    },
+                    {
+                        model: 'heading3',
+                        view: 'h3',
+                        title: 'Heading 3',
+                        class: 'ck-heading_heading3'
+                    },
+                    {
+                        model: 'heading4',
+                        view: 'h4',
+                        title: 'Heading 4',
+                        class: 'ck-heading_heading4'
+                    },
+                    {
+                        model: 'heading5',
+                        view: 'h5',
+                        title: 'Heading 5',
+                        class: 'ck-heading_heading5'
+                    },
+                    {
+                        model: 'heading6',
+                        view: 'h6',
+                        title: 'Heading 6',
+                        class: 'ck-heading_heading6'
+                    }
+                ]
+            },
+            htmlSupport: {
+                allow: [
+                    {
+                        name: /^.*$/,
+                        styles: true,
+                        attributes: true,
+                        classes: true
+                    }
+                ]
+            },
+            image: {
+                toolbar: [
+                    'toggleImageCaption',
+                    'imageTextAlternative',
+                    '|',
+                    'imageStyle:inline',
+                    'imageStyle:wrapText',
+                    'imageStyle:breakText',
+                    '|',
+                    'resizeImage'
+                ]
+            },
+            list: {
+                properties: {
+                    styles: true,
+                    startIndex: true,
+                    reversed: true
+                }
+            },
+            placeholder: 'Type or paste your content here!',
+            table: {
+                contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableProperties', 'tableCellProperties']
+            }
+        };
+
+        // Initialize editor
+        ClassicEditor
+            .create(document.querySelector('#editor'), editorConfig)
+            .then(editor => {
+                const wordCount = editor.plugins.get('WordCount');
+                document.querySelector('#editor-word-count').appendChild(wordCount.wordCountContainer);
+
+                // Update the hidden textarea with editor content on form submit
+                const form = document.querySelector('form');
+                form.addEventListener('submit', () => {
+                    document.querySelector('#{{ form.content.vars.id }}').value = editor.getData();
+                });
+
+                return editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <div class="page-title">
+            <h1>Create New Documentation Page</h1>
+            <p>Add a new page to your help center</p>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <div class="section-header">
+            <h2 class="section-title">Page Details</h2>
+        </div>
+
+        {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.slug) }}
+        <div class="form-group">
+            {{ form_label(form.content) }}
+            <div id="editor">{{ form.vars.value.content|default('') }}</div>
+            <div id="editor-word-count" class="editor_container__word-count"></div>
+            {{ form_widget(form.content, { 'attr': {'style': 'display: none;'} }) }}
+            {{ form_errors(form.content) }}
+        </div>
+
+        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+
+        <div class="form-actions">
+            <a href="{{ path('admin_doc_index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+{% endblock %}

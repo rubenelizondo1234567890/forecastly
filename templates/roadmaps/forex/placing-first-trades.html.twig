@@ -1,0 +1,233 @@
+{# templates/roadmaps/forex/placing-first-trades.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('forex_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('forex_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – forex style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-hand-pointer"></i>
+                </div>
+                <h1>Placing Your First Trades: <span>Market Orders and Pending Orders</span></h1>
+                <p class="hero-description">
+                    Market orders execute immediately at the current price; pending orders wait for a specific price.
+                    Learn when and how to use each type to enter and exit the market like a pro.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 9 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">📈 Two Ways to Enter a Trade</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Every trade begins with an order. In forex, you have two main categories: <strong>market orders</strong>
+                (executed instantly at the best available price) and <strong>pending orders</strong> (executed only when
+                the market reaches a price you specify).
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                Understanding the difference is crucial for executing your trading plan precisely. This article explains
+                each order type with examples and helps you choose the right one for any situation.
+            </p>
+        </section>
+
+        <!-- order types grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-bolt"></i> Market Order</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Buy or sell now</div>
+                <p>Executes immediately at the current price. Use when you want to enter or exit without delay.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-arrow-down"></i> Buy Limit</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Buy below current price</div>
+                <p>A pending order to buy at a lower price. Used when you expect a pullback before an uptrend resumes.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-arrow-up"></i> Sell Limit</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Sell above current price</div>
+                <p>A pending order to sell at a higher price. Used when you expect a bounce before a downtrend continues.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-arrow-up"></i> Buy Stop</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Buy above current price</div>
+                <p>A pending order to buy if price rises to a specified level. Used to enter on a breakout above resistance.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-arrow-down"></i> Sell Stop</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Sell below current price</div>
+                <p>A pending order to sell if price falls to a specified level. Used to enter on a breakdown below support.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive: when to use which -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🧠 Choosing the Right Order</h3>
+            <p style="margin-bottom: 20px;">
+                Your choice depends on your trading strategy and market conditions.
+            </p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Market order</strong> – Use when you need immediate execution, e.g., closing a trade before news, or entering a fast‑moving market.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Limit orders</strong> – Use to buy dips or sell rallies. You anticipate a reversal at a specific level.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Stop orders</strong> – Use to enter breakouts. You wait for price to confirm momentum beyond support/resistance.</li>
+                </ul>
+                <p class="pro-tip" style="margin-top: 15px; background-color: #eef2ff; border-left-color: #3182ce;"><i class="fas fa-lightbulb"></i> Pending orders help you automate your strategy and avoid emotional chasing.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Order Type Scenarios -->
+        <div class="card animate" style="margin: 40px 0;" id="order-scenarios">
+            <h3><i class="fas fa-gamepad"></i> Order Type Scenarios</h3>
+            <p>Test your knowledge with real‑world situations. Choose the best order for each scenario.</p>
+
+            <div style="margin: 25px 0; padding: 15px; background: #f9f9f9; border-radius: 12px;">
+                <p><strong>Scenario 1:</strong> EUR/USD is trading at 1.1050. You believe it will bounce from support at 1.1020 and then rise. What order do you place?</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <button class="scenario-btn" data-scenario="1" data-answer="limit">Buy Limit at 1.1020</button>
+                    <button class="scenario-btn" data-scenario="1" data-answer="stop">Buy Stop at 1.1070</button>
+                    <button class="scenario-btn" data-scenario="1" data-answer="market">Market Buy</button>
+                </div>
+                <div id="scenario1-feedback" class="scenario-feedback" style="margin-top: 10px; font-style: italic;"></div>
+            </div>
+
+            <div style="margin: 25px 0; padding: 15px; background: #f9f9f9; border-radius: 12px;">
+                <p><strong>Scenario 2:</strong> GBP/USD breaks above resistance at 1.2550 with strong momentum. You want to enter if the breakout holds. What order do you use?</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <button class="scenario-btn" data-scenario="2" data-answer="limit">Sell Limit at 1.2500</button>
+                    <button class="scenario-btn" data-scenario="2" data-answer="stop">Buy Stop at 1.2560</button>
+                    <button class="scenario-btn" data-scenario="2" data-answer="market">Market Buy now</button>
+                </div>
+                <div id="scenario2-feedback" class="scenario-feedback" style="margin-top: 10px; font-style: italic;"></div>
+            </div>
+
+            <div style="margin: 25px 0; padding: 15px; background: #f9f9f9; border-radius: 12px;">
+                <p><strong>Scenario 3:</strong> You are long USD/JPY from 148.00 and want to protect your profit if price falls. You decide to place an order to sell if price drops to 147.50. What order is that?</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <button class="scenario-btn" data-scenario="3" data-answer="limit">Sell Limit at 147.50</button>
+                    <button class="scenario-btn" data-scenario="3" data-answer="stop">Sell Stop at 147.50</button>
+                    <button class="scenario-btn" data-scenario="3" data-answer="market">Market Sell now</button>
+                </div>
+                <div id="scenario3-feedback" class="scenario-feedback" style="margin-top: 10px; font-style: italic;"></div>
+            </div>
+        </div>
+
+        <!-- example trade box -->
+        <div class="highlight-box animate">
+            <h3><i class="fas fa-bolt"></i> Example – Using a Buy Limit</h3>
+            <p>You analyse USD/CAD and see strong support at 1.3450. Current price is 1.3480. Instead of buying now and risking a drop to support, you place a <strong>Buy Limit order at 1.3450</strong>. If price falls to that level, your order triggers and you enter at a better price. If it never reaches, you miss the trade but avoid a worse entry.</p>
+        </div>
+
+        <!-- pro tip: pending orders and news -->
+        <div class="pro-tip animate" style="background-color: #fff5f0; border-left-color: #ff6b35;">
+            <h4 style="margin-top: 0;"><i class="fas fa-newspaper" style="color:#ff6b35;"></i> Pending Orders During News</h4>
+            <p>Major news events can cause slippage – your pending order might execute at a worse price than expected, or not at all. Some brokers allow “pending orders” with “valid until cancelled” that survive volatility. Always check your broker's rules.</p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Market & Pending Orders</h3>
+
+                <div class="quiz-question">1. Which order executes immediately at the current market price?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Buy Limit</div>
+                    <div class="quiz-option" data-answer="wrong">Sell Stop</div>
+                    <div class="quiz-option" data-answer="correct">Market Order</div>
+                    <div class="quiz-option" data-answer="wrong">Buy Stop</div>
+                </div>
+
+                <div class="quiz-question">2. A Buy Limit order is placed:</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="correct">Below the current price</div>
+                    <div class="quiz-option" data-answer="wrong">Above the current price</div>
+                    <div class="quiz-option" data-answer="wrong">At the current price</div>
+                    <div class="quiz-option" data-answer="wrong">Only during news</div>
+                </div>
+
+                <div class="quiz-question">3. You expect a breakout above resistance. Which order should you use?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Buy Limit</div>
+                    <div class="quiz-option" data-answer="correct">Buy Stop</div>
+                    <div class="quiz-option" data-answer="wrong">Sell Limit</div>
+                    <div class="quiz-option" data-answer="wrong">Market Sell</div>
+                </div>
+
+                <div class="quiz-question">4. What is the main advantage of pending orders?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Guaranteed execution</div>
+                    <div class="quiz-option" data-answer="correct">You can automate entries without watching the screen</div>
+                    <div class="quiz-option" data-answer="wrong">They never suffer slippage</div>
+                    <div class="quiz-option" data-answer="wrong">They are free of commissions</div>
+                </div>
+
+                <div class="quiz-question">5. A Sell Stop order is placed:</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Above the current price</div>
+                    <div class="quiz-option" data-answer="correct">Below the current price</div>
+                    <div class="quiz-option" data-answer="wrong">At the current price</div>
+                    <div class="quiz-option" data-answer="wrong">Only in a downtrend</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 3 (practical execution) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue your practical journey</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'setting-up-demo-account' }) }}" class="next-card">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Setting Up Your First Demo Account</h3>
+                    <p style="color: var(--gray-color);">Get your demo account ready to practise.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'intro-technical-analysis' }) }}" class="next-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Intro to Technical Analysis</h3>
+                    <p style="color: var(--gray-color);">Learn support, resistance, and trends.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'trading-journal' }) }}" class="next-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Keeping a Trading Journal</h3>
+                    <p style="color: var(--gray-color);">Track your progress and improve.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

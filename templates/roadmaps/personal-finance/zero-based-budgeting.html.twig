@@ -1,0 +1,193 @@
+{# templates/roadmaps/personal-finance/real-state-fundamentals-journey.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <h1>Zero‑Based Budgeting: <span>Give Every Dollar a Job</span></h1>
+                <p class="hero-description">
+                    No more wondering where your money went. Assign every dollar a purpose — down to zero.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 7 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">What is zero‑based budgeting?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Unlike traditional budgeting where you look at what you spent last month, zero‑based budgeting (ZBB) means
+                <strong>your income minus your expenses equals zero</strong> at the start of the month. Every dollar is assigned a specific job —
+                rent, groceries, savings, debt payments, even fun money. If there’s money left, you give it a job: extra debt payment,
+                invest, or treat yourself (within reason).
+            </p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px; margin-top: 20px;">
+                <p><i class="fas fa-lightbulb" style="color: var(--personal-color); margin-right: 10px;"></i> <strong>Example:</strong> If you earn $3,200 and your planned expenses + savings = $3,200, you’ve zero‑based. Nothing is unassigned.</p>
+            </div>
+        </section>
+
+        <!-- why it works -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Why every dollar needs a job</h3>
+            <p>Zero‑based budgeting forces you to be intentional. Instead of hoping you’ll save whatever’s left, you decide upfront. It’s especially powerful for irregular incomes or people who want to crush debt.</p>
+            <ul class="tip-list" style="margin-top: 25px;">
+                <li><i class="fas fa-check-circle"></i> <strong>Full control</strong> – You tell your money where to go, not the other way around.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Adapts easily</strong> – Each month you build a new budget based on actual upcoming expenses.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Prioritizes goals</strong> – Savings and debt get funded before lifestyle creep.</li>
+            </ul>
+        </div>
+
+        <!-- interactive zero‑based budget tool -->
+        <div class="budget-tool animate">
+            <h2><i class="fas fa-tasks" style="color: var(--personal-color);"></i> Try it: build your zero‑based budget</h2>
+            <p style="margin-bottom: 20px;">Enter your monthly income, then allocate amounts to each category. The goal is to reach <strong>$0 remaining</strong>.</p>
+
+            <div class="income-row">
+                <label for="income">Monthly income after tax ($):</label>
+                <input type="number" id="income" value="3500" step="50" min="0">
+            </div>
+
+            <div class="categories-grid" id="categories">
+                <!-- will be populated by JS -->
+            </div>
+
+            <div class="budget-summary" id="budgetSummary">
+                <div class="summary-row">
+                    <div class="summary-item">Total allocated: <span id="totalAllocated">$0</span></div>
+                    <div class="summary-item">Remaining: <span id="remaining">$0</span></div>
+                </div>
+                <div id="statusMessage" class="status-message"></div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.95rem; color: var(--gray-color);"><i class="fas fa-sync-alt"></i> Adjust any amount — watch the remaining change. When it hits $0, every dollar has a job.</p>
+        </div>
+
+        <!-- steps to create your own -->
+        <section class="animate">
+            <h2 class="section-title">📝 How to build a zero‑based budget (real life)</h2>
+            <ol style="list-style-position: inside; margin-left: 20px; font-size: 1.1rem;">
+                <li><strong>List all income</strong> – Include side hustles, regular pay, any expected cash.</li>
+                <li><strong>List all expenses</strong> – Be thorough: rent, utilities, groceries, subscriptions, debt minimums, etc.</li>
+                <li><strong>Add savings & goals</strong> – Emergency fund, retirement, travel, extra debt.</li>
+                <li><strong>Subtract from income</strong> – Ideally you get zero. If negative, cut wants or find extra income.</li>
+                <li><strong>Track and adjust</strong> – Use an app or envelope system to stay on track.</li>
+            </ol>
+        </section>
+
+        <!-- tips for success -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem;">🔧 Pro tips</h3>
+            <ul class="tip-list">
+                <li><i class="fas fa-check-circle"></i> <strong>Start with irregular expenses</strong> – Car repairs, annual subscriptions: divide by 12 and set aside monthly.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Use the envelope method</strong> – Cash for variable categories like dining out. When envelope is empty, stop spending.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Review weekly</strong> – A quick 10‑minute check keeps you honest.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Don’t forget “fun money”</strong> – If you don’t budget for wants, you’ll blow the budget.</li>
+            </ul>
+        </div>
+
+        <!-- Quick quiz -->
+        {% if app.user and quiz %}
+            {# Logged in user #}
+            {# Quiz already taken – show summary and retake button #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your zero‑based budgeting knowledge</h3>
+                <div class="quiz-question">1. What is the goal of zero‑based budgeting?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="correct">Income minus expenses = zero</div>
+                    <div class="quiz-option" data-answer="wrong">Save 20% of income</div>
+                    <div class="quiz-option" data-answer="wrong">Spend less than you earn</div>
+                    <div class="quiz-option" data-answer="wrong">Track every penny</div>
+                </div>
+                <div class="quiz-question">2. How often do you create a new zero‑based budget?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Once a year</div>
+                    <div class="quiz-option" data-answer="correct">Every month</div>
+                    <div class="quiz-option" data-answer="wrong">Every quarter</div>
+                    <div class="quiz-option" data-answer="wrong">Only when income changes</div>
+                </div>
+                <div class="quiz-question">3. If you have money left after assigning all expenses, what should you do?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Spend it on wants</div>
+                    <div class="quiz-option" data-answer="correct">Give it a job (save/invest)</div>
+                    <div class="quiz-option" data-answer="wrong">Leave it unassigned</div>
+                    <div class="quiz-option" data-answer="wrong">Roll it to next month</div>
+                </div>
+                <div class="quiz-question">4. Which method pairs well with zero‑based budgeting?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="correct">Envelope method</div>
+                    <div class="quiz-option" data-answer="wrong">50/30/20 rule</div>
+                    <div class="quiz-option" data-answer="wrong">Pay yourself first</div>
+                    <div class="quiz-option" data-answer="wrong">All of the above</div>
+                </div>
+                <div class="quiz-question">5. What is a common challenge of zero‑based budgeting?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="correct">Requires detailed tracking</div>
+                    <div class="quiz-option" data-answer="wrong">Not flexible</div>
+                    <div class="quiz-option" data-answer="wrong">Only for high incomes</div>
+                    <div class="quiz-option" data-answer="wrong">No room for fun</div>
+                </div>
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+
+        <!-- next articles in phase -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Foundation First phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: '503020-budgeting' }) }}" class="next-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>50/30/20 Rule</h3>
+                    <p style="color: var(--gray-color);">The simpler framework (read before or after).</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'emergency-fund-101' }) }}" class="next-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Emergency Fund 101</h3>
+                    <p style="color: var(--gray-color);">Build your safety net after mastering the basics.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'understanding-your-credit-score' }) }}" class="next-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Credit Score Basics</h3>
+                    <p style="color: var(--gray-color);">Understand what affects your score.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

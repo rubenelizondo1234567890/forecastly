@@ -1,0 +1,244 @@
+{# templates/roadmaps/personal-finance/automate-your-finances.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h1>Automate Your Finances: <span>Set It and Forget It</span></h1>
+                <p class="hero-description">
+                    🤖 Stop managing every transfer manually. Financial automation is like hiring a robot assistant – once it’s set up, your money moves on autopilot. This guide walks you through the exact steps to automate your paycheck, bills, savings, and investments.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-flag-checkered"></i> PHASE 3 · PRACTICAL EXECUTION · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- table of contents (interactive) -->
+        <div class="toc">
+            <h3><i class="fas fa-list-ul" style="color: var(--personal-color);"></i> What you'll learn (click to jump)</h3>
+            <div class="toc-grid">
+                <a href="#why-automate"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> Why automate?</a>
+                <a href="#four-buckets"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> The 4 automation buckets</a>
+                <a href="#direct-deposit"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> 1. Split your paycheck</a>
+                <a href="#bill-pay"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> 2. Automatic bill pay</a>
+                <a href="#auto-save"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> 3. Auto‑save & invest</a>
+                <a href="#tools"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> 4. Tools & apps</a>
+                <a href="#pitfalls"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> Pitfalls to avoid</a>
+                <a href="#checklist"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> 15‑minute checklist</a>
+            </div>
+        </div>
+
+        <!-- content starts -->
+        <h2 id="why-automate"><i class="fas fa-brain"></i> Why automate? (the psychology)</h2>
+        <p>Every time you manually transfer money to savings, you rely on willpower. And willpower is a limited resource. Automation flips the script: you decide once, and the system follows orders. Studies show people who automate savings save <strong>2x more</strong> than those who don’t (Nudge theory, Thaler & Sunstein).</p>
+        <div class="highlight-box">
+            <strong><i class="fas fa-clock"></i> Time saved:</strong> By automating, you reclaim ~30 minutes a week and eliminate late fees. It’s the ultimate “set and forget” move.
+        </div>
+
+        <h2 id="four-buckets"><i class="fas fa-cubes"></i> The 4 buckets of financial automation</h2>
+        <div class="bucket-grid">
+            <div class="bucket-card">
+                <i class="fas fa-dollar-sign"></i>
+                <h4>Income</h4>
+                <p>Direct deposit splitting</p>
+            </div>
+            <div class="bucket-card">
+                <i class="fas fa-file-invoice"></i>
+                <h4>Bills</h4>
+                <p>Auto‑pay rent, utilities, cards</p>
+            </div>
+            <div class="bucket-card">
+                <i class="fas fa-piggy-bank"></i>
+                <h4>Savings</h4>
+                <p>Recurring transfers to goals</p>
+            </div>
+            <div class="bucket-card">
+                <i class="fas fa-chart-line"></i>
+                <h4>Investments</h4>
+                <p>Auto‑invest into IRA/brokerage</p>
+            </div>
+        </div>
+        <p>We’ll tackle each bucket step‑by‑step. By the end, your entire financial system will run on autopilot.</p>
+
+        <h2 id="direct-deposit"><i class="fas fa-arrow-right-to-bracket"></i> Step 1: Split your paycheck (direct deposit)</h2>
+        <p>Most employers let you split your direct deposit into multiple accounts. This is the golden rule: <strong>pay yourself first</strong> before the money hits your checking.</p>
+        <div class="step-card">
+            <span class="step-number">1</span> <strong>Get account & routing numbers</strong> for your checking and savings (and maybe an investment account).
+        </div>
+        <div class="step-card">
+            <span class="step-number">2</span> <strong>Log into payroll portal</strong> (or ask HR for a direct deposit form). Look for “allocation” or “split deposit.”
+        </div>
+        <div class="step-card">
+            <span class="step-number">3</span> <strong>Set percentages</strong> – e.g., 80% to checking, 15% to savings, 5% to an IRA (if supported). If not, just split checking/savings.
+        </div>
+        <div class="step-card">
+            <span class="step-number">4</span> <strong>Submit & verify</strong> next paycheck. You’ll never see that savings money in your spending account – out of sight, out of mind.
+        </div>
+        <div class="pro-tip">
+            <i class="fas fa-lightbulb"></i> <strong>Pro tip:</strong> If your employer doesn’t support split deposit, set up an automatic transfer from checking to savings for the day after payday. It’s almost as good.
+        </div>
+
+        <h2 id="bill-pay"><i class="fas fa-file-invoice-dollar"></i> Step 2: Automatic bill payments</h2>
+        <p>Late fees average $25–40 per incident. Automating bills saves money and credit score points.</p>
+        <ul class="checklist">
+            <li><i class="fas fa-check-circle"></i> <strong>Recurring fixed bills:</strong> Rent/mortgage, internet, subscriptions – schedule them via your bank’s bill pay or the vendor’s auto‑pay.</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Credit cards & variable bills:</strong> Set up auto‑pay for the <strong>statement balance</strong> (not minimum) on the due date. Never pay interest again.</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Calendar trick:</strong> Schedule all auto‑payments 1–2 days after payday to ensure funds are there.</li>
+        </ul>
+        <div class="highlight-box">
+            <strong><i class="fas fa-shield"></i> Safety note:</strong> Always keep a small buffer (say $200) in your checking to cover any timing mismatches.
+        </div>
+
+        <h2 id="auto-save"><i class="fas fa-piggy-bank"></i> Step 3: Auto‑save & auto‑invest</h2>
+        <p>Now we make your money grow while you sleep.</p>
+        <div style="margin: 20px 0;">
+            <h3 style="font-size: 1.3rem;"><i class="fas fa-arrow-right" style="color: var(--personal-color);"></i> Savings automation</h3>
+            <p>Set up recurring transfers from checking to savings for each goal:</p>
+            <ul>
+                <li><strong>Emergency fund:</strong> weekly or monthly transfer.</li>
+                <li><strong>Vacation / big purchase:</strong> separate sub‑account (many online banks let you create "buckets").</li>
+            </ul>
+            <h3 style="font-size: 1.3rem; margin-top: 25px;"><i class="fas fa-arrow-right" style="color: var(--personal-color);"></i> Investment automation</h3>
+            <p>Open a Roth IRA or brokerage account and schedule recurring buys:</p>
+            <ul>
+                <li><strong>Dollar‑cost averaging:</strong> invest $X every week/month into a broad market ETF (like VTI or VOO).</li>
+                <li><strong>Round‑up apps:</strong> Acorns or similar can invest spare change – but a simple recurring transfer is more powerful.</li>
+            </ul>
+        </div>
+        <div class="pro-tip">
+            <i class="fas fa-robot"></i> <strong>Automation gold:</strong> Many brokerages (Fidelity, Vanguard, M1 Finance) allow automatic recurring investments. Set it once and watch your wealth compound.
+        </div>
+
+        <h2 id="tools"><i class="fas fa-mobile-alt"></i> Step 4: Tools that connect everything</h2>
+        <p>You don’t need many apps – just a few reliable ones:</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
+            <span style="background: #e2e8f0; padding: 8px 18px; border-radius: 30px;"><i class="fas fa-university"></i> Your bank’s app</span>
+            <span style="background: #e2e8f0; padding: 8px 18px; border-radius: 30px;"><i class="fas fa-chart-pie"></i> Personal capital / Empower</span>
+            <span style="background: #e2e8f0; padding: 8px 18px; border-radius: 30px;"><i class="fas fa-coins"></i> YNAB / EveryDollar</span>
+            <span style="background: #e2e8f0; padding: 8px 18px; border-radius: 30px;"><i class="fas fa-robot"></i> Brokerage app (M1, Fidelity)</span>
+        </div>
+        <p>Use a <strong>dashboard</strong> to monitor everything once a month. No daily logging in needed.</p>
+
+        <h2 id="pitfalls"><i class="fas fa-exclamation-triangle"></i> Common pitfalls & how to avoid them</h2>
+        <ul class="checklist">
+            <li><i class="fas fa-ban" style="color:#c53030;"></i> <strong>Overdrafts:</strong> Keep a buffer and sync dates (payday before auto‑pay).</li>
+            <li><i class="fas fa-ban" style="color:#c53030;"></i> <strong>Forgotten subscriptions:</strong> Review your bank statements quarterly. Use a tool like Rocket Money to track.</li>
+            <li><i class="fas fa-ban" style="color:#c53030;"></i> <strong>Set & forget <em>completely</em>:</strong> Automation doesn’t mean ignore forever – check everything every 3–6 months.</li>
+        </ul>
+
+        <h2 id="checklist"><i class="fas fa-clipboard-check"></i> Your 15‑minute automation checklist</h2>
+        <div style="background-color: #f0fff4; border-radius: 20px; padding: 25px; margin: 20px 0;">
+            <ol style="margin-left: 20px; font-weight: 500;">
+                <li>☐ Log into payroll and split direct deposit (checking + savings).</li>
+                <li>☐ Set up auto‑pay for all fixed bills (due after payday).</li>
+                <li>☐ Turn on credit card auto‑pay for full statement balance.</li>
+                <li>☐ Schedule recurring transfer to savings (weekly/monthly).</li>
+                <li>☐ Schedule recurring investment (even $25/month).</li>
+                <li>☐ Download one aggregator app to see it all in one place.</li>
+            </ol>
+            <p style="margin-top: 20px;"><i class="fas fa-stopwatch"></i> Total time: less than a coffee break.</p>
+        </div>
+
+        <!-- Quick quiz -->
+        {% if app.user and quiz %}
+            {# Logged in user #}
+            {# Quiz already taken – show summary and retake button #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your automation smarts</h3>
+                <div class="quiz-question">1. What is the first step to automate your finances?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Set up automatic bill pay</div>
+                    <div class="quiz-option" data-answer="correct">Split your direct deposit</div>
+                    <div class="quiz-option" data-answer="wrong">Schedule recurring investments</div>
+                    <div class="quiz-option" data-answer="wrong">Download a budgeting app</div>
+                </div>
+                <div class="quiz-question">2. Why is automation effective?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">It eliminates willpower</div>
+                    <div class="quiz-option" data-answer="wrong">It saves time</div>
+                    <div class="quiz-option" data-answer="wrong">It avoids late fees</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+                <div class="quiz-question">3. What should you set up for credit cards?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Auto‑pay minimum due</div>
+                    <div class="quiz-option" data-answer="correct">Auto‑pay statement balance</div>
+                    <div class="quiz-option" data-answer="wrong">Auto‑pay full balance any day</div>
+                    <div class="quiz-option" data-answer="wrong">No auto‑pay</div>
+                </div>
+                <div class="quiz-question">4. What is a common pitfall of automation?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Overdrafts</div>
+                    <div class="quiz-option" data-answer="wrong">Forgotten subscriptions</div>
+                    <div class="quiz-option" data-answer="wrong">Not reviewing occasionally</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+                <div class="quiz-question">5. How often should you review your automated finances?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Never</div>
+                    <div class="quiz-option" data-answer="wrong">Every day</div>
+                    <div class="quiz-option" data-answer="correct">Every 3–6 months</div>
+                    <div class="quiz-option" data-answer="wrong">Once a year</div>
+                </div>
+                <div class="quiz-feedback">👉 Click any answer to check yourself.</div>
+            </div>
+        {% endif %}
+
+
+        <!-- Next steps: continue Phase 3 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Practical Execution phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'opening-your-first-bank-account' }) }}" class="next-card">
+                    <i class="fas fa-university" style="color: var(--personal-color);"></i>
+                    <h3>Opening Your First Bank Account</h3>
+                    <p style="color: var(--gray-color);">Step‑by‑step guide to choosing the right accounts, avoiding fees, and setting up direct deposits like a pro.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'creating-a-personal-financial-statement' }) }}" class="next-card">
+                    <i class="fas fa-file-invoice" style="color: var(--personal-color);"></i>
+                    <h3>Creating a Personal Financial Statement</h3>
+                    <p style="color: var(--gray-color);">Track your net worth with a simple balance sheet and income statement. Know exactly where you stand.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'how-to-negotiate-bills' }) }}" class="next-card">
+                    <i class="fas fa-phone-alt" style="color: var(--personal-color);"></i>
+                    <h3>How to Negotiate Bills</h3>
+                    <p style="color: var(--gray-color);">Scripts and tactics to reduce phone, internet, and subscription costs. Most people save $300+ in the first year.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

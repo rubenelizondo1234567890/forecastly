@@ -1,0 +1,212 @@
+{# templates/roadmaps/personal-finance/protecting-your-identity.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="article-icon">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <h1>Protecting Your Identity: <span>Simple Steps to Avoid Fraud</span></h1>
+                <p class="hero-description">
+                    Practical, everyday habits to safeguard your personal data—from password managers to credit freezes. No tech degree required.
+                </p>
+                <div class="article-meta-hero">
+                    <span><i class="far fa-clock"></i> 7 min read</span>
+                    <span><i class="fas fa-check-double"></i> Interactive checklist</span>
+                    <span><i class="fas fa-signal"></i> Beginner friendly</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- main article -->
+        <article class="article-main animate">
+            <h2>🔐 Why identity protection matters</h2>
+            <p>Every year, millions fall victim to identity fraud—often through simple slips like reusing passwords or clicking a phishing link. The good news: a few easy habits can block most attacks. Think of this as your personal security upgrade.</p>
+
+            <div class="insight-callout">
+                <i class="fas fa-shield-alt"></i>
+                <div><strong>The goal:</strong> Make yourself a harder target than the person next to you. Fraudsters go for low‑hanging fruit—don't be that fruit.</div>
+            </div>
+
+            <h2>🛡️ 5 simple steps to lock down your identity</h2>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-lock"></i></div>
+                    <h3>1. Strong, unique passwords</h3>
+                    <p>Use a password manager (like Bitwarden or 1Password) to generate and store complex passwords. Never reuse passwords across banking, email, or social media.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3>2. Two‑factor authentication (2FA)</h3>
+                    <p>Turn on 2FA everywhere—especially for email, bank, and social accounts. Use an authenticator app (Google Authenticator, Authy) instead of SMS when possible.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3>3. Freeze your credit</h3>
+                    <p>Contact Equifax, Experian, and TransUnion to freeze your credit for free. It prevents anyone from opening new accounts in your name. You can temporarily lift it when needed.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>4. Spot phishing</h3>
+                    <p>Don't click links in unsolicited emails/texts. Verify by typing the official website yourself. Be suspicious of urgent language or “verify your account” requests.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>5. Monitor accounts & reports</h3>
+                    <p>Check bank/credit card statements weekly. Pull your free credit reports at AnnualCreditReport.com. Set up alerts for transactions over $0.</p>
+                </div>
+            </div>
+
+            <h2>✅ Your personal security checklist</h2>
+            <p>Check off the actions you've already taken — watch your progress grow.</p>
+
+            <div class="checklist-container" id="checklist">
+                <!-- items dynamically created via JS but we'll also hardcode them for clarity -->
+                <div class="checklist-item" data-checked="false">
+                    <span class="check-circle"><i class="fas fa-check"></i></span>
+                    <span>I use a password manager (or am ready to start).</span>
+                </div>
+                <div class="checklist-item" data-checked="false">
+                    <span class="check-circle"><i class="fas fa-check"></i></span>
+                    <span>I have enabled 2FA on my primary email and bank account.</span>
+                </div>
+                <div class="checklist-item" data-checked="false">
+                    <span class="check-circle"><i class="fas fa-check"></i></span>
+                    <span>I have placed a credit freeze with all three bureaus (Equifax, Experian, TransUnion).</span>
+                </div>
+                <div class="checklist-item" data-checked="false">
+                    <span class="check-circle"><i class="fas fa-check"></i></span>
+                    <span>I know how to spot a phishing email (hover, don't click).</span>
+                </div>
+                <div class="checklist-item" data-checked="false">
+                    <span class="check-circle"><i class="fas fa-check"></i></span>
+                    <span>I review my bank/credit card statements at least twice a month.</span>
+                </div>
+                <div class="checklist-progress">
+                    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                </div>
+                <div class="progress-text" id="progressText">0/5 completed — start ticking!</div>
+            </div>
+
+            <h2>📖 Myth vs. fact</h2>
+            <div class="myth-fact">
+                <div class="myth-row">
+                    <div class="myth">❌ Myth: Identity theft only happens to careless people.</div>
+                    <div class="fact">Fact: Data breaches happen to huge companies — your info can be stolen even if you're careful. But good habits drastically reduce risk.</div>
+                </div>
+                <div class="myth-row">
+                    <div class="myth">❌ Myth: A credit freeze locks you out of your own credit.</div>
+                    <div class="fact">Fact: You can temporarily lift it online for free. Existing creditors (like your bank) can still access it.</div>
+                </div>
+                <div class="myth-row">
+                    <div class="myth">❌ Myth: Antivirus software is enough to stop identity fraud.</div>
+                    <div class="fact">Fact: Antivirus helps, but most fraud happens through phishing and weak passwords — you need behavioral protection.</div>
+                </div>
+            </div>
+
+            <!-- Quick quiz -->
+            {% if app.user and quiz %}
+                {# Logged in user #}
+                {# Quiz already taken – show summary and retake button #}
+                <div class="quiz-container animate">
+                    <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                    <p style="color: #e2e8f0; font-size: 1.2rem;">
+                        Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                    </p>
+                    <p style="color: #cbd5e0;">
+                        You can retake the quiz to improve your score. Click the button below to reset it.
+                    </p>
+                    <div class="quiz-actions">
+                        <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                           class="btn"
+                           style="background-color: #ff6b35; color: white; text-decoration: none;">
+                            Retake Quiz
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+                <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                    <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your ID protection IQ</h3>
+                    <div class="quiz-question">1. Which is the most effective way to prevent new‑account fraud?</div>
+                    <div class="quiz-options" data-question="1">
+                        <div class="quiz-option" data-answer="wrong">Antivirus software</div>
+                        <div class="quiz-option" data-answer="correct">Credit freeze</div>
+                        <div class="quiz-option" data-answer="wrong">Shredding documents</div>
+                    </div>
+                    <div class="quiz-question" style="margin-top: 30px;">2. What's the first clue of a phishing email?</div>
+                    <div class="quiz-options" data-question="2">
+                        <div class="quiz-option" data-answer="correct">Urgent language and a suspicious link</div>
+                        <div class="quiz-option" data-answer="wrong">It comes from a known company</div>
+                        <div class="quiz-option" data-answer="wrong">It has a logo</div>
+                    </div>
+                    <div class="quiz-question">3. What is a password manager used for?</div>
+                    <div class="quiz-options" data-question="3">
+                        <div class="quiz-option" data-answer="wrong">To remember passwords</div>
+                        <div class="quiz-option" data-answer="wrong">To generate strong passwords</div>
+                        <div class="quiz-option" data-answer="wrong">To store passwords securely</div>
+                        <div class="quiz-option" data-answer="correct">All of the above</div>
+                    </div>
+                    <div class="quiz-question">4. What does 2FA stand for?</div>
+                    <div class="quiz-options" data-question="4">
+                        <div class="quiz-option" data-answer="correct">Two‑factor authentication</div>
+                        <div class="quiz-option" data-answer="wrong">Two‑fund account</div>
+                        <div class="quiz-option" data-answer="wrong">Tax‑free account</div>
+                        <div class="quiz-option" data-answer="wrong">None</div>
+                    </div>
+                    <div class="quiz-question">5. How often should you review your bank statements?</div>
+                    <div class="quiz-options" data-question="5">
+                        <div class="quiz-option" data-answer="wrong">Never</div>
+                        <div class="quiz-option" data-answer="wrong">Once a year</div>
+                        <div class="quiz-option" data-answer="correct">Weekly or bi‑weekly</div>
+                        <div class="quiz-option" data-answer="wrong">Only when you get a new card</div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback">👉 Click any answer to check yourself.</div>
+                </div>
+            {% endif %}
+
+
+            <!-- Next steps: continue Phase 2 -->
+            <section style="margin: 60px 0;">
+                <h2 class="section-title" style="text-align: center;">Continue your Risk Management phase</h2>
+                <div class="next-steps">
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'insurance-essentials' }) }}" class="next-card">
+                        <i class="fas fa-file-medical-alt" style="color: var(--personal-color);"></i>
+                        <h3>Insurance essentials</h3>
+                        <p style="color: var(--gray-color);">Cut through jargon to choose health, auto, renters, and life insurance with confidence.</p>
+                    </a>
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'debt-avalanche-vs-snowball' }) }}" class="next-card">
+                        <i class="fas fa-balance-scale" style="color: var(--personal-color);"></i>
+                        <h3>Debt avalanche vs. snowball</h3>
+                        <p style="color: var(--gray-color);">Compare the maths‑focused avalanche and the motivational snowball. Pick the strategy that matches your personality.</p>
+                    </a>
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'emergency-fund-deep-dive' }) }}" class="next-card">
+                        <i class="fas fa-piggy-bank" style="color: var(--personal-color);"></i>
+                        <h3>Emergency fund deep dive</h3>
+                        <p style="color: var(--gray-color);">Go beyond the basics – how a cash cushion protects you from job loss, medical bills, and market downturns.</p>
+                    </a>
+                </div>
+            </section>
+        </article>
+
+        <!-- CTA -->
+        <div class="journey-cta animate" style="background: linear-gradient(145deg, #fceae5, #ffffff); text-align: center; padding: 50px 40px; border-radius: 40px; margin: 60px 0;">
+            <h2>Lock down your identity today</h2>
+            <p style="font-size: 1.2rem; color: #2d3748;">Get step‑by‑step guides to freeze your credit and set up a password manager.</p>
+            <a href="#" class="cta-button" style="display: inline-block; padding: 16px 40px; background-color: #ff6b35; color: white; text-decoration: none; border-radius: 60px; font-weight: 600; font-size: 1.2rem; box-shadow: 0 8px 18px rgba(255,107,53,0.3);"><i class="fas fa-download"></i> Free security kit</a>
+        </div>
+    </div>
+{% endblock %}

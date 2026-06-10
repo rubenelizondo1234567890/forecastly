@@ -1,0 +1,1254 @@
+/* assets/styles/app.css */
+
+/* Import Font Awesome */
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+/* CSS Variables */
+:root {
+    --primary: #5D40A6;
+    --secondary: #56CFE1;
+    --positive: #128370;
+    --negative: #f44336; /* Red for negative/overdraft */
+    --background: #FAFAFC;
+    --headers: #F9F6FD;
+    --text: #4A5568;
+    --text-light: #718096;
+    --white: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --sidebar-bg: #FFFFFF;
+    --border: #E2E8F0;
+
+    /* RGB equivalents for rgba() usage */
+    --primary-rgb: 93, 64, 166;     /* #5D40A6 */
+    --positive-rgb: 18, 131, 112;   /* #128370 */
+    --negative-rgb: 255, 158, 109;  /* #FF9E6D */
+    --text-rgb: 74, 85, 104;        /* #4A5568 */
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 300px;
+    background-color: var(--sidebar-bg);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.logo i {
+    font-size: 24px;
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+.logo span {
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--primary);
+}
+
+.menu {
+    list-style: none;
+    flex-grow: 1;
+}
+
+.menu li {
+    margin-bottom: 5px;
+}
+
+.menu li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.menu li a:hover, .menu li a.active {
+    background-color: rgba(94, 96, 206, 0.1);
+    color: var(--primary);
+    border-right: 3px solid var(--primary);
+}
+
+.menu li a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.user-section {
+    padding: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.user-details {
+    flex-grow: 1;
+}
+
+.user-name {
+    font-weight: 600;
+}
+
+.user-role {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 158, 109, 0.1);
+    color: var(--negative);
+}
+
+/* Sidebar Group Styles */
+.menu-group {
+    margin-bottom: 5px;
+}
+
+.group-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.3s;
+    position: relative;
+    font-size: 1.05rem; /* Make font and icon larger */
+}
+
+.group-header:hover {
+    background-color: rgba(94, 96, 206, 0.1);
+    color: var(--primary);
+}
+
+.group-header i:first-child {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.group-indicator {
+    margin-left: auto;
+    font-size: 12px;
+    transition: transform 0.3s;
+}
+
+.menu-group.active .group-indicator {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.menu-group.active .submenu {
+    max-height: 200px;
+}
+
+.submenu li {
+    margin-bottom: 0;
+}
+
+.submenu li a {
+    padding-left: 55px; /* Increased from 50px for more indentation */
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.submenu li a i {
+    font-size: 0.8rem;
+}
+
+/* Color differentiation for income/expense groups */
+.menu-group:nth-child(5) .group-header { /* Income Transactions */
+    color: var(--positive);
+}
+
+.menu-group:nth-child(5) .group-header:hover {
+    background-color: rgba(114, 239, 221, 0.1);
+}
+
+.menu-group:nth-child(6) .group-header { /* Expense Transactions */
+    color: var(--negative);
+}
+
+.menu-group:nth-child(6) .group-header:hover {
+    background-color: rgba(255, 158, 109, 0.1);
+}
+
+/* Color coding for income and expense items */
+.income-color {
+    color: var(--positive) !important;
+}
+
+.expense-color {
+    color: var(--negative) !important;
+}
+
+/* Style for active state with color coding */
+.menu li a.income-color.active,
+.menu-group.income-color .group-header.active {
+    background-color: rgba(114, 239, 221, 0.1) !important;
+    border-right: 3px solid var(--positive) !important;
+}
+
+.menu li a.expense-color.active,
+.menu-group.expense-color .group-header.active {
+    background-color: rgba(255, 158, 109, 0.1) !important;
+    border-right: 3px solid var(--negative) !important;
+}
+
+/* Hover effects for color-coded items */
+.menu li a.income-color:hover,
+.menu-group .group-header.income-color:hover {
+    background-color: rgba(114, 239, 221, 0.1) !important;
+    color: var(--positive) !important;
+}
+
+.menu li a.expense-color:hover,
+.menu-group .group-header.expense-color:hover {
+    background-color: rgba(255, 158, 109, 0.1) !important;
+    color: var(--negative) !important;
+}
+
+/* Ensure submenu items maintain color */
+.submenu li a.income-color,
+.submenu li a.expense-color {
+    border-right: none !important;
+}
+
+.submenu li a.income-color:hover {
+    background-color: rgba(114, 239, 221, 0.05) !important;
+}
+
+.submenu li a.expense-color:hover {
+    background-color: rgba(255, 158, 109, 0.05) !important;
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    margin-left: 300px;
+    width: calc(100% - 250px);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.page-title h1 {
+    font-size: 1.8rem;
+    color: var(--primary);
+}
+
+.page-title p {
+    color: var(--text-light);
+    margin-top: 5px;
+}
+
+/* Common Form Styles */
+.form-section, .accounts-list, .groups-list {
+    margin-bottom: 20px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-title {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(94, 96, 206, 0.1);
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+}
+
+.input-with-icon .form-control {
+    padding-left: 45px;
+}
+
+.form-hint {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 5px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #4d4fbb;
+}
+
+.btn-secondary {
+    background-color: var(--background);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background-color: #eef2f6;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Common Table Styles */
+.accounts-table, .groups-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.accounts-table th, .accounts-table td,
+.groups-table th, .groups-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.accounts-table thead, .groups-table thead {
+    background-color: var(--background);
+}
+
+.accounts-table th, .groups-table th {
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 2px solid var(--border);
+}
+
+.accounts-table tbody tr, .groups-table tbody tr {
+    border-bottom: 1px solid var(--border);
+}
+
+.accounts-table tbody tr:last-child,
+.groups-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.accounts-table tbody tr:hover,
+.groups-table tbody tr:hover {
+    background-color: rgba(94, 96, 206, 0.03);
+}
+
+/* Type Indicators */
+.account-type, .group-type {
+    display: flex;
+    align-items: center;
+}
+
+.account-type-icon, .group-type-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.checking .account-type-icon {
+    background-color: rgba(86, 207, 225, 0.2);
+    color: var(--secondary);
+}
+
+.savings .account-type-icon {
+    background-color: rgba(114, 239, 221, 0.2);
+    color: var(--positive);
+}
+
+.credit .account-type-icon {
+    background-color: rgba(255, 158, 109, 0.2);
+    color: var(--negative);
+}
+
+.investment .account-type-icon {
+    background-color: rgba(94, 96, 206, 0.2);
+    color: var(--primary);
+}
+
+.income .group-type-icon {
+    background-color: rgba(114, 239, 221, 0.2);
+    color: var(--positive);
+}
+
+.income-type {
+    color: var(--positive);
+}
+
+.expense .group-type-icon {
+    background-color: rgba(255, 158, 109, 0.2);
+    color: var(--negative);
+}
+
+.expense-type {
+    color: var(--negative);
+}
+
+.account-balance {
+    font-weight: 600;
+}
+
+.positive-balance {
+    color: var(--positive);
+}
+
+.negative-balance {
+    color: var(--negative);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    background-color: var(--background);
+}
+
+.edit-btn:hover {
+    color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.delete-btn:hover {
+    color: var(--negative);
+    border-color: var(--negative);
+}
+
+.action-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.action-btn.disabled:hover {
+    background-color: transparent;
+    border-color: var(--border);
+    color: var(--text);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-light);
+}
+
+.empty-state i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: var(--border);
+}
+
+.empty-state p {
+    margin-bottom: 20px;
+}
+
+/* Flash Messages */
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.alert-success {
+    background-color: rgba(114, 239, 221, 0.2);
+    color: var(--positive);
+    border: 1px solid var(--positive);
+}
+
+.alert-error {
+    background-color: rgba(255, 158, 109, 0.2);
+    color: var(--negative);
+    border: 1px solid var(--negative);
+}
+
+.alert i {
+    margin-right: 10px;
+}
+
+/* Badges */
+.in-use-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    background-color: rgba(86, 207, 225, 0.1);
+    color: var(--secondary);
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.groups-count {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Grid Containers */
+.accounts-container, .groups-container, .debt-management-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* Specific Table Row Highlighting */
+tr.asset {
+    background-color: rgba(var(--primary-rgb), 0.05);
+    border-left: 4px solid var(--primary);
+}
+
+.asset .group-type-icon {
+    background-color: rgba(var(--primary-rgb), 0.2);
+    color: var(--primary);
+}
+
+.asset-type {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+tr.income {
+    background-color: rgba(var(--positive-rgb), 0.05);
+    border-left: 4px solid var(--positive);
+}
+
+tr.expense {
+    background-color: rgba(var(--negative-rgb), 0.05);
+    border-left: 4px solid var(--negative);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .accounts-container, .groups-container, .debt-management-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+    }
+
+    .logo span, .menu li a span, .user-details, .logout-btn span {
+        display: none;
+    }
+
+    .menu li a {
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .menu li a i {
+        margin-right: 0;
+        font-size: 20px;
+    }
+
+    .user-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+
+    .accounts-table thead, .groups-table thead {
+        display: none;
+    }
+
+    .accounts-table tbody tr, .groups-table tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid var(--border);
+        border-radius: 5px;
+    }
+
+    .accounts-table tbody td, .groups-table tbody td {
+        display: block;
+        text-align: right;
+        padding: 10px 15px;
+        position: relative;
+    }
+
+    .accounts-table tbody td::before,
+    .groups-table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        top: 10px;
+        font-weight: 600;
+        color: var(--text);
+    }
+}
+
+/* Standard Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 700px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: var(--text);
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Responsive adjustments for modals */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+
+/* Loading Modal Styles */
+.loading-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-modal .modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loading-modal .modal-header h3 {
+    margin: 0 0 1rem 0;
+    color: #2c3e50;
+    font-size: 1.25rem;
+}
+
+.loading-modal .loading-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.loading-modal .fa-spin {
+    animation: fa-spin 2s infinite linear;
+}
+
+.loading-modal .progress-container {
+    margin-bottom: 1rem;
+}
+
+.loading-modal .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.loading-modal .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.loading-modal .progress-text {
+    font-size: 0.875rem;
+    color: #6c757d;
+    display: block;
+    text-align: center;
+}
+
+.loading-modal .estimated-time {
+    font-size: 0.875rem;
+    color: #6c757d;
+    text-align: center;
+    font-style: italic;
+}
+
+@keyframes fa-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Transaction History Modal Styles */
+.month-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.nav-btn {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    background: var(--background);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.month-display {
+    display: flex;
+    gap: 10px;
+}
+
+.transactions-container {
+    position: relative;
+}
+
+.transactions-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.3s;
+}
+
+.transaction-item:hover {
+    background-color: rgba(94, 96, 206, 0.05);
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-details {
+    flex-grow: 1;
+}
+
+.transaction-name {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.transaction-description {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 4px;
+}
+
+.transaction-date {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.transaction-amount {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.transaction-income {
+    color: var(--positive);
+}
+
+.transaction-expense {
+    color: var(--negative);
+}
+
+.transaction-summary {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--background);
+    border-radius: 5px;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.loading-transactions,
+.empty-transactions {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-light);
+}
+
+.loading-transactions i,
+.empty-transactions i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.scroll-btn {
+    position: absolute;
+    right: 10px;
+    padding: 5px 8px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    border-radius: 3px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.scroll-up {
+    top: 10px;
+}
+
+.scroll-down {
+    bottom: 10px;
+}
+
+/* Ensure modals are properly styled */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close:hover {
+    color: var(--text);
+}
+
+/* Prospect Main Index Page Styles */
+.prospect-centered-hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background);
+    padding: 20px;
+    margin: 0;
+}
+
+.prospect-hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.prospect-hero-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.prospect-hero-image {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.prospect-hero-links-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.prospect-hero-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.prospect-hero-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+}
+
+.prospect-hero-link:hover {
+    color: var(--white);
+    background-color: var(--primary);
+    text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(94, 96, 206, 0.4);
+    border-color: var(--primary);
+}
+
+.prospect-link-separator {
+    color: var(--text-light);
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.prospect-hero-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    width: 100%;
+    max-width: 400px;
+}
+
+.prospect-copyright {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* Responsive adjustments for prospect page */
+@media (max-width: 768px) {
+    .prospect-hero-image {
+        max-width: 300px;
+    }
+
+    .prospect-hero-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .prospect-link-separator {
+        display: none;
+    }
+
+    .prospect-hero-link {
+        font-size: 1.1rem;
+        padding: 15px 30px;
+        width: 200px;
+        text-align: center;
+    }
+
+    .prospect-hero-container {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .prospect-centered-hero-section {
+        padding: 15px;
+    }
+
+    .prospect-hero-image {
+        max-width: 250px;
+    }
+
+    .prospect-hero-link {
+        font-size: 1rem;
+        padding: 12px 20px;
+        width: 180px;
+    }
+}
+
+/* Fix for prospect pages - override body flex behavior */
+body.prospect-body {
+    display: block;
+    min-height: 100vh;
+}
+
+/* Ensure prospect hero section takes full viewport height */
+body.prospect-body .prospect-centered-hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--background);
+    padding: 20px;
+    margin: 0;
+}
+
+/* Make sure the container is properly centered */
+body.prospect-body .prospect-hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Center the image container */
+body.prospect-body .prospect-hero-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Center the links container */
+body.prospect-body .prospect-hero-links-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

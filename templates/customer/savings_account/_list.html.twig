@@ -1,0 +1,174 @@
+{# templates/customer/savings_account/_list.html.twig #}
+<div class="accounts-list">
+    <div class="section-header">
+        <h2 class="section-title">Your Savings Accounts</h2>
+        <span class="accounts-count">{{ accounts|length }} accounts</span>
+    </div>
+
+    <div class="accounts-table-container">
+        {% if accounts is not empty %}
+            <table class="accounts-table">
+                <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>Balance</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for account in accounts %}
+                    {% set accountType = account.budgetTrackingGroup.name|lower %}
+                    <tr class="{{ accountType }}">
+                        <td data-label="Account">
+                            <div class="account-type">
+                                <div class="account-type-icon">
+                                    {% if accountType == 'checking' or accountType == 'bank' %}
+                                        <i class="fas fa-university"></i>
+                                    {% elseif accountType == 'savings' %}
+                                        <i class="fas fa-piggy-bank"></i>
+                                    {% elseif accountType == 'credit' or accountType == 'credit card' %}
+                                        <i class="fas fa-credit-card"></i>
+                                    {% elseif accountType == 'investment' %}
+                                        <i class="fas fa-chart-line"></i>
+                                    {% else %}
+                                        <i class="fas fa-wallet"></i>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <div>{{ account.name }}</div>
+                                    <small>{{ account.budgetTrackingGroup.name }}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Balance" class="account-balance {{ account.projectedBalance >= 0 ? 'positive-balance' : 'negative-balance' }}">
+                            ${{ account.projectedBalance|number_format(2) }}
+                        </td>
+                        <td data-label="Type">{{ account.budgetTrackingGroup.name }}</td>
+                        <td data-label="Actions">
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" data-id="{{ account.id }}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <!-- Add reconciliation button -->
+                                <button class="action-btn reconcile-btn" data-id="{{ account.id }}" data-projected="{{ account.projectedBalance }}">
+                                    <i class="fas fa-balance-scale"></i>
+                                </button>
+                                <!-- Add transaction history button -->
+                                <button class="action-btn transactions-btn" data-id="{{ account.id }}" data-name="{{ account.name }}">
+                                    <i class="fas fa-history"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <i class="fas fa-wallet"></i>
+                <p>No accounts found.</p>
+                <a href="{{ path('customer_savings_account_new') }}" class="btn btn-primary">Add Your First Savings Account</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Reconciliation Modal -->
+<div id="reconcileModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Reconcile Account</h2>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="reconcileForm">
+                <input type="hidden" id="reconcileAccountId" name="account_id">
+
+                <div class="form-group">
+                    <label for="projectedBalance">Projected Balance</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                        <input type="text" id="projectedBalance" class="form-control" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="realBalance">Real Balance</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                        <input type="number" id="realBalance" name="real_balance" class="form-control" step="0.01" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="reconciliationDate">Reconciliation Date</label>
+                    <input type="date" id="reconciliationDate" name="reconciliation_date" class="form-control" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Reconcile</button>
+                    <button type="button" class="btn btn-secondary" id="cancelReconcile">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Transaction History Modal -->
+<div id="transactionHistoryModal" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+        <div class="modal-header">
+            <h2>Transaction History for <span id="modal-account-name"></span></h2>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <!-- Month/Year Selector -->
+            <div class="month-selector" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px;">
+                <button class="nav-btn prev-month" title="Previous month" style="padding: 8px 12px; border: 1px solid var(--border); background: var(--background); border-radius: 5px; cursor: pointer;">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="month-display" style="display: flex; gap: 10px;">
+                    <select id="transaction-month" class="form-control" style="min-width: 120px;">
+                        {% for i in 1..12 %}
+                            <option value="{{ i }}" {% if "now"|date('n') == i %}selected{% endif %}>{{ date('2023-' ~ i ~ '-01')|date('F') }}</option>
+                        {% endfor %}
+                    </select>
+                    <select id="transaction-year" class="form-control" style="min-width: 100px;">
+                        {% for year in range("now"|date('Y') - 2, "now"|date('Y')) %}
+                            <option value="{{ year }}" {% if "now"|date('Y') == year %}selected{% endif %}>{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="nav-btn next-month" title="Next month" style="padding: 8px 12px; border: 1px solid var(--border); background: var(--background); border-radius: 5px; cursor: pointer;">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Transaction List -->
+            <div class="transactions-container" style="position: relative;">
+                <div class="transactions-list" id="transactions-list" style="max-height: 300px; overflow-y: auto; border: 1px solid var(--border); border-radius: 5px; padding: 10px;">
+                    <div class="loading-transactions" style="text-align: center; padding: 40px;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading transactions...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="transaction-summary" style="display: flex; justify-content: space-around; margin-top: 20px; padding: 15px; background: var(--background); border-radius: 5px;">
+                <div class="summary-item" style="text-align: center;">
+                    <div style="font-size: 0.9rem; color: var(--text-light);">Total Savings</div>
+                    <div class="positive-balance" id="total-income" style="font-weight: bold; font-size: 1.1rem;">$0.00</div>
+                </div>
+                <div class="summary-item" style="text-align: center;">
+                    <div style="font-size: 0.9rem; color: var(--text-light);">Total Withdraw</div>
+                    <div class="negative-balance" id="total-expenses" style="font-weight: bold; font-size: 1.1rem;">$0.00</div>
+                </div>
+                <div class="summary-item" style="text-align: center;">
+                    <div style="font-size: 0.9rem; color: var(--text-light);">Net Change</div>
+                    <div id="net-change" style="font-weight: bold; font-size: 1.1rem;">$0.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,256 @@
+{# templates/roadmaps/personal-finance/creating-a-personal-financial-statement.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <h1>Creating a Personal <span>Financial Statement</span></h1>
+                <p class="hero-description">
+                    📊 Think of this as your financial checkup. A personal financial statement shows exactly where you stand — what you own, what you owe, and where your money goes. No more guessing. Let’s build yours step by step.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-flag-checkered"></i> PHASE 3 · PRACTICAL EXECUTION · 10 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- table of contents -->
+        <div class="toc">
+            <h3><i class="fas fa-list-ul" style="color: var(--personal-color);"></i> What you'll learn (click to jump)</h3>
+            <div class="toc-grid">
+                <a href="#what-is"><i class="fas fa-chevron-right"></i> What is a financial statement?</a>
+                <a href="#two-parts"><i class="fas fa-chevron-right"></i> Balance sheet + income statement</a>
+                <a href="#assets"><i class="fas fa-chevron-right"></i> Step 1: List your assets</a>
+                <a href="#liabilities"><i class="fas fa-chevron-right"></i> Step 2: List liabilities</a>
+                <a href="#net-worth"><i class="fas fa-chevron-right"></i> Step 3: Calculate net worth</a>
+                <a href="#income-expenses"><i class="fas fa-chevron-right"></i> Step 4: Track income & expenses</a>
+                <a href="#template"><i class="fas fa-chevron-right"></i> Step 5: Use a template</a>
+                <a href="#how-often"><i class="fas fa-chevron-right"></i> How often to update</a>
+                <a href="#what-it-means"><i class="fas fa-chevron-right"></i> What the numbers tell you</a>
+            </div>
+        </div>
+
+        <!-- content starts -->
+        <h2 id="what-is"><i class="fas fa-clipboard-question"></i> What is a personal financial statement?</h2>
+        <p>It’s a snapshot of your financial life at a given moment. It has two parts: a <strong>balance sheet</strong> (what you own vs. what you owe) and an <strong>income statement</strong> (money in vs. money out). Together they reveal your net worth and cash flow — the foundation of all money decisions.</p>
+        <div class="highlight-box">
+            <strong><i class="fas fa-bullseye"></i> Why it matters:</strong> You can’t improve what you don’t measure. A financial statement helps you set goals, track progress, and spot problems before they grow.
+        </div>
+
+        <h2 id="two-parts"><i class="fas fa-puzzle-piece"></i> Two key components</h2>
+        <p>Let’s break them down before we build yours.</p>
+        <ul class="checklist">
+            <li><i class="fas fa-scale-balanced"></i> <strong>Balance sheet:</strong> Assets – Liabilities = Net worth</li>
+            <li><i class="fas fa-chart-line"></i> <strong>Income statement:</strong> Total income – Total expenses = Surplus (or deficit)</li>
+        </ul>
+
+        <h2 id="assets"><i class="fas fa-cubes"></i> Step 1: List your assets</h2>
+        <p>Assets are anything you own that has monetary value. Be thorough:</p>
+        <div class="step-card">
+            <span class="step-number">A</span> <strong>Cash & equivalents:</strong> checking, savings, cash on hand.
+        </div>
+        <div class="step-card">
+            <span class="step-number">B</span> <strong>Investments:</strong> brokerage accounts, 401(k), IRA, crypto, ETFs.
+        </div>
+        <div class="step-card">
+            <span class="step-number">C</span> <strong>Property:</strong> current market value of your home, car, jewelry, art.
+        </div>
+        <div class="step-card">
+            <span class="step-number">D</span> <strong>Other:</strong> money owed to you (loans to friends), pension value.
+        </div>
+        <p>Use current market value, not what you paid. For cars, check Kelley Blue Book.</p>
+
+        <h2 id="liabilities"><i class="fas fa-file-invoice"></i> Step 2: List your liabilities</h2>
+        <p>Liabilities are debts you owe. Include everything:</p>
+        <ul class="checklist">
+            <li><i class="fas fa-credit-card"></i> Credit card balances</li>
+            <li><i class="fas fa-graduation-cap"></i> Student loans</li>
+            <li><i class="fas fa-car"></i> Auto loans</li>
+            <li><i class="fas fa-home"></i> Mortgage</li>
+            <li><i class="fas fa-hand-holding-usd"></i> Personal loans, medical debt</li>
+        </ul>
+        <p>Use the most recent statement balance for each.</p>
+
+        <h2 id="net-worth"><i class="fas fa-calculator"></i> Step 3: Calculate net worth</h2>
+        <p>Net worth = Total assets – Total liabilities. It’s that simple. Don’t be discouraged if it’s negative early on — that’s normal. The goal is to grow it over time.</p>
+
+        <!-- example table for balance sheet -->
+        <p><strong>Example: Alex’s balance sheet (age 28)</strong></p>
+        <table class="example-table">
+            <thead><tr><th>Assets</th><th>Value</th></tr></thead>
+            <tbody>
+            <tr><td>Checking</td><td>$2,000</td></tr>
+            <tr><td>Savings</td><td>$5,000</td></tr>
+            <tr><td>401(k)</td><td>$10,000</td></tr>
+            <tr><td>Car (market value)</td><td>$8,000</td></tr>
+            <tr class="total-row"><td><strong>Total Assets</strong></td><td><strong>$25,000</strong></td></tr>
+            </tbody>
+            <thead><tr><th>Liabilities</th><th>Amount</th></tr></thead>
+            <tbody>
+            <tr><td>Student loan</td><td>$6,000</td></tr>
+            <tr><td>Credit card</td><td>$500</td></tr>
+            <tr class="total-row"><td><strong>Total Liabilities</strong></td><td><strong>$6,500</strong></td></tr>
+            </tbody>
+        </table>
+        <p style="font-weight: 700;">Net worth = $25,000 – $6,500 = $18,500</p>
+
+        <h2 id="income-expenses"><i class="fas fa-chart-pie"></i> Step 4: Track income & expenses (income statement)</h2>
+        <p>Now look at your cash flow over a month. List all income (after tax) and all expenses. Use bank statements or a budgeting app.</p>
+        <div class="step-card">
+            <span class="step-number">1</span> <strong>Income:</strong> salary, freelance, rental income, etc.
+        </div>
+        <div class="step-card">
+            <span class="step-number">2</span> <strong>Expenses:</strong> rent/mortgage, utilities, groceries, subscriptions, entertainment, debt payments.
+        </div>
+        <div class="step-card">
+            <span class="step-number">3</span> <strong>Surplus/deficit:</strong> income minus expenses.
+        </div>
+
+        <p><strong>Alex’s monthly income statement:</strong></p>
+        <table class="example-table">
+            <tr><th>Income</th><th>Amount</th></tr>
+            <tr><td>Salary (after tax)</td><td>$4,000</td></tr>
+            <tr><td>Side gig</td><td>$200</td></tr>
+            <tr class="total-row"><td><strong>Total Income</strong></td><td><strong>$4,200</strong></td></tr>
+            <tr><th>Expenses</th><th></th></tr>
+            <tr><td>Rent</td><td>$1,200</td></tr>
+            <tr><td>Utilities</td><td>$150</td></tr>
+            <tr><td>Groceries</td><td>$400</td></tr>
+            <tr><td>Student loan payment</td><td>$300</td></tr>
+            <tr><td>Credit card payment</td><td>$100</td></tr>
+            <tr><td>Subscriptions</td><td>$50</td></tr>
+            <tr><td>Entertainment/eating out</td><td>$300</td></tr>
+            <tr><td>Transportation</td><td>$150</td></tr>
+            <tr><td>Misc</td><td>$150</td></tr>
+            <tr class="total-row"><td><strong>Total Expenses</strong></td><td><strong>$2,800</strong></td></tr>
+        </table>
+        <p style="font-weight: 700;">Monthly surplus = $4,200 – $2,800 = $1,400</p>
+        <div class="pro-tip">
+            <i class="fas fa-lightbulb"></i> <strong>Pro tip:</strong> That surplus is your savings power. Aim to automate at least half of it into investments or savings.
+        </div>
+
+        <h2 id="template"><i class="fas fa-file-excel"></i> Step 5: Use a template (spreadsheet or app)</h2>
+        <p>You don’t need fancy software. A simple spreadsheet works. We’ve created a starter template you can copy.</p>
+        <!-- clickable demo template -->
+        <div class="template-demo" id="templateDemo">
+            <i class="fas fa-download" style="font-size: 2.5rem; color: var(--personal-color);"></i>
+            <h3 style="margin: 10px 0;">📥 Click to get your free template</h3>
+            <p style="color: var(--gray-color);">(Google Sheets / Excel demo – interactive prototype)</p>
+        </div>
+
+        <h2 id="how-often"><i class="fas fa-calendar-check"></i> How often should you update?</h2>
+        <p><strong>Balance sheet:</strong> quarterly or when a big change happens (new job, large purchase). <strong>Income statement:</strong> monthly for the first 3 months, then quarterly. Regular updates build the habit.</p>
+
+        <h2 id="what-it-means"><i class="fas fa-magnifying-glass-chart"></i> What the numbers tell you</h2>
+        <ul class="checklist">
+            <li><i class="fas fa-arrow-up"></i> Growing net worth? You’re building wealth.</li>
+            <li><i class="fas fa-arrow-down"></i> Shrinking? Look at your liabilities or spending.</li>
+            <li><i class="fas fa-wallet"></i> Surplus consistently positive? Great – invest it.</li>
+            <li><i class="fas fa-exclamation-triangle"></i> Deficit? Cut expenses or boost income.</li>
+        </ul>
+        <div class="highlight-box">
+            <strong><i class="fas fa-heart"></i> Remember:</strong> Net worth is a number, not your self‑worth. It’s simply a tool to guide your decisions.
+        </div>
+
+        <!-- Quick quiz -->
+        {% if app.user and quiz %}
+            {# Logged in user #}
+            {# Quiz already taken – show summary and retake button #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your financial statement knowledge</h3>
+                <div class="quiz-question">1. What are the two main components of a personal financial statement?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="correct">Income statement and balance sheet</div>
+                    <div class="quiz-option" data-answer="wrong">Cash flow and net worth</div>
+                    <div class="quiz-option" data-answer="wrong">Assets and liabilities</div>
+                    <div class="quiz-option" data-answer="wrong">Revenue and expenses</div>
+                </div>
+                <div class="quiz-question">2. Net worth is calculated as:</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Assets + Liabilities</div>
+                    <div class="quiz-option" data-answer="correct">Assets – Liabilities</div>
+                    <div class="quiz-option" data-answer="wrong">Income – Expenses</div>
+                    <div class="quiz-option" data-answer="wrong">Income + Expenses</div>
+                </div>
+                <div class="quiz-question">3. Which of the following is an asset?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Mortgage</div>
+                    <div class="quiz-option" data-answer="wrong">Credit card debt</div>
+                    <div class="quiz-option" data-answer="wrong">Car loan</div>
+                    <div class="quiz-option" data-answer="correct">Savings account</div>
+                </div>
+                <div class="quiz-question">4. A monthly surplus means:</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="correct">Income > Expenses</div>
+                    <div class="quiz-option" data-answer="wrong">Expenses > Income</div>
+                    <div class="quiz-option" data-answer="wrong">Assets > Liabilities</div>
+                    <div class="quiz-option" data-answer="wrong">Liabilities > Assets</div>
+                </div>
+                <div class="quiz-question">5. How often should you update your balance sheet?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Daily</div>
+                    <div class="quiz-option" data-answer="wrong">Monthly</div>
+                    <div class="quiz-option" data-answer="correct">Quarterly or when big changes happen</div>
+                    <div class="quiz-option" data-answer="wrong">Yearly</div>
+                </div>
+                <div class="quiz-feedback">👉 Click any answer to check yourself.</div>
+            </div>
+        {% endif %}
+
+
+        <!-- Next steps: continue Phase 3 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Practical Execution phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'opening-your-first-bank-account' }) }}" class="next-card">
+                    <i class="fas fa-university" style="color: var(--personal-color);"></i>
+                    <h3>Opening Your First Bank Account</h3>
+                    <p style="color: var(--gray-color);">Step‑by‑step guide to choosing the right accounts, avoiding fees, and setting up direct deposits like a pro.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'automate-your-finances' }) }}" class="next-card">
+                    <i class="fas fa-robot" style="color: var(--personal-color);"></i>
+                    <h3>Automate Your Finances</h3>
+                    <p style="color: var(--gray-color);">Walk through automating bill payments, savings transfers, and investments – the ultimate tool for consistency.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'how-to-negotiate-bills' }) }}" class="next-card">
+                    <i class="fas fa-phone-alt" style="color: var(--personal-color);"></i>
+                    <h3>How to Negotiate Bills</h3>
+                    <p style="color: var(--gray-color);">Scripts and tactics to reduce phone, internet, and subscription costs. Most people save $300+ in the first year.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

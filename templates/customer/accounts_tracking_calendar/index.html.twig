@@ -1,0 +1,322 @@
+{# templates/customer/accounts_tracking_calendar/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Accounts Tracking Calendar - Forecastly{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_accounts_tracking_calendar_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_accounts_tracking_calendar_js') }}
+{% endblock %}
+
+{% block body %}
+    {# Add these hidden elements to pass data to JavaScript #}
+    <div id="monthly-totals-data" style="display: none;">{{ monthlyTotals|json_encode }}</div>
+    <div id="account-names-data" style="display: none;">{{ accountNames|json_encode }}</div>
+
+    <div class="header">
+        <div class="page-title">
+            <h1>Accounts Tracking Calendar for {{ selectedYear }}</h1>
+            <p>Track your income, expenses, and projected account balances over time.</p>
+        </div>
+
+        <div class="header-controls">
+            <button id="monthly-summary-btn" class="btn btn-primary">
+                <i class="fas fa-chart-pie"></i> Monthly Summary
+            </button>
+
+            <div class="year-selector">
+                <label for="year-select">Select Year:</label>
+                <select id="year-select" class="form-control">
+                    {% for year in displayYears %}
+                        <option value="{{ year }}" {% if year == selectedYear %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="calendar-container">
+        <div class="month-tabs">
+            {% set months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %}
+            {% for i in 1..12 %}
+                <button class="month-tab {% if loop.first %}active{% endif %}" data-month="{{ i }}">
+                    {{ months[i-1] }}
+                </button>
+            {% endfor %}
+        </div>
+
+        <div class="month-content">
+            {% for i in 1..12 %}
+                <div class="month-pane {% if loop.first %}active{% endif %}" data-month="{{ i }}">
+                    <div class="calendar-grid">
+                        <div class="calendar-header">
+                            <div class="day-header">Sun</div>
+                            <div class="day-header">Mon</div>
+                            <div class="day-header">Tue</div>
+                            <div class="day-header">Wed</div>
+                            <div class="day-header">Thu</div>
+                            <div class="day-header">Fri</div>
+                            <div class="day-header">Sat</div>
+                        </div>
+
+                        <div class="calendar-body">
+                            {% set firstDayOfMonth = date(selectedYear ~ '-' ~ i ~ '-01') %}
+                            {% set startDay = firstDayOfMonth.format('w') %}
+                            {% set daysInMonth = firstDayOfMonth|date('t') %}
+
+                            {% for day in 1..daysInMonth %}
+                                {% if loop.first and startDay != 0 %}
+                                    <div class="empty-day" style="grid-column: span {{ startDay }};"></div>
+                                {% endif %}
+
+                                <div class="calendar-day" data-date="{{ selectedYear }}-{{ i|format('%02d') }}-{{ day|format('%02d') }}">
+                                    <div class="day-number">{{ day }}</div>
+
+                                    {% if monthlyData[i][day] is defined %}
+                                        {% set dayData = monthlyData[i][day] %}
+
+                                        <div class="day-summary">
+                                            {# Calculate day totals - Updated section #}
+                                            {% set totalRecurringIncomes = 0 %}
+                                            {% set totalNonRecurringIncomes = 0 %}
+                                            {% set totalRecurringIncomeInterests = 0 %}
+                                            {% set totalRecurringSavingsInterests = 0 %}
+                                            {% set totalRecurringExpenses = 0 %}
+                                            {% set totalNonRecurringExpenses = 0 %}
+                                            {% set totalRecurringExpenseInterests = 0 %}
+                                            {% set totalRevolvingPaymentsToPay = 0 %}
+                                            {% set totalRevolvingPaymentsToWithdraw = 0 %}
+                                            {% set totalSavingsToSave = 0 %}
+                                            {% set totalSavingsToWithdraw = 0 %}
+
+                                            {# Calculate recurring incomes total #}
+                                            {% for accountTransactions in dayData.recurringIncomes %}
+                                                {% for transactionAmount in accountTransactions %}
+                                                    {% set totalRecurringIncomes = totalRecurringIncomes + transactionAmount %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                            {# Calculate non-recurring incomes total #}
+                                            {% for accountTransactions in dayData.nonRecurringIncomes %}
+                                                {% for transactionAmount in accountTransactions %}
+                                                    {% set totalNonRecurringIncomes = totalNonRecurringIncomes + transactionAmount %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                            {# Calculate recurring income interests total #}
+                                            {% for accountTransactions in dayData.recurringIncomeInterests %}
+                                                {% for transactionAmount in accountTransactions %}
+                                                    {% set totalRecurringIncomeInterests = totalRecurringIncomeInterests + transactionAmount %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                            {# Calculate recurring savings interests total #}
+                                            {% for accountTransactions in dayData.recurringSavingsInterests %}
+                                                {% for transactionAmount in accountTransactions %}
+                                                    {% set totalRecurringSavingsInterests = totalRecurringSavingsInterests + transactionAmount %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                            {# Calculate recurring expenses total #}
+                                            {% for accountTransactions in dayData.recurringExpenses %}
+                                                {% for transactionAmount in accountTransactions %}
+                                                    {% set totalRecurringExpenses = totalRecurringExpenses + transactionAmount %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                            {# Calculate non-recurring expenses total #}
+                                            {% for accountTransactions in dayData.nonRecurringExpenses %}
+                                                {% for transactionAmount in accountTransactions %}
+                                                    {% set totalNonRecurringExpenses = totalNonRecurringExpenses + transactionAmount %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                            {# Calculate recurring expense interests total #}
+                                            {% for accountTransactions in dayData.recurringExpenseInterests %}
+                                                {% for transactionAmount in accountTransactions %}
+                                                    {% set totalRecurringExpenseInterests = totalRecurringExpenseInterests + transactionAmount %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                            {# Calculate revolving payments to pay total #}
+                                            {% for accountTransactions in dayData.recurringPaymentsToPay %}
+                                                {% for transactionAmount in accountTransactions %}
+                                                    {% set totalRevolvingPaymentsToPay = totalRevolvingPaymentsToPay + transactionAmount %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                            {# Calculate revolving payments to withdraw total #}
+                                            {% for accountTransactions in dayData.recurringPaymentsToWithdraw %}
+                                                {% for transactionAmount in accountTransactions %}
+                                                    {% set totalRevolvingPaymentsToWithdraw = totalRevolvingPaymentsToWithdraw + transactionAmount %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                            {# Calculate savings to save total #}
+                                            {% for accountTransactions in dayData.savingsAccountToSave %}
+                                                {% for transactionAmount in accountTransactions %}
+                                                    {% set totalSavingsToSave = totalSavingsToSave + transactionAmount %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                            {# Calculate savings to withdraw total #}
+                                            {% for accountTransactions in dayData.savingsAccountToWithdraw %}
+                                                {% for transactionAmount in accountTransactions %}
+                                                    {% set totalSavingsToWithdraw = totalSavingsToWithdraw + transactionAmount %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                            {# Calculate total incomes and expenses including all types #}
+                                            {% set totalIncomes = totalRecurringIncomes + totalNonRecurringIncomes + totalRecurringIncomeInterests + totalRecurringSavingsInterests - totalRevolvingPaymentsToWithdraw + totalSavingsToWithdraw %}
+                                            {% set totalExpenses = totalRecurringExpenses + totalNonRecurringExpenses + totalRecurringExpenseInterests - totalRevolvingPaymentsToPay + totalSavingsToSave %}
+
+                                            {% if totalIncomes > 0 %}
+                                                <div class="summary-item income">
+                                                    <i class="fas fa-arrow-down"></i>
+                                                    <span class="amount">
+                                                        +${{ totalIncomes|number_format(2) }}
+                                                    </span>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if totalExpenses > 0 %}
+                                                <div class="summary-item expense">
+                                                    <i class="fas fa-arrow-up"></i>
+                                                    <span class="amount">
+                                                        -${{ totalExpenses|number_format(2) }}
+                                                    </span>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if totalSavingsToSave > 0 %}
+                                                <div class="summary-item savings">
+                                                    <i class="fas fa-piggy-bank"></i>
+                                                    <span class="amount">
+                                                        Save: ${{ totalSavingsToSave|number_format(2) }}
+                                                    </span>
+                                                </div>
+                                            {% endif %}
+
+                                            <div class="summary-item balance">
+                                                <i class="fas fa-wallet"></i>
+                                                <span class="label">Balances</span>
+                                                {% if monthlyData[i][day] is defined %}
+                                                    {% set dayData = monthlyData[i][day] %}
+                                                    {% set hasOverdraft = false %}
+                                                    {% set hasCantPayFull = false %}
+                                                    {% set hasLowBalance = false %}
+
+                                                    {# Check metadata for alert flags #}
+                                                    {% if dayData.accountMetadata is defined and dayData.accountMetadata.accounts is defined %}
+                                                        {% for accountId, accountMeta in dayData.accountMetadata.accounts %}
+                                                            {% if accountMeta.overdraft is defined and accountMeta.overdraft %}
+                                                                {% set hasOverdraft = true %}
+                                                            {% endif %}
+                                                            {% if accountMeta.cant_pay_full is defined and accountMeta.cant_pay_full %}
+                                                                {% set hasCantPayFull = true %}
+                                                            {% endif %}
+                                                            {% if accountMeta.low_balance is defined and accountMeta.low_balance %}
+                                                                {% set hasLowBalance = true %}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+
+                                                    {# Display appropriate alert icons #}
+                                                    {% if hasOverdraft %}
+                                                        <i class="fas fa-exclamation-triangle overdraft-alert" title="Account Overdraft"></i>
+                                                    {% endif %}
+                                                    {% if hasCantPayFull %}
+                                                        <i class="fas fa-exclamation-circle cant-pay-full-alert" title="Cannot pay full amount"></i>
+                                                    {% endif %}
+                                                    {% if hasLowBalance %}
+                                                        <i class="fas fa-exclamation low-balance-alert" title="Low balance"></i>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                {% if loop.last %}
+                                    {% set remainingDays = (7 - ((startDay + daysInMonth) % 7)) % 7 %}
+                                    {% if remainingDays > 0 %}
+                                        <div class="empty-day" style="grid-column: span {{ remainingDays }};"></div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Modal for day details -->
+    <div id="dayDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Transaction Details for <span id="modal-date"></span></h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content will be loaded via AJAX -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for monthly totals -->
+    <div id="monthlyTotalsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Summary for <span id="modal-month-year">Loading...</span></h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="monthly-totals-card">
+                    <div class="totals-header">
+                        <h3>Monthly Totals and Projected Balances at the End of this Month</h3>
+                        <div class="scroll-controls">
+                            <button class="scroll-btn scroll-up" aria-label="Scroll up">
+                                <i class="fas fa-chevron-up"></i>
+                            </button>
+                            <button class="scroll-btn scroll-down" aria-label="Scroll down">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="totals-content">
+                        <div class="totals-summary">
+                            <div class="summary-item income">
+                                <span class="label">Total Income:</span>
+                                <span class="amount">$0.00</span>
+                            </div>
+                            <div class="summary-item expense">
+                                <span class="label">Total Expenses:</span>
+                                <span class="amount">$0.00</span>
+                            </div>
+                            <div class="summary-item net">
+                                <span class="label">Net Amount:</span>
+                                <span class="amount">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="balances-list">
+                            <h4>Projected Account Balances</h4>
+                            <div class="balances-scroll-container">
+                                <div class="balances-content">
+                                    <!-- Balances will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

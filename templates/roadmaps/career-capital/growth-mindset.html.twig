@@ -1,0 +1,240 @@
+{# templates/roadmaps/career-capital/growth-mindset.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-brain" style="color: var(--career-color);"></i>
+                </div>
+                <h1>Growth Mindset <span>for Career Builders</span></h1>
+                <p class="hero-description">
+                    How to cultivate resilience, embrace feedback, and turn setbacks into skill‑building fuel. Essential before you start.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(156,136,255,0.2); color: #c3b9ff;">
+                    <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">What is a Growth Mindset?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Coined by psychologist Carol Dweck, a <strong>growth mindset</strong> is the belief that abilities can be developed through dedication and hard work. In contrast, a fixed mindset assumes talents are innate and unchangeable. Your mindset shapes how you approach challenges, feedback, and setbacks — and ultimately determines how fast you build career capital.
+            </p>
+            <p>
+                Career builders with a growth mindset see effort as the path to mastery, learn from criticism, and find inspiration in others’ success. This article will help you assess your own mindset and provide practical strategies to strengthen it.
+            </p>
+        </section>
+
+        <!-- comparison grid (like rule-grid) -->
+        <div class="rule-grid animate" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-seedling"></i> Growth Mindset</h3>
+                <p>✔ Embrace challenges<br>✔ Persist through obstacles<br>✔ See effort as necessary<br>✔ Learn from criticism<br>✔ Inspired by others’ success</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-lock"></i> Fixed Mindset</h3>
+                <p>✘ Avoid challenges<br>✘ Give up easily<br>✘ See effort as fruitless<br>✘ Ignore feedback<br>✘ Threatened by others’ success</p>
+            </div>
+        </div>
+
+        <!-- interactive mindset meter -->
+        <div class="calc-card animate" style="border: 1px solid rgba(156,136,255,0.3);">
+            <h2 class="calc-title"><i class="fas fa-sliders-h" style="color: var(--career-color); margin-right: 10px;"></i> Mindset Meter</h2>
+            <p style="font-size: 1.1rem;">Rate how much you agree with each statement (0 = strongly disagree, 10 = strongly agree).</p>
+
+            <div class="calc-input">
+                <label>I believe I can learn new skills with effort.</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="q1" class="cat-input" min="0" max="10" value="7" step="1">
+                    </div>
+                    <span class="slider-value" id="q1Val">7</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>I avoid challenges where I might fail.</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="q2" class="cat-input" min="0" max="10" value="4" step="1">
+                    </div>
+                    <span class="slider-value" id="q2Val">4</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>Feedback helps me grow.</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="q3" class="cat-input" min="0" max="10" value="8" step="1">
+                    </div>
+                    <span class="slider-value" id="q3Val">8</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>I feel threatened by the success of others.</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="q4" class="cat-input" min="0" max="10" value="3" step="1">
+                    </div>
+                    <span class="slider-value" id="q4Val">3</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>I persist even when things are difficult.</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="q5" class="cat-input" min="0" max="10" value="6" step="1">
+                    </div>
+                    <span class="slider-value" id="q5Val">6</span>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="mindsetCalculate" class="btn" style="background-color: var(--career-color);">See my mindset score</button>
+            </div>
+
+            <div class="calc-result" style="border: 2px dashed var(--career-color);">
+                <p class="result-label" style="font-size:1.2rem;">🧠 Your growth mindset profile</p>
+                <div id="mindsetResult" style="font-size:1.3rem; font-weight:500; color:var(--dark-color);">Adjust the sliders and click the button.</div>
+            </div>
+
+            <script>
+                // Live update for displayed values even if not logged in
+                document.querySelectorAll('.calc-input input[type=range]').forEach(slider => {
+                    const display = document.getElementById(slider.id + 'Val');
+                    if (display) {
+                        slider.addEventListener('input', () => { display.textContent = slider.value; });
+                    }
+                });
+            </script>
+        </div>
+
+        <!-- deeper dive: how to cultivate growth mindset -->
+        <div class="card animate" style="border-top: 4px solid var(--career-color);">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Practical Strategies</h3>
+            <ul class="checklist">
+                <li><i class="fas fa-check-circle"></i> <strong>Reframe challenges:</strong> Instead of “I can’t do this,” say “I can’t do this yet.”</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Embrace feedback:</strong> Ask for specific, constructive input and treat it as data, not personal judgment.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Celebrate effort, not just results:</strong> Reward yourself for showing up and trying, regardless of outcome.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Learn from setbacks:</strong> After a failure, ask: “What can I learn? What will I do differently next time?”</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Surround yourself with growth‑oriented people:</strong> Their mindset will rub off on you.</li>
+            </ul>
+        </div>
+
+        <!-- common fixed mindset traps -->
+        <section class="animate">
+            <h2 class="section-title">🚧 Fixed Mindset Traps to Avoid</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-exclamation-triangle" style="color: var(--career-color);"></i> <strong>Comparing yourself to others:</strong> Focus on your own progress, not someone else’s highlight reel.</li>
+                <li><i class="fas fa-exclamation-triangle" style="color: var(--career-color);"></i> <strong>Giving up after one failure:</strong> Every expert was once a beginner who kept going.</li>
+                <li><i class="fas fa-exclamation-triangle" style="color: var(--career-color);"></i> <strong>Ignoring constructive criticism:</strong> Feedback is a shortcut to improvement.</li>
+                <li><i class="fas fa-exclamation-triangle" style="color: var(--career-color);"></i> <strong>Sticking to what you know:</strong> Growth happens outside your comfort zone.</li>
+            </ul>
+        </section>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz %}
+            <div class="quiz-container animate" style="background-color: #1e293b;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'growth-mindset', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background-color: #1e293b;">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your growth mindset knowledge</h3>
+
+                <div class="quiz-question">1. Who coined the term "growth mindset"?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Tony Robbins</div>
+                    <div class="quiz-option" data-answer="correct">Carol Dweck</div>
+                    <div class="quiz-option" data-answer="wrong">Angela Duckworth</div>
+                    <div class="quiz-option" data-answer="wrong">Malcolm Gladwell</div>
+                </div>
+
+                <div class="quiz-question">2. Which statement reflects a growth mindset?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">"I'm just not good at public speaking."</div>
+                    <div class="quiz-option" data-answer="correct">"I can improve my public speaking with practice."</div>
+                    <div class="quiz-option" data-answer="wrong">"Either you have it or you don't."</div>
+                    <div class="quiz-option" data-answer="wrong">"I'll never be as smart as them."</div>
+                </div>
+
+                <div class="quiz-question">3. How should you view constructive feedback?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">As a personal attack</div>
+                    <div class="quiz-option" data-answer="wrong">Ignore it</div>
+                    <div class="quiz-option" data-answer="correct">As useful data for improvement</div>
+                    <div class="quiz-option" data-answer="wrong">Only accept positive feedback</div>
+                </div>
+
+                <div class="quiz-question">4. What is a common fixed mindset trap?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Seeking out challenges</div>
+                    <div class="quiz-option" data-answer="wrong">Persisting through setbacks</div>
+                    <div class="quiz-option" data-answer="correct">Comparing yourself to others</div>
+                    <div class="quiz-option" data-answer="wrong">Learning from criticism</div>
+                </div>
+
+                <div class="quiz-question">5. Which phrase helps reframe a challenge with a growth mindset?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">"I can't do this."</div>
+                    <div class="quiz-option" data-answer="correct">"I can't do this yet."</div>
+                    <div class="quiz-option" data-answer="wrong">"This is too hard."</div>
+                    <div class="quiz-option" data-answer="wrong">"I'm not talented enough."</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next articles in Phase 1 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Foundation First phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'what-is-career-capital' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-dharmachakra"></i>
+                    <h3>What is Career Capital</h3>
+                    <p style="color: var(--gray-color);">Understand the three pillars of career capital.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'high-income-skills' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-chart-network"></i>
+                    <h3>High‑Income Skills</h3>
+                    <p style="color: var(--gray-color);">Discover which skills actually pay and how to choose the right one for you.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'self-assessment' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-smile"></i>
+                    <h3>Self‑Assessment</h3>
+                    <p style="color: var(--gray-color);">Uncover your natural advantages to build skills faster.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

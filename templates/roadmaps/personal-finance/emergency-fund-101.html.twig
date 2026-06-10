@@ -1,0 +1,210 @@
+{# templates/roadmaps/personal-finance/real-state-fundamentals-journey.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1>Emergency Fund 101: <span>Why, How Much & Where</span></h1>
+                <p class="hero-description">
+                    Your financial safety net. Learn how to build it, size it, and where to park it so it's there when life happens.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 10 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">What is an emergency fund?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                An emergency fund is a cash reserve set aside for unplanned expenses — job loss, medical bills, car repairs, or a broken water heater. It’s <strong>not</strong> for a vacation or a new TV. Think of it as your financial airbag: you hope you never need it, but you’ll be glad it’s there.
+            </p>
+        </section>
+
+        <!-- why an emergency fund (three reasons) -->
+        <div class="why-grid animate">
+            <div class="why-item">
+                <i class="fas fa-ban"></i>
+                <h3>Stop the debt cycle</h3>
+                <p>Without savings, an unexpected bill goes on a credit card. An emergency fund keeps you out of high‑interest debt.</p>
+            </div>
+            <div class="why-item">
+                <i class="fas fa-bed"></i>
+                <h3>Sleep better</h3>
+                <p>Knowing you have a cushion reduces financial stress and lets you focus on the future.</p>
+            </div>
+            <div class="why-item">
+                <i class="fas fa-bolt"></i>
+                <h3>Weather the storms</h3>
+                <p>Job loss, illness, or a pandemic — a fund gives you options and time to recover.</p>
+            </div>
+        </div>
+
+        <!-- how much: interactive calculator -->
+        <div class="calc-card animate">
+            <h2><i class="fas fa-calculator" style="color: var(--personal-color);"></i> How much should you save?</h2>
+            <p style="margin-bottom: 20px;">Most experts recommend <strong>3 to 6 months of essential expenses</strong>. Use this tool to find your target.</p>
+
+            <div class="calc-row">
+                <label for="monthlyExpenses">Monthly essential expenses ($):</label>
+                <input type="number" id="monthlyExpenses" value="3000" step="100" min="0">
+            </div>
+
+            <div class="calc-row">
+                <label for="monthsSlider">Months of coverage:</label>
+                <div class="slider-container">
+                    <input type="range" id="monthsSlider" min="1" max="12" value="6" step="0.5">
+                    <span class="slider-value" id="monthsDisplay">6.0</span>
+                </div>
+            </div>
+
+            <div class="result-box">
+                <div class="result-number" id="targetAmount">$18,000</div>
+                <div class="result-label">Your emergency fund target</div>
+            </div>
+
+            <p style="margin-top: 25px; font-size: 0.95rem; color: var(--gray-color);">
+                <i class="fas fa-lightbulb" style="color: #f39c12;"></i>
+                If you have variable income or work in a volatile industry, aim for 6‑9 months. If you have a stable job and dual income, 3 months may be enough.
+            </p>
+        </div>
+
+        <!-- where to keep it -->
+        <section class="animate">
+            <h2 class="section-title">🏦 Where to keep your emergency fund</h2>
+            <p>Your emergency money must be <strong>safe, liquid, and separate</strong> from your daily checking. Here are the best options:</p>
+
+            <div style="margin-top: 30px;">
+                <div class="where-option">
+                    <i class="fas fa-university"></i>
+                    <p><strong>High‑yield savings account (HYSA)</strong> – Online banks like Ally, Marcus, or CIT Bank. Currently offer competitive interest (4%+), FDIC insured, and you can withdraw in 1‑2 days. <span style="color: var(--personal-color);">Best overall.</span></p>
+                </div>
+                <div class="where-option">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <p><strong>Money market account</strong> – Similar to HYSA, sometimes comes with a debit card or checkbook. Rates are comparable.</p>
+                </div>
+                <div class="where-option">
+                    <i class="fas fa-times-circle" style="color: var(--gray-color);"></i>
+                    <p><strong>Avoid:</strong> Stocks (too volatile), CDs (penalties for early withdrawal), or your regular checking (too easy to spend).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- common mistakes & tips -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🔧 Common pitfalls & pro tips</h3>
+            <ul class="tip-list">
+                <li><i class="fas fa-exclamation-triangle" style="color: #e67e22;"></i> <strong>Starting too big</strong> – Aim for $1,000 first, then build to 1 month, then 3. Small wins keep you motivated.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Automate it</strong> – Set up an automatic transfer of $50 or $100 every payday. You won’t miss it.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Replenish after use</strong> – If you dip into the fund, make it a priority to refill.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Keep it separate</strong> – Use a different bank so you’re not tempted to transfer for non‑emergencies.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Review once a year</strong> – If your expenses change (new rent, baby, etc.), adjust your target.</li>
+            </ul>
+        </div>
+
+        <!-- Quick quiz -->
+        {% if app.user and quiz %}
+            {# Logged in user #}
+            {# Quiz already taken – show summary and retake button #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your emergency fund knowledge</h3>
+                <div class="quiz-question">1. What is the primary purpose of an emergency fund?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">To invest</div>
+                    <div class="quiz-option" data-answer="correct">To cover unexpected expenses</div>
+                    <div class="quiz-option" data-answer="wrong">To save for vacation</div>
+                    <div class="quiz-option" data-answer="wrong">To pay off debt</div>
+                </div>
+                <div class="quiz-question">2. How many months of expenses do experts recommend for an emergency fund?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">1–2</div>
+                    <div class="quiz-option" data-answer="correct">3–6</div>
+                    <div class="quiz-option" data-answer="wrong">6–12</div>
+                    <div class="quiz-option" data-answer="wrong">12–24</div>
+                </div>
+                <div class="quiz-question">3. Where is the best place to keep an emergency fund?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Stock market</div>
+                    <div class="quiz-option" data-answer="wrong">Regular checking account</div>
+                    <div class="quiz-option" data-answer="correct">High‑yield savings account</div>
+                    <div class="quiz-option" data-answer="wrong">Under the mattress</div>
+                </div>
+                <div class="quiz-question">4. What should you do first if you're starting from zero?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Aim for 6 months immediately</div>
+                    <div class="quiz-option" data-answer="correct">Save $1,000 first</div>
+                    <div class="quiz-option" data-answer="wrong">Invest all extra cash</div>
+                    <div class="quiz-option" data-answer="wrong">Use credit cards</div>
+                </div>
+                <div class="quiz-question">5. When should you replenish your emergency fund?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="correct">After using it</div>
+                    <div class="quiz-option" data-answer="wrong">Never</div>
+                    <div class="quiz-option" data-answer="wrong">Only at year‑end</div>
+                    <div class="quiz-option" data-answer="wrong">When you get a raise</div>
+                </div>
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+
+        <!-- next steps -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue building your foundation</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: '503020-budgeting' }) }}" class="next-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>50/30/20 Rule</h3>
+                    <p style="color: var(--gray-color);">Master budgeting before you save.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'zero-based-budgeting' }) }}" class="next-card">
+                    <i class="fas fa-coins"></i>
+                    <h3>Zero‑Based Budgeting</h3>
+                    <p style="color: var(--gray-color);">Give every dollar a job.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'understanding-your-credit-score' }) }}" class="next-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Credit Score Basics</h3>
+                    <p style="color: var(--gray-color);">Protect your score while you save.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

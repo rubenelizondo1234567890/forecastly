@@ -1,0 +1,65 @@
+{# templates/customer/expense/recurring/_list.html.twig #}
+<div class="recurring-expenses-list">
+    <div class="section-header">
+        <h2 class="section-title">Your Recurring Expenses</h2>
+        <span class="accounts-count">{{ expenses|length }} recurring expenses</span>
+    </div>
+
+    <div class="accounts-table-container">
+        {% if expenses is not empty %}
+            <table class="accounts-table">
+                <thead>
+                <tr>
+                    <th>Expense Source</th>
+                    <th>Amount</th>
+                    <th>Frequency</th>
+                    <th>Start Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for expense in expenses %}
+                    <tr>
+                        <td data-label="Expense Source">
+                            <div class="account-type">
+                                <div class="account-type-icon">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <div>
+                                    <div>{{ expense.name }}</div>
+                                    <small>{{ expense.account.name }}</small><br />
+                                    <small>{{ expense.budgetTrackingGroup.name }}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Amount" class="negative-balance">
+                            ${{ expense.amount|number_format(2) }}
+                        </td>
+                        <td data-label="Frequency">{{ expense.frequency.name }}</td>
+                        <td data-label="Start Date">{{ expense.startOn|date('Y-m-d') }}</td>
+                        <td data-label="Actions">
+                            <div class="action-buttons">
+                                <a href="{{ path('customer_recurring_expense_edit', {'id': expense.id}) }}" class="action-btn edit-btn">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form method="post" action="{{ path('customer_recurring_expense_delete', {'id': expense.id}) }}" onsubmit="return confirm('Are you sure you want to delete this recurring expense?');" style="display: inline-block;">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ expense.id) }}">
+                                    <button type="submit" class="action-btn delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <i class="fas fa-money-bill-wave"></i>
+                <p>No recurring expenses found.</p>
+                <a href="{{ path('customer_recurring_expense_index') }}" class="btn btn-primary">Add Your First Recurring Expense</a>
+            </div>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,250 @@
+{# templates/partials/_sidebar.html.twig #}
+<div class="sidebar">
+    <div class="logo">
+        <img src="{{ asset('template/img/forecastly_logo_64x64.png') }}" width="18px" height="18px" />
+        <span>Forecastly</span>
+    </div>
+    <ul class="menu">
+        <li>
+            <a href="{{ path('customer_dash') }}"
+               class="{% if app.request.attributes.get('_route') == 'customer_dash' %}active{% endif %}">
+                <i class="fas fa-home"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        <!-- Account Management -->
+        <li class="menu-group">
+            <div class="group-header income-color">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Account Management</span>
+                <i class="fas fa-chevron-down group-indicator"></i>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <!-- Budget Tracking Groups -->
+                    <a href="{{ path('customer_budget_index')}}"
+                       class="{% if app.request.attributes.get('_route') == 'customer_budget_index' %}active{% endif %}">
+                        <i class="fas fa-chart-pie"></i> <span>Budget Tracking Groups</span>
+                    </a>
+                </li>
+                <!-- Saving Accounts -->
+                <li>
+                    <a href="{{ path('customer_savings_account_index') }}"
+                       class="income-color">
+                        <i class="fas fa-wallet"></i> <span>Savings Accounts</span>
+                    </a>
+                </li>
+                <!-- Income Accounts -->
+                <li>
+                    <a href="{{ path('customer_account_index', {'isIncomeOrExpense': 'income'}) }}"
+                       class="{% if app.request.attributes.get('_route') == 'customer_account_index' and app.request.attributes.get('isIncomeOrExpense') == 'income' %}active{% endif %} income-color">
+                        <i class="fas fa-wallet"></i> <span>Income Accounts</span>
+                    </a>
+                </li>
+                <!-- Expense Accounts -->
+                <li>
+                    <a href="{{ path('customer_account_index', {'isIncomeOrExpense': 'expense'}) }}"
+                       class="{% if app.request.attributes.get('_route') == 'customer_account_index' and app.request.attributes.get('isIncomeOrExpense') == 'expense' %}active{% endif %} expense-color">
+                        <i class="fas fa-wallet"></i> <span>Expense Accounts</span>
+                    </a>
+                </li>
+                <!-- Generate Accounts Recurring Interest -->
+                <li>
+                    <a href="{{ path('customer_recurring_interest_index') }}"
+                       class="{% if app.request.attributes.get('_route') == 'customer_recurring_interest_index' %}active{% endif %} income-color">
+                        <i class="fas fa-percentage"></i> <span>Generate Accounts Recurring Interest</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Debt Management -->
+        <li class="menu-group">
+            <div class="group-header expense-color">
+                <i class="fas fa-money-check-alt"></i>
+                <span>Debt Management</span>
+                <i class="fas fa-chevron-down group-indicator"></i>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <a href="{{ path('customer_revolving_payments_index') }}" class="expense-color">
+                        <i class="fas fa-calendar-plus"></i> <span>Generate Monthly Payments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="expense-color">
+                        <i class="fas fa-chess"></i> <span>Debt Payoff Strategies</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Wealth Management -->
+        <li class="menu-group">
+            <div class="group-header income-color">
+                <i class="fas fa-money-check-alt"></i>
+                <span>Wealth Management</span>
+                <i class="fas fa-chevron-down group-indicator"></i>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <a href="{{path('customer_recurring_savings_index')}}" class="income-color">
+                        <i class="fas fa-calendar-plus"></i> <span>Generate Monthly Savings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="income-color">
+                        <i class="fas fa-chess"></i> <span>Wealth Grow Strategies</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Income Transactions Group -->
+        <li class="menu-group">
+            <div class="group-header income-color">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Income Transactions</span>
+                <i class="fas fa-chevron-down group-indicator"></i>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <a href="{{ path('customer_recurring_income_index') }}" class="income-color">
+                        <i class="fas fa-sync-alt"></i> <span>Recurring Income</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('customer_non_recurring_income_index') }}" class="income-color">
+                        <i class="fas fa-calendar-day"></i> <span>Non-Recurring Income</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Expense Transactions Group -->
+        <li class="menu-group">
+            <div class="group-header expense-color">
+                <i class="fas fa-money-check"></i>
+                <span>Expense Transactions</span>
+                <i class="fas fa-chevron-down group-indicator"></i>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <a href="{{ path('customer_recurring_expense_index') }}" class="expense-color">
+                        <i class="fas fa-sync-alt"></i> <span>Recurring Expenses</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('customer_non_recurring_expense_index') }}" class="expense-color">
+                        <i class="fas fa-calendar-day"></i> <span>Non-Recurring Expenses</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Accounts Tracking -->
+        <li class="menu-group">
+            <div class="group-header income-color">
+                <i class="fas fa-search-dollar"></i>
+                <span>Accounts Tracking</span>
+                <i class="fas fa-chevron-down group-indicator"></i>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <a href="{{ path('customer_accounts_tracking_calendar_index') }}"
+                       class="{% if app.request.attributes.get('_route') == 'customer_accounts_tracking_calendar_index' %}active{% endif %}">
+                        <i class="fas fa-calendar-alt"></i> <span>Calendar View</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('customer_accounts_tracking_grid_index') }}" class="income-color">
+                        <i class="fas fa-th"></i> <span>Grid View</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Budgeting and Expense Planning -->
+        <li>
+            <a href="#">
+                <i class="fas fa-coins"></i> <span>Budgeting and Expense Planning</span>
+            </a>
+        </li>
+
+        <!-- Forecasting Engine Group -->
+        <li class="menu-group">
+            <div class="group-header income-color">
+                <i class="fas fa-project-diagram"></i>
+                <span>Forecasting Engine</span>
+                <i class="fas fa-chevron-down group-indicator"></i>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <a href="{{ path('customer_forecasting_accounts_projections_page') }}" class="income-color">
+                        <i class="fas fa-chart-line"></i> <span>Accounts Projections</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('customer_forecasting_net_balance_projections_page') }}" class="income-color">
+                        <i class="fas fa-exchange-alt"></i> <span>Net Balance Projections</span>
+                    </a>
+                </li>
+                <!-- TODO: Decide if this is worth it for inintial launch
+                <li>
+                    <a href="#" class="income-color">
+                        <i class="fas fa-piggy-bank"></i> <span>Wealth Projections</span>
+                    </a>
+                </li>
+                -->
+                <li>
+                    <a href="{{ path('customer_forecasting_what_if_projections_page') }}" class="income-color">
+                        <i class="fas fa-question-circle"></i> <span>What-If Projections</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        <!-- Goal Tracker -->
+        <li>
+            <a href="#">
+                <i class="fas fa-bullseye"></i> <span>Goal Tracker</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fas fa-bell"></i> <span>Alerts</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ path('customer_account_settings_index') }}"
+               class="{% if app.request.attributes.get('_route') == 'customer_account_settings_index' %}active{% endif %}">
+                <i class="fas fa-cog"></i> <span>Account Settings</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fas fa-book"></i> <span>Help Center</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="user-section">
+        <div class="user-info">
+            <div class="user-avatar">{{ app.user.firstName|first|upper }}{{ app.user.lastName|first|upper }}</div>
+            <div class="user-details">
+                <div class="user-name">{{ app.user.firstName }} {{ app.user.lastName }}</div>
+                <div class="user-role">{{ app.user.customersAccount.subscriptionPlan.planName|capitalize }} Member</div>
+            </div>
+        </div>
+        <form action="{{ path('customer_logout') }}" method="post" class="logout-form">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+            <button type="submit" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+            </button>
+        </form>
+        <br/><p style="font-size: smaller;">&copy; 2025 Meridian Wealth Technologies, LLC.</p>
+    </div>
+</div>

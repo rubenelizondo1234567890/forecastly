@@ -1,0 +1,61 @@
+{# templates/customer/interest/_list.html.twig #}
+<div class="recurring-interests-list">
+    <div class="section-header">
+        <h2 class="section-title">Your Recurring Monthly Interests</h2>
+        <span class="accounts-count">{{ interests|length }} recurring interests</span>
+    </div>
+
+    <div class="info-message">
+        <i class="fas fa-info-circle"></i>
+        <p>Recurring interests are managed by the system. You can edit existing interests but cannot create new ones or delete them.</p>
+    </div>
+
+    <div class="accounts-table-container">
+        {% if interests is not empty %}
+            <table class="accounts-table">
+                <thead>
+                <tr>
+                    <th>Interest Name</th>
+                    <th>Account</th>
+                    <th>Account Type</th>
+                    <th>Interest Type</th>
+                    <th>Annual Interest Rate %</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for interest in interests %}
+                    <tr>
+                        <td data-label="Interest Name">
+                            <div class="account-type">
+                                <div class="account-type-icon">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <div>
+                                    <div>{{ interest.name }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Account">{{ interest.account.name }}</td>
+                        <td data-label="Account Type">{{ interest.account.budgetTrackingGroup.isIncomeOrExpense }}</td>
+                        <td data-label="Interest Type">{{ interest.account.accountType }}</td>
+                        <td data-label="Annual Interest Rate %">{{ interest.account.annualInterestRate }}</td>
+                        <td data-label="Actions">
+                            <div class="action-buttons">
+                                <a href="{{ path('customer_recurring_interest_edit', {'id': interest.id}) }}" class="action-btn edit-btn">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <i class="fas fa-percentage"></i>
+                <p>No recurring interests found.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,59 @@
+/* assets/styles/non_recurring_incomes.css */
+
+/* Non-Recurring Incomes Styles */
+.non-recurring-incomes-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 992px) {
+    .non-recurring-incomes-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.non-recurring-incomes-table th, .non-recurring-incomes-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.non-recurring-incomes-table thead {
+    background-color: var(--background);
+}
+
+.non-recurring-incomes-table th {
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 2px solid var(--border);
+}
+
+.non-recurring-incomes-table tbody tr {
+    border-bottom: 1px solid var(--border);
+}
+
+.non-recurring-incomes-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.non-recurring-incomes-table tbody tr:hover {
+    background-color: rgba(94, 96, 206, 0.03);
+}
+
+.income-type-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 14px;
+    background-color: rgba(114, 239, 221, 0.2);
+    color: var(--positive);
+}
+
+.income-amount {
+    font-weight: 600;
+    color: var(--positive);
+}

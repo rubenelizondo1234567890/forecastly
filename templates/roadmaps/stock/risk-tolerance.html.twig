@@ -1,0 +1,227 @@
+{# templates/roadmaps/stock/risk-tolerance.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('stock_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('stock_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – stock style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--stocks-accent);">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h1>Risk Tolerance <span>Know Yourself Before You Invest</span></h1>
+                <p class="hero-description">
+                    Your comfort with market ups and downs is as important as your financial goals. Learn how to assess your risk tolerance and build a portfolio you can stick with.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 2: Risk Management · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🧘 What Is Risk Tolerance?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                <strong>Risk tolerance</strong> is your ability and willingness to endure market volatility and potential losses in exchange for higher long‑term returns. It’s a blend of psychology (your emotions) and capacity (your financial situation).
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                A portfolio that exceeds your risk tolerance can lead to panic selling at the worst time. Matching your investments to your true comfort level helps you stay the course.
+            </p>
+        </section>
+
+        <!-- factors that influence risk tolerance -->
+        <div class="card animate" style="margin: 40px 0;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">⚖️ Factors That Shape Your Risk Tolerance</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div>
+                    <h4><i class="fas fa-clock" style="color: var(--stocks-accent);"></i> Time Horizon</h4>
+                    <p>The longer you have to invest, the more risk you can generally take, because you have time to recover from downturns.</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-dollar-sign" style="color: var(--stocks-accent);"></i> Financial Capacity</h4>
+                    <p>Stable income, emergency savings, and low debt increase your capacity to take investment risk.</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-brain" style="color: var(--stocks-accent);"></i> Emotional Resilience</h4>
+                    <p>How do you react when your portfolio drops 20%? Some people sleep soundly; others can't focus.</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-bullseye" style="color: var(--stocks-accent);"></i> Goals</h4>
+                    <p>Aggressive goals (like retiring early) may require more risk; conservative goals (like a house down payment in 3 years) call for less.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- interactive tool: Risk Tolerance Questionnaire -->
+        <div class="card animate" style="margin: 40px 0;" id="risk-questionnaire">
+            <h3><i class="fas fa-clipboard-list"></i> Risk Tolerance Questionnaire</h3>
+            <p>Answer these five questions to get a rough idea of your risk profile and a suggested asset allocation.</p>
+
+            <div style="margin: 25px 0;">
+                <div class="quiz-question" style="color: var(--dark-color);">1. How would you react to a sudden 20% drop in your portfolio?</div>
+                <div class="quiz-options" style="flex-direction: column; gap: 8px; margin-bottom: 20px;" data-question="1">
+                    <label class="quiz-option" style="display: flex; align-items: center; gap: 10px; background: var(--light-color); color: var(--dark-color);">
+                        <input type="radio" name="q1" value="1"> Sell everything to avoid further losses
+                    </label>
+                    <label class="quiz-option" style="display: flex; align-items: center; gap: 10px; background: var(--light-color); color: var(--dark-color);">
+                        <input type="radio" name="q1" value="2"> Sell some, but keep most
+                    </label>
+                    <label class="quiz-option" style="display: flex; align-items: center; gap: 10px; background: var(--light-color); color: var(--dark-color);">
+                        <input type="radio" name="q1" value="3"> Do nothing – wait for recovery
+                    </label>
+                    <label class="quiz-option" style="display: flex; align-items: center; gap: 10px; background: var(--light-color); color: var(--dark-color);">
+                        <input type="radio" name="q1" value="4"> Buy more – it's a sale!
+                    </label>
+                </div>
+
+                <div class="quiz-question" style="color: var(--dark-color);">2. What is your investment time horizon?</div>
+                <div class="quiz-options" style="flex-direction: column; gap: 8px; margin-bottom: 20px;" data-question="2">
+                    <label class="quiz-option"><input type="radio" name="q2" value="1"> Less than 3 years</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="2"> 3–5 years</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="3"> 6–10 years</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="4"> More than 10 years</label>
+                </div>
+
+                <div class="quiz-question" style="color: var(--dark-color);">3. Which statement best describes your attitude toward risk and return?</div>
+                <div class="quiz-options" style="flex-direction: column; gap: 8px; margin-bottom: 20px;" data-question="3">
+                    <label class="quiz-option"><input type="radio" name="q3" value="1"> I prefer safety even if it means lower returns</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="2"> I'm willing to accept moderate risk for moderate returns</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="3"> I'm comfortable with significant risk for potentially high returns</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="4"> I want maximum returns and can handle extreme volatility</label>
+                </div>
+
+                <div class="quiz-question" style="color: var(--dark-color);">4. How stable is your current income?</div>
+                <div class="quiz-options" style="flex-direction: column; gap: 8px; margin-bottom: 20px;" data-question="4">
+                    <label class="quiz-option"><input type="radio" name="q4" value="1"> Unstable / variable</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="2"> Somewhat stable</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="3"> Very stable</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="4"> Extremely stable (e.g., tenured government job)</label>
+                </div>
+
+                <div class="quiz-question" style="color: var(--dark-color);">5. What is your primary goal for this investment?</div>
+                <div class="quiz-options" style="flex-direction: column; gap: 8px; margin-bottom: 20px;" data-question="5">
+                    <label class="quiz-option"><input type="radio" name="q5" value="1"> Preservation of capital</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="2"> Steady income</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="3"> Growth with some income</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="4"> Aggressive growth</label>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="calculateRiskScore" class="btn-outline">See My Risk Profile</button>
+            </div>
+
+            <div id="riskResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                Your result will appear here.
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px; background-color: #e6f7f0; border-left-color: var(--stocks-accent);">
+                <i class="fas fa-lightbulb"></i> This questionnaire is for educational purposes. Consult a financial advisor for a professional assessment.
+            </p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'stock', slug: 'risk-tolerance', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #0e9f6e; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Risk Tolerance</h3>
+
+                <div class="quiz-question">1. What is risk tolerance?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">The maximum loss you can afford</div>
+                    <div class="quiz-option" data-answer="correct">Your emotional and financial capacity to endure market volatility</div>
+                    <div class="quiz-option" data-answer="wrong">The amount of risk in your portfolio</div>
+                    <div class="quiz-option" data-answer="wrong">A measure of stock volatility</div>
+                </div>
+
+                <div class="quiz-question">2. Which factor generally allows you to take more investment risk?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Short time horizon</div>
+                    <div class="quiz-option" data-answer="correct">Long time horizon</div>
+                    <div class="quiz-option" data-answer="wrong">Unstable income</div>
+                    <div class="quiz-option" data-answer="wrong">Need for liquidity</div>
+                </div>
+
+                <div class="quiz-question">3. Why is matching your portfolio to your risk tolerance important?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">It guarantees higher returns</div>
+                    <div class="quiz-option" data-answer="wrong">It eliminates all risk</div>
+                    <div class="quiz-option" data-answer="correct">It helps you stay invested during downturns</div>
+                    <div class="quiz-option" data-answer="wrong">It maximizes short‑term gains</div>
+                </div>
+
+                <div class="quiz-question">4. Which of the following is a sign of low risk tolerance?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Buying more after a market drop</div>
+                    <div class="quiz-option" data-answer="correct">Feeling anxious and selling during a dip</div>
+                    <div class="quiz-option" data-answer="wrong">Ignoring market news</div>
+                    <div class="quiz-option" data-answer="wrong">Investing in individual stocks</div>
+                </div>
+
+                <div class="quiz-question">5. An investor with a high risk tolerance is most likely to have a portfolio weighted toward:</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Treasury bonds</div>
+                    <div class="quiz-option" data-answer="wrong">Money market funds</div>
+                    <div class="quiz-option" data-answer="correct">Growth stocks</div>
+                    <div class="quiz-option" data-answer="wrong">Certificates of deposit</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 2 (risk management) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 2: Risk Management</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'stock', slug: 'diversification' }) }}" class="next-card">
+                    <i class="fas fa-random"></i>
+                    <h3>Diversification</h3>
+                    <p>Don't put all eggs in one basket – learn how spreading risk works.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'stock', slug: 'market-volatility' }) }}" class="next-card">
+                    <i class="fas fa-wave-square"></i>
+                    <h3>Market Volatility</h3>
+                    <p>Understand market cycles and how to stay calm during dips.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'stock', slug: 'asset-allocation' }) }}" class="next-card">
+                    <i class="fas fa-scale-balanced"></i>
+                    <h3>Asset Allocation</h3>
+                    <p>Find the right mix of stocks, bonds, and cash for your goals.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

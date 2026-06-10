@@ -1,0 +1,63 @@
+{# templates/customer/income/non_recurring/_list.html.twig #}
+<div class="non-recurring-incomes-list">
+    <div class="section-header">
+        <h2 class="section-title">Your Non-Recurring Incomes</h2>
+        <span class="accounts-count">{{ incomes|length }} one-time incomes</span>
+    </div>
+
+    <div class="accounts-table-container">
+        {% if incomes is not empty %}
+            <table class="accounts-table">
+                <thead>
+                <tr>
+                    <th>Income Source</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for income in incomes %}
+                    <tr>
+                        <td data-label="Income Source">
+                            <div class="account-type">
+                                <div class="account-type-icon">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <div>
+                                    <div>{{ income.name }}</div>
+                                    <small>{{ income.account.name }}</small><br />
+                                    <small>{{ income.budgetTrackingGroup.name }}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Amount" class="positive-balance">
+                            ${{ income.amount|number_format(2) }}
+                        </td>
+                        <td data-label="Date">{{ income.dateToApply|date('Y-m-d') }}</td>
+                        <td data-label="Actions">
+                            <div class="action-buttons">
+                                <a href="{{ path('customer_non_recurring_income_edit', {'id': income.id}) }}" class="action-btn edit-btn">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form method="post" action="{{ path('customer_non_recurring_income_delete', {'id': income.id}) }}" onsubmit="return confirm('Are you sure you want to delete this non-recurring income?');" style="display: inline-block;">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ income.id) }}">
+                                    <button type="submit" class="action-btn delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <i class="fas fa-money-bill-wave"></i>
+                <p>No non-recurring incomes found.</p>
+                <a href="{{ path('customer_non_recurring_income_index') }}" class="btn btn-primary">Add Your First Non-Recurring Income</a>
+            </div>
+        {% endif %}
+    </div>
+</div>

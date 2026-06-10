@@ -1,0 +1,219 @@
+{# templates/roadmaps/crypto/staking-yield-farming.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('crypto_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('crypto_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – crypto style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h1>Staking & Yield Farming <span>Explained</span></h1>
+                <p class="hero-description">
+                    Want to earn passive income with your crypto? Staking and yield farming are two popular methods – but they come with different risks and rewards. Learn how they work and which might suit you.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 11 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🌱 Earning While Holding</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Once you own crypto, you might want it to work for you – generating additional income. <strong>Staking</strong> and <strong>yield farming</strong> are two ways to put your assets to use, but they operate very differently.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                Staking is native to Proof‑of‑Stake blockchains (like Ethereum, Solana). You lock your coins to help secure the network and earn rewards. Yield farming, on the other hand, involves lending or providing liquidity to DeFi protocols in exchange for fees and often extra tokens.
+            </p>
+        </section>
+
+        <!-- key concepts -->
+        <div class="rule-grid animate" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 40px 0;">
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-lock"></i> Staking</h3>
+                <p>Lock your coins in a Proof‑of‑Stake network to validate transactions. Rewards are paid in the same coin. Examples: Ethereum (after merge), Cardano, Solana. Usually lower risk but lower returns.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-tractor"></i> Yield Farming</h3>
+                <p>Provide liquidity to DeFi protocols (like Uniswap, Aave). You earn trading fees and sometimes governance tokens. Returns can be high but come with impermanent loss and smart contract risk.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-chart-simple"></i> APY vs APR</h3>
+                <p>APY includes compounding, APR does not. Staking rewards are often quoted as APY; farming rewards may be APR plus token price appreciation.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-scale-balanced"></i> Impermanent Loss</h3>
+                <p>When providing liquidity, if the price of your deposited tokens changes relative to each other, you may have less value than if you simply held them – that's impermanent loss.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive: risks and rewards -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">⚖️ Comparing Staking and Yield Farming</h3>
+            <table style="width:100%; border-collapse: collapse; background: white; border-radius: 16px; overflow: hidden;">
+                <thead>
+                <tr style="background: var(--crypto-color); color: white;">
+                    <th style="padding: 12px;">Aspect</th>
+                    <th style="padding: 12px;">Staking</th>
+                    <th style="padding: 12px;">Yield Farming</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 12px;">Risk level</td>
+                    <td style="padding: 12px;">Lower (network risk, slashing)</td>
+                    <td style="padding: 12px;">Higher (smart contract bugs, impermanent loss)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 12px;">Typical returns</td>
+                    <td style="padding: 12px;">3% – 10% APY</td>
+                    <td style="padding: 12px;">5% – 50%+ APY (variable)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 12px;">Lock-up period</td>
+                    <td style="padding: 12px;">Often none, but unstaking may take days</td>
+                    <td style="padding: 12px;">Usually none, but you must remove liquidity</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px;">Complexity</td>
+                    <td style="padding: 12px;">Low (click "stake")</td>
+                    <td style="padding: 12px;">Moderate to high (understanding pools, IL)</td>
+                </tr>
+                </tbody>
+            </table>
+            <div style="background: #e6f7f2; padding: 20px; border-radius: 16px; margin-top: 20px;">
+                <p><i class="fas fa-lightbulb" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Remember:</strong> Higher returns usually mean higher risk. Never invest more than you can afford to lose, and research protocols thoroughly.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Staking vs Farming Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="yield-simulator">
+            <h3><i class="fas fa-calculator"></i> Staking vs Yield Farming Simulator</h3>
+            <p>Compare potential returns from staking and yield farming. Adjust the sliders to see how different factors affect your earnings – but remember, these are simplified estimates.</p>
+
+            <div style="margin: 30px 0;">
+                <div style="margin-bottom: 20px;">
+                    <label for="yieldAmount" style="display: block; font-weight: 600;">💰 Amount to invest (USD):</label>
+                    <input type="number" id="yieldAmount" class="cat-input" min="100" max="100000" value="5000" step="100" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="stakingApy" style="display: block; font-weight: 600;">🔒 Staking APY (%):</label>
+                    <input type="number" id="stakingApy" class="cat-input" min="0.5" max="20" value="5" step="0.1" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="farmingApy" style="display: block; font-weight: 600;">🚜 Yield Farming APY (%):</label>
+                    <input type="number" id="farmingApy" class="cat-input" min="1" max="100" value="15" step="1" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="yieldYears" style="display: block; font-weight: 600;">⏳ Time (years):</label>
+                    <input type="number" id="yieldYears" class="cat-input" min="0.5" max="5" value="1" step="0.5" style="width: 100%;">
+                </div>
+                <button id="simulateYieldBtn" class="btn-outline" style="width: 100%;">Compare Returns</button>
+            </div>
+
+            <div id="yieldResult" style="background: #f0f4f8; border-radius: 16px; padding: 25px; min-height: 100px; border-left: 6px solid var(--crypto-color);">
+                <i class="fas fa-arrow-left"></i> Fill in the details and click "Compare Returns".
+            </div>
+            <p style="font-style: italic; color: var(--gray-color); margin-top: 20px;">💡 Staking returns are more predictable; farming APYs can change rapidly and include impermanent loss risk. This is for illustration only.</p>
+        </div>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Staking & Yield Farming</h3>
+
+                <div class="quiz-question">1. What is staking in cryptocurrency?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Buying and holding coins in a wallet</div>
+                    <div class="quiz-option" data-answer="correct">Locking coins to support a Proof‑of‑Stake network and earn rewards</div>
+                    <div class="quiz-option" data-answer="wrong">Trading coins on a DEX</div>
+                    <div class="quiz-option" data-answer="wrong">Lending coins on a centralized exchange</div>
+                </div>
+
+                <div class="quiz-question">2. What is impermanent loss?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">A permanent loss of private keys</div>
+                    <div class="quiz-option" data-answer="correct">A temporary loss in value when providing liquidity due to price changes</div>
+                    <div class="quiz-option" data-answer="wrong">The fee paid to unstake</div>
+                    <div class="quiz-option" data-answer="wrong">Loss from a hack</div>
+                </div>
+
+                <div class="quiz-question">3. Which typically offers higher potential returns but also higher risk?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Staking</div>
+                    <div class="quiz-option" data-answer="correct">Yield farming</div>
+                    <div class="quiz-option" data-answer="wrong">Holding in a hardware wallet</div>
+                    <div class="quiz-option" data-answer="wrong">Keeping on an exchange</div>
+                </div>
+
+                <div class="quiz-question">4. What does APY stand for?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Annual Percentage Rate</div>
+                    <div class="quiz-option" data-answer="correct">Annual Percentage Yield (includes compounding)</div>
+                    <div class="quiz-option" data-answer="wrong">Automated Payment Yearly</div>
+                    <div class="quiz-option" data-answer="wrong">Average Percentage Yield</div>
+                </div>
+
+                <div class="quiz-question">5. Which of the following is a risk specific to yield farming (not staking)?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Network slashing</div>
+                    <div class="quiz-option" data-answer="wrong">Validator downtime</div>
+                    <div class="quiz-option" data-answer="correct">Smart contract bugs and impermanent loss</div>
+                    <div class="quiz-option" data-answer="wrong">Lock-up periods</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 4 (skill building) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue building your skills</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'nfts-hype-or-utility' }) }}" class="next-card">
+                    <i class="fas fa-image"></i>
+                    <h3>NFTs: Hype or Real Utility?</h3>
+                    <p style="color: var(--gray-color);">Understand non‑fungible tokens and their use cases.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'advanced-security' }) }}" class="next-card">
+                    <i class="fas fa-shield-halved"></i>
+                    <h3>Advanced Security</h3>
+                    <p style="color: var(--gray-color);">Multi‑sig, seed backup, and more for larger holdings.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

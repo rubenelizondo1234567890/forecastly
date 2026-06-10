@@ -1,0 +1,437 @@
+/* assets/styles/customer_accounts_tracking_grid.css */
+
+.grid-container {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    overflow-y: hidden;
+    min-height: 400px;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.grid-container::-webkit-scrollbar {
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+}
+
+.grid-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.grid-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.grid-container {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.page-title {
+    flex: 1;
+    min-width: 300px;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.year-selector,
+.month-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+.year-selector label,
+.month-selector label {
+    margin-bottom: 0;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.year-selector select,
+.month-selector select {
+    width: auto;
+    min-width: 120px;
+}
+
+.accounts-grid ul {
+    margin: 0;
+    padding-left: 15px;
+    list-style-type: disc;
+}
+
+.accounts-grid li {
+    margin-bottom: 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.trans-desc {
+    font-size: 0.7rem;
+    color: var(--text-light);
+}
+
+.trans-amount {
+    font-size: 0.9rem;
+}
+
+.trans-amount.positive {
+    color: var(--positive);
+}
+
+.trans-amount.negative {
+    color: var(--negative);
+}
+
+.balance-cell {
+    font-weight: normal;
+}
+
+.balance-amount {
+    font-weight: 400;
+}
+
+.balance-total {
+    font-weight: 600;
+}
+
+.income-color {
+    color: var(--positive);
+}
+
+.expense-color {
+    color: var(--negative);
+}
+
+.negative-balance-alert {
+    color: var(--negative);
+    margin-left: 5px;
+    font-size: 0.9rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.grid-scroll-container {
+    width: 2160px;
+    height: 800px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    overflow: auto;
+    background-color: var(--white);
+    position: relative;
+    margin-bottom: 20px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+.grid-scroll-container::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+.grid-scroll-container::-webkit-scrollbar-track {
+    background: var(--background);
+    border-radius: 8px;
+}
+
+.grid-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--text-light);
+    border-radius: 8px;
+    border: 3px solid var(--background);
+}
+
+.grid-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: var(--text);
+}
+
+.grid-scroll-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-light) var(--background);
+}
+
+.accounts-grid {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white);
+    table-layout: fixed;
+    min-width: 100%;
+    width: auto;
+}
+
+.accounts-grid th,
+.accounts-grid td {
+    border: 1px solid rgba(var(--primary-rgb), 0.1);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+    word-wrap: break-word;
+    white-space: normal;
+    font-size: 0.9rem;
+}
+
+.accounts-grid th:first-child,
+.accounts-grid td:first-child {
+    width: 20ch;
+    min-width: 20ch;
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    font-weight: 600;
+    background-color: var(--headers);
+}
+
+.accounts-grid th:not(:first-child),
+.accounts-grid td:not(:first-child) {
+    width: 30ch;
+    min-width: 30ch;
+    max-width: 30ch;
+}
+
+.accounts-grid thead th {
+    background-color: var(--headers);
+    color: var(--text);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 1px 0 var(--border);
+}
+
+.accounts-grid thead th:first-child {
+    background-color: var(--headers);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    box-shadow: 1px 1px 0 var(--border), 0 1px 0 var(--border);
+}
+
+.accounts-grid tbody td:first-child {
+    background-color: var(--headers);
+    position: sticky;
+    left: 0;
+    z-index: 5;
+}
+
+.accounts-grid tfoot th {
+    background-color: var(--headers);
+    color: var(--text);
+    font-weight: 600;
+    position: sticky;
+    bottom: 0;
+    z-index: 20;
+}
+
+.accounts-grid tfoot th:first-child {
+    background-color: var(--headers);
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    z-index: 30;
+    box-shadow: 1px -1px 0 var(--border), 0 -1px 0 var(--border);
+}
+
+.grid-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.grid-info {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.grid-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-sm {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 2200px) {
+    .grid-scroll-container {
+        width: 100%;
+        max-width: 2160px;
+    }
+}
+
+.current-date-row {
+    background-color: rgba(var(--primary-rgb), 0.08) !important;
+}
+
+.current-date-row td {
+    background-color: rgba(var(--primary-rgb), 0.08) !important;
+    position: relative;
+}
+
+.current-date-cell {
+    background-color: rgba(var(--primary-rgb), 0.1) !important;
+    font-weight: 600;
+}
+
+.accounts-grid tbody tr.current-date-row td:first-child {
+    background-color: rgba(var(--primary-rgb), 0.12) !important;
+    border-right: 2px solid var(--primary);
+}
+
+.past-date-row td {
+    background-color: rgba(var(--text-rgb), 0.03) !important;
+}
+
+.past-date-cell {
+    background-color: rgba(var(--text-rgb), 0.03) !important;
+    background-color: var(--secondary);
+}
+
+.accounts-grid tbody tr.past-date-row td:first-child {
+    background-color: rgba(var(--text-rgb), 0.05) !important;
+}
+
+.current-date-indicator {
+    font-size: 0.8rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin-left: 5px;
+    font-style: italic;
+}
+
+.accounts-grid thead th,
+.accounts-grid tfoot th {
+    z-index: 25;
+}
+
+.accounts-grid thead th:first-child,
+.accounts-grid tfoot th:first-child {
+    z-index: 35;
+}
+
+.accounts-grid tr.current-date-row td,
+.accounts-grid tr.past-date-row td {
+    border-color: rgba(var(--primary-rgb), 0.2);
+}
+
+.past-date-cell .trans-amount.positive {
+    color: rgba(var(--positive-rgb), 0.7);
+}
+
+.past-date-cell .trans-amount.negative {
+    color: rgba(var(--negative-rgb), 0.7);
+}
+
+.past-date-cell .balance-amount {
+    color: rgba(var(--text-rgb), 0.7);
+}
+
+/* Alert icon styles for balance warnings in grid */
+.overdraft-alert {
+    color: var(--negative);
+    margin-left: 5px;
+    font-size: 0.9rem;
+    animation: pulse 2s infinite;
+}
+
+.cant-pay-full-alert {
+    color: #ff9800; /* Orange */
+    margin-left: 5px;
+    font-size: 0.9rem;
+    animation: pulse 2s infinite;
+}
+
+.low-balance-alert {
+    color: #ffeb3b; /* Yellow */
+    margin-left: 5px;
+    font-size: 0.9rem;
+    animation: pulse 2s infinite;
+}
+
+/* Ensure good contrast for yellow on light backgrounds */
+.low-balance-alert {
+    filter: drop-shadow(0 0 1px rgba(0,0,0,0.5));
+}
+
+/* For smaller screens, adjust the alert sizes */
+@media (max-width: 576px) {
+    .overdraft-alert,
+    .cant-pay-full-alert,
+    .low-balance-alert {
+        font-size: 0.7rem;
+        margin-left: 3px;
+    }
+}
+
+/* Pulse animation for all alerts */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Savings colors */
+.savings-color {
+    color: #4CAF50; /* Green for savings */
+}
+
+.savings-withdraw-color {
+    color: #2196F3; /* Blue for savings withdrawals */
+}
+
+/* Savings transaction amounts */
+.trans-amount.savings {
+    color: #4CAF50; /* Green for savings deposits */
+}
+
+.trans-amount.savings-withdraw {
+    color: #2196F3; /* Blue for savings withdrawals */
+}
+
+/* Adjust colors for past dates */
+.past-date-cell .trans-amount.savings {
+    color: rgba(76, 175, 80, 0.7);
+}
+
+.past-date-cell .trans-amount.savings-withdraw {
+    color: rgba(33, 150, 243, 0.7);
+}
+
+/* For smaller screens */
+@media (max-width: 576px) {
+    .trans-amount.savings,
+    .trans-amount.savings-withdraw {
+        font-size: 0.8rem;
+    }
+}

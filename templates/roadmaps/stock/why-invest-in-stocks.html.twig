@@ -1,0 +1,214 @@
+{# templates/roadmaps/stock/why-invest-in-stocks.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('stock_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('stock_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – stock style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--stocks-accent);">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h1>Why Invest in Stocks? <span>The Power of Long‑Term Growth</span></h1>
+                <p class="hero-description">
+                    Discover why stocks have historically been the best way to build wealth over time. Learn about compounding, historical returns, and how to stay the course.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">📈 Why Stocks?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Over the long term, stocks have outperformed every other major asset class – including bonds, real estate, and gold. The reason is simple: stocks represent ownership in productive businesses that grow their earnings and dividends over time.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                Since 1926, the U.S. stock market (S&P 500) has delivered an average annual return of about <strong>10%</strong> before inflation. While returns are never guaranteed, history shows that patient investors are rewarded.
+            </p>
+        </section>
+
+        <!-- key concepts: compounding, inflation, risk -->
+        <div class="card animate" style="margin: 40px 0;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">⚡ The Engines of Growth</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px;">
+                <div>
+                    <h4><i class="fas fa-snowflake" style="color: var(--stocks-accent);"></i> Compounding</h4>
+                    <p>When your returns generate their own returns, wealth grows exponentially. A $10,000 investment earning 8% annually becomes $46,610 in 20 years – without adding a single dollar.</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-coins" style="color: var(--stocks-accent);"></i> Beating Inflation</h4>
+                    <p>Inflation erodes purchasing power. Stocks have historically returned 6‑7% above inflation, preserving and increasing your real wealth.</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-shield" style="color: var(--stocks-accent);"></i> Risk Premium</h4>
+                    <p>Stocks are riskier than bonds or cash, so investors demand a higher return – the "equity risk premium". Over decades, that premium adds up.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- historical perspective -->
+        <div class="animate" style="margin: 40px 0;">
+            <h3 class="section-title">📊 A Look Back: S&P 500 Returns</h3>
+            <div class="rule-grid">
+                <div class="rule-item">
+                    <h4>10‑year rolling average</h4>
+                    <div class="percentage">~9‑10%</div>
+                    <p>Even with crashes, the market tends to revert to its long‑term trend.</p>
+                </div>
+                <div class="rule-item">
+                    <h4>Worst 20‑year period</h4>
+                    <div class="percentage">~6%</div>
+                    <p>Even starting at the worst possible time (1929), a 20‑year hold delivered positive real returns.</p>
+                </div>
+                <div class="rule-item">
+                    <h4>Best 20‑year period</h4>
+                    <div class="percentage">~17%</div>
+                    <p>The 1980s and 1990s saw a massive bull run.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- interactive tool: Long-Term Growth Calculator -->
+        <div class="card animate" style="margin: 40px 0;" id="growth-calculator">
+            <h3><i class="fas fa-calculator"></i> Long‑Term Growth Calculator</h3>
+            <p>See how your money can grow with the power of compounding. Adjust the sliders and see the future value.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
+                <div style="flex: 1 1 180px;">
+                    <label style="display: block; font-weight: 600;">Initial investment ($)</label>
+                    <input type="number" id="initialAmount" class="cat-input" value="10000" min="0" step="1000">
+                </div>
+                <div style="flex: 1 1 180px;">
+                    <label style="display: block; font-weight: 600;">Annual contribution ($)</label>
+                    <input type="number" id="annualContribution" class="cat-input" value="1200" min="0" step="100">
+                </div>
+                <div style="flex: 1 1 180px;">
+                    <label style="display: block; font-weight: 600;">Years</label>
+                    <input type="number" id="years" class="cat-input" value="20" min="1" max="50" step="1">
+                </div>
+                <div style="flex: 1 1 180px;">
+                    <label style="display: block; font-weight: 600;">Expected annual return (%)</label>
+                    <input type="number" id="returnRate" class="cat-input" value="8" min="0" max="20" step="0.5">
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="calculateGrowth" class="btn-outline">Calculate Future Value</button>
+            </div>
+
+            <div id="growthResult" style="margin-top: 25px; padding: 15px; background: var(--light-color); border-radius: 12px;">
+                Enter values and click calculate.
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px; background-color: #e6f7f0; border-left-color: var(--stocks-accent);">
+                <i class="fas fa-lightbulb"></i> This is a simplified projection. Actual returns vary, and past performance does not guarantee future results.
+            </p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'stock', slug: 'why-invest-in-stocks', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #0e9f6e; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Long‑Term Stock Investing</h3>
+
+                <div class="quiz-question">1. What is the average annual return of the S&P 500 over the last century?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">5%</div>
+                    <div class="quiz-option" data-answer="correct">~10%</div>
+                    <div class="quiz-option" data-answer="wrong">15%</div>
+                    <div class="quiz-option" data-answer="wrong">20%</div>
+                </div>
+
+                <div class="quiz-question">2. Which concept explains why your money grows faster over time as earnings generate more earnings?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Inflation</div>
+                    <div class="quiz-option" data-answer="wrong">Diversification</div>
+                    <div class="quiz-option" data-answer="correct">Compounding</div>
+                    <div class="quiz-option" data-answer="wrong">Liquidity</div>
+                </div>
+
+                <div class="quiz-question">3. Why do stocks tend to outperform bonds over the long run?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="correct">Stocks carry higher risk, so investors demand a higher return (equity risk premium)</div>
+                    <div class="quiz-option" data-answer="wrong">Stocks are guaranteed by the government</div>
+                    <div class="quiz-option" data-answer="wrong">Bonds never increase in value</div>
+                    <div class="quiz-option" data-answer="wrong">Companies always grow</div>
+                </div>
+
+                <div class="quiz-question">4. If inflation averages 3% per year, what real return does a 10% nominal stock return provide?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="correct">About 7%</div>
+                    <div class="quiz-option" data-answer="wrong">3%</div>
+                    <div class="quiz-option" data-answer="wrong">10%</div>
+                    <div class="quiz-option" data-answer="wrong">13%</div>
+                </div>
+
+                <div class="quiz-question">5. What is a key lesson from historical stock market crashes?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Stocks never recover</div>
+                    <div class="quiz-option" data-answer="correct">Markets have always recovered and gone on to new highs</div>
+                    <div class="quiz-option" data-answer="wrong">You should sell everything at the first sign of trouble</div>
+                    <div class="quiz-option" data-answer="wrong">Bonds are always better</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 1 (foundation first) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 1: Foundation First</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'stock', slug: 'what-is-a-stock' }) }}" class="next-card">
+                    <i class="fas fa-file-invoice"></i>
+                    <h3>What is a Stock?</h3>
+                    <p>Understand ownership, common vs preferred, and dividends.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'stock', slug: 'how-stock-market-works' }) }}" class="next-card">
+                    <i class="fas fa-building"></i>
+                    <h3>How the Stock Market Works</h3>
+                    <p>Demystify exchanges, indices, and market participants.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'stock', slug: 'common-stock-vs-preferred' }) }}" class="next-card">
+                    <i class="fas fa-coins"></i>
+                    <h3>Common vs Preferred & Dividends</h3>
+                    <p>Learn about share classes and dividend income.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,102 @@
+services:
+  app:
+    build:
+      context: .
+      target: app
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/vendor
+      - /var/www/html/var
+      - public_build:/var/www/html/public/build
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: postgresql://app:app@database:5432/forecastly?serverVersion=16
+      MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
+      REDIS_URL: redis://redis:6379
+      MAILER_DSN: smtp://mailer:1025
+    depends_on:
+      database:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - forecastly
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - public_build:/var/www/html/public/build
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - forecastly
+
+  node:
+    image: node:20-alpine
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/node_modules
+      - public_build:/var/www/html/public/build
+    networks:
+      - forecastly
+
+  database:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: forecastly
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d forecastly"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - forecastly
+
+  redis:
+    image: redis:7-alpine
+    networks:
+      - forecastly
+
+  mailer:
+    image: axllent/mailpit
+    ports:
+      - "8025:8025"
+    networks:
+      - forecastly
+
+  worker:
+    build:
+      context: .
+      target: app
+    command: php bin/console messenger:consume async --time-limit=3600 --memory-limit=128M -vv
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/vendor
+      - /var/www/html/var
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: postgresql://app:app@database:5432/forecastly?serverVersion=16
+      MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - forecastly
+
+volumes:
+  postgres_data:
+  public_build:
+
+networks:
+  forecastly:
+    driver: bridge

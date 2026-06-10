@@ -1,0 +1,51 @@
+{# templates/customer/expense/recurring/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Manage Recurring Expenses - Forecastly{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_recurring_expenses_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_recurring_expenses_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <div class="page-title">
+            <h1>Manage Recurring Expenses</h1>
+            <p>Add and manage your recurring expenses</p>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="recurring-expenses-container">
+        <!-- Add/Edit Expense Form -->
+        {% include 'customer/expense/recurring/_form.html.twig' with {
+            'form': form,
+            'isIncomeOrExpense': isIncomeOrExpense
+        } %}
+
+        <!-- Expenses List -->
+        {% include 'customer/expense/recurring/_list.html.twig' with {
+            'expenses': expenses,
+            'isIncomeOrExpense': isIncomeOrExpense
+        } %}
+    </div>
+{% endblock %}

@@ -1,0 +1,315 @@
+{# templates/roadmaps/career-capital/personal-website.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+    {# Inline script: live slider value updates (works for everyone) #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = [
+                { slider: 'messageClarity', display: 'messageClarityVal' },
+                { slider: 'designQuality', display: 'designQualityVal' },
+                { slider: 'contentDepth', display: 'contentDepthVal' },
+                { slider: 'promotionPlan', display: 'promotionPlanVal' }
+            ];
+            sliders.forEach(item => {
+                const s = document.getElementById(item.slider);
+                const d = document.getElementById(item.display);
+                if (s && d) {
+                    s.addEventListener('input', () => { d.textContent = s.value; });
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-globe" style="color: var(--career-color);"></i>
+                </div>
+                <h1>Build a Personal Website / <span>Thought Leadership</span></h1>
+                <p class="hero-description">
+                    Step‑by‑step guide to creating a simple site, writing articles or making content that positions you as an authority.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 11 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">Why a personal website?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                In a digital world, your personal website is your home base. It’s the one place you fully control — not LinkedIn, not a portfolio platform. A well‑crafted site showcases your expertise, builds trust, and can generate opportunities without you actively applying.
+            </p>
+            <div class="highlight-box">
+                <i class="fas fa-bullseye"></i>
+                <strong>Thought leadership</strong> isn’t about being famous; it’s about being known for your unique perspective. Even a small audience of the right people can transform your career.
+            </div>
+        </section>
+
+        <!-- Key elements of an effective personal site -->
+        <section class="animate">
+            <h2 class="section-title">🧩 Key elements of an effective site</h2>
+            <div class="rule-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="rule-item">
+                    <h3><i class="fas fa-tag"></i> Domain & brand</h3>
+                    <p>YourName.com is ideal. Keep it professional and easy to remember.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-paint-brush"></i> Clean design</h3>
+                    <p>Minimal, mobile‑friendly, fast. Use a template if you’re not a designer.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-user"></i> About page</h3>
+                    <p>Your story, values, and what makes you unique. Include a professional photo.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-briefcase"></i> Portfolio / Work</h3>
+                    <p>Showcase your best projects with context: problem, solution, results.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-blog"></i> Blog / Insights</h3>
+                    <p>Articles, case studies, or videos that demonstrate your thinking.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-envelope"></i> Contact / CTA</h3>
+                    <p>Make it easy for people to reach out. Email signup is a bonus.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Choosing a platform -->
+        <section class="animate">
+            <h2 class="section-title">🛠️ Choosing the right platform</h2>
+            <table style="width:100%; border-collapse: collapse; background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); margin: 20px 0;">
+                <thead style="background-color: var(--career-color); color: white;">
+                <tr>
+                    <th style="padding: 12px; text-align: left;">Platform</th>
+                    <th style="padding: 12px; text-align: left;">Best for</th>
+                    <th style="padding: 12px; text-align: left;">Cost</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 12px;"><strong>Carrd</strong></td>
+                    <td style="padding: 12px;">Simple one‑page sites, fast launch</td>
+                    <td style="padding: 12px;">Free / $19/year</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 12px;"><strong>WordPress</strong></td>
+                    <td style="padding: 12px;">Full control, blogs, scalability</td>
+                    <td style="padding: 12px;">$3–$15/month (hosting)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 12px;"><strong>Squarespace</strong></td>
+                    <td style="padding: 12px;">Beautiful templates, all‑in‑one</td>
+                    <td style="padding: 12px;">$16–$27/month</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px;"><strong>Notion + Super</strong></td>
+                    <td style="padding: 12px;">If you already use Notion, publish quickly</td>
+                    <td style="padding: 12px;">Free / $8/month for custom domain</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Content strategy for thought leadership -->
+        <section class="animate">
+            <h2 class="section-title">📝 Content that builds authority</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-lightbulb"></i> <strong>Solve specific problems</strong> – Write about challenges your target audience faces.</li>
+                <li><i class="fas fa-chart-line"></i> <strong>Share data & insights</strong> – Original research, case studies, or lessons learned.</li>
+                <li><i class="fas fa-comment"></i> <strong>Take a stand</strong> – Don’t be generic. Your unique perspective matters.</li>
+                <li><i class="fas fa-calendar-alt"></i> <strong>Be consistent</strong> – Aim for one article per month, or a weekly LinkedIn post linking back to your site.</li>
+                <li><i class="fas fa-sync-alt"></i> <strong>Repurpose</strong> – Turn one article into a video, podcast, or social media thread.</li>
+            </ul>
+        </section>
+
+        <!-- 7‑day launch plan -->
+        <section class="animate">
+            <h2 class="section-title">📅 7‑day launch plan</h2>
+            <div class="step-card">
+                <span class="step-number">Day 1</span> <strong>Define your goal & audience</strong> – Who do you want to reach? What do you want them to do?
+            </div>
+            <div class="step-card">
+                <span class="step-number">Day 2</span> <strong>Choose platform & domain</strong> – Buy your domain and set up hosting.
+            </div>
+            <div class="step-card">
+                <span class="step-number">Day 3</span> <strong>Build core pages</strong> – Home, About, Portfolio, Contact.
+            </div>
+            <div class="step-card">
+                <span class="step-number">Day 4</span> <strong>Write your first article</strong> – 600–1000 words on a topic you know well.
+            </div>
+            <div class="step-card">
+                <span class="step-number">Day 5</span> <strong>Design & polish</strong> – Add images, ensure mobile responsiveness.
+            </div>
+            <div class="step-card">
+                <span class="step-number">Day 6</span> <strong>Test & get feedback</strong> – Ask a friend to review.
+            </div>
+            <div class="step-card">
+                <span class="step-number">Day 7</span> <strong>Launch & announce</strong> – Share on LinkedIn, email, and social.
+            </div>
+        </section>
+
+        <!-- Common mistakes -->
+        <section class="animate">
+            <h2 class="section-title">🚫 Avoid these mistakes</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-times-circle"></i> <strong>No clear message</strong> – Visitors should know what you do in seconds.</li>
+                <li><i class="fas fa-times-circle"></i> <strong>Outdated content</strong> – An old site looks worse than no site.</li>
+                <li><i class="fas fa-times-circle"></i> <strong>Too complex</strong> – Fancy animations can distract. Keep it simple.</li>
+                <li><i class="fas fa-times-circle"></i> <strong>No call to action</strong> – What should visitors do next? Contact, subscribe, etc.</li>
+            </ul>
+        </section>
+
+        <!-- INTERACTIVE TOOL: Personal Website Readiness Score -->
+        <div class="calc-card animate">
+            <h2 class="calc-title"><i class="fas fa-clipboard-check" style="color: var(--career-color);"></i> Personal Website Readiness Score</h2>
+            <p>Rate your current preparation across four key areas. See your score and get a custom checklist.</p>
+
+            <div class="calc-input">
+                <label for="messageClarity">Message clarity (who you are, what you offer)</label>
+                <div class="slider-container">
+                    <input type="range" id="messageClarity" class="cat-input" min="0" max="100" value="60" step="5">
+                    <span class="slider-value" id="messageClarityVal">60</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="designQuality">Design & branding quality</label>
+                <div class="slider-container">
+                    <input type="range" id="designQuality" class="cat-input" min="0" max="100" value="50" step="5">
+                    <span class="slider-value" id="designQualityVal">50</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="contentDepth">Content depth (portfolio, articles)</label>
+                <div class="slider-container">
+                    <input type="range" id="contentDepth" class="cat-input" min="0" max="100" value="40" step="5">
+                    <span class="slider-value" id="contentDepthVal">40</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="promotionPlan">Promotion & update plan</label>
+                <div class="slider-container">
+                    <input type="range" id="promotionPlan" class="cat-input" min="0" max="100" value="30" step="5">
+                    <span class="slider-value" id="promotionPlanVal">30</span>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="websiteReadinessBtn" class="btn" style="background-color: var(--career-color);">Calculate my score</button>
+            </div>
+
+            <div class="calc-result" id="websiteReadinessResult" style="border: 2px dashed var(--career-color);">
+                <p class="result-label">Your readiness score</p>
+                <p style="font-size: 1rem;">Adjust the sliders and click "Calculate" to see your score and tips.</p>
+            </div>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user who already took the quiz #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'personal-website', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Quiz for everyone – interactivity blocked by home.js if not logged in #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: personal websites & thought leadership</h3>
+
+                <div class="quiz-question">1. What is the primary benefit of having your own website over a LinkedIn profile?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">It’s free</div>
+                    <div class="quiz-option" data-answer="wrong">More people will see it</div>
+                    <div class="quiz-option" data-answer="correct">You have complete control over content and branding</div>
+                    <div class="quiz-option" data-answer="wrong">It ranks higher on Google automatically</div>
+                </div>
+
+                <div class="quiz-question">2. Which page is most important to include on a personal website?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">A blog</div>
+                    <div class="quiz-option" data-answer="wrong">A photo gallery</div>
+                    <div class="quiz-option" data-answer="correct">A clear About page explaining who you are and what you do</div>
+                    <div class="quiz-option" data-answer="wrong">A list of hobbies</div>
+                </div>
+
+                <div class="quiz-question">3. What is thought leadership?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Having a PhD</div>
+                    <div class="quiz-option" data-answer="wrong">Being famous on social media</div>
+                    <div class="quiz-option" data-answer="correct">Sharing unique insights that influence others in your field</div>
+                    <div class="quiz-option" data-answer="wrong">Giving paid speeches</div>
+                </div>
+
+                <div class="quiz-question">4. How often should you update your personal website to maintain credibility?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Once, when you launch it</div>
+                    <div class="quiz-option" data-answer="wrong">Every day</div>
+                    <div class="quiz-option" data-answer="correct">Regularly (e.g., monthly) with fresh content or project updates</div>
+                    <div class="quiz-option" data-answer="wrong">Only when you change jobs</div>
+                </div>
+
+                <div class="quiz-question">5. Which platform is best for a simple, low‑cost one‑page site?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">WordPress</div>
+                    <div class="quiz-option" data-answer="wrong">Squarespace</div>
+                    <div class="quiz-option" data-answer="correct">Carrd</div>
+                    <div class="quiz-option" data-answer="wrong">Adobe Dreamweaver</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next articles in Phase 4 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue Phase 4: Skill Building</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'master-one-skill' }) }}" class="next-card">
+                    <i class="fas fa-crown"></i>
+                    <h3>Master One Skill Deeply</h3>
+                    <p>Move from intermediate to expert.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'leverage-ai-automation' }) }}" class="next-card">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Leverage AI & Automation</h3>
+                    <p>10x your output with modern tools.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'certifications-vs-experience' }) }}" class="next-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Certifications vs. Experience</h3>
+                    <p>What actually boosts income?</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+/* assets/styles/customer_recurring_savings.css */
+
+/* Recurring Savings Styles */
+.recurring-savings-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.strategy-hint {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.account-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.account-selection .form-group {
+    margin-bottom: 0;
+}
+
+.chosen-amount-field {
+    transition: all 0.3s ease;
+}
+
+#chosen-amount-container {
+    transition: all 0.3s ease;
+}
+
+#chosen-amount-field-wrapper {
+    margin-bottom: 10px;
+}
+
+/* Style for the percentage dropdown */
+#chosen-amount-container select.form-control {
+    background-color: var(--white);
+}
+
+/* Style for the fixed amount input */
+#chosen-amount-container input[type="number"].form-control {
+    background-color: var(--white);
+}
+
+/* Ensure proper spacing for the dynamic fields */
+#chosen-amount-container .form-control {
+    margin-top: 5px;
+}
+
+@media (max-width: 992px) {
+    .revolving-payments-container {
+        grid-template-columns: 1fr;
+    }
+}

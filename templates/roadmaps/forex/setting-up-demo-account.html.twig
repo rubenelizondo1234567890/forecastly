@@ -1,0 +1,225 @@
+{# templates/roadmaps/forex/setting-up-demo-account.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('forex_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('forex_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – forex style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h1>Setting Up Your <span>First Demo Account</span></h1>
+                <p class="hero-description">
+                    A demo account lets you practise trading with virtual money before risking a single real dollar.
+                    Follow this step‑by‑step guide to get started in minutes.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🎮 Why Trade on a Demo First?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                A demo account simulates real market conditions with virtual funds. It’s the safest way to learn the platform,
+                test your strategy, and build confidence without financial risk. Even experienced traders use demos to try new ideas.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                In this guide, you’ll learn how to choose a broker, open a demo account, install trading software,
+                and place your first virtual trade. By the end, you’ll be ready to explore the markets risk‑free.
+            </p>
+        </section>
+
+        <!-- step‑by‑step guide (grid of steps) -->
+        <div class="rule-grid animate">
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-1"></i> Choose a Broker</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Regulation matters</div>
+                <p>Pick a broker regulated in your country (FCA, CySEC, ASIC). Most offer free demo accounts with no time limit.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-2"></i> Download Platform</h3>
+                <div class="percentage" style="font-size: 1.2rem;">MetaTrader 4/5, cTrader</div>
+                <p>Install the trading software on your computer or mobile. Brokers provide download links after registration.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-3"></i> Open Demo Account</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Fill a simple form</div>
+                <p>Choose your demo account type (usually “demo”), select leverage, and starting balance (e.g., $10,000).</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-4"></i> Start Trading</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Place your first trade</div>
+                <p>Use the knowledge from previous phases to analyse charts and execute a virtual trade.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive: choosing a broker -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🔍 How to Pick the Right Broker</h3>
+            <p style="margin-bottom: 20px;">
+                Not all demo accounts are equal. Look for:
+            </p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Regulation</strong> – Protects your future real money.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Platform</strong> – MetaTrader 4/5 is the industry standard.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Spreads & commissions</strong> – Even on demo, realistic costs help you learn.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>No time limit</strong> – Some demos expire after 30 days; look for unlimited.</li>
+                </ul>
+                <p class="pro-tip" style="margin-top: 15px; background-color: #eef2ff; border-left-color: #3182ce;"><i class="fas fa-lightbulb"></i> Avoid brokers with bad reviews or no regulation – even for demo, you want a realistic experience.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Demo Account Setup Checklist -->
+        <div class="card animate" style="margin: 40px 0;" id="demo-checklist">
+            <h3><i class="fas fa-clipboard-list"></i> Interactive Demo Setup Checklist</h3>
+            <p>Check off each step as you complete it. Your progress will be saved locally.</p>
+            <div style="margin: 25px 0;">
+                <div class="checklist-item" style="display: flex; align-items: center; padding: 12px; border-bottom: 1px solid var(--light-gray);">
+                    <input type="checkbox" id="step1" class="demo-checkbox" style="width: 20px; height: 20px; margin-right: 15px;">
+                    <label for="step1" style="flex: 1; font-size: 1.1rem;"><strong>1.</strong> Choose a regulated broker</label>
+                </div>
+                <div class="checklist-item" style="display: flex; align-items: center; padding: 12px; border-bottom: 1px solid var(--light-gray);">
+                    <input type="checkbox" id="step2" class="demo-checkbox" style="width: 20px; height: 20px; margin-right: 15px;">
+                    <label for="step2" style="flex: 1; font-size: 1.1rem;"><strong>2.</strong> Register on broker's website</label>
+                </div>
+                <div class="checklist-item" style="display: flex; align-items: center; padding: 12px; border-bottom: 1px solid var(--light-gray);">
+                    <input type="checkbox" id="step3" class="demo-checkbox" style="width: 20px; height: 20px; margin-right: 15px;">
+                    <label for="step3" style="flex: 1; font-size: 1.1rem;"><strong>3.</strong> Download and install trading platform (MT4/MT5)</label>
+                </div>
+                <div class="checklist-item" style="display: flex; align-items: center; padding: 12px; border-bottom: 1px solid var(--light-gray);">
+                    <input type="checkbox" id="step4" class="demo-checkbox" style="width: 20px; height: 20px; margin-right: 15px;">
+                    <label for="step4" style="flex: 1; font-size: 1.1rem;"><strong>4.</strong> Open a demo account (choose leverage & balance)</label>
+                </div>
+                <div class="checklist-item" style="display: flex; align-items: center; padding: 12px; border-bottom: 1px solid var(--light-gray);">
+                    <input type="checkbox" id="step5" class="demo-checkbox" style="width: 20px; height: 20px; margin-right: 15px;">
+                    <label for="step5" style="flex: 1; font-size: 1.1rem;"><strong>5.</strong> Place your first virtual trade</label>
+                </div>
+            </div>
+            <div id="checklistProgress" style="margin-top: 15px; padding: 15px; background: var(--light-color); border-radius: 12px; text-align: center; font-weight: 600;">
+                Progress: 0/5 steps completed
+            </div>
+            <button id="resetChecklist" class="btn-outline" style="margin-top: 15px;">Reset Checklist</button>
+        </div>
+
+        <!-- example: first trade on demo -->
+        <div class="highlight-box animate">
+            <h3><i class="fas fa-bolt"></i> Example – Your First Demo Trade</h3>
+            <p>You’ve opened your demo account with $10,000 virtual funds. You decide to buy 0.1 lots of EUR/USD at 1.1050, with a stop loss at 1.1030 (20 pips) and take profit at 1.1110 (60 pips).</p>
+            <p>You watch the trade unfold. It hits your take profit an hour later – you’ve just made a virtual $60 profit. More importantly, you’ve learned how orders work and how emotions feel without real money at stake.</p>
+        </div>
+
+        <!-- pro tip: treat demo like real -->
+        <div class="pro-tip animate" style="background-color: #fff5f0; border-left-color: #ff6b35;">
+            <h4 style="margin-top: 0;"><i class="fas fa-exclamation-triangle" style="color:#ff6b35;"></i> The Demo Trap</h4>
+            <p>Many traders take huge risks on demo because it’s “fake money”. Then they switch to live and lose. <strong>Treat your demo account exactly like real money – use proper position sizing and stop losses – so your habits translate.</strong></p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Demo Accounts</h3>
+
+                <div class="quiz-question">1. What is the main purpose of a demo account?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">To make real money</div>
+                    <div class="quiz-option" data-answer="correct">To practise trading with virtual funds</div>
+                    <div class="quiz-option" data-answer="wrong">To test new strategies without risk</div>
+                    <div class="quiz-option" data-answer="wrong">Both B and C</div>
+                </div>
+
+                <div class="quiz-question">2. Which factor is most important when choosing a broker for a demo account?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="correct">Regulation and platform quality</div>
+                    <div class="quiz-option" data-answer="wrong">High leverage only</div>
+                    <div class="quiz-option" data-answer="wrong">Low minimum deposit</div>
+                    <div class="quiz-option" data-answer="wrong">Number of currency pairs</div>
+                </div>
+
+                <div class="quiz-question">3. What is a common mistake traders make on demo accounts?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Using stop losses</div>
+                    <div class="quiz-option" data-answer="correct">Taking excessive risks because it's "fake money"</div>
+                    <div class="quiz-option" data-answer="wrong">Testing strategies</div>
+                    <div class="quiz-option" data-answer="wrong">Keeping a trading journal</div>
+                </div>
+
+                <div class="quiz-question">4. Which trading platform is most commonly offered by brokers for demo accounts?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="correct">MetaTrader 4/5</div>
+                    <div class="quiz-option" data-answer="wrong">Excel</div>
+                    <div class="quiz-option" data-answer="wrong">TradingView only</div>
+                    <div class="quiz-option" data-answer="wrong">Robinhood</div>
+                </div>
+
+                <div class="quiz-question">5. How should you treat your demo account to get the most benefit?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">As a game – try to double your money fast</div>
+                    <div class="quiz-option" data-answer="correct">Exactly like a real account – with proper risk management</div>
+                    <div class="quiz-option" data-answer="wrong">Only trade once a month</div>
+                    <div class="quiz-option" data-answer="wrong">Ignore all analysis</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 3 (practical execution) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue your practical journey</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'placing-first-trades' }) }}" class="next-card">
+                    <i class="fas fa-hand-pointer"></i>
+                    <h3>Placing Your First Trades</h3>
+                    <p style="color: var(--gray-color);">Learn the difference between market and pending orders.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'intro-technical-analysis' }) }}" class="next-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Intro to Technical Analysis</h3>
+                    <p style="color: var(--gray-color);">Understand support, resistance, and trends.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'trading-journal' }) }}" class="next-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Keeping a Trading Journal</h3>
+                    <p style="color: var(--gray-color);">Track your progress and improve.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

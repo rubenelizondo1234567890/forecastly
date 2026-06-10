@@ -1,0 +1,284 @@
+{# templates/roadmaps/career-capital/high-income-skills.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-chart-network" style="color: var(--career-color);"></i>
+                </div>
+                <h1>High‑Income Skills <span>Which Ones Actually Pay?</span></h1>
+                <p class="hero-description">
+                    Data‑driven overview of skills with the highest ROI: sales, copywriting, coding, AI prompting, and more. Find your fit.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(156,136,255,0.2); color: #c3b9ff;">
+                    <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 11 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">What Makes a Skill “High‑Income”?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Not all skills are created equal. A <strong>high‑income skill</strong> is one that is in high demand, relatively rare, and directly linked to revenue generation or cost savings. These skills allow you to command a premium because they solve critical problems for businesses and clients.
+            </p>
+            <p>
+                Based on market data and expert insights, the following skills consistently deliver the highest return on investment (ROI) for your learning time. We’ve grouped them into four high‑impact categories.
+            </p>
+        </section>
+
+        <!-- skill cards (like rule-grid) -->
+        <div class="rule-grid animate" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-chart-line"></i> Sales & Negotiation</h3>
+                <div class="percentage" style="color: var(--career-color);">$80k–$200k+</div>
+                <p>The ability to persuade, handle objections, and close deals is universally valuable. Sales skills directly impact revenue, making you indispensable in any industry.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-pen-fancy"></i> Copywriting</h3>
+                <div class="percentage" style="color: var(--career-color);">$60k–$150k+</div>
+                <p>Words that sell. Copywriters craft emails, landing pages, and ads that convert readers into customers. It’s a skill you can monetize as a freelancer or in‑house.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-code"></i> Coding & Development</h3>
+                <div class="percentage" style="color: var(--career-color);">$70k–$180k+</div>
+                <p>From web development to software engineering, coding builds the digital world. Specialize in high‑demand languages like Python, JavaScript, or Go.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-robot"></i> AI Prompting & Automation</h3>
+                <div class="percentage" style="color: var(--career-color);">$50k–$140k+</div>
+                <p>Learn to craft effective prompts for AI tools (ChatGPT, Midjourney) and automate workflows. This emerging skill is already reshaping knowledge work.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive with real numbers -->
+        <div class="card animate" style="border-top: 4px solid var(--career-color);">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Why These Skills Pay</h3>
+            <p style="margin-bottom: 20px;">Let’s look at real market data. According to salary surveys and freelance platforms:</p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px;">
+                <ul style="list-style: none;">
+                    <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> <strong>Sales:</strong> Top B2B sales reps earn $200k+ (base + commission).</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> <strong>Copywriting:</strong> Experienced direct‑response copywriters charge $5k–$10k per project.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> <strong>Coding:</strong> Senior software engineers at tech companies average $150k+.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> <strong>AI Prompting:</strong> Freelance AI consultants bill $100–$300/hour for prompt engineering.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- interactive tool: skill fit calculator -->
+        <div class="calc-card animate" style="border: 1px solid rgba(156,136,255,0.3);">
+            <h2 class="calc-title"><i class="fas fa-sliders-h" style="color: var(--career-color); margin-right: 10px;"></i> Skill Fit Calculator</h2>
+            <p style="font-size: 1.1rem;">Rate your interest (0–10) and current skill level (0–10) for each high‑income skill. We’ll suggest where to focus.</p>
+
+            <!-- Sales -->
+            <div class="calc-input">
+                <label>Sales & Negotiation</label>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+                    <div style="flex:1; min-width:200px;">
+                        <span>Interest: <span id="salesInterestVal">5</span></span>
+                        <input type="range" id="salesInterest" class="cat-input" min="0" max="10" value="5" step="1">
+                    </div>
+                    <div style="flex:1; min-width:200px;">
+                        <span>Skill: <span id="salesSkillVal">3</span></span>
+                        <input type="range" id="salesSkill" class="cat-input" min="0" max="10" value="3" step="1">
+                    </div>
+                    <div style="min-width:80px; text-align:center; background:var(--career-color); color:white; padding:8px; border-radius:12px;">
+                        <span id="salesScore">15</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copywriting -->
+            <div class="calc-input">
+                <label>Copywriting</label>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+                    <div style="flex:1; min-width:200px;">
+                        <span>Interest: <span id="copyInterestVal">6</span></span>
+                        <input type="range" id="copyInterest" class="cat-input" min="0" max="10" value="6" step="1">
+                    </div>
+                    <div style="flex:1; min-width:200px;">
+                        <span>Skill: <span id="copySkillVal">4</span></span>
+                        <input type="range" id="copySkill" class="cat-input" min="0" max="10" value="4" step="1">
+                    </div>
+                    <div style="min-width:80px; text-align:center; background:var(--career-color); color:white; padding:8px; border-radius:12px;">
+                        <span id="copyScore">24</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coding -->
+            <div class="calc-input">
+                <label>Coding / Development</label>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+                    <div style="flex:1; min-width:200px;">
+                        <span>Interest: <span id="codeInterestVal">4</span></span>
+                        <input type="range" id="codeInterest" class="cat-input" min="0" max="10" value="4" step="1">
+                    </div>
+                    <div style="flex:1; min-width:200px;">
+                        <span>Skill: <span id="codeSkillVal">2</span></span>
+                        <input type="range" id="codeSkill" class="cat-input" min="0" max="10" value="2" step="1">
+                    </div>
+                    <div style="min-width:80px; text-align:center; background:var(--career-color); color:white; padding:8px; border-radius:12px;">
+                        <span id="codeScore">8</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Prompting -->
+            <div class="calc-input">
+                <label>AI Prompting & Automation</label>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+                    <div style="flex:1; min-width:200px;">
+                        <span>Interest: <span id="aiInterestVal">7</span></span>
+                        <input type="range" id="aiInterest" class="cat-input" min="0" max="10" value="7" step="1">
+                    </div>
+                    <div style="flex:1; min-width:200px;">
+                        <span>Skill: <span id="aiSkillVal">5</span></span>
+                        <input type="range" id="aiSkill" class="cat-input" min="0" max="10" value="5" step="1">
+                    </div>
+                    <div style="min-width:80px; text-align:center; background:var(--career-color); color:white; padding:8px; border-radius:12px;">
+                        <span id="aiScore">35</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="calculateROI" class="btn" style="background-color: var(--career-color);">Calculate my best fit</button>
+            </div>
+
+            <div class="calc-result" style="border: 2px dashed var(--career-color);">
+                <p class="result-label" style="font-size:1.2rem;">🔍 Recommendation</p>
+                <div id="skillRecommendation" style="font-size:1.5rem; font-weight:600; color:var(--dark-color);">✨ Adjust the sliders to see which skill fits you best.</div>
+            </div>
+
+            <script>
+                // Live update for displayed values (even if not logged in)
+                document.querySelectorAll('.calc-input input[type=range]').forEach(slider => {
+                    const id = slider.id;
+                    const display = document.getElementById(id + 'Val');
+                    if (display) {
+                        slider.addEventListener('input', () => { display.textContent = slider.value; });
+                    }
+                });
+            </script>
+        </div>
+
+        <!-- tips for choosing your skill -->
+        <section class="animate">
+            <h2 class="section-title">🎯 How to Choose Your Focus</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-check-circle"></i> <strong>Market demand:</strong> Research job boards, freelance sites, and industry reports. Which skills are employers desperately seeking?</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Your natural aptitude:</strong> Leverage your strengths. If you enjoy writing, copywriting may be easier to master than coding.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Learning curve:</strong> Some skills (like AI prompting) can be learned in weeks; others (like software engineering) take months or years.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Income potential vs. effort:</strong> Compare the earning ceiling with the time investment. Sales often pays quickly; deep tech skills pay off later.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Combine skills:</strong> The most valuable professionals blend two skills (e.g., coding + sales = technical sales).</li>
+            </ul>
+        </section>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate" style="background-color: #1e293b;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'high-income-skills', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Quiz for everyone (but interactions trigger login modal if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background-color: #1e293b;">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your high‑income skills knowledge</h3>
+
+                <div class="quiz-question">1. Which skill is most directly tied to revenue generation?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Copywriting</div>
+                    <div class="quiz-option" data-answer="correct">Sales</div>
+                    <div class="quiz-option" data-answer="wrong">Coding</div>
+                    <div class="quiz-option" data-answer="wrong">AI Prompting</div>
+                </div>
+
+                <div class="quiz-question">2. What makes a skill “high‑income”?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">It’s easy to learn</div>
+                    <div class="quiz-option" data-answer="wrong">It’s popular on social media</div>
+                    <div class="quiz-option" data-answer="correct">High demand + rarity + revenue link</div>
+                    <div class="quiz-option" data-answer="wrong">It requires a college degree</div>
+                </div>
+
+                <div class="quiz-question">3. Which of these is an example of a high‑income skill?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Data entry</div>
+                    <div class="quiz-option" data-answer="correct">Copywriting</div>
+                    <div class="quiz-option" data-answer="wrong">General admin support</div>
+                    <div class="quiz-option" data-answer="wrong">Social media scrolling</div>
+                </div>
+
+                <div class="quiz-question">4. According to the article, what is the earning potential for top sales reps?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">$40k–$60k</div>
+                    <div class="quiz-option" data-answer="wrong">$50k–$80k</div>
+                    <div class="quiz-option" data-answer="correct">$80k–$200k+</div>
+                    <div class="quiz-option" data-answer="wrong">$200k–$500k</div>
+                </div>
+
+                <div class="quiz-question">5. Why might you combine two skills (e.g., coding + sales)?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">It’s easier than learning one deeply</div>
+                    <div class="quiz-option" data-answer="correct">It creates a rare and valuable combination</div>
+                    <div class="quiz-option" data-answer="wrong">It guarantees a promotion</div>
+                    <div class="quiz-option" data-answer="wrong">Employers require it</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next articles in Phase 1 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Foundation First phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'what-is-career-capital' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-dharmachakra"></i>
+                    <h3>What is Career Capital</h3>
+                    <p style="color: var(--gray-color);">Understand the three pillars of career capital.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'self-assessment' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-smile"></i>
+                    <h3>Self‑Assessment</h3>
+                    <p style="color: var(--gray-color);">Uncover your natural advantages to build skills faster.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'growth-mindset' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-brain"></i>
+                    <h3>Growth Mindset</h3>
+                    <p style="color: var(--gray-color);">Cultivate resilience and turn setbacks into fuel.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

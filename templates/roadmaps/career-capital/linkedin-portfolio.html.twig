@@ -1,0 +1,262 @@
+{# templates/roadmaps/career-capital/linkedin-portfolio.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+    {# Inline script: live slider value updates (works for everyone) #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = [
+                { slider: 'profileCompleteness', display: 'profileCompletenessVal' },
+                { slider: 'experienceDetails', display: 'experienceDetailsVal' },
+                { slider: 'recommendations', display: 'recommendationsVal' },
+                { slider: 'networkEngagement', display: 'networkEngagementVal' }
+            ];
+            sliders.forEach(item => {
+                const s = document.getElementById(item.slider);
+                const d = document.getElementById(item.display);
+                if (s && d) {
+                    s.addEventListener('input', () => { d.textContent = s.value; });
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fab fa-linkedin" style="color: var(--career-color);"></i>
+                </div>
+                <h1>LinkedIn & Portfolio That <span>Attract Recruiters</span></h1>
+                <p class="hero-description">
+                    Optimize your profile with keywords, create a simple portfolio site, and share content that showcases your skills.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 11 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">Why your online presence matters</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Recruiters spend an average of <strong>6 seconds</strong> scanning a LinkedIn profile. Within that time, they decide whether to reach out. A strong profile and portfolio can be the difference between being overlooked and landing your dream job.
+            </p>
+            <div class="highlight-box">
+                <i class="fas fa-search"></i>
+                <strong>87% of recruiters</strong> use LinkedIn to vet candidates. Your profile is your digital first impression.
+            </div>
+        </section>
+
+        <!-- Key elements of a recruiter‑attracting profile -->
+        <section class="animate">
+            <h2 class="section-title">🔑 Key elements of a recruiter‑attracting profile</h2>
+            <div class="rule-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                <div class="rule-item">
+                    <h3><i class="fas fa-camera"></i> Professional photo</h3>
+                    <p>Profiles with photos get 21x more views. Use a high‑quality, friendly headshot.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-heading"></i> Keyword‑rich headline</h3>
+                    <p>Don’t just list your job title. Include skills and value proposition (e.g., “Marketing Manager | SEO & Content Strategy | Data‑Driven”).</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-file-alt"></i> Compelling “About” section</h3>
+                    <p>Tell your story, highlight achievements, and include a call to action (e.g., “Open to opportunities in…”).</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-briefcase"></i> Detailed experience</h3>
+                    <p>Use bullet points with quantifiable results (e.g., “Increased sales by 30%”). Include relevant keywords.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-thumbs-up"></i> Recommendations</h3>
+                    <p>Ask colleagues, managers, or clients to write short recommendations. They build trust.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-link"></i> Portfolio link</h3>
+                    <p>Add a link to your personal website or portfolio (e.g., GitHub, Behance, your own domain).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Building a simple portfolio website -->
+        <section class="animate">
+            <h2 class="section-title">🖥️ Building a simple portfolio website</h2>
+            <div class="card">
+                <p>You don’t need to be a web developer to create a professional portfolio. Use these tools:</p>
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle"></i> <strong>Notion</strong> – Free, easy templates for portfolios.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Canva</strong> – Design a one‑page site and publish.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Carrd</strong> – Build a simple, mobile‑friendly site for $19/year.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>GitHub Pages</strong> – Perfect for developers (free).</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>WordPress or Squarespace</strong> – More control, but costs.</li>
+                </ul>
+                <p style="margin-top: 20px;">Include: your bio, key projects, testimonials, and contact info. Keep it clean and updated.</p>
+            </div>
+        </section>
+
+        <!-- Content sharing strategy -->
+        <section class="animate">
+            <h2 class="section-title">📢 Share content to get noticed</h2>
+            <div class="pro-tip">
+                <i class="fas fa-bullhorn"></i>
+                <strong>Post regularly to stay visible:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Share industry news with your take.</li>
+                    <li>Write about a project you worked on – what you learned, challenges.</li>
+                    <li>Comment on posts from influencers and companies you admire.</li>
+                    <li>Use relevant hashtags (e.g., #Marketing #TechCareers).</li>
+                </ul>
+                <p>Even one post per week can dramatically increase profile views.</p>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE TOOL: LinkedIn Profile Strength Analyzer -->
+        <div class="calc-card animate">
+            <h2 class="calc-title"><i class="fas fa-chart-pie" style="color: var(--career-color);"></i> LinkedIn Profile Strength Analyzer</h2>
+            <p>Rate your profile on four key dimensions. See your overall strength and get personalized tips.</p>
+
+            <div class="calc-input">
+                <label for="profileCompleteness">Profile completeness (photo, headline, about)</label>
+                <div class="slider-container">
+                    <input type="range" id="profileCompleteness" class="cat-input" min="0" max="100" value="70" step="5">
+                    <span class="slider-value" id="profileCompletenessVal">70</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="experienceDetails">Experience details (keywords, achievements)</label>
+                <div class="slider-container">
+                    <input type="range" id="experienceDetails" class="cat-input" min="0" max="100" value="60" step="5">
+                    <span class="slider-value" id="experienceDetailsVal">60</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="recommendations">Recommendations & endorsements</label>
+                <div class="slider-container">
+                    <input type="range" id="recommendations" class="cat-input" min="0" max="100" value="40" step="5">
+                    <span class="slider-value" id="recommendationsVal">40</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="networkEngagement">Network & engagement (connections, posting)</label>
+                <div class="slider-container">
+                    <input type="range" id="networkEngagement" class="cat-input" min="0" max="100" value="50" step="5">
+                    <span class="slider-value" id="networkEngagementVal">50</span>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="linkedinAnalyzeBtn" class="btn" style="background-color: var(--career-color);">Analyze my profile</button>
+            </div>
+
+            <div class="calc-result" id="linkedinResult" style="border: 2px dashed var(--career-color);">
+                <p class="result-label">Your profile strength score</p>
+                <p style="font-size: 1rem;">Adjust the sliders and click "Analyze" to see your score and tips.</p>
+            </div>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user who already took the quiz #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'linkedin-portfolio', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Quiz for everyone – interactivity blocked by home.js if not logged in #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: LinkedIn & portfolio best practices</h3>
+
+                <div class="quiz-question">1. How much time does a recruiter typically spend scanning a LinkedIn profile?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">30 seconds</div>
+                    <div class="quiz-option" data-answer="wrong">1 minute</div>
+                    <div class="quiz-option" data-answer="correct">6 seconds</div>
+                    <div class="quiz-option" data-answer="wrong">2 minutes</div>
+                </div>
+
+                <div class="quiz-question">2. Which section of your LinkedIn profile is most important for SEO (being found in searches)?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Profile photo</div>
+                    <div class="quiz-option" data-answer="correct">Headline and experience keywords</div>
+                    <div class="quiz-option" data-answer="wrong">Recommendations</div>
+                    <div class="quiz-option" data-answer="wrong">Accomplishments</div>
+                </div>
+
+                <div class="quiz-question">3. What’s a recommended tool to build a simple portfolio for free?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Adobe Dreamweaver</div>
+                    <div class="quiz-option" data-answer="wrong">Microsoft Word</div>
+                    <div class="quiz-option" data-answer="correct">Carrd or GitHub Pages</div>
+                    <div class="quiz-option" data-answer="wrong">Photoshop</div>
+                </div>
+
+                <div class="quiz-question">4. How can you increase your visibility on LinkedIn?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Posting once a year</div>
+                    <div class="quiz-option" data-answer="wrong">Only connecting with friends</div>
+                    <div class="quiz-option" data-answer="correct">Sharing industry insights regularly</div>
+                    <div class="quiz-option" data-answer="wrong">Using no hashtags</div>
+                </div>
+
+                <div class="quiz-question">5. Why are recommendations valuable?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">They make your profile look longer</div>
+                    <div class="quiz-option" data-answer="wrong">They’re required for a profile</div>
+                    <div class="quiz-option" data-answer="correct">They build trust and social proof</div>
+                    <div class="quiz-option" data-answer="wrong">They increase your connection count</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next articles in Phase 3 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue Phase 3: Practical Execution</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'negotiation-scripts' }) }}" class="next-card">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Negotiation Scripts</h3>
+                    <p>Word‑for‑word scripts for raises and job offers.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'side-hustle-launch' }) }}" class="next-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Side Hustle Launch</h3>
+                    <p>First 30 days plan for freelancers and creators.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'informational-interviews' }) }}" class="next-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Informational Interviews</h3>
+                    <p>Smart networking without being awkward.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

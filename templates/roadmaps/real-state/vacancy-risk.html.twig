@@ -1,0 +1,215 @@
+{# templates/roadmaps/real-state/vacancy-risk.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('real_state_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('real_state_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #2f2a24 0%, #5e4b3f 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--real-estate-color);">
+                    <i class="fas fa-door-open"></i>
+                </div>
+                <h1>Vacancy Risk <span>How to Mitigate It (for Landlords)</span></h1>
+                <p class="hero-description">
+                    An empty property bleeds money. Learn how to calculate vacancy risk, build a reserve fund, and keep your units filled with happy tenants.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(225,112,85,0.2); color: #f7b9a9;">
+                    <i class="fas fa-layer-group"></i> Phase 2: Risk Management · 7 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">🏚️ The Silent Cash Flow Killer</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Vacancy is inevitable. Between tenants, you lose rent but still pay the mortgage, taxes, and utilities.
+                A 5% vacancy rate might not sound like much, but over time it can wipe out your profits.
+                <strong>Successful landlords plan for vacancies before they happen.</strong>
+            </p>
+        </section>
+
+        <!-- Key Factors Grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-percent"></i> Vacancy Rate</h4>
+                <p>Average time a property sits empty. Market average is 4–8%. Calculate yours: (vacant days ÷ 365) × 100%.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-piggy-bank"></i> Reserve Fund</h4>
+                <p>Savings set aside to cover expenses during vacancies. Aim for 3–6 months of operating costs per property.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-users"></i> Tenant Retention</h4>
+                <p>Keeping good tenants longer reduces turnover costs. Responsive maintenance, fair rent increases, and good relationships pay off.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-bullhorn"></i> Marketing & Timing</h4>
+                <p>List early, use quality photos, and price competitively. Avoid winter move‑ins if your market slows down.</p>
+            </div>
+        </div>
+
+        <!-- Deeper Dive Card -->
+        <div class="card animate">
+            <h3><i class="fas fa-calculator"></i> The Real Cost of Vacancy</h3>
+            <p>Vacancy costs go beyond lost rent: you still pay mortgage, taxes, insurance, and maybe utilities. Plus turnover expenses – cleaning, repairs, advertising, and showing time.</p>
+            <p style="background: var(--light-gray); padding: 15px; border-radius: 12px;">
+                <strong>Example:</strong> A $1,500/month rental vacant for one month costs $1,500 lost rent + $500 turnover = $2,000. That's a full month's profit gone. A reserve fund prevents this from becoming a crisis.
+            </p>
+        </div>
+
+        <!-- Interactive Tool: Vacancy Impact Simulator (disabled for non-logged-in) -->
+        <div class="card animate" id="vacancy-simulator">
+            <h3><i class="fas fa-chart-line"></i> Interactive: Vacancy Impact & Reserve Simulator</h3>
+            <p>See how vacancy affects your cash flow and how much reserve you need.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1 1 200px;">
+                    <label>Monthly Rent ($) <span id="rentValVacancy">1500</span></label>
+                    <input type="range" id="monthlyRentVacancy" min="500" max="5000" value="1500" step="50" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Monthly Operating Costs ($) <span id="opCostsVal">1200</span></label>
+                    <input type="range" id="monthlyOpCosts" min="300" max="4000" value="1200" step="50" class="cat-input" style="width:100%;">
+                    <small>Mortgage, taxes, insurance, utilities</small>
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Vacancy Rate (%) <span id="vacancyRateVal">5</span></label>
+                    <input type="range" id="vacancyRate" min="0" max="20" value="5" step="0.5" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Turnover Costs ($) <span id="turnoverVal">500</span></label>
+                    <input type="range" id="turnoverCosts" min="0" max="3000" value="500" step="100" class="cat-input" style="width:100%;">
+                    <small>Cleaning, repairs, ads</small>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="calcVacancyImpact" class="btn-outline">Calculate Impact</button>
+            </div>
+
+            <div id="vacancyResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                <p>Adjust the values and click the button.</p>
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px;">
+                <i class="fas fa-lightbulb"></i> This simulator estimates your annual vacancy loss and suggests a reserve fund. Your actual numbers may vary. Always keep a cushion!
+            </p>
+        </div>
+
+        <!-- Mitigation Strategies -->
+        <div class="card animate">
+            <h3><i class="fas fa-shield-halved"></i> How to Minimize Vacancy</h3>
+            <ul>
+                <li><strong>Price competitively</strong> – check market rents regularly. Overpricing leads to longer vacancies.</li>
+                <li><strong>Market year‑round</strong> – list 60 days before lease end; use good photos and virtual tours.</li>
+                <li><strong>Retain tenants</strong> – respond quickly to repairs, consider reasonable rent increases, and renew early.</li>
+                <li><strong>Screen thoroughly</strong> – good tenants stay longer and pay on time.</li>
+                <li><strong>Build relationships</strong> – a simple thank‑you or holiday card can improve loyalty.</li>
+            </ul>
+        </div>
+
+        <!-- Quiz Section -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'vacancy-risk', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #e17055; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">📝 Test Your Knowledge: Vacancy Risk</h3>
+
+                <div class="quiz-question">1. What is a typical vacancy rate in many rental markets?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">0–2%</div>
+                    <div class="quiz-option" data-answer="correct">4–8%</div>
+                    <div class="quiz-option" data-answer="wrong">10–15%</div>
+                    <div class="quiz-option" data-answer="wrong">20%+</div>
+                </div>
+
+                <div class="quiz-question">2. Why is a reserve fund important for landlords?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">To pay for property upgrades</div>
+                    <div class="quiz-option" data-answer="correct">To cover expenses during vacancies and emergencies</div>
+                    <div class="quiz-option" data-answer="wrong">To increase your down payment on another property</div>
+                    <div class="quiz-option" data-answer="wrong">To pay taxes</div>
+                </div>
+
+                <div class="quiz-question">3. Which of the following is a turnover cost?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Mortgage payment</div>
+                    <div class="quiz-option" data-answer="correct">Cleaning and painting between tenants</div>
+                    <div class="quiz-option" data-answer="wrong">Property taxes</div>
+                    <div class="quiz-option" data-answer="wrong">Insurance premiums</div>
+                </div>
+
+                <div class="quiz-question">4. How can a landlord reduce vacancy risk?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Always raising rent annually</div>
+                    <div class="quiz-option" data-answer="correct">Building good relationships with tenants</div>
+                    <div class="quiz-option" data-answer="wrong">Ignoring maintenance requests</div>
+                    <div class="quiz-option" data-answer="wrong">Pricing above market rate</div>
+                </div>
+
+                <div class="quiz-question">5. If your monthly operating costs are $1,200 and you have a 1‑month vacancy, how much should you have in reserve to cover it (excluding turnover)?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="correct">$1,200</div>
+                    <div class="quiz-option" data-answer="wrong">$600</div>
+                    <div class="quiz-option" data-answer="wrong">$2,400</div>
+                    <div class="quiz-option" data-answer="wrong">$0</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--real-estate-color);">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next Steps in Phase 2 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 2: Risk Management</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'real-estate-market-risk' }) }}" class="next-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Market Risk & Cycles</h3>
+                    <p>Understand booms and busts.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'hidden-costs' }) }}" class="next-card">
+                    <i class="fas fa-wrench"></i>
+                    <h3>The Hidden Costs of Homeownership</h3>
+                    <p>Taxes, insurance, maintenance.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'legal-liability' }) }}" class="next-card">
+                    <i class="fas fa-gavel"></i>
+                    <h3>Legal & Liability Risks</h3>
+                    <p>Insurance, LLCs, and protecting your assets.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

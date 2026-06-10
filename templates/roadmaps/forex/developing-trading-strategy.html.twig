@@ -1,0 +1,240 @@
+{# templates/roadmaps/forex/developing-trading-strategy.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('forex_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('forex_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – forex style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h1>Developing a Simple <span>Trading Strategy</span></h1>
+                <p class="hero-description">
+                    A trading strategy is your roadmap to consistent profits. Learn how to combine entry rules, exit rules,
+                    and risk management into a repeatable plan that you can backtest and trust.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 10 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🧩 What Makes a Trading Strategy?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                A trading strategy is a set of objective rules that tells you exactly when to enter, when to exit,
+                and how much to risk. It removes emotion from the equation and allows you to evaluate your performance
+                based on data, not feelings.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                In this article, you’ll learn the essential components of any strategy – entry triggers, stop loss placement,
+                take profit targets, and position sizing. Then we’ll walk through building a simple moving average crossover
+                strategy that you can test on a demo account.
+            </p>
+        </section>
+
+        <!-- key components grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-sign-in-alt"></i> Entry Rules</h3>
+                <div class="percentage" style="font-size: 1.2rem;">When to buy/sell</div>
+                <p>Based on technical indicators (e.g., moving average crossover, RSI oversold) or price action (e.g., breakout of resistance). Must be specific and unambiguous.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-sign-out-alt"></i> Exit Rules</h3>
+                <div class="percentage" style="font-size: 1.2rem;">When to close</div>
+                <p>Includes stop loss (where you're wrong) and take profit (where you're right). Can also be trailing stops or time‑based exits.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-balance-scale"></i> Risk Management</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Position sizing</div>
+                <p>How much of your account to risk per trade (usually 1‑2%). Determines lot size based on stop distance.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-chart-line"></i> Market Conditions</h3>
+                <div class="percentage" style="font-size: 1.2rem;">When to trade</div>
+                <p>Some strategies work only in trending markets, others in ranges. Define the environment that suits your strategy.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive: building a simple strategy -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🔨 Building a Moving Average Crossover Strategy</h3>
+            <p style="margin-bottom: 20px;">
+                Let’s create a simple trend‑following strategy using two exponential moving averages (EMA).
+            </p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Indicators:</strong> 10‑period EMA (fast) and 30‑period EMA (slow) on 1‑hour chart.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Entry (long):</strong> When fast EMA crosses above slow EMA.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Entry (short):</strong> When fast EMA crosses below slow EMA.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Stop loss:</strong> 20 pips below the recent swing low (for long) or above swing high (for short).</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Take profit:</strong> 60 pips (1:3 risk‑reward), or when fast EMA crosses back.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Risk per trade:</strong> 1% of account.</li>
+                </ul>
+                <p class="pro-tip" style="margin-top: 15px; background-color: #eef2ff; border-left-color: #3182ce;"><i class="fas fa-lightbulb"></i> Always backtest your strategy on historical data before trading it live. Many platforms allow you to run a backtest in minutes.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Strategy Builder Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="strategy-builder">
+            <h3><i class="fas fa-wrench"></i> Strategy Builder Simulator</h3>
+            <p>Combine basic building blocks to see a description of your custom strategy.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
+                <div style="flex: 1 1 200px;">
+                    <label style="display: block; font-weight: 600;">Entry Condition</label>
+                    <select id="entryCondition" class="cat-input" style="width: 100%;">
+                        <option value="macrossover">Moving Average Crossover</option>
+                        <option value="rsioverbought">RSI Oversold (&lt;30) for long</option>
+                        <option value="rsioversold">RSI Overbought (&gt;70) for short</option>
+                        <option value="supportbounce">Bounce from Support</option>
+                        <option value="resistancebreak">Breakout above Resistance</option>
+                    </select>
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label style="display: block; font-weight: 600;">Stop Loss Placement</label>
+                    <select id="stopPlacement" class="cat-input" style="width: 100%;">
+                        <option value="swing">Below recent swing low / above swing high</option>
+                        <option value="atr">1.5x ATR</option>
+                        <option value="fixed">Fixed 30 pips</option>
+                        <option value="ema">Below fast EMA</option>
+                    </select>
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label style="display: block; font-weight: 600;">Take Profit Method</label>
+                    <select id="tpMethod" class="cat-input" style="width: 100%;">
+                        <option value="rr2">Fixed 1:2 risk‑reward</option>
+                        <option value="rr3">Fixed 1:3 risk‑reward</option>
+                        <option value="resistance">Previous resistance/support</option>
+                        <option value="ema">Fast EMA cross</option>
+                    </select>
+                </div>
+                <div style="flex: 0 0 auto; align-self: flex-end;">
+                    <button id="strategyBuildBtn" class="btn-outline" style="padding: 12px 30px;">Build Strategy</button>
+                </div>
+            </div>
+
+            <div id="strategyPreview" style="margin-top: 25px; padding: 15px; background: var(--light-color); border-radius: 12px; font-size: 1.1rem;">
+                Your custom strategy description will appear here.
+            </div>
+        </div>
+
+        <!-- example trade box -->
+        <div class="highlight-box animate">
+            <h3><i class="fas fa-bolt"></i> Example – EMA Crossover Trade</h3>
+            <p>On the 1‑hour chart of EUR/USD, the 10 EMA crosses above the 30 EMA at 1.1050. You check that the overall trend is up (price above both EMAs). You enter long at 1.1050, place a stop loss at 1.1020 (30 pips below the last swing low), and set a take profit at 1.1140 (1:3 ratio, 90 pips). The trade hits your target two days later.</p>
+        </div>
+
+        <!-- pro tip: simplicity wins -->
+        <div class="pro-tip animate" style="background-color: #fff5f0; border-left-color: #ff6b35;">
+            <h4 style="margin-top: 0;"><i class="fas fa-dragon" style="color:#ff6b35;"></i> Keep It Simple</h4>
+            <p>Many beginners add too many indicators, leading to analysis paralysis. A simple strategy with 2‑3 rules, properly backtested, often outperforms a complex one. <strong>Master the basics before adding complexity.</strong></p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Trading Strategy Basics</h3>
+
+                <div class="quiz-question">1. What are the three essential components of any trading strategy?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Indicators, charts, news</div>
+                    <div class="quiz-option" data-answer="correct">Entry rules, exit rules, risk management</div>
+                    <div class="quiz-option" data-answer="wrong">Leverage, margin, broker</div>
+                    <div class="quiz-option" data-answer="wrong">Fear, greed, hope</div>
+                </div>
+
+                <div class="quiz-question">2. A moving average crossover (fast above slow) typically signals:</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="correct">A potential uptrend / buy signal</div>
+                    <div class="quiz-option" data-answer="wrong">A potential downtrend / sell signal</div>
+                    <div class="quiz-option" data-answer="wrong">Range‑bound market</div>
+                    <div class="quiz-option" data-answer="wrong">High volatility</div>
+                </div>
+
+                <div class="quiz-question">3. Why is it important to backtest a strategy?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">To impress other traders</div>
+                    <div class="quiz-option" data-answer="correct">To see how it would have performed historically and validate its profitability</div>
+                    <div class="quiz-option" data-answer="wrong">To guarantee future profits</div>
+                    <div class="quiz-option" data-answer="wrong">To find the best broker</div>
+                </div>
+
+                <div class="quiz-question">4. What is the recommended risk per trade for a beginner?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="correct">1‑2% of account balance</div>
+                    <div class="quiz-option" data-answer="wrong">10‑20%</div>
+                    <div class="quiz-option" data-answer="wrong">50%</div>
+                    <div class="quiz-option" data-answer="wrong">As much as possible</div>
+                </div>
+
+                <div class="quiz-question">5. What is a common pitfall when building a strategy?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Using too few indicators</div>
+                    <div class="quiz-option" data-answer="correct">Over‑optimizing (curve‑fitting) to past data</div>
+                    <div class="quiz-option" data-answer="wrong">Testing on a demo</div>
+                    <div class="quiz-option" data-answer="wrong">Keeping a trading journal</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 4 (skill building) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue building your skills</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'fundamental-analysis-central-banks' }) }}" class="next-card">
+                    <i class="fas fa-university"></i>
+                    <h3>Fundamental Analysis</h3>
+                    <p style="color: var(--gray-color);">Central banks and economic data.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'advanced-risk-management' }) }}" class="next-card">
+                    <i class="fas fa-link"></i>
+                    <h3>Advanced Risk Management</h3>
+                    <p style="color: var(--gray-color);">Hedging and correlations.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'demo-to-live' }) }}" class="next-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>From Demo to Live</h3>
+                    <p style="color: var(--gray-color);">When and how to transition.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

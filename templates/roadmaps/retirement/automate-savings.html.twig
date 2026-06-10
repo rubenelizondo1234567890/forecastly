@@ -1,0 +1,169 @@
+{# templates/roadmaps/retirement/automate-savings.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('retirement_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('retirement_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – retirement style -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #1e1a3a 0%, #2d2b55 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--retirement-color);">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h1>Set It and Forget It <span>Automate Your Retirement Savings</span></h1>
+                <p class="hero-description">
+                    The easiest way to build wealth is to make it automatic. By setting up recurring contributions, you remove emotion, ensure consistency, and harness dollar‑cost averaging. Learn why automation beats trying to time the market.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(108,92,231,0.2); color: #c3b9ff;">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 7 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🤖 Why Automation Wins</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                <strong>“Pay yourself first”</strong> isn't just a slogan – it's a proven strategy. When you automate contributions from each paycheck, you invest before you have a chance to spend. Over time, this habit can turn small, regular amounts into a substantial nest egg, without stress or guesswork.
+            </p>
+        </section>
+
+        <!-- key insights in rule‑grid style -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-hand-holding-usd"></i> Pay Yourself First</h4>
+                <p>Treat your retirement contribution like a bill. Automate it on payday so you never see the money – and you won't miss it.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-chart-line"></i> Dollar‑Cost Averaging</h4>
+                <p>By investing a fixed amount regularly, you buy more shares when prices are low and fewer when they're high – automatically.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-brain"></i> Remove Emotion</h4>
+                <p>Automation prevents you from making impulsive decisions based on fear or greed – the biggest enemy of long‑term returns.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-clock"></i> Consistency Beats Timing</h4>
+                <p>Trying to time the market almost always leads to missed opportunities. Automated investing ensures you're always in the game.</p>
+            </div>
+        </div>
+
+        <!-- interactive tool: Automation vs. Market Timing Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="automation-tool">
+            <h3><i class="fas fa-chart-bar"></i> Interactive: Automation vs. Trying to Time the Market</h3>
+            <p>See how missing just a few contributions per year (because you're waiting for the "right" moment) can cost you dearly over time.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1 1 200px;">
+                    <label>Monthly contribution ($)</label>
+                    <input type="number" id="monthlyAuto" value="500" step="50" min="0" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Years</label>
+                    <input type="number" id="yearsAuto" value="30" step="1" min="1" max="60" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Expected annual return (%)</label>
+                    <input type="number" id="returnAuto" value="7" step="0.1" min="0" max="15" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 250px;">
+                    <label>Missed months per year (trying to time) <span id="missedVal">2</span></label>
+                    <input type="range" id="missedMonths" min="0" max="6" value="2" step="1" class="cat-input" style="width:100%;">
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="simulateAutomation" class="btn-outline">Compare strategies</button>
+            </div>
+
+            <div id="automationResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                <p>Adjust the values and click the button.</p>
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px; background-color: #e9e5ff; border-left-color: var(--retirement-color);">
+                <i class="fas fa-lightbulb"></i> Even if you're a great market timer, you'd need to be right almost all the time to beat simple automation. Most professional fund managers fail to beat the market consistently.
+            </p>
+        </div>
+
+        <!-- quiz section -->
+        <div class="quiz-container animate" data-page-id="{{ page.id | default(50) }}" style="background: #1e1a3a;">
+            <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Automating Savings</h3>
+
+            <div class="quiz-question">1. What does "pay yourself first" mean?</div>
+            <div class="quiz-options" data-question="1">
+                <div class="quiz-option" data-answer="wrong">Spend on yourself before bills</div>
+                <div class="quiz-option" data-answer="correct">Automatically save a portion of your income before paying other expenses</div>
+                <div class="quiz-option" data-answer="wrong">Invest only when you have extra money</div>
+                <div class="quiz-option" data-answer="wrong">Buy yourself a gift each month</div>
+            </div>
+
+            <div class="quiz-question">2. Dollar‑cost averaging means:</div>
+            <div class="quiz-options" data-question="2">
+                <div class="quiz-option" data-answer="wrong">Investing a lump sum all at once</div>
+                <div class="quiz-option" data-answer="correct">Investing a fixed amount regularly, regardless of price</div>
+                <div class="quiz-option" data-answer="wrong">Waiting for market dips to buy</div>
+                <div class="quiz-option" data-answer="wrong">Averaging your returns each year</div>
+            </div>
+
+            <div class="quiz-question">3. Which emotion can hurt investment returns the most?</div>
+            <div class="quiz-options" data-question="3">
+                <div class="quiz-option" data-answer="wrong">Excitement</div>
+                <div class="quiz-option" data-answer="wrong">Boredom</div>
+                <div class="quiz-option" data-answer="correct">Fear and greed</div>
+                <div class="quiz-option" data-answer="wrong">Confidence</div>
+            </div>
+
+            <div class="quiz-question">4. If you automate your retirement contributions, you:</div>
+            <div class="quiz-options" data-question="4">
+                <div class="quiz-option" data-answer="correct">Remove the temptation to spend that money</div>
+                <div class="quiz-option" data-answer="wrong">Guarantee high returns</div>
+                <div class="quiz-option" data-answer="wrong">Never need to review your portfolio</div>
+                <div class="quiz-option" data-answer="wrong">Avoid paying taxes</div>
+            </div>
+
+            <div class="quiz-question">5. Why is trying to time the market generally a bad idea?</div>
+            <div class="quiz-options" data-question="5">
+                <div class="quiz-option" data-answer="wrong">It's illegal</div>
+                <div class="quiz-option" data-answer="correct">It's nearly impossible to do consistently, and you risk missing the best days</div>
+                <div class="quiz-option" data-answer="wrong">It requires too much money</div>
+                <div class="quiz-option" data-answer="wrong">The SEC prohibits it</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button id="quiz-submit" class="btn" style="background-color: var(--retirement-color);">Get score & submit</button>
+            </div>
+            <div class="quiz-result"></div>
+        </div>
+
+        <!-- next steps in Phase 3 (Practical Execution) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 3: Practical Execution</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'retirement', slug: 'open-first-retirement-account' }) }}" class="next-card">
+                    <i class="fas fa-file-signature"></i>
+                    <h3>Open Your First Account</h3>
+                    <p>Step‑by‑step guide to opening an IRA or 401(k).</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'retirement', slug: 'target-date-funds' }) }}" class="next-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Target‑Date Funds</h3>
+                    <p>The simplest investment choice for beginners.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'retirement', slug: 'employer-match' }) }}" class="next-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Employer Match 101</h3>
+                    <p>Don't leave free money on the table.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

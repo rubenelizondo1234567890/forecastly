@@ -1,0 +1,135 @@
+{# templates/base-roadmaps.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block headmeta %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        {# Favicon #}
+        <link rel="icon" type="image/x-icon" href="{{ asset('template/img/favicon.ico') }}">
+        <link rel="apple-touch-icon" href="{{ asset('template/img/favicon_apple.ico') }}">
+        <title>{{ page.title }} - Forecastly | Money Moxie HQ</title>
+        <meta name="csrf-token" content="{{ csrf_token('authenticate') }}">
+        <meta name="csrf-token-quiz" content="{{ csrf_token('quiz_submit') }}">
+        <meta name="description" content="{{ page.seoDescription }}">
+        <meta name="keywords" content="{{ page.seoKeywords }}">
+
+        {# Open Graph meta tags for social media sharing #}
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="{{ page.title }}">
+        <meta property="og:description" content="{{ page.seoDescription }}">
+        <meta property="og:image" content="{{ page.getOgImgUrl }}">
+
+        {# Twitter Card meta tags #}
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{ page.title }}">
+        <meta name="twitter:description" content="{{ page.seoDescription }}">
+
+    {% endblock %}
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('home_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('home_js') }}
+    {% endblock %}
+
+    {% if page is defined %}
+        <!-- structured data for SEO (JSON-LD) -->
+        {% include('json-schema.html.twig') %}
+    {% endif %}
+</head>
+<body class="{% if app.user %}logged-in{% endif %}">
+{# User bar for logged-in users #}
+{% if app.user %}
+    <div class="user-bar">
+        <div class="user-bar-content">
+            <div class="user-bar-left">
+                <span class="user-icon-mobile">
+                    <i class="fas fa-user-circle"></i>
+                </span>
+                <span class="user-name-desktop">Welcome, {{ app.user.firstName ?? app.user.userIdentifier }}</span>
+            </div>
+            <div class="user-bar-right">
+                <div class="user-links-desktop">
+                    <a href="{{ path('customer_education_progress') }}">My Learning</a>
+                    <a href="{{ path('customer_account_settings_index') }}">Account Settings</a>
+                    <form method="post" action="{{ path('customer_logout') }}" style="display: inline;">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+                        <button type="submit" class="logout-button">Logout</button>
+                    </form>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu-dropdown">
+            <div class="mobile-user-name">
+                <i class="fas fa-user-circle"></i> Welcome, {{ app.user.firstName ?? app.user.userIdentifier }}
+            </div>
+            <div class="mobile-user-links">
+                <a href="{{ path('customer_education_progress') }}">My Learning</a>
+                <a href="{{ path('customer_account_settings_index') }}">Account Settings</a>
+                <form method="post" action="{{ path('customer_logout') }}">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+                    <button type="submit" class="logout-button">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% block body %}{% endblock %}
+
+<div class="container">
+    {# Add the login modal (hidden by default) #}
+    <div id="login-modal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>🔒 Login or Register</h2>
+            <p>You need to be logged in to use calculators, quizzes, and other interactive tools.</p>
+            <div class="modal-actions">
+                {% set redirect_url = app.request.pathInfo ~ (app.request.queryString ? '?' ~ app.request.queryString) %}
+                <a href="{{ path('customer_login', {'redirect_to': redirect_url}) }}" class="modal-btn">Login</a>
+                <a href="{{ path('prospect_landing') }}" class="modal-btn modal-btn-outline">Create Account</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz retake modal -->
+    <div id="quiz-retake-modal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>❌ Quiz Failed</h2>
+            <p>You need to score at least 3 out of 5 to pass. Please review the article and try again.</p>
+            <div class="modal-actions">
+                <button id="quiz-retry" class="btn">Retry Quiz</button>
+            </div>
+        </div>
+    </div>
+    <!-- Quiz success modal -->
+    <div id="quiz-success-modal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>✅ Quiz Passed!</h2>
+            <p>Great job! You passed the quiz. Keep up the good work!</p>
+            <div class="modal-actions">
+                <button class="modal-btn modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    {% include('journeys-footer.html.twig') %}
+</div>
+
+{# Pass login status to JavaScript #}
+<script>
+    window.userLoggedIn = {{ app.user ? 'true' : 'false' }};
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+{# templates/customer/revolving_payments/_form.html.twig #}
+<div class="form-section">
+    <div class="section-header">
+        <h2 class="section-title">
+            {% if form.vars.value.id %}Edit Revolving Payment{% else %}Add New Revolving Payment{% endif %}
+        </h2>
+    </div>
+
+    {# Set the correct form action based on whether we're editing or creating #}
+    {% set formAction = form.vars.value.id ?
+        path('customer_revolving_payments_edit', {'id': form.vars.value.id}) :
+        path('customer_revolving_payments_new')
+    %}
+
+    {{ form_start(form, {'attr': {'id': 'revolving-payments-form', 'action': formAction}}) }}
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'e.g., Credit Card Payment, Loan Payment'}}) }}
+        {{ form_errors(form.name) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.paymentStrategy) }}
+        {{ form_widget(form.paymentStrategy, {'attr': {'class': 'form-control payment-strategy-select'}}) }}
+        {{ form_errors(form.paymentStrategy) }}
+        <div class="strategy-hint">
+            Choose how you want to calculate monthly payments
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.dayOfMonthToMakePayment) }}
+        {{ form_widget(form.dayOfMonthToMakePayment, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.dayOfMonthToMakePayment) }}
+        <div class="form-hint">Select the day of the month when the payment should be made (1-28)</div>
+    </div>
+
+    {# Dynamic chosenAmount field - will be shown/hidden based on strategy #}
+    <div id="chosen-amount-container" class="form-group" style="display: none;">
+        <div id="chosen-amount-field-wrapper">
+            {{ form_label(form.chosenAmount) }}
+            {{ form_widget(form.chosenAmount) }}
+            {{ form_errors(form.chosenAmount) }}
+        </div>
+        <div class="form-hint" id="chosen-amount-hint"></div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.startOn) }}
+        {{ form_widget(form.startOn, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.startOn) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.canceledAfter) }}
+        {{ form_widget(form.canceledAfter, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.canceledAfter) }}
+    </div>
+
+    <div class="account-selection">
+        <div class="form-group">
+            {{ form_label(form.accountToWithdraw) }}
+            {{ form_widget(form.accountToWithdraw, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.accountToWithdraw) }}
+            <div class="form-hint">Account where funds will be withdrawn from</div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.accountToPay) }}
+            {{ form_widget(form.accountToPay, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.accountToPay) }}
+            <div class="form-hint">Account that will receive the payments</div>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            {% if form.vars.value.id %}Update Payment{% else %}Add Payment{% endif %}
+        </button>
+        <button type="reset" class="btn btn-secondary">Clear Form</button>
+        {% if form.vars.value.id %}
+            <a href="{{ path('customer_revolving_payments_index') }}" class="btn btn-secondary">Cancel</a>
+        {% endif %}
+    </div>
+    {{ form_end(form) }}
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="loading-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Processing Revolving Payment</h3>
+            </div>
+            <div class="modal-body">
+                <div class="loading-text">
+                    <i class="fas fa-sync-alt fa-spin"></i>
+                    Updating Calendar and re-calculating accounts projected balances...
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">0%</span>
+                </div>
+                <div class="estimated-time">
+                    Estimated time: <span id="estimatedTime">30 seconds</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

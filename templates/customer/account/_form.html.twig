@@ -1,0 +1,100 @@
+{# templates/customer/account/_form.html.twig #}
+<div class="form-section">
+    <div class="section-header">
+        <h2 class="section-title">
+            {% if form.vars.value.id %}Edit Account{% else %}Add New Account{% endif %}
+        </h2>
+    </div>
+
+    {{ form_start(form, {'attr': {'id': 'account-form'}}) }}
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'e.g., Chase Checking'}}) }}
+        {{ form_errors(form.name) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 3, 'placeholder': 'Account description'}}) }}
+        {{ form_errors(form.description) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.projectedBalance) }}
+        <div class="input-with-icon">
+            <i class="fas fa-dollar-sign"></i>
+            {{ form_widget(form.projectedBalance, {'attr': {
+                'class': 'form-control',
+                'placeholder': '0.00',
+                'step': '0.01',
+                'onchange': 'validateProjectedBalance(this)'
+            }}) }}
+        </div>
+        {{ form_errors(form.projectedBalance) }}
+        <p class="form-hint">Use negative values for credit balances and debts</p>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.realBalance) }}
+        <div class="input-with-icon">
+            <i class="fas fa-dollar-sign"></i>
+            {{ form_widget(form.realBalance, {'attr': {'class': 'form-control', 'placeholder': '0.00', 'step': '0.01', 'readonly': 'readonly'}}) }}
+        </div>
+        {{ form_errors(form.realBalance) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.lastReconciliationDate) }}
+        {{ form_widget(form.lastReconciliationDate, {'attr': {'class': 'form-control', 'readonly': 'readonly'}}) }}
+        {{ form_errors(form.lastReconciliationDate) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.accountType) }}
+        {{ form_widget(form.accountType, {'attr': {'class': 'form-control', 'onchange': 'toggleInterestRateByAccountType(this)'}}) }}
+        {{ form_errors(form.accountType) }}
+    </div>
+
+    <div class="form-group" id="interest-rate-group" style="display: none;">
+        {{ form_label(form.annualInterestRate) }}
+        <div class="input-with-icon">
+            <i class="fas fa-percent"></i>
+            {{ form_widget(form.annualInterestRate, {'attr': {'class': 'form-control', 'placeholder': '0.00', 'step': '0.01'}}) }}
+        </div>
+        {{ form_errors(form.annualInterestRate) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.hasMaxLimit) }}
+        {{ form_widget(form.hasMaxLimit, {'attr': {'class': 'form-check-input', 'data-toggle': 'max-limit'}}) }}
+        {{ form_errors(form.hasMaxLimit) }}
+    </div>
+
+    <div class="form-group" id="max-limit-group" style="display: none;">
+        {{ form_label(form.maxLimit) }}
+        <div class="input-with-icon">
+            <i class="fas fa-dollar-sign"></i>
+            {{ form_widget(form.maxLimit, {'attr': {'class': 'form-control', 'placeholder': '0.00', 'step': '0.01'}}) }}
+        </div>
+        {{ form_errors(form.maxLimit) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.budgetTrackingGroup) }}
+        {{ form_widget(form.budgetTrackingGroup, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.budgetTrackingGroup) }}
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            {% if form.vars.value.id %}Update Account{% else %}Add Account{% endif %}
+        </button>
+        <button type="reset" class="btn btn-secondary">Clear Form</button>
+        {% if form.vars.value.id %}
+            <a href="{{ path('customer_account_index', {'isIncomeOrExpense': isIncomeOrExpense}) }}" class="btn btn-secondary">Cancel</a>
+        {% endif %}
+    </div>
+    {{ form_end(form) }}
+</div>

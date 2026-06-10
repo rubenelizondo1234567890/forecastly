@@ -1,0 +1,202 @@
+{# templates/roadmaps/personal-finance/debt-avalanche-vs-snowball.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="article-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h1>Debt Avalanche vs. Snowball: <span>Which One Fits You?</span></h1>
+                <p class="hero-description">
+                    Two powerful ways to crush debt. One saves more on interest, the other builds momentum. We’ll help you pick your winner.
+                </p>
+                <div class="article-meta-hero">
+                    <span><i class="far fa-clock"></i> 8 min read</span>
+                    <span><i class="fas fa-calculator"></i> Interactive tool inside</span>
+                    <span><i class="fas fa-signal"></i> Beginner friendly</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- main article -->
+        <article class="article-main animate">
+            <h2>🥊 The two heavyweights of debt payoff</h2>
+            <p>Both the <strong>avalanche</strong> and <strong>snowball</strong> methods involve making minimum payments on all debts, then putting any extra money toward one debt at a time. The difference is <em>which debt</em> you target first.</p>
+
+            <div class="method-grid">
+                <div class="method-card avalanche">
+                    <h3><i class="fas fa-mountain"></i> Avalanche</h3>
+                    <p><strong>Target the highest interest rate first.</strong> Mathematically, this saves you the most money over time.</p>
+                    <ul class="pros">
+                        <li>Minimizes total interest paid</li>
+                        <li>Pays off debt fastest (in pure financial terms)</li>
+                        <li>Best if you're numbers‑driven and patient</li>
+                    </ul>
+                </div>
+                <div class="method-card snowball">
+                    <h3><i class="fas fa-snowflake"></i> Snowball</h3>
+                    <p><strong>Target the smallest balance first.</strong> You get quick wins that motivate you to keep going.</p>
+                    <ul class="pros">
+                        <li>Builds momentum with early victories</li>
+                        <li>Great for people who need psychological rewards</li>
+                        <li>Still effective – behavior often beats math</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="insight-callout">
+                <i class="fas fa-lightbulb"></i>
+                <div><strong>The bottom line:</strong> The “best” method is the one you stick with. If you’re disciplined, avalanche saves more. If you need motivation, snowball keeps you on track.</div>
+            </div>
+
+            <h2>🧪 Try it yourself: a real‑world example</h2>
+            <p>Here are three typical debts. Click a method to see which order you'd pay them off.</p>
+
+            <div class="scenario-box" id="scenario">
+                <table class="debt-table">
+                    <thead><tr><th>Debt</th><th>Balance</th><th>Interest rate (APR)</th></tr></thead>
+                    <tbody>
+                    <tr><td>Credit card A</td><td>$2,500</td><td>22%</td></tr>
+                    <tr><td>Credit card B</td><td>$4,000</td><td>18%</td></tr>
+                    <tr><td>Student loan</td><td>$10,000</td><td>5%</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="method-buttons">
+                    <div class="method-btn avalanche-btn" id="avalancheBtn"><i class="fas fa-mountain"></i> Show avalanche order</div>
+                    <div class="method-btn snowball-btn" id="snowballBtn"><i class="fas fa-snowflake"></i> Show snowball order</div>
+                </div>
+
+                <div class="order-result" id="orderResult">
+                    <p><i class="fas fa-hand-pointer" style="color:#ff6b35;"></i> Click a button to see the payoff order.</p>
+                </div>
+            </div>
+
+            <h2>📊 Quick comparison: which one saves more?</h2>
+            <p>Using the example above, if you put an extra $200/month toward debt:</p>
+            <ul>
+                <li><strong>Avalanche</strong> would pay off all debt in about 38 months and cost ~$1,870 in interest.</li>
+                <li><strong>Snowball</strong> would take about 40 months and cost ~$2,100 in interest.</li>
+            </ul>
+            <p>Avalanche saves about $230 and 2 months. But if snowball keeps you motivated to actually stick with the plan, that small “cost” is worth it.</p>
+
+            <div class="highlight-box">
+                <i class="fas fa-brain" style="font-size: 2rem; color: var(--personal-color); margin-bottom: 15px; display: inline-block;"></i>
+                <h3 style="margin-top: 0;">The psychology factor</h3>
+                <p>Studies show that people who use the snowball method are more likely to eliminate debt entirely, because early wins keep them engaged. Don't underestimate the power of feeling progress.</p>
+            </div>
+
+            <h2>❌ Common debt payoff myths</h2>
+            <ul>
+                <li><strong>“I should consolidate before I start.”</strong> Sometimes helpful, but not a magic fix – you still need a repayment plan.</li>
+                <li><strong>“I need to keep a balance to build credit.”</strong> False. Paying in full each month is great for your score.</li>
+                <li><strong>“The avalanche method is always better.”</strong> Only if you actually follow it. The best method is the one you commit to.</li>
+                <li><strong>“I should pay off my smallest debt even if it has 0% interest.”</strong> Not necessarily – if it's 0%, put extra toward higher‑interest debt first.</li>
+            </ul>
+
+            <!-- Quick quiz -->
+            {% if app.user and quiz %}
+                {# Logged in user #}
+                {# Quiz already taken – show summary and retake button #}
+                <div class="quiz-container animate">
+                    <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                    <p style="color: #e2e8f0; font-size: 1.2rem;">
+                        Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                    </p>
+                    <p style="color: #cbd5e0;">
+                        You can retake the quiz to improve your score. Click the button below to reset it.
+                    </p>
+                    <div class="quiz-actions">
+                        <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                           class="btn"
+                           style="background-color: #ff6b35; color: white; text-decoration: none;">
+                            Retake Quiz
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+                <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                    <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: which method are you?</h3>
+                    <div class="quiz-question">1. You have a $500 debt at 10% and a $2,000 debt at 20%. Which do you pay first with avalanche?</div>
+                    <div class="quiz-options" data-question="1">
+                        <div class="quiz-option" data-answer="correct">$2,000 debt (highest rate)</div>
+                        <div class="quiz-option" data-answer="wrong">$500 debt (smallest balance)</div>
+                        <div class="quiz-option" data-answer="wrong">Split equally</div>
+                    </div>
+                    <div class="quiz-question" style="margin-top: 30px;">2. What's the main advantage of the snowball method?</div>
+                    <div class="quiz-options" data-question="2">
+                        <div class="quiz-option" data-answer="wrong">Saves the most interest</div>
+                        <div class="quiz-option" data-answer="wrong">Simpler math</div>
+                        <div class="quiz-option" data-answer="correct">Psychological wins keep you motivated</div>
+                    </div>
+                    <div class="quiz-question">3. Which method saves the most money on interest?</div>
+                    <div class="quiz-options" data-question="3">
+                        <div class="quiz-option" data-answer="correct">Avalanche</div>
+                        <div class="quiz-option" data-answer="wrong">Snowball</div>
+                        <div class="quiz-option" data-answer="wrong">Both the same</div>
+                        <div class="quiz-option" data-answer="wrong">Depends on balances</div>
+                    </div>
+                    <div class="quiz-question">4. The snowball method targets which debt first?</div>
+                    <div class="quiz-options" data-question="4">
+                        <div class="quiz-option" data-answer="wrong">Highest interest rate</div>
+                        <div class="quiz-option" data-answer="correct">Smallest balance</div>
+                        <div class="quiz-option" data-answer="wrong">Largest balance</div>
+                        <div class="quiz-option" data-answer="wrong">Oldest debt</div>
+                    </div>
+                    <div class="quiz-question">5. What is a key factor in choosing a method?</div>
+                    <div class="quiz-options" data-question="5">
+                        <div class="quiz-option" data-answer="correct">Your personality and motivation</div>
+                        <div class="quiz-option" data-answer="wrong">Only the math</div>
+                        <div class="quiz-option" data-answer="wrong">The total debt amount</div>
+                        <div class="quiz-option" data-answer="wrong">The number of creditors</div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback">👉 Click any answer to check yourself.</div>
+                </div>
+            {% endif %}
+
+
+            <!-- Next steps: continue Phase 2 -->
+            <section style="margin: 60px 0;">
+                <h2 class="section-title" style="text-align: center;">Continue your Risk Management phase</h2>
+                <div class="next-steps">
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'insurance-essentials' }) }}" class="next-card">
+                        <i class="fas fa-file-medical-alt" style="color: var(--personal-color);"></i>
+                        <h3>Insurance essentials</h3>
+                        <p style="color: var(--gray-color);">Cut through jargon to choose health, auto, renters, and life insurance with confidence.</p>
+                    </a>
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'protecting-your-identity' }) }}" class="next-card">
+                        <i class="fas fa-id-card" style="color: var(--personal-color);"></i>
+                        <h3>Protecting your identity</h3>
+                        <p style="color: var(--gray-color);">Practical habits to safeguard personal data – from password managers to freezing credit reports.</p>
+                    </a>
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'emergency-fund-deep-dive' }) }}" class="next-card">
+                        <i class="fas fa-piggy-bank" style="color: var(--personal-color);"></i>
+                        <h3>Emergency fund deep dive</h3>
+                        <p style="color: var(--gray-color);">Go beyond the basics – how a cash cushion protects you from job loss, medical bills, and market downturns.</p>
+                    </a>
+                </div>
+            </section>
+        </article>
+
+        <!-- CTA -->
+        <div class="journey-cta animate" style="background: linear-gradient(145deg, #fceae5, #ffffff); text-align: center; padding: 50px 40px; border-radius: 40px; margin: 60px 0;">
+            <h2>Ready to crush your debt?</h2>
+            <p style="font-size: 1.2rem; color: #2d3748;">Download our free debt tracker and choose your method.</p>
+            <a href="#" class="cta-button" style="display: inline-block; padding: 16px 40px; background-color: #ff6b35; color: white; text-decoration: none; border-radius: 60px; font-weight: 600; font-size: 1.2rem; box-shadow: 0 8px 18px rgba(255,107,53,0.3);"><i class="fas fa-download"></i> Get the tracker</a>
+        </div>
+    </div>
+{% endblock %}

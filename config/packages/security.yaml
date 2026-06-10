@@ -1,0 +1,73 @@
+# config/packages/security.yaml
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+        App\Entity\AdminUser:
+            algorithm: auto
+        App\Entity\Customer:
+            algorithm: auto
+
+    providers:
+        admin_users:
+            entity:
+                class: App\Entity\AdminUser
+                property: 'username'
+        customer_users:
+            entity:
+                class: App\Entity\Customer
+                property: 'username'
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin:
+            login_throttling:
+                max_attempts: 5
+            pattern: ^/admin
+            provider: admin_users
+            form_login:
+                login_path: admin_login
+                check_path: admin_login
+                default_target_path: admin_dashboard
+                enable_csrf: true
+            logout:
+                path: admin_logout
+                target: admin_login
+            entry_point: form_login
+
+        customer:
+            login_throttling:
+                max_attempts: 5
+            pattern: ^/customer|^/roadmaps
+            provider: customer_users
+            form_login:
+                login_path: customer_login
+                check_path: customer_login
+                default_target_path: customer_account_settings_index
+                enable_csrf: true
+                username_parameter: _username
+                password_parameter: _password
+                csrf_parameter: _csrf_token
+            logout:
+                path: customer_logout
+                target: customer_login
+                # Add CSRF protection for logout
+                csrf_token_id: logout
+
+    access_control:
+        - { path: ^/admin/login, roles: PUBLIC_ACCESS }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/customer/login, roles: PUBLIC_ACCESS }
+        - { path: ^/customer/logout, roles: PUBLIC_ACCESS }
+        - { path: ^/customer, roles: ROLE_CUSTOMER}
+        - { path: ^/customer/budget, roles: ROLE_CUSTOMER }
+        - { path: ^/customer/asset, roles: ROLE_CUSTOMER }
+        - { path: ^/customer/liability, roles: ROLE_CUSTOMER }
+        - { path: ^/customer/expense/recurring, roles: ROLE_CUSTOMER }
+        - { path: ^/customer/income/recurring, roles: ROLE_CUSTOMER }
+        - { path: ^/customer/income/non-recurring, roles: ROLE_CUSTOMER }
+        - { path: ^/customer/reset-account, roles: ROLE_CUSTOMER }
+        - { path: ^/webhook/stripe, roles: PUBLIC_ACCESS }
+        - { path: ^/roadmaps, roles: PUBLIC_ACCESS }

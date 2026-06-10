@@ -1,0 +1,217 @@
+/* assets/styles/customer_login.css */
+
+/* Override body styles for login page - FIXED */
+body.login-body {
+    background-color: var(--background);
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    width: 100% !important;
+    flex-direction: column !important;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.login-header {
+    margin-bottom: 30px;
+}
+
+.login-header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0;
+    border-bottom: none;
+}
+
+/* Fix for logo link - no underline */
+.login-header .logo a.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none !important;
+    color: inherit;
+    transition: all 0.3s;
+}
+
+.login-header .logo a.logo-link:hover {
+    text-decoration: none !important;
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+.login-header .logo i {
+    font-size: 24px;
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+.login-header .logo span {
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--primary);
+}
+
+.login-header h1 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.login-header p {
+    color: var(--text-light);
+    margin: 0;
+}
+
+.login-form {
+    text-align: left;
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.login-form .form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.login-form .form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(94, 96, 206, 0.1);
+}
+
+.login-form .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.login-form .btn:hover {
+    background-color: #4d4fbb;
+}
+
+.login-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Style for all login links - no underline by default */
+.login-links a,
+.login-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* Hover effect for all login links */
+.login-links a:hover,
+.login-link:hover {
+    color: var(--primary);
+    background-color: rgba(94, 96, 206, 0.1);
+    text-decoration: none;
+}
+
+/* Specific style for the main index link */
+.login-links a[href*="main_index"],
+.login-links .login-link {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.login-links a[href*="main_index"]:hover,
+.login-links .login-link:hover {
+    color: var(--white);
+    background-color: var(--primary);
+}
+
+.logged-in-notice {
+    background-color: rgba(114, 239, 221, 0.1);
+    color: var(--positive);
+    border: 1px solid var(--positive);
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.logged-in-notice a {
+    color: var(--primary);
+    text-decoration: none;
+    margin-left: 5px;
+    transition: all 0.3s;
+}
+
+.logged-in-notice a:hover {
+    text-decoration: underline;
+    color: #4d4fbb;
+}
+
+/* Responsive adjustments for login */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 20px;
+    }
+
+    .login-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .login-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .login-links a {
+        padding: 8px 12px;
+    }
+}
+
+/* Force centering for login pages - additional safety */
+body:has(.login-container) {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 100vh !important;
+}

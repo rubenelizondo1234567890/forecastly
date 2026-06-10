@@ -1,0 +1,212 @@
+{# templates/roadmaps/personal-finance/goal-setting-short-medium-long-term.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="article-icon">
+                    <i class="fas fa-bullseye"></i> <!-- target/goal icon -->
+                </div>
+                <h1>Goal Setting: <span>Short, Medium & Long‑Term</span></h1>
+                <p class="hero-description">
+                    Turn your dreams into a step‑by‑step plan. Learn how to set financial goals that actually stick — for any time horizon.
+                </p>
+                <span class="read-time"><i class="far fa-clock"></i> 10 min read · Skill building</span>
+            </div>
+        </div>
+
+        <!-- main article content -->
+        <article class="article-body animate">
+            <h2>Why goals are your financial compass</h2>
+            <p>Without goals, money flows out as fast as it comes in. Setting clear goals gives every dollar a purpose and keeps you motivated when temptation strikes. Whether it’s a vacation next summer or a retirement by 60, the right framework turns wishes into actionable plans.</p>
+
+            <div class="highlight-box">
+                <p><i class="fas fa-lightbulb"></i> <strong>The SMART framework:</strong> Goals should be <strong>S</strong>pecific, <strong>M</strong>easurable, <strong>A</strong>chievable, <strong>R</strong>elevant, and <strong>T</strong>ime‑bound. “I want to save money” becomes “I will save $5,000 for a down payment in 12 months by setting aside $417/month.”</p>
+            </div>
+
+            <h2>Three time horizons</h2>
+            <p>Financial goals generally fall into three buckets based on when you’ll need the money. Each requires a different saving and investing approach.</p>
+
+            <table class="goals-table">
+                <thead>
+                <tr><th>Time horizon</th><th>Typical goals</th><th>Suggested approach</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Short‑term (0‑3 years)</td><td>Emergency fund, vacation, new car, wedding</td><td>High‑yield savings, CDs, money market accounts (no risk)</td></tr>
+                <tr><td>Medium‑term (3‑10 years)</td><td>Down payment on home, home renovation, starting a business</td><td>Mix of bonds and conservative investments; target‑date funds</td></tr>
+                <tr><td>Long‑term (10+ years)</td><td>Retirement, children’s education, financial independence</td><td>Stock‑heavy portfolio (index funds, ETFs) for growth</td></tr>
+                </tbody>
+            </table>
+
+            <h2>Step 1: Define your short‑term goals (today to 3 years)</h2>
+            <p>These are your “right now” goals. They should feel exciting but also practical. Common examples:</p>
+            <ul>
+                <li><strong>Build a $1,000 starter emergency fund</strong> (within 6 months)</li>
+                <li><strong>Save $3,000 for a dream vacation</strong> (next summer)</li>
+                <li><strong>Pay off $2,000 credit card debt</strong> (12 months)</li>
+            </ul>
+            <p><strong>Strategy:</strong> Automate monthly transfers to a separate savings account. Keep the money liquid and safe — no stocks.</p>
+
+            <div class="tip-box">
+                <div class="tip-icon"><i class="fas fa-rocket"></i></div>
+                <div class="tip-content">
+                    <h4>Quick win: the 24‑hour rule</h4>
+                    <p>For non‑essential purchases, wait 24 hours. You’ll often realize you don’t need it — and that money can go toward your short‑term goals.</p>
+                </div>
+            </div>
+
+            <h2>Step 2: Map out medium‑term goals (3‑10 years)</h2>
+            <p>These goals are big enough that you’ll need consistent saving and some growth, but you can’t afford a big market drop right before you need the money.</p>
+            <ul>
+                <li><strong>Buy a home</strong> – save for a 10‑20% down payment</li>
+                <li><strong>Start a business</strong> – seed capital</li>
+                <li><strong>Major home renovation</strong></li>
+            </ul>
+            <p><strong>Strategy:</strong> Use a conservative investment mix (e.g., 60% bonds / 40% stocks) or a target‑date fund set to your goal year. Re‑evaluate every year.</p>
+
+            <h2>Step 3: Envision long‑term goals (10+ years)</h2>
+            <p>Long‑term goals are the foundation of your financial plan. Time is on your side, so you can take more risk for higher returns.</p>
+            <ul>
+                <li><strong>Retirement</strong> – 401(k), IRA, taxable accounts</li>
+                <li><strong>Child’s college education</strong> – 529 plans</li>
+                <li><strong>Financial independence / early retirement (FIRE)</strong></li>
+            </ul>
+            <p><strong>Strategy:</strong> Invest aggressively in low‑cost stock index funds (S&P 500, total market). Use tax‑advantaged accounts first. Let compound interest work its magic.</p>
+
+            <h2>Putting it all together: a goal ladder</h2>
+            <p>You don’t have to pick one — you can work on multiple goals simultaneously. Think of it as a ladder:</p>
+            <ol>
+                <li><strong>Foundation:</strong> Small emergency fund + high‑interest debt payoff</li>
+                <li><strong>Short‑term rung:</strong> Save for near‑term wants</li>
+                <li><strong>Medium‑term rung:</strong> Save for house, etc., while investing for retirement</li>
+                <li><strong>Long‑term rung:</strong> Maximize retirement contributions, then add to brokerage</li>
+            </ol>
+
+            <div class="worksheet-box">
+                <h4>📝 Free goal‑setting worksheet</h4>
+                <p style="margin: 15px 0;">List your top three goals by time horizon, assign a dollar amount and deadline, and calculate monthly savings needed.</p>
+                <a href="#" class="btn btn-outline" style="margin-top: 5px; display: inline-block;"><i class="fas fa-download"></i> Download worksheet (demo)</a>
+            </div>
+
+            <h2>Common goal‑setting mistakes</h2>
+            <ul>
+                <li><strong>Being too vague:</strong> “I want to be rich” isn’t a goal. Define what “rich” means in numbers.</li>
+                <li><strong>Setting unrealistic timelines:</strong> $50,000 for a house down payment in one year on a $40k salary might not happen — adjust.</li>
+                <li><strong>Ignoring “opportunity cost”:</strong> Every dollar spent on something today is a dollar not working for your future self.</li>
+                <li><strong>Forgetting to review:</strong> Life changes. Review goals every 6‑12 months and adjust.</li>
+            </ul>
+
+            <h2>Example: Sarah’s goal plan</h2>
+            <p>Sarah, 28, earns $55,000/year. She sets these SMART goals:</p>
+            <ul>
+                <li><strong>Short‑term (1 year):</strong> Save $2,000 for a trip to Japan → $167/month in a separate savings account.</li>
+                <li><strong>Medium‑term (5 years):</strong> Save $15,000 for a down payment → $250/month in a conservative investment account.</li>
+                <li><strong>Long‑term (30 years):</strong> Retire with $1.5 million → $400/month into Roth IRA (S&P 500 index fund).</li>
+            </ul>
+            <p>She automates all transfers and reviews each December. In five years, she’s on track for the down payment and her Roth IRA is growing.</p>
+
+            <div class="callout">
+                <p>🎯 <strong>Your turn:</strong> Grab a notebook and write down one short‑term, one medium‑term, and one long‑term financial goal. Then calculate the monthly savings needed. You’ve just started the most important step.</p>
+            </div>
+
+            <!-- Quick quiz -->
+            {% if app.user and quiz %}
+                {# Logged in user #}
+                {# Quiz already taken – show summary and retake button #}
+                <div class="quiz-container animate">
+                    <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                    <p style="color: #e2e8f0; font-size: 1.2rem;">
+                        Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                    </p>
+                    <p style="color: #cbd5e0;">
+                        You can retake the quiz to improve your score. Click the button below to reset it.
+                    </p>
+                    <div class="quiz-actions">
+                        <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                           class="btn"
+                           style="background-color: #ff6b35; color: white; text-decoration: none;">
+                            Retake Quiz
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+                <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                    <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your goal‑setting knowledge</h3>
+                    <div class="quiz-question">1. What does the 'S' in SMART goals stand for?</div>
+                    <div class="quiz-options" data-question="1">
+                        <div class="quiz-option" data-answer="correct">Specific</div>
+                        <div class="quiz-option" data-answer="wrong">Simple</div>
+                        <div class="quiz-option" data-answer="wrong">Savings</div>
+                        <div class="quiz-option" data-answer="wrong">Short‑term</div>
+                    </div>
+                    <div class="quiz-question">2. A short‑term goal is typically:</div>
+                    <div class="quiz-options" data-question="2">
+                        <div class="quiz-option" data-answer="correct">0–3 years</div>
+                        <div class="quiz-option" data-answer="wrong">3–10 years</div>
+                        <div class="quiz-option" data-answer="wrong">10+ years</div>
+                        <div class="quiz-option" data-answer="wrong">1–5 years</div>
+                    </div>
+                    <div class="quiz-question">3. Which investment approach is suitable for a long‑term goal (10+ years)?</div>
+                    <div class="quiz-options" data-question="3">
+                        <div class="quiz-option" data-answer="wrong">High‑yield savings</div>
+                        <div class="quiz-option" data-answer="wrong">Bonds only</div>
+                        <div class="quiz-option" data-answer="correct">Stock‑heavy portfolio</div>
+                        <div class="quiz-option" data-answer="wrong">Money market</div>
+                    </div>
+                    <div class="quiz-question">4. What is an example of a medium‑term goal?</div>
+                    <div class="quiz-options" data-question="4">
+                        <div class="quiz-option" data-answer="wrong">Buying a car next year</div>
+                        <div class="quiz-option" data-answer="wrong">Retirement at 65</div>
+                        <div class="quiz-option" data-answer="correct">Saving for a down payment in 5 years</div>
+                        <div class="quiz-option" data-answer="wrong">Paying off credit card debt this month</div>
+                    </div>
+                    <div class="quiz-question">5. Why is it important to review goals regularly?</div>
+                    <div class="quiz-options" data-question="5">
+                        <div class="quiz-option" data-answer="wrong">Life changes</div>
+                        <div class="quiz-option" data-answer="wrong">To stay motivated</div>
+                        <div class="quiz-option" data-answer="wrong">To adjust timelines</div>
+                        <div class="quiz-option" data-answer="correct">All of the above</div>
+                    </div>
+                    <div class="quiz-feedback">👉 Click any answer to check yourself.</div>
+                </div>
+            {% endif %}
+
+        </article>
+
+
+        <!-- Next steps: continue Phase 4 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Skill Building phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'intro-to-investing' }) }}" class="next-card">
+                    <i class="fas fa-chart-pie" style="color: var(--personal-color);"></i>
+                    <h3>Introduction to Investing</h3>
+                    <p style="color: var(--gray-color);">Bridge from saving to investing – asset classes, compound interest, and how to open a brokerage account.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'tax-advantaged-accounts' }) }}" class="next-card">
+                    <i class="fas fa-landmark" style="color: var(--personal-color);"></i>
+                    <h3>Tax‑Advantaged Accounts</h3>
+                    <p style="color: var(--gray-color);">Understand retirement and health accounts to maximise tax benefits. Demystify Roth vs. traditional.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'mindset-shifting-building-wealth-habits' }) }}" class="next-card">
+                    <i class="fas fa-brain" style="color: var(--personal-color);"></i>
+                    <h3>Mindset Shift</h3>
+                    <p style="color: var(--gray-color);">Psychological strategies to maintain discipline, avoid lifestyle inflation, and keep growing.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,320 @@
+{# templates/customer/accounts_tracking_calendar/index_grid.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Accounts Tracking Grid - Forecastly{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_accounts_tracking_grid_css') }}
+    <style>
+        :root {
+            --column-count: {{ (accounts|length * 2) + 1 }}; {# Date column + (Transactions + Balance) for each account #}
+        }
+
+        /* Savings colors */
+        .savings-color {
+            color: #4CAF50; /* Green for savings */
+        }
+
+        .savings-withdraw-color {
+            color: #2196F3; /* Blue for savings withdrawals */
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_accounts_tracking_grid_js') }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gridContainer = document.querySelector('.grid-scroll-container');
+            const refreshBtn = document.getElementById('refreshGrid');
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            const scrollToBottomBtn = document.getElementById('scrollToBottom');
+            const fitToScreenBtn = document.getElementById('fitToScreen');
+
+            // Refresh grid
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', function() {
+                    window.location.reload();
+                });
+            }
+
+            // Scroll to top
+            if (scrollToTopBtn && gridContainer) {
+                scrollToTopBtn.addEventListener('click', function() {
+                    gridContainer.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Scroll to bottom
+            if (scrollToBottomBtn && gridContainer) {
+                scrollToBottomBtn.addEventListener('click', function() {
+                    gridContainer.scrollTo({ top: gridContainer.scrollHeight, behavior: 'smooth' });
+                });
+            }
+
+            // Fit to screen (toggle between fixed and responsive)
+            if (fitToScreenBtn && gridContainer) {
+                fitToScreenBtn.addEventListener('click', function() {
+                    if (gridContainer.style.width === '100%') {
+                        gridContainer.style.width = '2160px';
+                        gridContainer.style.height = '800px'; // CHANGED FROM 1080px TO 800px
+                        fitToScreenBtn.innerHTML = '<i class="fas fa-compress"></i> Fit to Screen';
+                    } else {
+                        gridContainer.style.width = '100%';
+                        gridContainer.style.height = '600px';
+                        fitToScreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fixed Size';
+                    }
+                });
+            }
+
+            // Auto-scroll to current date
+            function scrollToCurrentDate() {
+                if (!gridContainer) return;
+
+                const today = new Date();
+                const currentDay = today.getDate();
+                const currentMonth = today.getMonth() + 1;
+                const currentYear = today.getFullYear();
+
+                // Only scroll if we're viewing the current month and year
+                const selectedYear = {{ selectedYear }};
+                const selectedMonth = {{ selectedMonth }};
+
+                if (selectedYear === currentYear && selectedMonth === currentMonth) {
+                    const dayRows = document.querySelectorAll('.accounts-grid tbody tr');
+                    if (dayRows.length >= currentDay) {
+                        const currentDayRow = dayRows[currentDay - 1];
+                        if (currentDayRow) {
+                            const rowTop = currentDayRow.offsetTop;
+                            gridContainer.scrollTo({ top: rowTop - 50, behavior: 'smooth' });
+                        }
+                    }
+                }
+            }
+
+            // Scroll to current date after a short delay
+            setTimeout(scrollToCurrentDate, 500);
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    {# Set current date variables for comparison #}
+    {% set currentDate = "now"|date('Y-m-d') %}
+    {% set currentYear = "now"|date('Y') %}
+    {% set currentMonth = "now"|date('m') %}
+    {% set currentDay = "now"|date('d') %}
+    {% set viewingCurrentMonth = (selectedYear == currentYear and selectedMonth == currentMonth) %}
+
+    <div class="header">
+        <div class="page-title">
+            <h1>Accounts Tracking Grid for {{ date(selectedYear ~ '-' ~ selectedMonth ~ '-01')|date('F Y') }}</h1>
+            <p>Track your income, expenses, and projected account balances over time.</p>
+        </div>
+
+        <div class="header-controls">
+            <div class="year-selector">
+                <label for="year-select">Year:</label>
+                <select id="year-select" class="form-control">
+                    {% for year in displayYears %}
+                        <option value="{{ year }}" {% if year == selectedYear %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="month-selector">
+                <label for="month-select">Month:</label>
+                <select id="month-select" class="form-control">
+                    {% for m in 1..12 %}
+                        <option value="{{ m }}" {% if m == selectedMonth %}selected{% endif %}>{{ date('2000-' ~ m ~ '-01')|date('F') }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-controls">
+        <div class="grid-info">
+            <i class="fas fa-info-circle"></i>
+            Displaying {{ accounts|length }} accounts for {{ date(selectedYear ~ '-' ~ selectedMonth ~ '-01')|date('F Y') }}
+            {% if viewingCurrentMonth %}
+                <span class="current-date-indicator">• Current month</span>
+            {% endif %}
+        </div>
+        <div class="grid-actions">
+            <button id="scrollToTop" class="btn btn-secondary btn-sm">
+                <i class="fas fa-arrow-up"></i> Top
+            </button>
+            <button id="scrollToBottom" class="btn btn-secondary btn-sm">
+                <i class="fas fa-arrow-down"></i> Bottom
+            </button>
+            <button id="fitToScreen" class="btn btn-secondary btn-sm">
+                <i class="fas fa-compress"></i> Fit to Screen
+            </button>
+            <button id="refreshGrid" class="btn btn-secondary btn-sm">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+        </div>
+    </div>
+
+    <div class="grid-scroll-container">
+        <table class="accounts-grid">
+            <thead>
+            <tr>
+                <th>Date</th>
+                {% for account in accounts %}
+                    <th class="{{ accountTypes[account.id] }}-color">{{ accountNames[account.id] }} Trx</th>
+                {% endfor %}
+                {% for account in accounts %}
+                    <th class="{{ accountTypes[account.id] }}-color">{{ accountNames[account.id] }} Balance</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% set daysInMonth = date(selectedYear ~ '-' ~ selectedMonth ~ '-01')|date('t') %}
+            {% for day in 1..daysInMonth %}
+                {% set dateStr = selectedYear ~ '-' ~ selectedMonth|format('%02d') ~ '-' ~ day|format('%02d') %}
+                {% set isCurrentDate = (viewingCurrentMonth and day == currentDay|number_format) %}
+                {% set isPastDate = (selectedYear < currentYear) or
+                    (selectedYear == currentYear and selectedMonth < currentMonth) or
+                    (viewingCurrentMonth and day < currentDay|number_format) %}
+
+                <tr class="{% if isCurrentDate %}current-date-row{% elseif isPastDate %}past-date-row{% endif %}">
+                    <td class="{% if isCurrentDate %}current-date-cell{% elseif isPastDate %}past-date-cell{% endif %}">
+                        {{ date(dateStr)|date('l jS') }}
+                        {% if isCurrentDate %}
+                            <span class="current-date-indicator">(Today)</span>
+                        {% endif %}
+                    </td>
+                    {% for account in accounts %}
+                        {% set acctId = account.id %}
+                        {% set dayData = dailyData[day] ?? null %}
+                        <td class="{% if isCurrentDate %}current-date-cell{% elseif isPastDate %}past-date-cell{% endif %}">
+                            {% if dayData %}
+                                {% set transList = [] %}
+                                {# Recurring Incomes + #}
+                                {% if dayData.recurringIncomes[acctId] is defined %}
+                                    {% for id, amt in dayData.recurringIncomes[acctId] %}
+                                        {% set transList = transList|merge(["<span class=\"trans-desc\">Recurring Income #" ~ id ~ ":</span> <span class=\"trans-amount positive\">+$" ~ amt|number_format(2, '.', ',') ~ "</span>"]) %}
+                                    {% endfor %}
+                                {% endif %}
+                                {# Non Recurring Incomes + #}
+                                {% if dayData.nonRecurringIncomes[acctId] is defined %}
+                                    {% for id, amt in dayData.nonRecurringIncomes[acctId] %}
+                                        {% set transList = transList|merge(["<span class=\"trans-desc\">Non-Recurring Income #" ~ id ~ ":</span> <span class=\"trans-amount positive\">+$" ~ amt|number_format(2, '.', ',') ~ "</span>"]) %}
+                                    {% endfor %}
+                                {% endif %}
+                                {# Recurring Income Interests + #}
+                                {% if dayData.recurringIncomeInterests[acctId] is defined %}
+                                    {% for id, amt in dayData.recurringIncomeInterests[acctId] %}
+                                        {% set transList = transList|merge(["<span class=\"trans-desc\">Recurring Interest #" ~ id ~ ":</span> <span class=\"trans-amount positive\">+$" ~ amt|number_format(2, '.', ',') ~ "</span>"]) %}
+                                    {% endfor %}
+                                {% endif %}
+                                {# Recurring Savings Interests + #}
+                                {% if dayData.recurringSavingsInterests[acctId] is defined %}
+                                    {% for id, amt in dayData.recurringSavingsInterests[acctId] %}
+                                        {% set transList = transList|merge(["<span class=\"trans-desc\">Savings Interest #" ~ id ~ ":</span> <span class=\"trans-amount positive\">+$" ~ amt|number_format(2, '.', ',') ~ "</span>"]) %}
+                                    {% endfor %}
+                                {% endif %}
+                                {# Savings to Save + #}
+                                {% if dayData.savingsAccountToSave[acctId] is defined %}
+                                    {% for id, amt in dayData.savingsAccountToSave[acctId] %}
+                                        {% set transList = transList|merge(["<span class=\"trans-desc\">Savings To Save #" ~ id ~ ":</span> <span class=\"trans-amount positive\">+$" ~ amt|number_format(2, '.', ',') ~ "</span>"]) %}
+                                    {% endfor %}
+                                {% endif %}
+                                {# Savings to Withdraw - #}
+                                {% if dayData.savingsAccountToWithdraw[acctId] is defined %}
+                                    {% for id, amt in dayData.savingsAccountToWithdraw[acctId] %}
+                                        {% set transList = transList|merge(["<span class=\"trans-desc\">Savings To Withdraw #" ~ id ~ ":</span> <span class=\"trans-amount negative\">-$" ~ amt|number_format(2, '.', ',') ~ "</span>"]) %}
+                                    {% endfor %}
+                                {% endif %}
+                                {# Recurring Expenses - #}
+                                {% if dayData.recurringExpenses[acctId] is defined %}
+                                    {% for id, amt in dayData.recurringExpenses[acctId] %}
+                                        {% set transList = transList|merge(["<span class=\"trans-desc\">Recurring Expense #" ~ id ~ ":</span> <span class=\"trans-amount negative\">-$" ~ amt|number_format(2, '.', ',') ~ "</span>"]) %}
+                                    {% endfor %}
+                                {% endif %}
+                                {# Non Recurring Expenses - #}
+                                {% if dayData.nonRecurringExpenses[acctId] is defined %}
+                                    {% for id, amt in dayData.nonRecurringExpenses[acctId] %}
+                                        {% set transList = transList|merge(["<span class=\"trans-desc\">Non-Recurring Expense #" ~ id ~ ":</span> <span class=\"trans-amount negative\">-$" ~ amt|number_format(2, '.', ',') ~ "</span>"]) %}
+                                    {% endfor %}
+                                {% endif %}
+                                {# Recurring Expense Interests - #}
+                                {% if dayData.recurringExpenseInterests[acctId] is defined %}
+                                    {% for id, amt in dayData.recurringExpenseInterests[acctId] %}
+                                        {% set transList = transList|merge(["<span class=\"trans-desc\">Recurring Interest #" ~ id ~ ":</span> <span class=\"trans-amount negative\">-$" ~ amt|number_format(2, '.', ',') ~ "</span>"]) %}
+                                    {% endfor %}
+                                {% endif %}
+                                {# Revolving Payments To Withdraw - #}
+                                {% if dayData.revolvingPaymentsToWithdraw[acctId] is defined %}
+                                    {% for id, amt in dayData.revolvingPaymentsToWithdraw[acctId] %}
+                                        {% set transList = transList|merge(["<span class=\"trans-desc\">Revolving Payment #" ~ id ~ ":</span> <span class=\"trans-amount negative\">-$" ~ amt|number_format(2, '.', ',') ~ "</span>"]) %}
+                                    {% endfor %}
+                                {% endif %}
+                                {# Revolving Payments To Pay + (treated as positive since it's money going into the account) #}
+                                {% if dayData.revolvingPaymentsToPay[acctId] is defined %}
+                                    {% for id, amt in dayData.revolvingPaymentsToPay[acctId] %}
+                                        {% set transList = transList|merge(["<span class=\"trans-desc\">Revolving Payment #" ~ id ~ ":</span> <span class=\"trans-amount positive\">+$" ~ amt|number_format(2, '.', ',') ~ "</span>"]) %}
+                                    {% endfor %}
+                                {% endif %}
+                                {% if transList %}
+                                    <ul>
+                                        {% for trans in transList %}
+                                            <li>{{ trans|raw }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                    {% for account in accounts %}
+                        {% set acctId = account.id %}
+                        {% set dayData = dailyData[day] ?? null %}
+                        <td class="balance-cell {{ accountTypes[account.id] }}-color {% if isCurrentDate %}current-date-cell{% elseif isPastDate %}past-date-cell{% endif %}">
+                            {% if dayData and dayData.accountsBalances[acctId] is defined %}
+                                <span class="balance-amount">${{ dayData.accountsBalances[acctId]|number_format(2, '.', ',') }}</span>
+
+                                {# Check metadata for alert flags #}
+                                {% if dayData.accountMetadata is defined and dayData.accountMetadata.accounts is defined %}
+                                    {% set accountMeta = dayData.accountMetadata.accounts[acctId] ?? null %}
+                                    {% if accountMeta %}
+                                        {% if accountMeta.overdraft is defined and accountMeta.overdraft %}
+                                            <i class="fas fa-exclamation-triangle overdraft-alert" title="Account Overdraft"></i>
+                                        {% endif %}
+                                        {% if accountMeta.cant_pay_full is defined and accountMeta.cant_pay_full %}
+                                            <i class="fas fa-exclamation-circle cant-pay-full-alert" title="Cannot pay full amount"></i>
+                                        {% endif %}
+                                        {% if accountMeta.low_balance is defined and accountMeta.low_balance %}
+                                            <i class="fas fa-exclamation low-balance-alert" title="Low balance"></i>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+
+                                {# Keep the original negative balance alert #}
+                                {% if dayData.accountsBalances[acctId] < 0 %}
+                                    <i class="fas fa-exclamation-triangle negative-balance-alert" title="Negative balance"></i>
+                                {% endif %}
+                            {% else %}
+                                <span class="balance-amount">$0.00</span>
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Totals</th>
+                {% for account in accounts %}
+                    <th class="{{ accountTypes[account.id] }}-color">${{ monthlyTotals.accountTransactionNets[account.id]|number_format(2, '.', ',') }}</th>
+                {% endfor %}
+                {% for account in accounts %}
+                    <th class="balance-cell {{ accountTypes[account.id] }}-color"><span class="balance-total">${{ monthlyTotals.finalBalances[account.id]|number_format(2, '.', ',') }}</span></th>
+                {% endfor %}
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}

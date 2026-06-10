@@ -1,0 +1,231 @@
+{# templates/roadmaps/forex/intro-technical-analysis.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('forex_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('forex_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – forex style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h1>Introduction to Technical Analysis: <span>Support, Resistance & Trends</span></h1>
+                <p class="hero-description">
+                    Learn the building blocks of technical analysis – support and resistance levels, trend identification,
+                    and how to draw them on any chart. These skills form the foundation of every trading strategy.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 11 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">📊 What is Technical Analysis?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Technical analysis is the study of past price movements to forecast future direction. It’s based on the idea
+                that price reflects all known information and tends to move in trends. By identifying <strong>support</strong>,
+                <strong>resistance</strong>, and <strong>trends</strong>, you can find high‑probability entry and exit points.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                In this article you’ll learn how to spot these key levels on a chart, why they act as turning points, and how
+                to use them in your trading plan.
+            </p>
+        </section>
+
+        <!-- key concepts grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-anchor"></i> Support</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Price floor</div>
+                <p>A level where buying pressure is strong enough to stop a downtrend. Price tends to bounce upward from support.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-shield-alt"></i> Resistance</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Price ceiling</div>
+                <p>A level where selling pressure overwhelms buying, causing price to reverse downward. Breakouts above resistance signal strength.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-arrow-up"></i> Uptrend</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Higher highs & lows</div>
+                <p>Price makes successive higher highs and higher lows. Traders look to buy on pullbacks.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-arrow-down"></i> Downtrend</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Lower highs & lows</div>
+                <p>Price makes lower highs and lower lows. Traders look to sell on rallies.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-minus"></i> Sideways</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Range‑bound</div>
+                <p>Price oscillates between clear support and resistance. Traders buy at support, sell at resistance.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive with examples -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🔍 How to Identify Key Levels</h3>
+            <p style="margin-bottom: 20px;">
+                Look for price levels where the market has reversed multiple times. The more touches, the stronger the level.
+            </p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <p><i class="fas fa-chart-line" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Support:</strong> Find the lowest points before price bounced. Connect them with a horizontal line.</p>
+                <p><i class="fas fa-chart-line" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Resistance:</strong> Find the highest points before price fell. Draw a horizontal line across them.</p>
+                <p><i class="fas fa-chart-line" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>Trendlines:</strong> For an uptrend, connect the higher lows. For a downtrend, connect the lower highs. The angle shows momentum.</p>
+                <p class="pro-tip" style="margin-top: 15px; background-color: #eef2ff; border-left-color: #3182ce;"><i class="fas fa-lightbulb"></i> Levels don’t have to be exact – think of them as zones. A few pips above or below is normal.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Identify Support & Resistance -->
+        <div class="card animate" style="margin: 40px 0;" id="ta-scenarios">
+            <h3><i class="fas fa-pencil-ruler"></i> Support & Resistance Spotter</h3>
+            <p>Look at each chart description and choose the correct technical analysis concept.</p>
+
+            <div style="margin: 25px 0; padding: 15px; background: #f9f9f9; border-radius: 12px;">
+                <p><strong>Chart 1:</strong> Price has made higher highs at 1.1100, 1.1150, 1.1200 and higher lows at 1.1050, 1.1080, 1.1120. What is this market doing?</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <button class="ta-btn" data-scenario="1" data-answer="uptrend">Uptrend</button>
+                    <button class="ta-btn" data-scenario="1" data-answer="downtrend">Downtrend</button>
+                    <button class="ta-btn" data-scenario="1" data-answer="sideways">Sideways</button>
+                </div>
+                <div id="ta1-feedback" class="ta-feedback" style="margin-top: 10px; font-style: italic;"></div>
+            </div>
+
+            <div style="margin: 25px 0; padding: 15px; background: #f9f9f9; border-radius: 12px;">
+                <p><strong>Chart 2:</strong> Price repeatedly bounces up from 1.0950, but struggles to break above 1.1050. What are these levels called?</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <button class="ta-btn" data-scenario="2" data-answer="support">Support at 1.0950, Resistance at 1.1050</button>
+                    <button class="ta-btn" data-scenario="2" data-answer="resistance">Resistance at 1.0950, Support at 1.1050</button>
+                    <button class="ta-btn" data-scenario="2" data-answer="trendline">Trendline breakout</button>
+                </div>
+                <div id="ta2-feedback" class="ta-feedback" style="margin-top: 10px; font-style: italic;"></div>
+            </div>
+
+            <div style="margin: 25px 0; padding: 15px; background: #f9f9f9; border-radius: 12px;">
+                <p><strong>Chart 3:</strong> Price breaks above a long‑term resistance level at 1.1250 and closes above it. What might this signal?</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <button class="ta-btn" data-scenario="3" data-answer="breakout">Bullish breakout, potential new uptrend</button>
+                    <button class="ta-btn" data-scenario="3" data-answer="reversal">Bearish reversal</button>
+                    <button class="ta-btn" data-scenario="3" data-answer="support">New support level formed</button>
+                </div>
+                <div id="ta3-feedback" class="ta-feedback" style="margin-top: 10px; font-style: italic;"></div>
+            </div>
+        </div>
+
+        <!-- example trade box -->
+        <div class="highlight-box animate">
+            <h3><i class="fas fa-bolt"></i> Example – Buying at Support</h3>
+            <p>You identify strong support for USD/JPY at 147.50 (touched three times). Current price is 147.80. You place a <strong>Buy Limit at 147.55</strong> with a stop loss just below support at 147.30 and take profit at 148.50 (previous resistance). Price drops to 147.55, triggers your order, then rallies to your target – a perfect support bounce trade.</p>
+        </div>
+
+        <!-- pro tip: multiple timeframes -->
+        <div class="pro-tip animate" style="background-color: #fff5f0; border-left-color: #ff6b35;">
+            <h4 style="margin-top: 0;"><i class="fas fa-clock" style="color:#ff6b35;"></i> Multiple Timeframe Analysis</h4>
+            <p>A level that looks significant on a 5‑minute chart might be noise. Always check higher timeframes (1h, 4h, daily) to see if your support/resistance aligns with major levels. The confluence makes the trade stronger.</p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Support, Resistance & Trends</h3>
+
+                <div class="quiz-question">1. What is a support level?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">A price level where selling pressure exceeds buying</div>
+                    <div class="quiz-option" data-answer="correct">A price level where buying pressure is strong enough to stop a downtrend</div>
+                    <div class="quiz-option" data-answer="wrong">The highest price ever reached</div>
+                    <div class="quiz-option" data-answer="wrong">A level where news is released</div>
+                </div>
+
+                <div class="quiz-question">2. Which pattern defines an uptrend?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="correct">Higher highs and higher lows</div>
+                    <div class="quiz-option" data-answer="wrong">Lower highs and lower lows</div>
+                    <div class="quiz-option" data-answer="wrong">Equal highs and lows</div>
+                    <div class="quiz-option" data-answer="wrong">Random price movements</div>
+                </div>
+
+                <div class="quiz-question">3. What happens when price breaks above a strong resistance level?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">It always falls back immediately</div>
+                    <div class="quiz-option" data-answer="correct">It may signal a bullish breakout and the start of an uptrend</div>
+                    <div class="quiz-option" data-answer="wrong">Support becomes resistance</div>
+                    <div class="quiz-option" data-answer="wrong">The market becomes sideways</div>
+                </div>
+
+                <div class="quiz-question">4. How can you make a support or resistance level more reliable?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Only look at 1‑minute charts</div>
+                    <div class="quiz-option" data-answer="correct">Check if it aligns with levels on higher timeframes</div>
+                    <div class="quiz-option" data-answer="wrong">Ignore it after two touches</div>
+                    <div class="quiz-option" data-answer="wrong">Use it only during news events</div>
+                </div>
+
+                <div class="quiz-question">5. In a sideways (range‑bound) market, where should you place a buy order?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="correct">Near support</div>
+                    <div class="quiz-option" data-answer="wrong">Near resistance</div>
+                    <div class="quiz-option" data-answer="wrong">In the middle of the range</div>
+                    <div class="quiz-option" data-answer="wrong">Above resistance</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 3 (practical execution) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue your practical journey</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'setting-up-demo-account' }) }}" class="next-card">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Setting Up Your First Demo Account</h3>
+                    <p style="color: var(--gray-color);">Get your demo account ready to practise.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'placing-first-trades' }) }}" class="next-card">
+                    <i class="fas fa-hand-pointer"></i>
+                    <h3>Placing Your First Trades</h3>
+                    <p style="color: var(--gray-color);">Learn market and pending orders.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'trading-journal' }) }}" class="next-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Keeping a Trading Journal</h3>
+                    <p style="color: var(--gray-color);">Track your progress and improve.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

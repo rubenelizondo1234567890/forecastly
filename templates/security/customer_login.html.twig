@@ -1,0 +1,82 @@
+{# templates/security/customer_login.html.twig #}
+{% extends 'base_prospect.html.twig' %}
+
+{% block title %}Login - Forecastly. Grow your Wealth.{% endblock %}
+
+{% block body_class %}login-body{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {# Webpack Encore entry for customer login #}
+    {{ encore_entry_link_tags('customer_login_css') }}
+{% endblock %}
+
+{% block body %}
+    <div class="login-container">
+        <!-- Flash Messages -->
+        <div class="flash-messages">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i> {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">
+                    <a href="{{ path('main_index') }}" class="logo-link">
+                        <img src="{{ asset('template/img/forecastly_logo_64x64.png') }}" width="18px" height="18px" />
+                        <span>Forecastly Financial Education Program | Forecastly App</span>
+                    </a>
+                </div>
+                <h1>Customer Login</h1>
+            </div>
+
+            {% if error %}
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form method="post" class="login-form">
+                {% if app.user %}
+                    <div class="logged-in-notice">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('customer_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+
+                {{ form_start(loginForm) }}
+
+                <div class="form-group">
+                    {{ form_label(loginForm._username) }}
+                    {{ form_widget(loginForm._username) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(loginForm._password) }}
+                    {{ form_widget(loginForm._password) }}
+                </div>
+
+                {% if redirect_to %}
+                    <input type="hidden" name="_target_path" value="{{ redirect_to }}" />
+                {% endif %}
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                {{ form_end(loginForm) }}
+
+                <div class="login-links">
+                    <a href="#"><i class="fas fa-question-circle"></i> Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+        <p style="font-size: smaller;">&copy; 2025 Meridian Wealth Technologies, LLC. All rights reserved.</p>
+    </div>
+{% endblock %}

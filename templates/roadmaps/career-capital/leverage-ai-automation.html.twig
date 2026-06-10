@@ -1,0 +1,272 @@
+{# templates/roadmaps/career-capital/leverage-ai-automation.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+    {# Inline script: live slider value updates (works for everyone) #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = [
+                { slider: 'repetitiveTasks', display: 'repetitiveTasksVal' },
+                { slider: 'dataProcessing', display: 'dataProcessingVal' },
+                { slider: 'contentCreation', display: 'contentCreationVal' },
+                { slider: 'researchLoad', display: 'researchLoadVal' }
+            ];
+            sliders.forEach(item => {
+                const s = document.getElementById(item.slider);
+                const d = document.getElementById(item.display);
+                if (s && d) {
+                    s.addEventListener('input', () => { d.textContent = s.value; });
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-microchip" style="color: var(--career-color);"></i>
+                </div>
+                <h1>Leverage AI & Automation <span>to 10x Your Output</span></h1>
+                <p class="hero-description">
+                    Practical ways to use AI tools for research, writing, coding, and admin — saving hours while increasing quality.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 10 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">Why AI is your career multiplier</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                The most successful professionals in the coming decade won’t be the ones who work the hardest — they’ll be the ones who work <strong>smartest</strong>. AI and automation tools can handle repetitive tasks, generate ideas, and accelerate your output, freeing you to focus on high‑value work that compounds your career capital.
+            </p>
+            <div class="highlight-box">
+                <i class="fas fa-chart-line"></i>
+                <strong>Did you know?</strong> A 2023 study found that professionals using AI tools saved an average of 3.5 hours per week — the equivalent of an extra month of productive time per year.
+            </div>
+        </section>
+
+        <!-- AI tools by skill area -->
+        <section class="animate">
+            <h2 class="section-title">🛠️ AI tools for every skill</h2>
+            <div class="rule-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                <div class="rule-item">
+                    <h3><i class="fas fa-pen"></i> Writing & Copy</h3>
+                    <p>ChatGPT, Claude, Jasper, Copy.ai — generate drafts, headlines, emails, and social posts in seconds.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-code"></i> Coding</h3>
+                    <p>GitHub Copilot, Cursor, TabNine — auto‑complete code, debug, and explain complex functions.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-chart-bar"></i> Data & Research</h3>
+                    <p>Perplexity AI, Elicit, Julius AI — summarise research, analyse data, and create visualisations.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-paint-brush"></i> Design</h3>
+                    <p>Midjourney, DALL·E, Canva AI — generate images, logos, and presentations from prompts.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-envelope"></i> Admin & Workflow</h3>
+                    <p>Zapier, Make (Integromat), n8n — automate repetitive tasks between apps (e.g., save email attachments to Google Drive).</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-calendar"></i> Meeting & Scheduling</h3>
+                    <p>Otter.ai for transcripts, Reclaim.ai for smart scheduling, Fireflies.ai for meeting notes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to integrate AI into your workflow -->
+        <section class="animate">
+            <h2 class="section-title">⚙️ Building your AI workflow</h2>
+            <div class="step-card">
+                <span class="step-number">1</span> <strong>Identify bottlenecks</strong> – Which tasks eat up most of your time? (e.g., drafting emails, researching, formatting data)
+            </div>
+            <div class="step-card">
+                <span class="step-number">2</span> <strong>Choose the right tool</strong> – Experiment with free trials to find what fits your work style.
+            </div>
+            <div class="step-card">
+                <span class="step-number">3</span> <strong>Master prompting</strong> – Learn to write clear, specific prompts. Include context, examples, and desired format.
+            </div>
+            <div class="step-card">
+                <span class="step-number">4</span> <strong>Create templates & workflows</strong> – Save prompts as templates. Use automation tools to chain tasks (e.g., new email → extract data → add to spreadsheet).
+            </div>
+            <div class="step-card">
+                <span class="step-number">5</span> <strong>Review and refine</strong> – AI output isn’t perfect. Always review, edit, and learn from mistakes to improve future prompts.
+            </div>
+        </section>
+
+        <!-- Real‑world examples -->
+        <section class="animate">
+            <h2 class="section-title">📈 Real‑world 10x examples</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> <strong>Marketer:</strong> Uses AI to generate 50 ad variations in 10 minutes, then A/B tests the top 5.</li>
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> <strong>Developer:</strong> GitHub Copilot writes 40% of boilerplate code; focuses on architecture and complex logic.</li>
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> <strong>Consultant:</strong> Uploads 100‑page reports to Claude, extracts key insights and creates executive summaries in minutes.</li>
+                <li><i class="fas fa-check-circle" style="color: var(--career-color);"></i> <strong>Founder:</strong> Automates lead generation with a Zapier workflow that scrapes Twitter, enriches with AI, and adds to CRM.</li>
+            </ul>
+        </section>
+
+        <!-- Pitfalls to avoid -->
+        <section class="animate">
+            <h2 class="section-title">⚠️ Common pitfalls</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-exclamation-triangle"></i> <strong>Over‑reliance</strong> – AI can be wrong. Always verify facts and use your judgment.</li>
+                <li><i class="fas fa-exclamation-triangle"></i> <strong>Generic output</strong> – AI defaults to bland. Inject your personality and expertise.</li>
+                <li><i class="fas fa-exclamation-triangle"></i> <strong>Ignoring privacy</strong> – Don’t paste confidential data into public AI tools. Use enterprise versions or self‑hosted models.</li>
+                <li><i class="fas fa-exclamation-triangle"></i> <strong>Not learning the basics</strong> – You can’t leverage AI effectively if you don’t understand the fundamentals of your skill.</li>
+            </ul>
+        </section>
+
+        <!-- INTERACTIVE TOOL: AI Opportunity Score -->
+        <div class="calc-card animate">
+            <h2 class="calc-title"><i class="fas fa-robot" style="color: var(--career-color);"></i> AI Opportunity Score</h2>
+            <p>Rate your current workload across four areas. See how much time AI could save you and get tool suggestions.</p>
+
+            <div class="calc-input">
+                <label for="repetitiveTasks">Repetitive tasks (e.g., data entry, formatting)</label>
+                <div class="slider-container">
+                    <input type="range" id="repetitiveTasks" class="cat-input" min="0" max="100" value="60" step="5">
+                    <span class="slider-value" id="repetitiveTasksVal">60</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="dataProcessing">Data processing & research</label>
+                <div class="slider-container">
+                    <input type="range" id="dataProcessing" class="cat-input" min="0" max="100" value="50" step="5">
+                    <span class="slider-value" id="dataProcessingVal">50</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="contentCreation">Content creation (writing, design, code)</label>
+                <div class="slider-container">
+                    <input type="range" id="contentCreation" class="cat-input" min="0" max="100" value="40" step="5">
+                    <span class="slider-value" id="contentCreationVal">40</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="researchLoad">Research & learning load</label>
+                <div class="slider-container">
+                    <input type="range" id="researchLoad" class="cat-input" min="0" max="100" value="70" step="5">
+                    <span class="slider-value" id="researchLoadVal">70</span>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="aiOpportunityBtn" class="btn" style="background-color: var(--career-color);">Calculate my score</button>
+            </div>
+
+            <div class="calc-result" id="aiOpportunityResult" style="border: 2px dashed var(--career-color);">
+                <p class="result-label">Your AI opportunity score</p>
+                <p style="font-size: 1rem;">Adjust the sliders and click "Calculate" to see your potential time savings.</p>
+            </div>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user who already took the quiz #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'leverage-ai-automation', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Quiz for everyone – interactivity blocked by home.js if not logged in #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: AI & automation</h3>
+
+                <div class="quiz-question">1. Which of these is a good use of AI in a professional context?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Writing a confidential contract in a public chatbot</div>
+                    <div class="quiz-option" data-answer="wrong">Letting AI make final decisions without review</div>
+                    <div class="quiz-option" data-answer="correct">Using AI to draft emails and then editing them</div>
+                    <div class="quiz-option" data-answer="wrong">Having AI attend meetings for you</div>
+                </div>
+
+                <div class="quiz-question">2. What is a key skill for getting good results from AI?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Knowing how to code</div>
+                    <div class="quiz-option" data-answer="wrong">Having a large budget</div>
+                    <div class="quiz-option" data-answer="correct">Writing clear, specific prompts</div>
+                    <div class="quiz-option" data-answer="wrong">Using complex technical jargon</div>
+                </div>
+
+                <div class="quiz-question">3. Which tool is best for automating workflows between apps?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">ChatGPT</div>
+                    <div class="quiz-option" data-answer="wrong">Midjourney</div>
+                    <div class="quiz-option" data-answer="correct">Zapier</div>
+                    <div class="quiz-option" data-answer="wrong">Otter.ai</div>
+                </div>
+
+                <div class="quiz-question">4. Why should you avoid pasting sensitive company data into public AI tools?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">The AI might get confused</div>
+                    <div class="quiz-option" data-answer="wrong">It’s against the law</div>
+                    <div class="quiz-option" data-answer="correct">Data could be used for training or exposed</div>
+                    <div class="quiz-option" data-answer="wrong">It’s too expensive</div>
+                </div>
+
+                <div class="quiz-question">5. What’s a common mistake when adopting AI?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Not learning the basics of your skill first</div>
+                    <div class="quiz-option" data-answer="wrong">Over‑relying and not verifying output</div>
+                    <div class="quiz-option" data-answer="wrong">Using generic prompts</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next articles in Phase 4 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue Phase 4: Skill Building</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'master-one-skill' }) }}" class="next-card">
+                    <i class="fas fa-crown"></i>
+                    <h3>Master One Skill Deeply</h3>
+                    <p>Move from intermediate to expert.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'personal-website' }) }}" class="next-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Build a Personal Website</h3>
+                    <p>Establish thought leadership online.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'certifications-vs-experience' }) }}" class="next-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Certifications vs. Experience</h3>
+                    <p>What actually boosts income?</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

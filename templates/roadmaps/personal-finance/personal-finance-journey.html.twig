@@ -1,0 +1,232 @@
+{# templates/roadmaps/personal-finance/real-state-fundamentals-journey.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- hero section specific for personal finance -->
+        <div class="journey-hero animate">
+            <div class="hero-content">
+                <div class="journey-icon">
+                    <i class="fas fa-piggy-bank"></i>
+                </div>
+                <h1>Personal Finance <span>Journey</span></h1>
+                <p class="hero-description">
+                    Build a rock‑solid money foundation — from your first budget to automated investing.
+                    Follow the four‑phase roadmap designed for beginners.
+                </p>
+            </div>
+        </div>
+
+        <!-- intro text: how our roadmaps work (personal finance version) -->
+        <div style="text-align: center; margin: 40px 0 20px;" class="animate">
+            <h2 class="section-title">🧭 Your 4‑phase roadmap</h2>
+            <p class="section-subtitle">
+                Each phase follows the "How Our Roadmaps Work" structure:
+                <strong>Foundation → Risk → Execution → Skill Building</strong>.
+                Complete the articles in order or jump to what you need most.
+            </p>
+        </div>
+
+        <!-- ===== PHASE 1 – FOUNDATION FIRST ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">1</span>
+                <span>Foundation First · Build your money base</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>Budgeting Made Simple: The 50/30/20 Rule</h3>
+                    <p class="article-brief">Learn how to split your after‑tax income into needs, wants, and savings without complicated spreadsheets. Includes a one‑page worksheet.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: '503020-budgeting' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-coins"></i></div>
+                    <h3>Zero‑Based Budgeting: Give Every Dollar a Job</h3>
+                    <p class="article-brief">Discover the method that forces you to account for every dollar. Perfect for variable incomes and hands‑on planners.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'zero-based-budgeting' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Emergency Fund 101: Why, How Much & Where</h3>
+                    <p class="article-brief">Understand the purpose of an emergency fund, how to calculate your target, and the best places to keep it (hint: not your checking account).</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'emergency-fund-101' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Understanding Your Credit Score & Report</h3>
+                    <p class="article-brief">Decode the numbers that impact your financial life – learn how to access free reports and improve your score step by step.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'understanding-your-credit-score' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 2 – RISK MANAGEMENT ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">2</span>
+                <span>Risk Management · Protect what you build</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-file-medical-alt"></i></div>
+                    <h3>Insurance Essentials: What You Actually Need</h3>
+                    <p class="article-brief">Cut through jargon to choose health, auto, renters, and life insurance with confidence. No upsells, just coverage that matters.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'insurance-essentials' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3>Debt Avalanche vs. Snowball: Which One Fits You?</h3>
+                    <p class="article-brief">Compare the maths‑focused avalanche and the motivational snowball. Pick the strategy that matches your personality.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'debt-avalanche-vs-snowball' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-id-card"></i></div>
+                    <h3>Protecting Your Identity: Simple Steps to Avoid Fraud</h3>
+                    <p class="article-brief">Practical habits to safeguard personal data – from password managers to freezing credit reports.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'protecting-your-identity' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <h3>Emergency Fund Deep Dive: Your Risk Shield</h3>
+                    <p class="article-brief">Go beyond the basics – how a cash cushion protects you from job loss, medical bills, and market downturns.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'emergency-fund-deep-dive' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 3 – PRACTICAL EXECUTION ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">3</span>
+                <span>Practical Execution · Take real‑world action</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-university"></i></div>
+                    <h3>Opening Your First Bank & Savings Accounts</h3>
+                    <p class="article-brief">Step‑by‑step guide to choosing the right accounts, avoiding fees, and setting up direct deposits like a pro.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'opening-your-first-bank-account' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Automate Your Finances: Set It and Forget It</h3>
+                    <p class="article-brief">Walk through automating bill payments, savings transfers, and investments – the ultimate tool for consistency.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'automate-your-finances' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3>Creating a Personal Financial Statement</h3>
+                    <p class="article-brief">Track your net worth with a simple balance sheet and income statement. Know exactly where you stand.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'creating-a-personal-financial-statement' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-phone-alt"></i></div>
+                    <h3>How to Negotiate Bills & Lower Monthly Costs</h3>
+                    <p class="article-brief">Scripts and tactics to reduce phone, internet, and subscription costs. Most people save $300+ in the first year.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'how-to-negotiate-bills' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 4 – SKILL BUILDING ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">4</span>
+                <span>Skill Building · Grow your money knowledge</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Introduction to Investing: From Savings to Stocks</h3>
+                    <p class="article-brief">Bridge from saving to investing – asset classes, compound interest, and how to open a brokerage account.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'intro-to-investing' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-landmark"></i></div>
+                    <h3>Tax‑Advantaged Accounts: 401(k), IRA, HSA</h3>
+                    <p class="article-brief">Understand retirement and health accounts to maximise tax benefits. Demystify Roth vs. traditional.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 11 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'tax-advantaged-accounts' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Goal Setting: Short, Medium & Long‑Term</h3>
+                    <p class="article-brief">Framework to define and prioritise financial goals – from a vacation to buying a home to early retirement.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'goal-setting-short-medium-long-term' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Mindset Shift: Building Wealth Habits That Stick</h3>
+                    <p class="article-brief">Psychological strategies to maintain discipline, avoid lifestyle inflation, and keep growing.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'mindset-shifting-building-wealth-habits' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- call to action – start journey / community -->
+        <div class="journey-cta animate">
+            <h2>Ready to build your financial foundation?</h2>
+            <p style="font-size: 1.2rem; color: #2d3748; margin-bottom: 10px;">Start with phase 1 – no credit card, just clear steps.</p>
+            <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: '503020-budgeting' }) }}" class="cta-button"><i class="fas fa-road"></i> Begin the journey now</a>
+            <p style="margin-top: 25px; color: #718096;"><i class="fas fa-users"></i> 15,000+ members started here</p>
+        </div>
+    </div>
+{% endblock %}

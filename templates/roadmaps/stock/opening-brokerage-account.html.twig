@@ -1,0 +1,243 @@
+{# templates/roadmaps/stock/opening-brokerage-account.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('stock_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('stock_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – stock style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--stocks-accent);">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h1>Opening a Brokerage Account <span>Step‑by‑Step</span></h1>
+                <p class="hero-description">
+                    Ready to start investing? Learn how to choose the right brokerage, compare account types, and open your account in minutes.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 10 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🏦 What Is a Brokerage Account?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                A <strong>brokerage account</strong> is a type of financial account that allows you to buy and sell investments – stocks, bonds, ETFs, mutual funds, and more. Think of it as a gateway to the markets.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                Unlike a bank account, a brokerage account holds securities. You fund it with cash, then use that cash to place trades. Most brokers today offer easy‑to‑use online platforms and mobile apps.
+            </p>
+        </section>
+
+        <!-- types of accounts -->
+        <div class="card animate" style="margin: 40px 0;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">📂 Types of Brokerage Accounts</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div>
+                    <h4><i class="fas fa-file-invoice"></i> Taxable Account</h4>
+                    <p>Flexible, no contribution limits, but dividends and capital gains are taxed yearly. Good for general investing.</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-tree"></i> Traditional IRA</h4>
+                    <p>Tax‑deductible contributions, growth tax‑deferred, taxed as income on withdrawal. Best if you expect lower tax rate in retirement.</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-feather"></i> Roth IRA</h4>
+                    <p>Contributions after‑tax, withdrawals tax‑free in retirement. Great if you expect higher tax rate later.</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-rotate"></i> Rollover IRA</h4>
+                    <p>For moving old 401(k)s into an IRA when you change jobs.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- choosing a broker -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-dollar-sign"></i> Fees & Commissions</h4>
+                <p>Most online brokers now offer $0 commissions for stock/ETF trades. Watch for account fees, inactivity fees, and mutual fund transaction fees.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-cubes"></i> Investment Options</h4>
+                <p>Does the broker offer stocks, ETFs, mutual funds, bonds, options, fractional shares? Make sure they have what you want.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-mobile-alt"></i> Platform & Tools</h4>
+                <p>User‑friendly app, research reports, screeners, educational content. Try the demo before committing.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-hand-holding-usd"></i> Minimum Deposit</h4>
+                <p>Many brokers have $0 minimums, but some require an initial deposit for certain accounts.</p>
+            </div>
+        </div>
+
+        <!-- step‑by‑step guide -->
+        <div class="card animate" style="margin: 40px 0;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">📝 Step‑by‑Step: Open Your Account</h3>
+            <ol style="margin-left: 20px;">
+                <li><strong>Gather your info:</strong> Social Security number, driver’s license, employment details, bank account for funding.</li>
+                <li><strong>Compare brokers:</strong> Use the tool below or visit broker websites.</li>
+                <li><strong>Apply online:</strong> Fill out the application (takes 10‑15 minutes). You’ll choose account type and beneficiaries.</li>
+                <li><strong>Fund the account:</strong> Link your bank account and transfer money (ACH usually takes 1‑3 days).</li>
+                <li><strong>Place your first trade:</strong> Start with a simple market order for a stock or ETF you’ve researched.</li>
+            </ol>
+        </div>
+
+        <!-- interactive tool: Brokerage Account Selector -->
+        <div class="card animate" style="margin: 40px 0;" id="brokerage-selector">
+            <h3><i class="fas fa-robot"></i> Brokerage Account Selector</h3>
+            <p>Answer a few questions to get a personalized recommendation on account type and what to look for in a broker.</p>
+
+            <div style="margin: 25px 0;">
+                <div class="quiz-question" style="color: var(--dark-color);">1. What is your primary investment goal?</div>
+                <div class="quiz-options" style="flex-direction: column; gap: 8px; margin-bottom: 20px;">
+                    <label class="quiz-option" style="display: flex; align-items: center; gap: 10px; background: var(--light-color); color: var(--dark-color);">
+                        <input type="radio" name="goal" value="retirement"> Retirement savings (10+ years away)
+                    </label>
+                    <label class="quiz-option"><input type="radio" name="goal" value="general"> General investing (no specific time)</label>
+                    <label class="quiz-option"><input type="radio" name="goal" value="short"> Short‑term goal (<5 years)</label>
+                    <label class="quiz-option"><input type="radio" name="goal" value="education"> Education savings (for child)</label>
+                </div>
+
+                <div class="quiz-question" style="color: var(--dark-color);">2. What is your current tax situation?</div>
+                <div class="quiz-options" style="flex-direction: column; gap: 8px; margin-bottom: 20px;">
+                    <label class="quiz-option"><input type="radio" name="tax" value="high"> High income, want tax deduction now</label>
+                    <label class="quiz-option"><input type="radio" name="tax" value="low"> Low income, expect higher taxes later</label>
+                    <label class="quiz-option"><input type="radio" name="tax" value="neutral"> Not a major factor</label>
+                </div>
+
+                <div class="quiz-question" style="color: var(--dark-color);">3. How much do you plan to invest initially?</div>
+                <div class="quiz-options" style="flex-direction: column; gap: 8px; margin-bottom: 20px;">
+                    <label class="quiz-option"><input type="radio" name="amount" value="small"> Less than $500</label>
+                    <label class="quiz-option"><input type="radio" name="amount" value="medium"> $500 – $5,000</label>
+                    <label class="quiz-option"><input type="radio" name="amount" value="large"> More than $5,000</label>
+                </div>
+
+                <div class="quiz-question" style="color: var(--dark-color);">4. What type of investments interest you most?</div>
+                <div class="quiz-options" style="flex-direction: column; gap: 8px; margin-bottom: 20px;">
+                    <label class="quiz-option"><input type="radio" name="investType" value="stocks"> Individual stocks & ETFs</label>
+                    <label class="quiz-option"><input type="radio" name="investType" value="funds"> Mutual funds</label>
+                    <label class="quiz-option"><input type="radio" name="investType" value="fractional"> Fractional shares (small amounts)</label>
+                    <label class="quiz-option"><input type="radio" name="investType" value="options"> Options / advanced</label>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="recommendBrokerage" class="btn-outline">Get Recommendation</button>
+            </div>
+
+            <div id="brokerageResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                Your recommendation will appear here.
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px; background-color: #e6f7f0; border-left-color: var(--stocks-accent);">
+                <i class="fas fa-lightbulb"></i> This is a general guide. Always check current broker features and consult a tax advisor for retirement accounts.
+            </p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'stock', slug: 'opening-brokerage-account', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #0e9f6e; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Brokerage Accounts</h3>
+
+                <div class="quiz-question">1. What is a brokerage account?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">A bank account for daily expenses</div>
+                    <div class="quiz-option" data-answer="correct">An account that lets you buy and sell investments</div>
+                    <div class="quiz-option" data-answer="wrong">A retirement plan offered by employers</div>
+                    <div class="quiz-option" data-answer="wrong">A type of savings bond</div>
+                </div>
+
+                <div class="quiz-question">2. Which account offers tax‑free withdrawals in retirement?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Traditional IRA</div>
+                    <div class="quiz-option" data-answer="correct">Roth IRA</div>
+                    <div class="quiz-option" data-answer="wrong">Taxable brokerage account</div>
+                    <div class="quiz-option" data-answer="wrong">401(k)</div>
+                </div>
+
+                <div class="quiz-question">3. What does it mean if a broker offers "fractional shares"?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="correct">You can buy a portion of a share, not just whole shares</div>
+                    <div class="quiz-option" data-answer="wrong">Shares are split into smaller pieces</div>
+                    <div class="quiz-option" data-answer="wrong">You own a fraction of the company</div>
+                    <div class="quiz-option" data-answer="wrong">The broker takes a fraction of your profits</div>
+                </div>
+
+                <div class="quiz-question">4. Which of the following is NOT typically needed to open a brokerage account?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Social Security number</div>
+                    <div class="quiz-option" data-answer="wrong">Bank account information</div>
+                    <div class="quiz-option" data-answer="correct">Credit score</div>
+                    <div class="quiz-option" data-answer="wrong">Driver's license</div>
+                </div>
+
+                <div class="quiz-question">5. Why might you choose a taxable brokerage account over an IRA?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Taxes are lower</div>
+                    <div class="quiz-option" data-answer="wrong">You can deduct contributions</div>
+                    <div class="quiz-option" data-answer="correct">You need access to the money before retirement without penalty</div>
+                    <div class="quiz-option" data-answer="wrong">It offers higher returns</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 3 (practical execution) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 3: Practical Execution</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'stock', slug: 'placing-your-first-trade' }) }}" class="next-card">
+                    <i class="fas fa-hand-pointer"></i>
+                    <h3>Placing Your First Trade</h3>
+                    <p>Market vs. limit orders, order types explained.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'stock', slug: 'dollar-cost-averaging' }) }}" class="next-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Dollar‑Cost Averaging</h3>
+                    <p>Invest consistently without stress.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'stock', slug: 'how-to-research-a-stock' }) }}" class="next-card">
+                    <i class="fas fa-magnifying-glass-chart"></i>
+                    <h3>How to Research a Stock</h3>
+                    <p>Key metrics for beginners.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}
