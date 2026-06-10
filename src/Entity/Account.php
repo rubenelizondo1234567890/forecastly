@@ -276,6 +276,11 @@ class Account
         return $this;
     }
 
+    public function isRevolvingAccount(): bool
+    {
+        return $this->annualInterestRate !== null && $this->annualInterestRate > 0;
+    }
+
     public function isHasMonthlyInterestCreated(): bool
     {
         return $this->hasMonthlyInterestCreated;
