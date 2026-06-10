@@ -1,6 +1,6 @@
 # Forecastly Portfolio Demo — Plan 2: Core Architecture
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Build the three world-class showcase files: `Money` Value Object, `ForecastStrategyInterface` + four concrete strategies, a fully refactored `ForecastingEngine` (Strategy orchestrator, N+1 eliminated, PHP 8.4 features), and the Service Contract layer.
 
@@ -40,7 +40,7 @@
 - Create: `src/ValueObject/Money.php`
 - Create: `tests/Unit/ValueObject/MoneyTest.php`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/Unit/ValueObject/MoneyTest.php`:
 
@@ -96,14 +96,14 @@ class MoneyTest extends TestCase
 }
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 ```bash
 docker compose exec app php bin/phpunit tests/Unit/ValueObject/MoneyTest.php --testdox
 # Expected: FAIL — class Money not found
 ```
 
-- [ ] **Step 3: Implement `Money` with PHP 8.4 property hook**
+- [x] **Step 3: Implement `Money` with PHP 8.4 property hook**
 
 Create `src/ValueObject/Money.php`:
 
@@ -172,14 +172,14 @@ final class Money
 }
 ```
 
-- [ ] **Step 4: Run tests — all pass**
+- [x] **Step 4: Run tests — all pass**
 
 ```bash
 docker compose exec app php bin/phpunit tests/Unit/ValueObject/MoneyTest.php --testdox
 # Expected: OK (6 tests, 6 assertions)
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/ValueObject/Money.php tests/Unit/ValueObject/MoneyTest.php
@@ -193,7 +193,7 @@ git commit -m "feat: add Money value object with PHP 8.4 property hook and integ
 **Files:**
 - Create: `src/DTO/ProjectionContext.php`
 
-- [ ] **Step 1: Create `src/DTO/ProjectionContext.php`**
+- [x] **Step 1: Create `src/DTO/ProjectionContext.php`**
 
 ```php
 <?php
@@ -233,7 +233,7 @@ final class ProjectionContext
 }
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/DTO/ProjectionContext.php
@@ -251,7 +251,7 @@ git commit -m "feat: add ProjectionContext DTO for pre-loaded forecast data"
 - Create: `src/Services/Forecasting/Strategy/RevolvingInterestForecastStrategy.php`
 - Create: `src/Services/Forecasting/Strategy/RecurringSavingsForecastStrategy.php`
 
-- [ ] **Step 1: Create the interface**
+- [x] **Step 1: Create the interface**
 
 Create `src/Services/Forecasting/Strategy/ForecastStrategyInterface.php`:
 
@@ -272,7 +272,7 @@ interface ForecastStrategyInterface
 }
 ```
 
-- [ ] **Step 2: Create `RecurringIncomeForecastStrategy`**
+- [x] **Step 2: Create `RecurringIncomeForecastStrategy`**
 
 Create `src/Services/Forecasting/Strategy/RecurringIncomeForecastStrategy.php`:
 
@@ -311,7 +311,7 @@ final class RecurringIncomeForecastStrategy implements ForecastStrategyInterface
 }
 ```
 
-- [ ] **Step 3: Create `RecurringExpenseForecastStrategy`**
+- [x] **Step 3: Create `RecurringExpenseForecastStrategy`**
 
 Create `src/Services/Forecasting/Strategy/RecurringExpenseForecastStrategy.php`:
 
@@ -350,7 +350,7 @@ final class RecurringExpenseForecastStrategy implements ForecastStrategyInterfac
 }
 ```
 
-- [ ] **Step 4: Create `RevolvingInterestForecastStrategy`**
+- [x] **Step 4: Create `RevolvingInterestForecastStrategy`**
 
 Create `src/Services/Forecasting/Strategy/RevolvingInterestForecastStrategy.php`:
 
@@ -387,7 +387,7 @@ final class RevolvingInterestForecastStrategy implements ForecastStrategyInterfa
 }
 ```
 
-- [ ] **Step 5: Create `RecurringSavingsForecastStrategy`**
+- [x] **Step 5: Create `RecurringSavingsForecastStrategy`**
 
 Create `src/Services/Forecasting/Strategy/RecurringSavingsForecastStrategy.php`:
 
@@ -426,7 +426,7 @@ final class RecurringSavingsForecastStrategy implements ForecastStrategyInterfac
 }
 ```
 
-- [ ] **Step 6: Add `isRevolvingAccount()` to `Account` entity**
+- [x] **Step 6: Add `isRevolvingAccount()` to `Account` entity**
 
 In `src/Entity/Account.php`, add this method after the existing getters:
 
@@ -437,7 +437,7 @@ public function isRevolvingAccount(): bool
 }
 ```
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/Services/Forecasting/ src/Entity/Account.php
@@ -452,7 +452,7 @@ git commit -m "feat: add ForecastStrategyInterface and four concrete forecast st
 - Modify: `src/Services/ForecastingEngine.php`
 - Modify: `config/services.yaml`
 
-- [ ] **Step 1: Register strategy DI tag in `config/services.yaml`**
+- [x] **Step 1: Register strategy DI tag in `config/services.yaml`**
 
 Add to `config/services.yaml`:
 
@@ -478,7 +478,7 @@ services:
             tags: ['app.forecast_strategy']
 ```
 
-- [ ] **Step 2: Rewrite `ForecastingEngine.php`**
+- [x] **Step 2: Rewrite `ForecastingEngine.php`**
 
 Replace the entire contents of `src/Services/ForecastingEngine.php`:
 
@@ -599,7 +599,7 @@ class ForecastingEngine
 }
 ```
 
-- [ ] **Step 3: Wire the strategies via tagged iterator in `config/services.yaml`**
+- [x] **Step 3: Wire the strategies via tagged iterator in `config/services.yaml`**
 
 Add the `ForecastingEngine` explicit binding after the `_instanceof` block:
 
@@ -609,14 +609,14 @@ Add the `ForecastingEngine` explicit binding after the `_instanceof` block:
             $strategies: !tagged_iterator app.forecast_strategy
 ```
 
-- [ ] **Step 4: Verify container compiles**
+- [x] **Step 4: Verify container compiles**
 
 ```bash
 docker compose exec app php bin/console debug:container App\\Services\\ForecastingEngine
 # Expected: shows $strategies as tagged_iterator with 4 items
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/Services/ForecastingEngine.php config/services.yaml
@@ -630,7 +630,7 @@ git commit -m "feat: refactor ForecastingEngine to Strategy pattern with single-
 **Files:**
 - Create: `tests/Unit/Services/Forecasting/ForecastingEngineTest.php`
 
-- [ ] **Step 1: Create the test file**
+- [x] **Step 1: Create the test file**
 
 ```php
 <?php
@@ -837,14 +837,14 @@ class ForecastingEngineTest extends TestCase
 }
 ```
 
-- [ ] **Step 2: Run tests**
+- [x] **Step 2: Run tests**
 
 ```bash
 docker compose exec app php bin/phpunit tests/Unit/Services/Forecasting/ForecastingEngineTest.php --testdox
 # Expected: OK (5 tests)
 ```
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add tests/Unit/Services/Forecasting/ForecastingEngineTest.php
@@ -862,7 +862,7 @@ git commit -m "test: add 5 focused ForecastingEngine unit tests documenting busi
 - Create: `src/Services/Contract/EmailServiceInterface.php`
 - Modify: `config/services.yaml`
 
-- [ ] **Step 1: Create `ForecastingEngineInterface.php`**
+- [x] **Step 1: Create `ForecastingEngineInterface.php`**
 
 ```php
 <?php
@@ -877,7 +877,7 @@ interface ForecastingEngineInterface
 }
 ```
 
-- [ ] **Step 2: Create `AccountsServiceInterface.php`**
+- [x] **Step 2: Create `AccountsServiceInterface.php`**
 
 ```php
 <?php
@@ -894,7 +894,7 @@ interface AccountsServiceInterface
 }
 ```
 
-- [ ] **Step 3: Create `CustomerServiceInterface.php`**
+- [x] **Step 3: Create `CustomerServiceInterface.php`**
 
 ```php
 <?php
@@ -909,7 +909,7 @@ interface CustomerServiceInterface
 }
 ```
 
-- [ ] **Step 4: Create `EmailServiceInterface.php`**
+- [x] **Step 4: Create `EmailServiceInterface.php`**
 
 ```php
 <?php
@@ -922,7 +922,7 @@ interface EmailServiceInterface
 }
 ```
 
-- [ ] **Step 5: Make concrete services implement their interfaces**
+- [x] **Step 5: Make concrete services implement their interfaces**
 
 In `src/Services/ForecastingEngine.php`, update the class declaration:
 
@@ -956,7 +956,7 @@ use App\Services\Contract\EmailServiceInterface;
 class EmailService implements EmailServiceInterface
 ```
 
-- [ ] **Step 6: Bind interfaces to implementations in `config/services.yaml`**
+- [x] **Step 6: Bind interfaces to implementations in `config/services.yaml`**
 
 Add to the bottom of `config/services.yaml`:
 
@@ -967,7 +967,7 @@ Add to the bottom of `config/services.yaml`:
     App\Services\Contract\EmailServiceInterface: '@App\Services\EmailService'
 ```
 
-- [ ] **Step 7: Update all controllers to type-hint interfaces**
+- [x] **Step 7: Update all controllers to type-hint interfaces**
 
 In any controller that injects `ForecastingEngine`, `AccountsService`, `CustomerService`, or `EmailService` directly — change the constructor type-hint to the interface. Example:
 
@@ -988,14 +988,14 @@ grep -r "ForecastingEngine\|AccountsService\|CustomerService\|EmailService" src/
 
 Update each one found.
 
-- [ ] **Step 8: Verify container compiles**
+- [x] **Step 8: Verify container compiles**
 
 ```bash
 docker compose exec app php bin/console debug:container --no-interaction 2>&1 | grep -i error || echo "Container OK"
 # Expected: Container OK
 ```
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 git add src/Services/Contract/ src/Services/ForecastingEngine.php src/Services/AccountsService.php \
