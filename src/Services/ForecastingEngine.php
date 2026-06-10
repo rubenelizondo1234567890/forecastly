@@ -1,130 +1,112 @@
 <?php
-// src/Services/ForecastingEngine.php
 
 namespace App\Services;
 
+use App\DTO\ProjectionContext;
 use App\Entity\Account;
 use App\Entity\AccountsTrackingCalendar;
 use App\Entity\CustomersAccount;
-use DateInterval;
-use DateTime;
+use App\Entity\RecurringExpense;
+use App\Entity\RecurringIncome;
+use App\Entity\RecurringInterest;
+use App\Entity\RecurringSavings;
+use App\Services\Forecasting\Strategy\ForecastStrategyInterface;
+use App\ValueObject\Money;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ForecastingEngine
 {
-    private EntityManagerInterface $em;
-    private AccountsService $accountsService;
-    
-    public function __construct(EntityManagerInterface $em, AccountsService $accountsService)
-    {
-        $this->em = $em;
-        $this->accountsService = $accountsService;
-    }
-    
+    /** @param ForecastStrategyInterface[] $strategies */
+    public function __construct(
+        private readonly EntityManagerInterface $em,
+        private readonly iterable $strategies,
+    ) {}
+
     public function generateFutureProjections(CustomersAccount $customerAccount, int $monthsToProject = 12): void
     {
-        $currentDate = new DateTime();
-        $endDate = (clone $currentDate)->modify("+$monthsToProject months");
-        
-        // Get the latest calendar entry to use as starting point
         $lastEntry = $this->em->getRepository(AccountsTrackingCalendar::class)
             ->findOneBy(['customersAccount' => $customerAccount], ['calendarDate' => 'DESC']);
-        
+
         if (!$lastEntry) {
             return;
         }
-        
-        $currentDate = clone $lastEntry->getCalendarDate();
-        $currentDate->modify('+1 day');
-        
-        while ($currentDate <= $endDate) {
-            $this->createProjectedDay($customerAccount, $currentDate);
-            $currentDate->modify('+1 day');
-        }
-    }
-    
-    private function createProjectedDay(CustomersAccount $customerAccount, DateTime $date): void
-    {
-        $previousDay = (clone $date)->modify('-1 day');
-        $previousEntry = $this->em->getRepository(AccountsTrackingCalendar::class)
-            ->findOneBy(['customersAccount' => $customerAccount, 'calendarDate' => $previousDay]);
-        
-        if (!$previousEntry) {
-            return;
-        }
-        
-        $newEntry = new AccountsTrackingCalendar();
-        $newEntry->setCustomersAccount($customerAccount);
-        $newEntry->setCalendarDate(clone $date);
-        
-        // Copy recurring transactions from previous patterns
-        $this->projectRecurringTransactions($newEntry, $date);
-        
-        // Calculate projected balances based on previous day + scheduled transactions
-        $projectedBalances = $this->calculateProjectedBalances(
-            $previousEntry->getAccountsBalances(),
-            $newEntry->getRecurringIncomes(),
-            $newEntry->getRecurringExpenses(),
-            $customerAccount
+
+        $startDate = \DateTimeImmutable::createFromInterface($lastEntry->getCalendarDate())
+            ->modify('+1 day');
+        $endDate = $startDate->modify("+{$monthsToProject} months");
+
+        // Pre-load all data once — eliminates N+1 DB calls during projection loop
+        $context = new ProjectionContext(
+            customerAccount: $customerAccount,
+            startDate: $startDate,
+            endDate: $endDate,
+            accounts: $this->preloadAccounts($customerAccount),
+            recurringIncomes: $this->em->getRepository(RecurringIncome::class)
+                ->findBy(['customerAccount' => $customerAccount]),
+            recurringExpenses: $this->em->getRepository(RecurringExpense::class)
+                ->findBy(['customerAccount' => $customerAccount]),
+            recurringInterests: $this->em->getRepository(RecurringInterest::class)
+                ->findBy(['customerAccount' => $customerAccount]),
+            recurringSavings: $this->em->getRepository(RecurringSavings::class)
+                ->findBy(['customerAccount' => $customerAccount]),
         );
-        
-        $newEntry->setAccountsBalances($projectedBalances);
-        
-        $this->em->persist($newEntry);
+
+        $current = $startDate;
+
+        while ($current <= $endDate) {
+            $entry = $this->buildProjectedEntry($context, $current, $lastEntry);
+            if ($entry !== null) {
+                $this->em->persist($entry);
+                $lastEntry = $entry;
+            }
+            $current = $current->modify('+1 day');
+        }
+
+        // Single flush for the entire projection run — was O(n) flushes before
         $this->em->flush();
     }
-    
-    private function calculateProjectedBalances(
-        array $previousBalances,
-        array $recurringIncomes,
-        array $recurringExpenses,
-        CustomersAccount $customerAccount
-    ): array {
+
+    private function buildProjectedEntry(
+        ProjectionContext $context,
+        \DateTimeImmutable $date,
+        AccountsTrackingCalendar $previousEntry,
+    ): ?AccountsTrackingCalendar {
+        $previousBalances = $previousEntry->getAccountsBalances() ?? [];
         $newBalances = $previousBalances;
-        
-        // Process incomes
-        foreach ($recurringIncomes as $accountId => $incomeEntries) {
-            $incomeTotal = array_sum($incomeEntries);
-            $account = $this->em->getRepository(Account::class)->find($accountId);
-            
-            if ($account && $account->getBudgetTrackingGroup()->getIsIncomeOrExpense() === 'income') {
-                $newBalances[$accountId] = ($newBalances[$accountId] ?? 0) + $incomeTotal;
-            }
-        }
-        
-        // Process expenses
-        foreach ($recurringExpenses as $accountId => $expenseEntries) {
-            $expenseTotal = array_sum($expenseEntries);
-            $account = $this->em->getRepository(Account::class)->find($accountId);
-            
-            if ($account && $account->getBudgetTrackingGroup()->getIsIncomeOrExpense() === 'expense') {
-                $newBalances[$accountId] = ($newBalances[$accountId] ?? 0) - $expenseTotal;
-            }
-        }
-        
-        return $newBalances;
-    }
-    
-    private function calculateInterestProjections(Account $account, array $balances): array
-    {
-        if ($account->isRevolvingAccount() && $account->getAnnualInterestRate()) {
-            $dailyRate = $account->getAnnualInterestRate() / 36500;
-            foreach ($balances as $date => $balance) {
-                if ($balance < 0) { // Only charge interest on negative balances
-                    $balances[$date] = $balance * (1 + $dailyRate);
+
+        foreach ($context->accounts as $account) {
+            $accountId = $account->getId();
+            $currentBalance = new Money((int) round(($previousBalances[$accountId] ?? 0) * 100));
+            $delta = new Money(0);
+
+            foreach ($this->strategies as $strategy) {
+                if ($strategy->applies($account)) {
+                    $delta = $delta->add($strategy->project($account, $context, $date));
                 }
             }
+
+            // PHP 8.4: array_find used in ProjectionContext::getAccountById
+            $newBalances[$accountId] = round(($currentBalance->add($delta))->toFloat(), 2);
         }
-        return $balances;
+
+        $entry = new AccountsTrackingCalendar();
+        $entry->setCustomersAccount($context->customerAccount);
+        $entry->setCalendarDate(\DateTime::createFromImmutable($date));
+        $entry->setAccountsBalances($newBalances);
+
+        return $entry;
     }
-    
-    private function projectOneTimeTransactions(DateTime $date): array
+
+    /** @return array<int, Account> keyed by account ID */
+    private function preloadAccounts(CustomersAccount $customerAccount): array
     {
-        // Project scheduled one-time transactions
-        return [
-            'incomes' => [],
-            'expenses' => []
-        ];
+        $accounts = $this->em->getRepository(Account::class)
+            ->findBy(['customerAccount' => $customerAccount]);
+
+        $indexed = [];
+        foreach ($accounts as $account) {
+            $indexed[$account->getId()] = $account;
+        }
+        return $indexed;
     }
-    
 }

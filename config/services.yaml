@@ -32,6 +32,14 @@ services:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
 
 
+    _instanceof:
+        App\Services\Forecasting\Strategy\ForecastStrategyInterface:
+            tags: ['app.forecast_strategy']
+
+    App\Services\ForecastingEngine:
+        arguments:
+            $strategies: !tagged_iterator app.forecast_strategy
+
     App\Services\StripeService:
         arguments:
             $secretKey: '%stripe_secret_key%'
