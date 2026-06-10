@@ -46,7 +46,7 @@ class RecurringIncomeController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, AccountsService $accountsService): Response|JsonResponse
+    public function new(Request $request, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): Response|JsonResponse
     {
         $cAcct = $this->getUser()->getCustomersAccount();
         $income = new RecurringIncome();
@@ -148,7 +148,7 @@ class RecurringIncomeController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, RecurringIncome $income, EntityManagerInterface $entityManager, AccountsService $accountsService): Response|JsonResponse
+    public function edit(Request $request, RecurringIncome $income, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): Response|JsonResponse
     {
         $cAcct = $this->getUser()->getCustomersAccount();
         // Ensure user owns this asset

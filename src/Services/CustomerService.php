@@ -13,10 +13,11 @@ use App\Entity\RecurringExpense;
 use App\Entity\RecurringIncome;
 use DateInterval;
 use DateTime;
+use App\Services\Contract\CustomerServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Random\RandomException;
 
-class CustomerService
+class CustomerService implements CustomerServiceInterface
 {
     private EntityManagerInterface $em;
     
@@ -25,7 +26,7 @@ class CustomerService
         $this->em = $em;
     }
     
-    public function getDashboardChartsData(Customer $user)
+    public function getDashboardChartsData(Customer $user): array
     {
         try {
             //Get Dates for this month

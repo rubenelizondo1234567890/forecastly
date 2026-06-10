@@ -167,7 +167,12 @@ class RecurringExpense implements RecurringIncomeExpensesInterface
     {
         return $this->startOn;
     }
-    
+
+    public function getRecurringDay(): int
+    {
+        return (int) $this->startOn->format('j');
+    }
+
     /**
      * @param DateTimeInterface$startOn
      * @return RecurringExpense

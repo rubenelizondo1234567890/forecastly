@@ -42,7 +42,7 @@ class RevolvingPaymentsController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, AccountsService $accountsService): Response|JsonResponse
+    public function new(Request $request, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): Response|JsonResponse
     {
         $cAcct = $this->getUser()->getCustomersAccount();
         $revolvingPayment = new RevolvingPayments();
@@ -158,7 +158,7 @@ class RevolvingPaymentsController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, RevolvingPayments $revolvingPayment, EntityManagerInterface $entityManager, AccountsService $accountsService): Response|JsonResponse
+    public function edit(Request $request, RevolvingPayments $revolvingPayment, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): Response|JsonResponse
     {
         $cAcct = $this->getUser()->getCustomersAccount();
 
@@ -235,7 +235,7 @@ class RevolvingPaymentsController extends AbstractController
     }
 
     #[Route('/update-payments/{accountId}', name: 'update_payments_ajax', methods: ['GET','POST'])]
-    public function updateRevolvingPayments(int $accountId, EntityManagerInterface $entityManager, AccountsService $accountsService): JsonResponse
+    public function updateRevolvingPayments(int $accountId, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): JsonResponse
     {
         $cAcct = $this->getUser()->getCustomersAccount();
         $account = $entityManager->getRepository(Account::class)->findOneBy(['id' => $accountId, 'customerAccount' => $cAcct]);

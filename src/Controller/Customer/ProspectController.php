@@ -31,7 +31,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class ProspectController extends AbstractController
 {
     #[Route('/test', name: 'customer_test', methods: ['GET'])]
-    public function customerDashboard(Request $request, EntityManagerInterface $em, EmailService $emailService): Response
+    public function customerDashboard(Request $request, EntityManagerInterface $em, EmailServiceInterface $emailService): Response
     {
         //for testing purposes.. remove it
         $customer = $em->getRepository(Customer::class)->find(1);
@@ -69,7 +69,7 @@ class ProspectController extends AbstractController
     }
 
     #[Route('/process-combined-account', name: 'process_combined_account', methods: ['POST'])]
-    public function processCombinedAccount(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, EmailService $emailService, StripeService $stripeService): Response
+    public function processCombinedAccount(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, EmailServiceInterface $emailService, StripeService $stripeService): Response
     {
         $formData = $request->request->all();
         $plan = $request->request->get('plan', 'free');
@@ -312,7 +312,7 @@ class ProspectController extends AbstractController
     }
 
     #[Route('/resend-activation-email/{customerId}', name: 'resend_activation_email', methods: ['POST'])]
-    public function resendActivationEmail(int $customerId, EntityManagerInterface $entityManager, EmailService $emailService): JsonResponse
+    public function resendActivationEmail(int $customerId, EntityManagerInterface $entityManager, EmailServiceInterface $emailService): JsonResponse
     {
         try {
             $customer = $entityManager->getRepository(Customer::class)->find($customerId);
@@ -371,7 +371,7 @@ class ProspectController extends AbstractController
     }
 
     #[Route('/create-stripe-checkout-session', name: 'create_stripe_checkout_session', methods: ['POST'])]
-    public function createStripeCheckoutSession(Request $request, EntityManagerInterface $entityManager, StripeService $stripeService, EmailService $emailService): JsonResponse
+    public function createStripeCheckoutSession(Request $request, EntityManagerInterface $entityManager, StripeService $stripeService, EmailServiceInterface $emailService): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         $priceId = $data['priceId'];
@@ -440,7 +440,7 @@ class ProspectController extends AbstractController
     }
 
     #[Route('/stripe-checkout-success', name: 'stripe_checkout_success', methods: ['GET'])]
-    public function stripeCheckoutSuccess(Request $request, EntityManagerInterface $entityManager, EmailService $emailService, StripeService $stripeService): Response
+    public function stripeCheckoutSuccess(Request $request, EntityManagerInterface $entityManager, EmailServiceInterface $emailService, StripeService $stripeService): Response
     {
         $sessionId = $request->query->get('session_id');
         $customerId = $request->getSession()->get('pending_customer_id');

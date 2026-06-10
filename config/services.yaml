@@ -32,6 +32,19 @@ services:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
 
 
+    _instanceof:
+        App\Services\Forecasting\Strategy\ForecastStrategyInterface:
+            tags: ['app.forecast_strategy']
+
+    App\Services\ForecastingEngine:
+        arguments:
+            $strategies: !tagged_iterator app.forecast_strategy
+
+    App\Services\Contract\ForecastingEngineInterface: '@App\Services\ForecastingEngine'
+    App\Services\Contract\AccountsServiceInterface: '@App\Services\AccountsService'
+    App\Services\Contract\CustomerServiceInterface: '@App\Services\CustomerService'
+    App\Services\Contract\EmailServiceInterface: '@App\Services\EmailService'
+
     App\Services\StripeService:
         arguments:
             $secretKey: '%stripe_secret_key%'

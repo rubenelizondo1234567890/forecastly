@@ -29,7 +29,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class SavingsAccountController extends AbstractController
 {
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, AccountsService $accountsService): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): Response
     {
         $cAcct = $this->getUser()->getCustomersAccount();
         $account = new Account();
@@ -100,7 +100,7 @@ class SavingsAccountController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Account $account, EntityManagerInterface $entityManager, AccountsService $accountsService): Response
+    public function edit(Request $request, Account $account, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): Response
     {
         $today = new DateTime(date('Y-m-d 00:00:00'));
         $cAcct = $this->getUser()->getCustomersAccount();
@@ -175,7 +175,7 @@ class SavingsAccountController extends AbstractController
     }
 
     #[Route('/reconcile', name: 'reconcile', methods: ['POST'])]
-    public function reconcile(Request $request, EntityManagerInterface $entityManager, AccountsService $accountsService): JsonResponse
+    public function reconcile(Request $request, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): JsonResponse
     {
         try {
             $accountId = $request->request->get('account_id');
