@@ -1,0 +1,243 @@
+{# templates/customer/account_settings/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Manage Customer Account - Forecastly{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_account_settings_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_account_settings_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <div class="page-title">
+            <h1>Account Settings</h1>
+            <p>Manage your account and users</p>
+        </div>
+    </div>
+
+    {# New Profile Section #}
+    {% set mainCustomer = null %}
+    {% for customer in customers %}
+        {% if customer.isMain %}
+            {% set mainCustomer = customer %}
+        {% endif %}
+    {% endfor %}
+
+    {% if mainCustomer %}
+        <div class="form-section">
+            <div class="section-header">
+                <h2 class="section-title">Main Customer Profile</h2>
+            </div>
+
+            <div class="profile-container">
+                <div class="avatar-container">
+                    <img src="{{ mainCustomer.avatarImage ? asset('uploads/avatars/' ~ mainCustomer.avatarImage) : asset('template/img/default-avatar.png') }}"
+                         alt="Profile Picture" class="avatar-image">
+                </div>
+
+                <div class="profile-details">
+                    <p><strong>Username:</strong> <span>{{ mainCustomer.username }}</span></p>
+                    <p><strong>First Name:</strong> <span>{{ mainCustomer.firstName }}</span></p>
+                    <p><strong>Last Name:</strong> <span>{{ mainCustomer.lastName }}</span></p>
+                    <p><strong>Email:</strong> <span>{{ mainCustomer.email }}</span></p>
+                    <p><strong>Member Since:</strong> <span>{{ mainCustomer.createdAt|date('F j, Y') }}</span></p>
+                    {% if mainCustomer.updatedAt %}
+                        <p><strong>Last Updated:</strong> <span>{{ mainCustomer.updatedAt|date('F j, Y') }}</span></p>
+                    {% endif %}
+                </div>
+
+                <div class="profile-actions">
+                    <button class="btn btn-primary edit-btn"
+                            data-customer-id="{{ mainCustomer.id }}"
+                            data-edit-url="{{ path('customer_account_settings_edit', {'id': mainCustomer.id}) }}">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                    <button class="btn btn-secondary" id="toggle-subscription">
+                        <i class="fas fa-chevron-down"></i> Show Subscription Details
+                    </button>
+                </div>
+            </div>
+
+            {# Subscription Information (Collapsible) #}
+            <div class="subscription-info hidden" id="subscription-info">
+                <h4>Subscription Information</h4>
+                <div class="subscription-details">
+                    <div class="subscription-detail-item">
+                        <strong>Current Plan</strong>
+                        <span>{{ customerAccount.subscriptionPlan.planName ?? 'Free Plan' }}</span>
+                    </div>
+                    <div class="subscription-detail-item">
+                        <strong>Account Status</strong>
+                        <span>{{ customerAccount.isActive ? 'Active' : 'Inactive' }}</span>
+                    </div>
+                    <div class="subscription-detail-item">
+                        <strong>Account Created</strong>
+                        <span>{{ customerAccount.createdAt|date('F j, Y') }}</span>
+                    </div>
+                    <div class="subscription-detail-item">
+                        <strong>Plan Features</strong>
+                        <div class="plan-features-list">
+                            {% if customerAccount.subscriptionPlan and customerAccount.subscriptionPlan.planFeatures %}
+                                {% set features = customerAccount.subscriptionPlan.planFeatures|split(',') %}
+                                {% for feature in features %}
+                                    <span class="plan-feature-item">{{ feature|trim }}</span>
+                                {% endfor %}
+                            {% else %}
+                                <span class="no-features">No features listed</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if quizProgress is defined and quizProgress is not empty %}
+        <div class="form-section">
+            <div class="section-header">
+                <h2 class="section-title">Learning Progress | <small>brought to you by <a href="https://moneymoxiehq.com" target="_blank">Money Moxie HQ</a></small></h2>
+                <p>Your quiz scores by journey</p>
+            </div>
+            <div class="quiz-progress-container">
+                {% for journeyData in quizProgress %}
+                    {% set journey = journeyData.journey %}
+                    {% set avg = journeyData.average %}
+                    <div class="journey-item">
+                        <div class="journey-header" data-journey-id="{{ journey.id }}">
+                            <div class="journey-title">
+                                <i class="fas fa-chevron-right journey-toggle"></i>
+                                {{ journey.name }}
+                            </div>
+                            <div class="journey-average">
+                                <span class="average-score">{{ avg }}%</span>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill" style="width: {{ avg }}%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="journey-details" id="journey-details-{{ journey.id }}" style="display: none;">
+                            <table class="quizzes-table">
+                                <thead>
+                                <tr>
+                                    <th>Page</th>
+                                    <th>Score</th>
+                                    <th>Date Taken</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for quiz in journeyData.quizzes %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ url('app_page_show', { journey: quiz.page.journey.name, slug: quiz.page.slug }) }}" target="_blank">
+                                                {{ quiz.page.title }}
+                                            </a>
+                                        </td>
+                                        <td>{{ quiz.score }}%</td>
+                                        <td>{{ quiz.date|date('Y-m-d') }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="form-section">
+        <div class="section-header">
+            <h2 class="section-title">Customers with access to Account: {{ customerAccount.accountName }}</h2>
+        </div>
+
+        <div class="accounts-list">
+            <table class="accounts-table">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer.username }}</td>
+                        <td>{{ customer.firstName }}</td>
+                        <td>{{ customer.lastName }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.phoneNumber }}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn"
+                                        data-customer-id="{{ customer.id }}"
+                                        data-edit-url="{{ path('customer_account_settings_edit', {'id': 'CUSTOMER_ID'}) }}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="empty-state">
+                            <i class="fas fa-users"></i>
+                            <p>No customers found for this account.</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="btn btn-primary" id="add-customer-btn"
+                    data-new-url="{{ path('customer_account_settings_new') }}">
+                <i class="fas fa-plus"></i> Add New to this Account
+            </button>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <div class="section-header">
+            <h2 class="section-title">Danger Zone</h2>
+        </div>
+        <div class="form-group">
+            <label>Reset Account Data</label>
+            <p class="form-hint">This will delete all your financial data and reset the account to its initial state. This action cannot be undone.</p>
+            <button type="button" class="btn btn-secondary" id="reset-account-btn">
+                <i class="fas fa-trash"></i> Reset Account Data
+            </button>
+        </div>
+    </div>
+
+    {# Modals #}
+    <div id="edit-customer-modal" class="modal"></div>
+    <div id="new-customer-modal" class="modal"></div>
+    <div id="reset-account-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Reset Account Data</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to reset your account data? This will delete all your financial data and cannot be undone.</p>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-reset">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirm-reset"
+                            data-reset-url="{{ path('customer_account_settings_reset_account') }}">
+                        Confirm Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{# templates/main/main_index.html.twig #}
+{% extends 'base_prospect.html.twig' %}
+
+{% block body %}
+    <div class="prospect-centered-hero-section">
+        <div class="prospect-hero-container">
+            <div class="prospect-hero-image-container">
+                <img src="{{ asset('template/img/Forecastly_main.png') }}" alt="Forecastly" class="prospect-hero-image">
+            </div>
+            <div class="prospect-hero-links-container">
+                <div class="prospect-hero-links">
+                    <a href="{{ path('customer_login') }}" class="prospect-hero-link">Login</a>
+                    <span class="prospect-link-separator">|</span>
+                    <a href="{{ path('prospect_landing') }}" class="prospect-hero-link">Sign Up</a>
+                    <span class="prospect-link-separator">|</span>
+                    <a href="{{ path('main_contact_support') }}" class="prospect-hero-link">Contact Support</a>
+                </div>
+            </div>
+            <div class="prospect-hero-footer">
+                <p class="prospect-copyright">© 2025 Meridian Wealth Technologies, LLC. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="{{ url('privacy_policy') }}" style="color: #5E60CE !important;">Privacy Policy</a> |
+                    <a href="{{ url('terms_of_service') }}" style="color: #5E60CE !important;">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

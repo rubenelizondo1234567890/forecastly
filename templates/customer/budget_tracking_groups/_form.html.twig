@@ -1,0 +1,34 @@
+{# templates/customer/budget_tracking_groups/_form.html.twig #}
+{% if group and group.id %}
+    {% set form_action = path('customer_budget_edit', {'id': group.id}) %}
+{% else %}
+    {% set form_action = path('customer_budget_new') %}
+{% endif %}
+
+<form action="{{ form_action }}" method="POST" id="group-form">
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'e.g., Groceries'}}) }}
+        {{ form_errors(form.name) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.isIncomeOrExpense) }}
+        {{ form_widget(form.isIncomeOrExpense, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.isIncomeOrExpense) }}
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            {% if group and group.id %}Update Group{% else %}Add Group{% endif %}
+        </button>
+        <button type="reset" class="btn btn-secondary">Clear Form</button>
+        {% if group and group.id %}
+            <button type="button" class="btn btn-secondary" id="cancel-btn" data-cancel-url="{{ path('customer_budget_index') }}">Cancel</button>
+        {% endif %}
+    </div>
+
+    {{ form_rest(form) }}
+</form>

@@ -1,0 +1,44 @@
+{# templates/customer/account_settings/_new_customer_for_this_account.html.twig #}
+<div class="modal-content">
+    <div class="modal-header">
+        <h2>Add New Customer</h2>
+        <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.avatarFile) }}
+            {{ form_widget(form.avatarFile, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-hint">Recommended: 120x120px, JPG, PNG or GIF (max 2MB)</small>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.username) }}
+            {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.firstName) }}
+            {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.lastName) }}
+            {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.phoneNumber) }}
+            {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.password) }}
+            {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-actions">
+            <button type="button" class="btn btn-secondary" onclick="closeModal('new-customer-modal')">Cancel</button>
+            <button type="submit" class="btn btn-primary">Create Customer</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>

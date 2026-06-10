@@ -1,0 +1,232 @@
+{# templates/roadmaps/stock/stock-investment-journey.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('stock_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('stock_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- hero section specific for stock investing -->
+        <div class="journey-hero animate">
+            <div class="hero-content">
+                <div class="journey-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h1>Stock Investing <span>Journey</span></h1>
+                <p class="hero-description">
+                    Learn to invest in stocks with confidence — from the very first share to a diversified, long‑term portfolio.
+                    Follow the four‑phase roadmap built for beginners.
+                </p>
+            </div>
+        </div>
+
+        <!-- intro text: how our roadmaps work (stock version) -->
+        <div style="text-align: center; margin: 40px 0 20px;" class="animate">
+            <h2 class="section-title">📈 Your 4‑phase stock roadmap</h2>
+            <p class="section-subtitle">
+                Each phase follows the <strong>“How Our Roadmaps Work”</strong> structure:
+                <strong>Foundation → Risk → Execution → Skill Building</strong>.
+                Complete the articles in order or jump to what you need most.
+            </p>
+        </div>
+
+        <!-- ===== PHASE 1 – FOUNDATION FIRST ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">1</span>
+                <span>Foundation First · Stock market basics</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3>What is a Stock? Understanding Ownership</h3>
+                    <p class="article-brief">Learn what it means to own a share, how stocks work, and why companies issue them. Essential first step.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'what-is-a-stock' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-building"></i></div>
+                    <h3>How the Stock Market Works</h3>
+                    <p class="article-brief">Demystify exchanges, indices (S&P 500, Dow), and market participants. Get comfortable with terminology.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'how-stock-market-works' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Why Invest in Stocks? The Power of Long-Term Growth</h3>
+                    <p class="article-brief">Explore historical returns, compounding, and why stocks beat inflation over time.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'why-invest-in-stocks' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-coins"></i></div>
+                    <h3>Common Stock vs. Preferred Stock & Dividends</h3>
+                    <p class="article-brief">Understand different share classes and how dividends can provide passive income.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'common-stock-vs-preferred' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 2 – RISK MANAGEMENT ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">2</span>
+                <span>Risk Management · Protecting your capital</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3>Risk Tolerance: Know Yourself Before You Invest</h3>
+                    <p class="article-brief">Assess your comfort with market swings. Questionnaire and tips to align portfolio with your risk profile.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'risk-tolerance' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-random"></i></div>
+                    <h3>Diversification: Don't Put All Eggs in One Basket</h3>
+                    <p class="article-brief">Learn how spreading investments across sectors reduces risk. Examples of diversified portfolios.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'diversification' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-wave-square"></i></div>
+                    <h3>Market Volatility: How to Stay Calm During Dips</h3>
+                    <p class="article-brief">Understand market cycles, corrections, and bear markets. Strategies to avoid panic selling.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'market-volatility' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <h3>Asset Allocation: Balancing Stocks, Bonds, and Cash</h3>
+                    <p class="article-brief">Find the right mix based on age, goals, and risk. Modern portfolio theory simplified.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'asset-allocation' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 3 – PRACTICAL EXECUTION ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">3</span>
+                <span>Practical Execution · Your first trades</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-university"></i></div>
+                    <h3>Opening a Brokerage Account: Step‑by‑Step</h3>
+                    <p class="article-brief">Compare brokers, account types (taxable vs. IRA), and walk through the application process.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'opening-brokerage-account' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-hand-pointer"></i></div>
+                    <h3>Placing Your First Trade: Market vs. Limit Orders</h3>
+                    <p class="article-brief">Learn how to buy and sell stocks, understand order types, and avoid common mistakes.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'placing-your-first-trade' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Dollar‑Cost Averaging: Invest Consistently Without Stress</h3>
+                    <p class="article-brief">Implement a strategy to invest fixed amounts regularly, reducing timing risk.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'dollar-cost-averaging' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+                    <h3>How to Research a Stock: Key Metrics for Beginners</h3>
+                    <p class="article-brief">Introduction to P/E ratio, EPS, market cap, and where to find reliable data.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'how-to-research-a-stock' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 4 – SKILL BUILDING ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">4</span>
+                <span>Skill Building · Advanced knowledge</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-file-lines"></i></div>
+                    <h3>Fundamental Analysis: Reading Financial Statements</h3>
+                    <p class="article-brief">Dig into income statements, balance sheets, and cash flow to evaluate company health.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'fundamental-analysis' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>Introduction to Valuation: P/E, PEG, and Intrinsic Value</h3>
+                    <p class="article-brief">Learn how to determine if a stock is overvalued or undervalued using simple multiples.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'introduction-to-valuation' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+                    <h3>Dividend Investing: Building Passive Income Streams</h3>
+                    <p class="article-brief">Focus on dividend aristocrats, yield, payout ratios, and reinvestment plans (DRIP).</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'dividend-investing' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-arrows-spin"></i></div>
+                    <h3>Long‑Term Strategies: Buy‑and‑Hold vs. Active Trading</h3>
+                    <p class="article-brief">Compare philosophies and find the approach that suits your lifestyle and goals.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'stock', slug: 'long-term-strategies' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- call to action – start journey -->
+        <div class="journey-cta animate">
+            <h2>Ready to start your stock market journey?</h2>
+            <p style="font-size: 1.2rem; color: #2d3748; margin-bottom: 10px;">Begin with phase 1 – clear, step‑by‑step, no jargon.</p>
+            <a href="{{ url('app_page_show', { journey: 'stock', slug: 'what-is-a-stock' }) }}" class="cta-button"><i class="fas fa-road"></i> Begin the journey now</a>
+            <p style="margin-top: 25px; color: #718096;"><i class="fas fa-users"></i> 11,000+ members started here</p>
+        </div>
+    </div>
+{% endblock %}

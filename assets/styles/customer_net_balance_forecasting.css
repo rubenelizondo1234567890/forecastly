@@ -1,0 +1,105 @@
+/* assets/css/customer_income_expense_forecasting.css */
+.net-balance-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.summary-card.income {
+    border-left: 4px solid var(--positive);
+}
+
+.summary-card.expense {
+    border-left: 4px solid var(--negative);
+}
+
+.summary-card.net {
+    border-left: 4px solid var(--primary);
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 8px;
+}
+
+.summary-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.income-value {
+    color: var(--positive);
+}
+
+.expense-value {
+    color: var(--negative);
+}
+
+.net-positive {
+    color: var(--positive);
+}
+
+.net-negative {
+    color: var(--negative);
+}
+
+.legend-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 8px;
+}
+
+.legend-income {
+    background-color: #128370;
+}
+
+.legend-expense {
+    background-color: #FF9E6D;
+}
+
+.legend-net {
+    background-color: #5E60CE;
+}
+
+.net-balance-chart-container {
+    position: relative;
+    min-height: 800px;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .net-balance-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .legend-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

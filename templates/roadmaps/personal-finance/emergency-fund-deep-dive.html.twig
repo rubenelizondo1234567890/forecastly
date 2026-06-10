@@ -1,0 +1,219 @@
+{# templates/roadmaps/personal-finance/emergency-fund-deep-dive.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="article-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <h1>Emergency Fund Deep Dive: <span>Your Risk Shield</span></h1>
+                <p class="hero-description">
+                    Go beyond the basics — learn exactly how much to save, where to keep it, and how to build your safety net faster.
+                </p>
+                <div class="article-meta-hero">
+                    <span><i class="far fa-clock"></i> 8 min read</span>
+                    <span><i class="fas fa-calculator"></i> Interactive calculator</span>
+                    <span><i class="fas fa-signal"></i> Intermediate</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- main article -->
+        <article class="article-main animate">
+            <h2>🛡️ Why your emergency fund is a risk shield</h2>
+            <p>An emergency fund is cash set aside for unexpected expenses—job loss, medical bills, car repairs. It's not an investment; it's <strong>insurance against life</strong>. Without it, you risk going into debt or dipping into retirement savings.</p>
+
+            <div class="insight-callout">
+                <i class="fas fa-shield"></i>
+                <div><strong>The shield effect:</strong> Knowing you have a buffer reduces financial stress and gives you the confidence to handle surprises without panic.</div>
+            </div>
+
+            <h2>🧮 How much do you really need?</h2>
+            <p>The classic rule is 3–6 months of essential expenses. But your number depends on your job stability, income sources, and dependents. Use the calculator below to find your target.</p>
+
+            <!-- Interactive calculator -->
+            <div class="calculator-card">
+                <h3 style="margin-top:0;">🔢 Your emergency fund target</h3>
+                <div class="calc-row">
+                    <div class="calc-field">
+                        <label for="monthlyExpenses">Monthly essential expenses ($)</label>
+                        <input type="number" id="monthlyExpenses" min="500" max="20000" step="100" value="3000">
+                    </div>
+                    <div class="calc-field">
+                        <label for="stabilityFactor">Job / income stability</label>
+                        <select id="stabilityFactor">
+                            <option value="3">Very stable (e.g., tenured govt, dual income) – 3 months</option>
+                            <option value="4" selected>Moderately stable (salaried, single income) – 4 months</option>
+                            <option value="5">Less stable (freelance, commission) – 5 months</option>
+                            <option value="6">Unstable / seasonal – 6+ months</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="calc-result">
+                    <div>
+                        <div class="result-label">Your target emergency fund</div>
+                        <div class="result-amount" id="targetAmount">$12,000</div>
+                    </div>
+                    <div class="months-badge" id="monthsBadge">4 months of expenses</div>
+                </div>
+                <p style="font-size:0.9rem; color: var(--gray-color); margin-top:15px;">* Essential expenses = rent/mortgage, utilities, food, minimum debt payments, insurance.</p>
+            </div>
+
+            <h2>📊 Factors that influence your target</h2>
+            <div class="factor-grid">
+                <div class="factor-item">
+                    <i class="fas fa-briefcase"></i>
+                    <div class="factor-title">Job stability</div>
+                    <p>Stable job → 3–4 months. Freelance/seasonal → 6+ months.</p>
+                </div>
+                <div class="factor-item">
+                    <i class="fas fa-users"></i>
+                    <div class="factor-title">Dependents</div>
+                    <p>Kids or elders who rely on you? Add an extra buffer.</p>
+                </div>
+                <div class="factor-item">
+                    <i class="fas fa-house-chimney"></i>
+                    <div class="factor-title">Homeownership</div>
+                    <p>Homeowners need extra for urgent repairs (roof, HVAC).</p>
+                </div>
+                <div class="factor-item">
+                    <i class="fas fa-heartbeat"></i>
+                    <div class="factor-title">Health</div>
+                    <p>High‑deductible health plan? Consider a larger cushion.</p>
+                </div>
+            </div>
+
+            <h2>🏦 Where to keep your emergency fund</h2>
+            <p>Your emergency fund must be safe, liquid, and separate from daily spending. Top choices:</p>
+            <ul>
+                <li><strong>High‑yield savings account</strong> (HYSA) – currently 4–5% APY, fdic insured, easy access. Best for most people.</li>
+                <li><strong>Money market account</strong> – slightly higher rates, sometimes check-writing.</li>
+                <li><strong>No‑penalty CD</strong> – if you're willing to lock for a few months with no withdrawal penalty.</li>
+            </ul>
+            <p>Avoid: regular checking (too easy to spend), stocks (too volatile), or under the mattress (inflation & theft).</p>
+
+            <div class="highlight-box">
+                <i class="fas fa-rocket" style="font-size:2rem; color: var(--personal-color); margin-bottom:10px; display:inline-block;"></i>
+                <h3 style="margin-top:0;">How to build it faster</h3>
+                <ul style="margin-bottom:0;">
+                    <li>Automate a monthly transfer right after payday.</li>
+                    <li>Use windfalls: tax refunds, bonuses, cash gifts.</li>
+                    <li>Cut one small expense (e.g., unused subscription) and redirect it.</li>
+                    <li>Start small: $20/week adds up to $1,040/year.</li>
+                </ul>
+            </div>
+
+            <h2>⚠️ Common pitfalls to avoid</h2>
+            <ul>
+                <li><strong>Investing your emergency fund</strong> – market downturns can shrink it just when you need it.</li>
+                <li><strong>Borrowing from it for non‑emergencies</strong> – new TV isn't an emergency.</li>
+                <li><strong>Stopping after reaching goal</strong> – your expenses change, so should your fund. Review yearly.</li>
+                <li><strong>Keeping it in the same account as spending money</strong> – too tempting to dip into.</li>
+            </ul>
+
+            <!-- Quick quiz -->
+            {% if app.user and quiz %}
+                {# Logged in user #}
+                {# Quiz already taken – show summary and retake button #}
+                <div class="quiz-container animate">
+                    <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                    <p style="color: #e2e8f0; font-size: 1.2rem;">
+                        Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                    </p>
+                    <p style="color: #cbd5e0;">
+                        You can retake the quiz to improve your score. Click the button below to reset it.
+                    </p>
+                    <div class="quiz-actions">
+                        <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                           class="btn"
+                           style="background-color: #ff6b35; color: white; text-decoration: none;">
+                            Retake Quiz
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+                <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                    <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your emergency fund knowledge</h3>
+                    <div class="quiz-question">1. What is the best place to keep your emergency fund?</div>
+                    <div class="quiz-options" data-question="1">
+                        <div class="quiz-option" data-answer="wrong">Stock market</div>
+                        <div class="quiz-option" data-answer="correct">High‑yield savings account</div>
+                        <div class="quiz-option" data-answer="wrong">Under your mattress</div>
+                    </div>
+                    <div class="quiz-question" style="margin-top: 30px;">2. If you have an unstable freelance income, you should aim for:</div>
+                    <div class="quiz-options" data-question="2">
+                        <div class="quiz-option" data-answer="wrong">1–2 months of expenses</div>
+                        <div class="quiz-option" data-answer="correct">6+ months of expenses</div>
+                        <div class="quiz-option" data-answer="wrong">No emergency fund, just use credit cards</div>
+                    </div>
+                    <div class="quiz-question">3. Which factor might increase your emergency fund target?</div>
+                    <div class="quiz-options" data-question="3">
+                        <div class="quiz-option" data-answer="wrong">Being single</div>
+                        <div class="quiz-option" data-answer="wrong">Renting a home</div>
+                        <div class="quiz-option" data-answer="correct">Having dependents</div>
+                        <div class="quiz-option" data-answer="wrong">Stable job</div>
+                    </div>
+                    <div class="quiz-question">4. What is a common mistake to avoid?</div>
+                    <div class="quiz-options" data-question="4">
+                        <div class="quiz-option" data-answer="correct">Investing your emergency fund</div>
+                        <div class="quiz-option" data-answer="wrong">Keeping it in a savings account</div>
+                        <div class="quiz-option" data-answer="wrong">Automating contributions</div>
+                        <div class="quiz-option" data-answer="wrong">Reviewing it yearly</div>
+                    </div>
+                    <div class="quiz-question">5. How can you build your fund faster?</div>
+                    <div class="quiz-options" data-question="5">
+                        <div class="quiz-option" data-answer="wrong">Use windfalls like tax refunds</div>
+                        <div class="quiz-option" data-answer="wrong">Cut small expenses</div>
+                        <div class="quiz-option" data-answer="wrong">Automate transfers</div>
+                        <div class="quiz-option" data-answer="correct">All of the above</div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback">👉 Click any answer to check yourself.</div>
+                </div>
+            {% endif %}
+
+
+            <!-- Next steps: continue Phase 2 -->
+            <section style="margin: 60px 0;">
+                <h2 class="section-title" style="text-align: center;">Continue your Risk Management phase</h2>
+                <div class="next-steps">
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'insurance-essentials' }) }}" class="next-card">
+                        <i class="fas fa-file-medical-alt" style="color: var(--personal-color);"></i>
+                        <h3>Insurance essentials</h3>
+                        <p style="color: var(--gray-color);">Cut through jargon to choose health, auto, renters, and life insurance with confidence.</p>
+                    </a>
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'debt-avalanche-vs-snowball' }) }}" class="next-card">
+                        <i class="fas fa-balance-scale" style="color: var(--personal-color);"></i>
+                        <h3>Debt avalanche vs. snowball</h3>
+                        <p style="color: var(--gray-color);">Compare the maths‑focused avalanche and the motivational snowball. Pick the strategy that matches your personality.</p>
+                    </a>
+                    <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'protecting-your-identity' }) }}" class="next-card">
+                        <i class="fas fa-id-card" style="color: var(--personal-color);"></i>
+                        <h3>Protecting your identity</h3>
+                        <p style="color: var(--gray-color);">Practical habits to safeguard personal data – from password managers to freezing credit reports.</p>
+                    </a>
+                </div>
+            </section>
+        </article>
+
+        <!-- CTA -->
+        <div class="journey-cta animate" style="background: linear-gradient(145deg, #fceae5, #ffffff); text-align: center; padding: 50px 40px; border-radius: 40px; margin: 60px 0;">
+            <h2>Start building your risk shield today</h2>
+            <p style="font-size: 1.2rem; color: #2d3748;">Open a high‑yield savings account and set up auto‑transfers.</p>
+            <a href="#" class="cta-button" style="display: inline-block; padding: 16px 40px; background-color: #ff6b35; color: white; text-decoration: none; border-radius: 60px; font-weight: 600; font-size: 1.2rem; box-shadow: 0 8px 18px rgba(255,107,53,0.3);"><i class="fas fa-piggy-bank"></i> Find the best HYSA</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,202 @@
+{# templates/roadmaps/crypto/crypto-wallets.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('crypto_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('crypto_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – crypto style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <h1>Crypto Wallets: <span>Custodial vs. Self‑Custody</span></h1>
+                <p class="hero-description">
+                    Your crypto is only as safe as the wallet you choose. Learn the crucial difference between leaving coins on an exchange and holding your own private keys.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 9 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction: what is a crypto wallet? -->
+        <section class="animate">
+            <h2 class="section-title">🧾 What Is a Crypto Wallet?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                A crypto wallet doesn’t actually store your coins – it stores the <strong>private keys</strong> that prove you own them. Think of it like a keychain: your keys let you open the locks on the blockchain where your funds live.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                Wallets come in two main flavours: <strong>custodial</strong> (someone else holds your keys) and <strong>non‑custodial</strong> (you hold your keys). The choice determines who has ultimate control over your money.
+            </p>
+        </section>
+
+        <!-- comparison table / key concepts grid -->
+        <div class="rule-grid animate" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 40px 0;">
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-building"></i> Custodial Wallet</h3>
+                <p>A third party (like an exchange) holds your private keys. You access your funds via a username and password. Examples: Coinbase, Binance.</p>
+                <ul style="margin-top: 10px; list-style-type: none; padding-left: 0;">
+                    <li><i class="fas fa-check-circle" style="color: #10b981;"></i> Easy to use, password recovery</li>
+                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i> Exchange controls your coins</li>
+                </ul>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-user-lock"></i> Self‑Custody (Non‑Custodial)</h3>
+                <p>You alone control the private keys. Wallets can be software (mobile/desktop) or hardware (physical device). Examples: MetaMask, Ledger.</p>
+                <ul style="margin-top: 10px; list-style-type: none; padding-left: 0;">
+                    <li><i class="fas fa-check-circle" style="color: #10b981;"></i> Full ownership, no counterparty risk</li>
+                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i> You are responsible for security</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- deeper dive: private keys and seed phrases -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🔑 Private Keys & Seed Phrases</h3>
+            <p style="margin-bottom: 20px;">A private key is a long string of numbers and letters that unlocks your specific cryptocurrency. A seed phrase (usually 12 or 24 words) is a human‑readable backup of all your private keys – like a master key.</p>
+            <div style="background: #e6f7f2; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <p><i class="fas fa-exclamation-triangle" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Never share your seed phrase!</strong> Anyone with your seed can take your crypto. Write it down on paper and store it somewhere safe – never in a digital file or cloud.</p>
+            </div>
+        </div>
+
+        <!-- highlight box: the "not your keys, not your coins" motto -->
+        <div class="highlight-box animate" style="border-left-color: var(--crypto-color);">
+            <h3><i class="fas fa-quote-left"></i> “Not your keys, not your coins”</h3>
+            <p>This popular saying reminds us that if you don’t hold the private keys, you only have an IOU from the custodian. When exchanges like Mt. Gox or FTX collapsed, users lost everything because they relied on the exchange to hold their funds.</p>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Wallet Risk Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="wallet-risk-simulator">
+            <h3><i class="fas fa-shield-alt"></i> Wallet Risk Simulator</h3>
+            <p>See how different wallet types behave in risky situations. Click a scenario to understand the outcome.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 30px 0;">
+                <!-- Custodial card -->
+                <div style="flex: 1 1 250px; background: #f8fafc; border-radius: 20px; padding: 20px; text-align: center; border: 2px solid #e2e8f0;">
+                    <i class="fas fa-building" style="font-size: 3rem; color: #718096; margin-bottom: 15px;"></i>
+                    <h4 style="font-size: 1.4rem;">Custodial (Exchange)</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+                        <button class="btn-outline" id="custodialHackBtn" style="width: 100%;">💥 Exchange gets hacked</button>
+                        <button class="btn-outline" id="custodialLostBtn" style="width: 100%;">🔐 You lose your password</button>
+                    </div>
+                </div>
+                <!-- Self-custody card -->
+                <div style="flex: 1 1 250px; background: #f8fafc; border-radius: 20px; padding: 20px; text-align: center; border: 2px solid #e2e8f0;">
+                    <i class="fas fa-user-lock" style="font-size: 3rem; color: var(--crypto-color); margin-bottom: 15px;"></i>
+                    <h4 style="font-size: 1.4rem;">Self‑Custody (Your Wallet)</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+                        <button class="btn-outline" id="selfHackBtn" style="width: 100%;">💻 Your computer gets malware</button>
+                        <button class="btn-outline" id="selfLostBtn" style="width: 100%;">📜 You lose your seed phrase</button>
+                    </div>
+                </div>
+            </div>
+            <div id="riskResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px; font-size: 1.1rem; min-height: 80px; text-align: center; border: 1px dashed var(--crypto-color);">
+                Click a scenario to see what happens.
+            </div>
+            <p class="demo-note" style="font-style: italic; color: var(--gray-color); margin-top: 15px;">This simulator shows the trade‑offs – no wallet type is perfect; choose based on your needs.</p>
+        </div>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Not logged in or quiz not taken – show quiz #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Crypto Wallets</h3>
+
+                <div class="quiz-question">1. What does a crypto wallet store?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Your actual coins</div>
+                    <div class="quiz-option" data-answer="correct">Your private keys</div>
+                    <div class="quiz-option" data-answer="wrong">Your transaction history</div>
+                    <div class="quiz-option" data-answer="wrong">Your email address</div>
+                </div>
+
+                <div class="quiz-question">2. Which type of wallet gives you full control over your private keys?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Custodial wallet (exchange)</div>
+                    <div class="quiz-option" data-answer="correct">Non‑custodial wallet</div>
+                    <div class="quiz-option" data-answer="wrong">Bank account</div>
+                    <div class="quiz-option" data-answer="wrong">Paper wallet (only)</div>
+                </div>
+
+                <div class="quiz-question">3. What is a seed phrase?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">A password you use to log into an exchange</div>
+                    <div class="quiz-option" data-answer="correct">A backup of your private keys, usually 12‑24 words</div>
+                    <div class="quiz-option" data-answer="wrong">A type of cryptocurrency</div>
+                    <div class="quiz-option" data-answer="wrong">A security question</div>
+                </div>
+
+                <div class="quiz-question">4. Which of the following is an example of a custodial wallet?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Ledger hardware wallet</div>
+                    <div class="quiz-option" data-answer="correct">Coinbase exchange account</div>
+                    <div class="quiz-option" data-answer="wrong">MetaMask</div>
+                    <div class="quiz-option" data-answer="wrong">Electrum software wallet</div>
+                </div>
+
+                <div class="quiz-question">5. What happens if you lose your seed phrase for a self‑custody wallet?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">You can reset it with your email</div>
+                    <div class="quiz-option" data-answer="wrong">The exchange will help you recover it</div>
+                    <div class="quiz-option" data-answer="correct">Your funds are permanently lost</div>
+                    <div class="quiz-option" data-answer="wrong">You can ask the blockchain to issue a new one</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 1 (foundation first) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue building your foundation</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'what-is-bitcoin' }) }}" class="next-card">
+                    <i class="fab fa-bitcoin"></i>
+                    <h3>What Is Bitcoin?</h3>
+                    <p style="color: var(--gray-color);">Discover the origins and importance of the first cryptocurrency.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'blockchain-basics' }) }}" class="next-card">
+                    <i class="fas fa-link"></i>
+                    <h3>Blockchain Basics</h3>
+                    <p style="color: var(--gray-color);">Understand the technology behind crypto.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'how-crypto-exchanges-work' }) }}" class="next-card">
+                    <i class="fas fa-store"></i>
+                    <h3>How Crypto Exchanges Work</h3>
+                    <p style="color: var(--gray-color);">A beginner’s guide to buying and selling.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

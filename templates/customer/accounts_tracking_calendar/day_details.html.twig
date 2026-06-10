@@ -1,0 +1,208 @@
+<div class="day-details">
+    <div class="details-section">
+        <h3 class="income-color"><i class="fas fa-money-bill-wave"></i> Recurring Incomes</h3>
+        {% if entry.getRecurringIncomes() is not empty %}
+            <div class="transactions-list">
+                {% for accountId, transactions in entry.getRecurringIncomes() %}
+                    {% for transactionId, amount in transactions %}
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-name">Recurring Income #{{ transactionId }}</span>
+                                <span class="transaction-account">{{ accountNames[accountId] ?? 'Account #' ~ accountId }}</span>
+                            </div>
+                            <div class="transaction-amount income-color">${{ amount|number_format(2) }}</div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-data">No recurring incomes for this day</p>
+        {% endif %}
+    </div>
+
+    <div class="details-section">
+        <h3 class="income-color"><i class="fas fa-calendar-day"></i> Non-Recurring Incomes</h3>
+        {% if entry.getNonRecurringIncomes() is not empty %}
+            <div class="transactions-list">
+                {% for accountId, transactions in entry.getNonRecurringIncomes() %}
+                    {% for transactionId, amount in transactions %}
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-name">Non-Recurring Income #{{ transactionId }}</span>
+                                <span class="transaction-account">{{ accountNames[accountId] ?? 'Account #' ~ accountId }}</span>
+                            </div>
+                            <div class="transaction-amount income-color">${{ amount|number_format(2) }}</div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-data">No non-recurring incomes for this day</p>
+        {% endif %}
+    </div>
+
+    <div class="details-section">
+        <h3 class="expense-color"><i class="fas fa-money-check"></i> Recurring Expenses</h3>
+        {% if entry.getRecurringExpenses() is not empty %}
+            <div class="transactions-list">
+                {% for accountId, transactions in entry.getRecurringExpenses() %}
+                    {% for transactionId, amount in transactions %}
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-name">Recurring Expense #{{ transactionId }}</span>
+                                <span class="transaction-account">{{ accountNames[accountId] ?? 'Account #' ~ accountId }}</span>
+                            </div>
+                            <div class="transaction-amount expense-color">${{ amount|number_format(2) }}</div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-data">No recurring expenses for this day</p>
+        {% endif %}
+    </div>
+
+    <div class="details-section">
+        <h3 class="expense-color"><i class="fas fa-shopping-cart"></i> Non-Recurring Expenses</h3>
+        {% if entry.getNonRecurringExpenses() is not empty %}
+            <div class="transactions-list">
+                {% for accountId, transactions in entry.getNonRecurringExpenses() %}
+                    {% for transactionId, amount in transactions %}
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-name">Non-Recurring Expense #{{ transactionId }}</span>
+                                <span class="transaction-account">{{ accountNames[accountId] ?? 'Account #' ~ accountId }}</span>
+                            </div>
+                            <div class="transaction-amount expense-color">${{ amount|number_format(2) }}</div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-data">No non-recurring expenses for this day</p>
+        {% endif %}
+    </div>
+
+    <div class="details-section">
+        <h3 class="income-color"><i class="fas fa-percentage"></i> Recurring Income Interests</h3>
+        {% if entry.getRecurringIncomeInterest() is not empty %}
+            <div class="transactions-list">
+                {% for accountId, transactions in entry.getRecurringIncomeInterest() %}
+                    {% for transactionId, amount in transactions %}
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-name">Recurring Income Interest #{{ transactionId }}</span>
+                                <span class="transaction-account">{{ accountNames[accountId] ?? 'Account #' ~ accountId }}</span>
+                            </div>
+                            <div class="transaction-amount income-color">${{ amount|number_format(2) }}</div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-data">No recurring income interests for this day</p>
+        {% endif %}
+    </div>
+
+    <div class="details-section">
+        <h3 class="income-color"><i class="fas fa-coins"></i> Recurring Savings Interests</h3>
+        {% if entry.getRecurringSavingsInterest() is not empty %}
+            <div class="transactions-list">
+                {% for accountId, transactions in entry.getRecurringSavingsInterest() %}
+                    {% for transactionId, amount in transactions %}
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-name">Recurring Savings Interest #{{ transactionId }}</span>
+                                <span class="transaction-account">{{ accountNames[accountId] ?? 'Account #' ~ accountId }}</span>
+                            </div>
+                            <div class="transaction-amount income-color">${{ amount|number_format(2) }}</div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-data">No recurring savings interests for this day</p>
+        {% endif %}
+    </div>
+
+    <div class="details-section">
+        <h3 class="expense-color"><i class="fas fa-percentage"></i> Recurring Expense Interests</h3>
+        {% if entry.getRecurringExpenseInterest() is not empty %}
+            <div class="transactions-list">
+                {% for accountId, transactions in entry.getRecurringExpenseInterest() %}
+                    {% for transactionId, amount in transactions %}
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-name">Recurring Expense Interest #{{ transactionId }}</span>
+                                <span class="transaction-account">{{ accountNames[accountId] ?? 'Account #' ~ accountId }}</span>
+                            </div>
+                            <div class="transaction-amount expense-color">${{ amount|number_format(2) }}</div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-data">No recurring expense interests for this day</p>
+        {% endif %}
+    </div>
+
+    <div class="details-section">
+        <h3 class="expense-color"><i class="fas fa-credit-card"></i> Revolving Payments</h3>
+        {% if entry.getPaymentsAccountToPay() is not empty %}
+            <div class="transactions-list">
+                {% for accountId, transactions in entry.getPaymentsAccountToPay() %}
+                    {% for transactionId, amount in transactions %}
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-name">Revolving Payment #{{ transactionId }}</span>
+                                <span class="transaction-account">{{ accountNames[accountId] ?? 'Account #' ~ accountId }}</span>
+                            </div>
+                            <div class="transaction-amount expense-color">${{ amount|number_format(2) }}</div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-data">No revolving payments for this day</p>
+        {% endif %}
+    </div>
+
+    <div class="details-section">
+        <h3 class="savings-color"><i class="fas fa-piggy-bank"></i> Savings to Save</h3>
+        {% if entry.getSavingsAccountToSave() is not empty %}
+            <div class="transactions-list">
+                {% for accountId, transactions in entry.getSavingsAccountToSave() %}
+                    {% for transactionId, amount in transactions %}
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-name">Savings To Save #{{ transactionId }}</span>
+                                <span class="transaction-account">{{ accountNames[accountId] ?? 'Account #' ~ accountId }}</span>
+                            </div>
+                            <div class="transaction-amount savings-color">${{ amount|number_format(2) }}</div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-data">No savings to save for this day</p>
+        {% endif %}
+    </div>
+
+    <div class="details-section">
+        <h3><i class="fas fa-wallet"></i> Projected Account Balances</h3>
+        {% if entry.getAccountsBalances() is not empty %}
+            <div class="balances-list">
+                {% for accountId, balance in entry.getAccountsBalances() %}
+                    <div class="balance-item">
+                        <span class="account-name">{{ accountNames[accountId] ?? 'Account #' ~ accountId }}</span>
+                        <span class="account-balance {% if balance >= 0 %}positive-balance{% else %}negative-balance{% endif %}">
+                            ${{ balance|number_format(2) }}
+                        </span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-data">No balance data for this day</p>
+        {% endif %}
+    </div>
+</div>

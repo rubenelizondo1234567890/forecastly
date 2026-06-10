@@ -1,0 +1,245 @@
+{# templates/roadmaps/career-capital/job-security-volatile-economy.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+{% endblock %}
+
+{% block title %}Job Security in a Volatile Economy{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-shield-alt" style="color: var(--career-color);"></i>
+                </div>
+                <h1>Job Security in a Volatile Economy <span>Future-Proof Your Career</span></h1>
+                <p class="hero-description">
+                    Economic uncertainty doesn’t have to mean career anxiety. Learn the exact strategies top professionals use to stay in demand, build multiple income streams, and thrive no matter what the market throws at you.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(156,136,255,0.2); color: #c3b9ff;">
+                    <i class="fas fa-layer-group"></i> Phase 2: Risk Management · 10 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">What “Job Security” Really Means Today</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                The old model of working 40 years for one company and retiring with a gold watch is gone. In today’s world, job security is no longer about having one stable employer — it’s about being <strong>unignorable</strong> in the market.
+            </p>
+            <p>
+                This article gives you a complete framework to protect your income, build resilience, and turn economic volatility into your advantage.
+            </p>
+        </section>
+
+        <!-- four pillars grid -->
+        <div class="rule-grid animate" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-chart-line"></i> In-Demand Skills</h3>
+                <div class="percentage" style="color: var(--career-color);">The foundation</div>
+                <p>Skills that solve real business problems and are difficult to replace — even by AI.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-users"></i> Strong Network</h3>
+                <div class="percentage" style="color: var(--career-color);">Your safety net</div>
+                <p>People who know, trust, and will advocate for you when opportunities (or crises) arise.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-wallet"></i> Financial Buffer</h3>
+                <div class="percentage" style="color: var(--career-color);">Your runway</div>
+                <p>Emergency savings + multiple income streams so you never have to accept a bad offer out of desperation.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--career-color);">
+                <h3><i class="fas fa-brain"></i> Adaptability</h3>
+                <div class="percentage" style="color: var(--career-color);">Your superpower</div>
+                <p>The ability to learn fast, pivot quickly, and stay relevant in any economic cycle.</p>
+            </div>
+        </div>
+
+        <!-- interactive self-assessment tool -->
+        <div class="calc-card animate" style="border: 1px solid rgba(156,136,255,0.3);">
+            <h2 class="calc-title"><i class="fas fa-sliders-h" style="color: var(--career-color); margin-right: 10px;"></i> Job Security Score</h2>
+            <p style="font-size: 1.1rem;">Rate yourself on each pillar (0 = needs work, 10 = excellent). See your overall security score instantly.</p>
+
+            <div class="calc-input">
+                <label>In-Demand Skills</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="skillsSlider" class="cat-input" min="0" max="10" value="6" step="1">
+                    </div>
+                    <span class="slider-value" id="skillsVal">6</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>Professional Network</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="networkSlider" class="cat-input" min="0" max="10" value="5" step="1">
+                    </div>
+                    <span class="slider-value" id="networkVal">5</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>Financial Buffer</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="bufferSlider" class="cat-input" min="0" max="10" value="4" step="1">
+                    </div>
+                    <span class="slider-value" id="bufferVal">4</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>Adaptability</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="adaptSlider" class="cat-input" min="0" max="10" value="7" step="1">
+                    </div>
+                    <span class="slider-value" id="adaptVal">7</span>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="securityCalculate" class="btn" style="background-color: var(--career-color);">Calculate my score</button>
+            </div>
+
+            <div class="calc-result" style="border: 2px dashed var(--career-color);">
+                <p class="result-label" style="font-size:1.2rem;">🛡️ Your job security score</p>
+                <div id="securityResult" style="font-size:1.6rem; font-weight:700; color:var(--dark-color);">Move the sliders & click calculate</div>
+            </div>
+
+            <script>
+                // Live slider value updates (works even for non-logged-in users)
+                document.querySelectorAll('.calc-input input[type=range]').forEach(slider => {
+                    const display = document.getElementById(slider.id + 'Val');
+                    if (display) {
+                        slider.addEventListener('input', () => { display.textContent = slider.value; });
+                    }
+                });
+            </script>
+        </div>
+
+        <!-- deeper dive: proven strategies -->
+        <div class="card animate" style="border-top: 4px solid var(--career-color);">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Proven Strategies to Build Job Security</h3>
+            <ul class="checklist">
+                <li><i class="fas fa-check-circle"></i> <strong>Become the go-to expert</strong> in one high-income skill (see High-Income Skills article).</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Build a personal brand</strong> — LinkedIn posts, newsletters, or a simple portfolio site.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Create multiple income streams</strong> — side hustle, freelance, or passive income.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Maintain a 6-month emergency fund</strong> so you never accept a bad job out of fear.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Network proactively</strong> — help others first so they remember you when opportunities arise.</li>
+            </ul>
+        </div>
+
+        <!-- common traps -->
+        <section class="animate">
+            <h2 class="section-title">🚧 Common Traps to Avoid</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-exclamation-triangle" style="color: var(--career-color);"></i> <strong>Putting all eggs in one basket</strong> — relying on a single employer or industry.</li>
+                <li><i class="fas fa-exclamation-triangle" style="color: var(--career-color);"></i> <strong>Stopping learning</strong> — skills become obsolete faster than ever.</li>
+                <li><i class="fas fa-exclamation-triangle" style="color: var(--career-color);"></i> <strong>Neglecting your network</strong> — only reaching out when you need something.</li>
+                <li><i class="fas fa-exclamation-triangle" style="color: var(--career-color);"></i> <strong>Ignoring personal finances</strong> — no emergency fund makes you vulnerable.</li>
+            </ul>
+        </section>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz %}
+            <div class="quiz-container animate" style="background-color: #1e293b;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'job-security-volatile-economy', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background-color: #1e293b;">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your job security knowledge</h3>
+
+                <div class="quiz-question">1. In today’s economy, job security is primarily about:</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Staying with one employer for life</div>
+                    <div class="quiz-option" data-answer="correct">Being unignorable in the marketplace</div>
+                    <div class="quiz-option" data-answer="wrong">Having a government job</div>
+                    <div class="quiz-option" data-answer="wrong">Working 80-hour weeks</div>
+                </div>
+
+                <div class="quiz-question">2. Which is the strongest protection against layoffs?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">A big emergency fund</div>
+                    <div class="quiz-option" data-answer="correct">In-demand, hard-to-replace skills</div>
+                    <div class="quiz-option" data-answer="wrong">A strong LinkedIn profile</div>
+                    <div class="quiz-option" data-answer="wrong">Knowing the CEO</div>
+                </div>
+
+                <div class="quiz-question">3. The best time to build your network is:</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">When you need a job</div>
+                    <div class="quiz-option" data-answer="correct">When you don’t need one</div>
+                    <div class="quiz-option" data-answer="wrong">Only at conferences</div>
+                    <div class="quiz-option" data-answer="wrong">Never — just focus on skills</div>
+                </div>
+
+                <div class="quiz-question">4. What should you do first if your industry is shrinking?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Update your résumé</div>
+                    <div class="quiz-option" data-answer="correct">Start building a side income stream</div>
+                    <div class="quiz-option" data-answer="wrong">Ask for a raise</div>
+                    <div class="quiz-option" data-answer="wrong">Wait for things to improve</div>
+                </div>
+
+                <div class="quiz-question">5. The most powerful form of job security is:</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Having a big savings account</div>
+                    <div class="quiz-option" data-answer="correct">Being able to create value anywhere</div>
+                    <div class="quiz-option" data-answer="wrong">Having many connections on LinkedIn</div>
+                    <div class="quiz-option" data-answer="wrong">Working for a “recession-proof” company</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next articles in Phase 2 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Risk Management phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'protecting-your-reputation-and-personal-brand' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Protecting Your Reputation & Personal Brand</h3>
+                    <p style="color: var(--gray-color);">Simple habits to maintain a positive digital footprint.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'avoid-burnout' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Avoid Burnout While Upskilling</h3>
+                    <p style="color: var(--gray-color);">Set sustainable learning boundaries.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'diversify-income' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-random"></i>
+                    <h3>Diversify Your Income: Side Hustle Fundamentals</h3>
+                    <p style="color: var(--gray-color);">Test a side business without quitting your day job.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

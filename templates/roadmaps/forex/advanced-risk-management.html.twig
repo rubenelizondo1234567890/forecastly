@@ -1,0 +1,232 @@
+{# templates/roadmaps/forex/advanced-risk-management.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('forex_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('forex_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – forex style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-link"></i>
+                </div>
+                <h1>Advanced Risk Management: <span>Hedging and Correlations</span></h1>
+                <p class="hero-description">
+                    Hedging allows you to reduce risk by opening opposing positions; correlations show how currency pairs move together.
+                    Learn to use these advanced techniques to protect your portfolio in volatile markets.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 9 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🔗 What Are Hedging and Correlations?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                <strong>Hedging</strong> is the practice of opening a trade that protects another position from adverse price movements.
+                In forex, you might hedge a long EUR/USD position by shorting GBP/USD if they are positively correlated – a loss in one
+                may be offset by a gain in the other. <strong>Correlation</strong> measures the statistical relationship between two currency pairs.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                While hedging can reduce risk, it also caps potential profits and can lead to complex portfolio management.
+                Understanding correlations helps you avoid overexposure to the same economic factor and design more resilient strategies.
+            </p>
+        </section>
+
+        <!-- key concepts grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-arrows-alt-h"></i> Positive Correlation</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Move together</div>
+                <p>Pairs like EUR/USD and GBP/USD often move in the same direction because both are quoted against USD and influenced by USD strength.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-arrows-alt-v"></i> Negative Correlation</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Move opposite</div>
+                <p>Pairs like USD/CHF and EUR/USD are negatively correlated because they involve the same currencies but inverted. Gold (XAU/USD) and USD also often have negative correlation.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-shield-alt"></i> Direct Hedge</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Same pair, opposite direction</div>
+                <p>Some brokers allow you to hold both a long and short position in the same pair – a perfect hedge (but often costs swap fees).</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-random"></i> Cross Hedge</h3>
+                <div class="percentage" style="font-size: 1.2rem;">Different pairs, related</div>
+                <p>Using a correlated pair to offset risk. Requires understanding of correlation strength and stability over time.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive: correlation coefficients -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">📊 Understanding Correlation Coefficients</h3>
+            <p style="margin-bottom: 20px;">
+                Correlation is measured on a scale from -1 to +1.
+            </p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>+1.0</strong> – Perfect positive correlation. Pairs move identically.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>0.0</strong> – No correlation. Movements are independent.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--forex-color); margin-right: 10px;"></i> <strong>-1.0</strong> – Perfect negative correlation. Pairs move exactly opposite.</li>
+                </ul>
+                <p class="pro-tip" style="margin-top: 15px; background-color: #eef2ff; border-left-color: #3182ce;"><i class="fas fa-lightbulb"></i> Correlations change over time, especially during market stress. Always check recent correlation before placing a hedge.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Correlation & Hedge Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="correlation-simulator">
+            <h3><i class="fas fa-project-diagram"></i> Correlation & Hedge Simulator</h3>
+            <p>Select two currency pairs to see their typical correlation and a suggested hedge ratio.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
+                <div style="flex: 1 1 200px;">
+                    <label style="display: block; font-weight: 600;">Pair A</label>
+                    <select id="pairA" class="cat-input" style="width: 100%;">
+                        <option value="EUR/USD">EUR/USD</option>
+                        <option value="GBP/USD">GBP/USD</option>
+                        <option value="USD/JPY">USD/JPY</option>
+                        <option value="AUD/USD">AUD/USD</option>
+                        <option value="USD/CAD">USD/CAD</option>
+                        <option value="NZD/USD">NZD/USD</option>
+                        <option value="XAU/USD">XAU/USD (Gold)</option>
+                    </select>
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label style="display: block; font-weight: 600;">Pair B</label>
+                    <select id="pairB" class="cat-input" style="width: 100%;">
+                        <option value="EUR/USD">EUR/USD</option>
+                        <option value="GBP/USD">GBP/USD</option>
+                        <option value="USD/JPY">USD/JPY</option>
+                        <option value="AUD/USD">AUD/USD</option>
+                        <option value="USD/CAD">USD/CAD</option>
+                        <option value="NZD/USD">NZD/USD</option>
+                        <option value="XAU/USD">XAU/USD (Gold)</option>
+                    </select>
+                </div>
+                <div style="flex: 0 0 auto; align-self: flex-end;">
+                    <button id="correlateBtn" class="btn-outline" style="padding: 12px 30px;">Analyze</button>
+                </div>
+            </div>
+
+            <div id="correlationResult" style="margin-top: 25px; padding: 15px; background: var(--light-color); border-radius: 12px; font-size: 1.2rem; text-align: center;">
+                Select two pairs and click analyze.
+            </div>
+        </div>
+
+        <!-- example trade box -->
+        <div class="highlight-box animate">
+            <h3><i class="fas fa-bolt"></i> Example – Hedging with Correlated Pairs</h3>
+            <p>You are long 1 lot of EUR/USD at 1.1050. You’re concerned about USD strength ahead of a Fed announcement. You notice that EUR/USD and GBP/USD have a strong positive correlation (0.85). To hedge, you short 0.85 lots of GBP/USD. If USD strengthens, both pairs fall, but your short GBP/USD profits offset some of the loss on EUR/USD. The hedge ratio (0.85) reflects the correlation strength.</p>
+        </div>
+
+        <!-- pro tip: correlation breakdown -->
+        <div class="pro-tip animate" style="background-color: #fff5f0; border-left-color: #ff6b35;">
+            <h4 style="margin-top: 0;"><i class="fas fa-exclamation-triangle" style="color:#ff6b35;"></i> Correlation Breakdown</h4>
+            <p>During major news events (like NFP or central bank decisions), correlations can break down temporarily. Pairs that normally move together may diverge. <strong>Never rely solely on historical correlations for a hedge; monitor the market in real time.</strong></p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Hedging & Correlations</h3>
+
+                <div class="quiz-question">1. What does a correlation coefficient of +0.9 indicate?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="correct">Strong positive correlation (pairs move together)</div>
+                    <div class="quiz-option" data-answer="wrong">Strong negative correlation</div>
+                    <div class="quiz-option" data-answer="wrong">No correlation</div>
+                    <div class="quiz-option" data-answer="wrong">Perfect opposite movement</div>
+                </div>
+
+                <div class="quiz-question">2. Which pair is typically negatively correlated with EUR/USD?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">GBP/USD</div>
+                    <div class="quiz-option" data-answer="correct">USD/CHF</div>
+                    <div class="quiz-option" data-answer="wrong">AUD/USD</div>
+                    <div class="quiz-option" data-answer="wrong">NZD/USD</div>
+                </div>
+
+                <div class="quiz-question">3. What is a direct hedge?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="correct">Opening both a long and short position in the same currency pair</div>
+                    <div class="quiz-option" data-answer="wrong">Using options to protect a position</div>
+                    <div class="quiz-option" data-answer="wrong">Diversifying across multiple pairs</div>
+                    <div class="quiz-option" data-answer="wrong">Closing all positions before news</div>
+                </div>
+
+                <div class="quiz-question">4. Why might a correlation break down?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">It never breaks down</div>
+                    <div class="quiz-option" data-answer="correct">During major news events or regime changes</div>
+                    <div class="quiz-option" data-answer="wrong">When using a demo account</div>
+                    <div class="quiz-option" data-answer="wrong">Only on weekends</div>
+                </div>
+
+                <div class="quiz-question">5. If two pairs have a correlation of -0.8, how might you hedge a long position in Pair A?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Go long Pair B as well</div>
+                    <div class="quiz-option" data-answer="correct">Go short Pair B (since they move opposite)</div>
+                    <div class="quiz-option" data-answer="wrong">Do nothing</div>
+                    <div class="quiz-option" data-answer="wrong">Increase position size in Pair A</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 4 (skill building) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue building your skills</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'fundamental-analysis-central-banks' }) }}" class="next-card">
+                    <i class="fas fa-university"></i>
+                    <h3>Fundamental Analysis</h3>
+                    <p style="color: var(--gray-color);">Central banks and economic data.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'developing-trading-strategy' }) }}" class="next-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Developing a Trading Strategy</h3>
+                    <p style="color: var(--gray-color);">Combine rules into a plan.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'demo-to-live' }) }}" class="next-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>From Demo to Live</h3>
+                    <p style="color: var(--gray-color);">When and how to transition.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

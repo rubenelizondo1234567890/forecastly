@@ -1,0 +1,211 @@
+{# templates/prospect/stripe_new_customer_checkout.html.twig #}
+{% extends 'base_prospect.html.twig' %}
+
+{% block title %}Checkout - Forecastly - Take Control of Your Financial Future{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('prospectCss') }}
+    {{ encore_entry_link_tags('prospectRegistrationCss') }}
+    <style>
+        .checkout-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .plan-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .plan-option {
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .plan-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .plan-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(94, 96, 206, 0.05);
+        }
+
+        .plan-option h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .select-plan-btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .error-message {
+            color: var(--negative);
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('prospectJs') }}
+    {{ encore_entry_script_tags('prospectRegistrationJs') }}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe = Stripe('{{ stripe_publishable_key }}');
+        let selectedPlan = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Plan selection
+            document.querySelectorAll('.plan-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.plan-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    selectedPlan = this;
+                });
+            });
+
+            // Checkout button
+            document.getElementById('checkout-btn').addEventListener('click', async function() {
+                if (!selectedPlan) {
+                    alert('Please select a billing option');
+                    return;
+                }
+
+                const priceId = selectedPlan.dataset.priceId;
+                const interval = selectedPlan.dataset.interval;
+
+                const btn = this;
+                const originalText = btn.innerHTML;
+                const loadingSpinner = document.getElementById('loading-spinner');
+                const errorMessage = document.getElementById('error-message');
+
+                // Show loading, hide error
+                btn.disabled = true;
+                btn.innerHTML = 'Processing...';
+                loadingSpinner.style.display = 'block';
+                errorMessage.style.display = 'none';
+
+                try {
+                    const response = await fetch('{{ path('create_stripe_checkout_session') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            priceId: priceId,
+                            interval: interval
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        // Redirect to Stripe Checkout
+                        const result = await stripe.redirectToCheckout({
+                            sessionId: data.sessionId
+                        });
+
+                        if (result.error) {
+                            throw new Error(result.error.message);
+                        }
+                    } else {
+                        throw new Error(data.message);
+                    }
+                } catch (error) {
+                    errorMessage.textContent = error.message;
+                    errorMessage.style.display = 'block';
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                    loadingSpinner.style.display = 'none';
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="landing-page">
+        <section class="landing-hero" style="padding: 40px 0;">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Complete Your {{ plan|capitalize }} Plan Subscription</h1>
+                    <p class="hero-subtitle">Choose your preferred billing option</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="checkout-container">
+                <div class="plan-options">
+                    {% for subscriptionPlan in subscriptionPlans %}
+                        <div class="plan-option"
+                             data-price-id="{{ subscriptionPlan.stripePriceId }}"
+                             data-interval="{{ subscriptionPlan.stripeInterval }}">
+                            <h3>{{ subscriptionPlan.stripeInterval|capitalize }}ly</h3>
+                            <div class="price">
+                                ${{ subscriptionPlan.price }}<span>/{{ subscriptionPlan.stripeInterval }}</span>
+                            </div>
+                            <p>Billed {{ subscriptionPlan.stripeInterval }}ly</p>
+                            <p>Cancel anytime</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="loading-spinner" id="loading-spinner">
+                    <p>Creating checkout session...</p>
+                </div>
+
+                <div class="error-message" id="error-message" style="display: none;"></div>
+
+                <div class="text-center">
+                    <button id="checkout-btn" class="btn btn-primary btn-large select-plan-btn">
+                        Proceed to Payment
+                    </button>
+                    <p class="mt-3">
+                        <a href="{{ path('stripe_checkout_cancel') }}" class="text-muted">
+                            Cancel and return to plan selection
+                        </a>
+                    </p>
+                </div>
+
+                <div class="security-notice mt-4 text-center">
+                    <p><i class="fas fa-lock"></i> Your payment is secure and encrypted</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

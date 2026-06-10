@@ -1,0 +1,185 @@
+{# templates/main/waitlist.html.twig #}
+{% extends 'base_prospect.html.twig' %}
+
+{% block title %}Join the Forecastly Waitlist - Be First to Experience Financial Freedom{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('waitlist_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('waitlist_js') }}
+{% endblock %}
+
+{% block body_class %}waitlist-success-body{% endblock %}
+
+{% block body %}
+    <div class="waitlist-success">
+        <div class="container">
+            <div class="success-card">
+                <div class="waitlist-header" style="text-align: center; margin-bottom: 30px;">
+                    <div class="logo" style="display: flex; justify-content: center; margin-bottom: 20px;">
+                        <a href="{{ path('main_index') }}" class="logo-link" style="display: flex; align-items: center; text-decoration: none; color: var(--primary);">
+                            <img src="{{ asset('template/img/forecastly_logo_64x64.png') }}" width="32px" height="32px" style="margin-right: 15px;" />
+                            <h2 style="margin: 0; font-size: 2rem; font-weight: 700;">Forecastly</h2>
+                        </a>
+                    </div>
+                    <h1 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; font-weight: 700;">Join the Future of Financial Planning</h1>
+                    <p class="success-message" style="font-size: 1.2rem; color: var(--text); line-height: 1.6;">
+                        Be among the first to experience Forecastly - the intelligent financial forecasting platform that transforms how you manage your wealth.
+                    </p>
+                </div>
+
+                {# Flash messages #}
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success" style="margin-bottom: 20px;">
+                        <i class="fas fa-check-circle"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                {% for message in app.flashes('warning') %}
+                    <div class="alert alert-warning" style="margin-bottom: 20px;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-error" style="margin-bottom: 20px;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                <div class="waitlist-stats" style="display: flex; justify-content: center; gap: 40px; margin: 30px 0;">
+                    <div class="stat-item" style="text-align: center;">
+                        <div class="stat-number" style="font-size: 2rem; font-weight: 800; margin-bottom: 5px; color: var(--primary);">{{ waitlist_count + 1 }}+</div>
+                        <div class="stat-label" style="color: var(--text-light);">People Waiting</div>
+                    </div>
+                    <div class="stat-item" style="text-align: center;">
+                        <div class="stat-number" style="font-size: 2rem; font-weight: 800; margin-bottom: 5px; color: var(--primary);">Early 2026</div>
+                        <div class="stat-label" style="color: var(--text-light);">Expected Launch</div>
+                    </div>
+                    <div class="stat-item" style="text-align: center;">
+                        <div class="stat-number" style="font-size: 2rem; font-weight: 800; margin-bottom: 5px; color: var(--primary);">Free</div>
+                        <div class="stat-label" style="color: var(--text-light);">Early Access - No Credit Card</div>
+                    </div>
+                </div>
+
+                <div class="card-header" style="text-align: center; margin-bottom: 30px; padding-top: 20px; border-top: 1px solid var(--border);">
+                    <h2 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 10px;">Secure Your Spot</h2>
+                    <p style="color: var(--text-light); font-size: 1.1rem;">Join our exclusive waitlist and get early access with special founding member benefits</p>
+                </div>
+
+                {{ form_start(form, {'attr': {'class': 'waitlist-form'}}) }}
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form_label(form.fullName, null, {'label_attr': {'class': 'form-label'}}) }}
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            {{ form_widget(form.fullName, {'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Enter your full name'
+                            }}) }}
+                        </div>
+                        {{ form_errors(form.fullName) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.email, null, {'label_attr': {'class': 'form-label'}}) }}
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            {{ form_widget(form.email, {'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Enter your email address'
+                            }}) }}
+                        </div>
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.phone, null, {'label_attr': {'class': 'form-label'}}) }}
+                    <div class="input-with-icon">
+                        <i class="fas fa-phone"></i>
+                        {{ form_widget(form.phone, {'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Enter your phone number (optional)'
+                        }}) }}
+                    </div>
+                    {{ form_errors(form.phone) }}
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <div class="checkbox-item">
+                        {{ form_widget(form.notifyEarlyAccess, {'attr': {
+                            'class': 'checkbox-input'
+                        }}) }}
+                        <label for="{{ form.notifyEarlyAccess.vars.id }}" class="checkbox-label">
+                            <i class="fas fa-check"></i>
+                            <span>{{ form.notifyEarlyAccess.vars.label }}</span>
+                        </label>
+                        {{ form_errors(form.notifyEarlyAccess) }}
+                    </div>
+
+                    <div class="checkbox-item">
+                        {{ form_widget(form.notifyProductUpdates, {'attr': {
+                            'class': 'checkbox-input'
+                        }}) }}
+                        <label for="{{ form.notifyProductUpdates.vars.id }}" class="checkbox-label">
+                            <i class="fas fa-check"></i>
+                            <span>{{ form.notifyProductUpdates.vars.label }}</span>
+                        </label>
+                        {{ form_errors(form.notifyProductUpdates) }}
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-rocket"></i>
+                        Join Waitlist
+                    </button>
+                </div>
+
+                <div class="form-footer">
+                    <p class="privacy-note">
+                        <i class="fas fa-lock"></i>
+                        We respect your privacy. Unsubscribe at any time.
+                    </p>
+                </div>
+                {{ form_end(form) }}
+
+                <div class="benefits-section" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border);">
+                    <h3 style="text-align: center; color: var(--primary); margin-bottom: 30px; font-size: 1.5rem;">Why Join Our Waitlist?</h3>
+                    <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                        <div class="benefit-item" style="text-align: center; padding: 20px; background: rgba(94, 96, 206, 0.05); border-radius: 10px;">
+                            <div class="benefit-icon" style="width: 60px; height: 60px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: white; font-size: 1.5rem;">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 1.1rem;">Early Access</h4>
+                            <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.4;">Be among the first to experience Forecastly with exclusive early access</p>
+                        </div>
+                        <div class="benefit-item" style="text-align: center; padding: 20px; background: rgba(94, 96, 206, 0.05); border-radius: 10px;">
+                            <div class="benefit-icon" style="width: 60px; height: 60px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: white; font-size: 1.5rem;">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 1.1rem;">Founding Member Perks</h4>
+                            <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.4;">Special discounts and extended free trials for our earliest supporters</p>
+                        </div>
+                        <div class="benefit-item" style="text-align: center; padding: 20px; background: rgba(94, 96, 206, 0.05); border-radius: 10px;">
+                            <div class="benefit-icon" style="width: 60px; height: 60px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: white; font-size: 1.5rem;">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 1.1rem;">Influence Development</h4>
+                            <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.4;">Help shape Forecastly with your feedback and feature requests</p>
+                        </div>
+                    </div>
+                </div>
+                <br /><p style="font-size: smaller;">&copy; 2025 Meridian Wealth Technologies, LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,209 @@
+{# templates/roadmaps/tax/step-by-step-harvesting-your-first-tax-loss.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('tax_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('tax_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – tax style -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #1e2b37 0%, #2c3e50 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--tax-smart-color);">
+                    <i class="fas fa-check-double"></i>
+                </div>
+                <h1>Step‑by‑Step <span>Harvesting Your First Tax Loss</span></h1>
+                <p class="hero-description">
+                    A practical, hands‑on guide to turning investment losses into tax savings. Follow this checklist to identify losing positions,
+                    avoid the wash sale rule, and track your tax benefits – with screenshots and real‑world examples.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(44,62,80,0.2); color: #b0c4de;">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 11 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">📖 From Red to Green</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                You've probably heard about tax‑loss harvesting, but actually doing it can feel intimidating. This guide breaks the process into seven simple steps.
+                By the end, you'll know exactly how to identify a losing position, execute the sale, replace it appropriately, and track your tax savings.
+            </p>
+        </section>
+
+        <!-- key takeaways in rule‑grid style -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-search"></i> Step 1: Find Unrealized Losses</h4>
+                <p>Review your taxable accounts for investments trading below your purchase price. Focus on those with the largest losses.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-calendar-alt"></i> Step 2: Avoid the Wash Sale</h4>
+                <p>Do not buy the same or substantially identical security within 30 days before or after the sale. Wait 31 days or choose a similar but different ETF.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-calculator"></i> Step 7: Track & Document</h4>
+                <p>Record the loss in your tax software or give the information to your CPA. The loss will appear on your Form 1099‑B at year‑end.</p>
+            </div>
+        </div>
+
+        <!-- interactive tool: Tax Loss Harvesting Workflow Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="loss-harvesting-workflow">
+            <h3><i class="fas fa-robot"></i> Interactive: Harvest Your First Loss (Simulator)</h3>
+            <p>Follow the prompts to simulate a real tax‑loss harvest. We'll help you avoid common mistakes.</p>
+
+            <div style="margin: 20px 0;">
+                <div class="workflow-step" style="margin-bottom: 25px; padding: 15px; background: #f9f9f9; border-radius: 12px;">
+                    <h4>1️⃣ Select a losing position</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                        <div style="flex: 1;">
+                            <label>Purchase price per share ($)</label>
+                            <input type="number" id="purchasePrice" class="cat-input" style="width:100%;" value="100" step="5">
+                        </div>
+                        <div style="flex: 1;">
+                            <label>Current price per share ($)</label>
+                            <input type="number" id="currentPrice" class="cat-input" style="width:100%;" value="75" step="5">
+                        </div>
+                        <div style="flex: 1;">
+                            <label>Number of shares</label>
+                            <input type="number" id="shares" class="cat-input" style="width:100%;" value="100" step="10">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-step" style="margin-bottom: 25px; padding: 15px; background: #f9f9f9; border-radius: 12px;">
+                    <h4>2️⃣ Choose a replacement asset</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                        <div style="flex: 1;">
+                            <label>Replacement strategy</label>
+                            <select id="replacementStrategy" class="cat-input" style="width:100%;">
+                                <option value="similar">Buy a similar but not identical ETF (e.g., VOO → IVV)</option>
+                                <option value="wait">Wait 31 days and buy back the same stock</option>
+                                <option value="different">Buy a different stock in same sector</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label>Date of sale (for wash sale check)</label>
+                            <input type="date" id="saleDateWorkflow" class="cat-input" style="width:100%;" value="2024-01-15">
+                        </div>
+                        <div style="flex: 1;">
+                            <label>Date of repurchase (if any)</label>
+                            <input type="date" id="repurchaseDateWorkflow" class="cat-input" style="width:100%;" value="2024-02-20">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button id="simulateHarvest" class="btn-outline">Simulate Tax Harvest</button>
+                </div>
+            </div>
+
+            <div id="harvestWorkflowResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                <p>Enter the details and click the button to see the results.</p>
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px; background-color: #eef2f5; border-left-color: var(--tax-smart-color);">
+                <i class="fas fa-lightbulb"></i> This simulator uses your inputs to calculate the loss and check for wash sale issues. Always consult a tax professional before executing.
+            </p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate" style="background: #1e1a3a;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'tax', slug: 'step-by-step-harvesting-your-first-tax-loss', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #2c3e50; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background: #1e2b37;">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Harvesting Your First Tax Loss</h3>
+
+                <div class="quiz-question">1. What is the first step in tax‑loss harvesting?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="correct">Identify investments with unrealized losses in taxable accounts</div>
+                    <div class="quiz-option" data-answer="wrong">Sell all winning positions first</div>
+                    <div class="quiz-option" data-answer="wrong">Contact your broker to initiate a wash sale</div>
+                    <div class="quiz-option" data-answer="wrong">Buy more of the losing stock to average down</div>
+                </div>
+
+                <div class="quiz-question">2. How long must you wait to buy back the same stock after selling it at a loss to avoid a wash sale?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">15 days</div>
+                    <div class="quiz-option" data-answer="correct">31 days</div>
+                    <div class="quiz-option" data-answer="wrong">60 days</div>
+                    <div class="quiz-option" data-answer="wrong">90 days</div>
+                </div>
+
+                <div class="quiz-question">3. Which of the following is a valid replacement for an S&P 500 ETF (e.g., VOO) to avoid a wash sale?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="correct">A total stock market ETF (e.g., VTI)</div>
+                    <div class="quiz-option" data-answer="wrong">Another S&P 500 ETF (e.g., IVV)</div>
+                    <div class="quiz-option" data-answer="wrong">The same S&P 500 ETF purchased in a different account</div>
+                    <div class="quiz-option" data-answer="wrong">Call options on the S&P 500</div>
+                </div>
+
+                <div class="quiz-question">4. After harvesting a loss, how is the loss reported to the IRS?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">You must file a separate form within 30 days</div>
+                    <div class="quiz-option" data-answer="correct">It appears on Form 1099‑B from your broker at year‑end</div>
+                    <div class="quiz-option" data-answer="wrong">You only need to report if the loss exceeds $10,000</div>
+                    <div class="quiz-option" data-answer="wrong">Losses are not reported; you just keep track yourself</div>
+                </div>
+
+                <div class="quiz-question">5. What should you do with the cash after selling a losing position?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Keep it in cash for at least 60 days</div>
+                    <div class="quiz-option" data-answer="wrong">Immediately buy the same stock in a retirement account</div>
+                    <div class="quiz-option" data-answer="correct">Reinvest in a similar but not substantially identical security to maintain market exposure</div>
+                    <div class="quiz-option" data-answer="wrong">Use the cash to pay estimated taxes</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--tax-smart-color);">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 3 (Practical Execution) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 3: Practical Execution</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'how-to-set-up-maximize-tax-advantaged-accounts' }) }}" class="next-card">
+                    <i class="fas fa-gear"></i>
+                    <h3>Set Up & Maximize Tax‑Advantaged Accounts</h3>
+                    <p>Practical guide to opening a Roth IRA, increasing 401(k) contributions.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'year-end-tax-planning-checklist' }) }}" class="next-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Year‑End Tax Planning Checklist</h3>
+                    <p>What to do in November/December to optimize taxes.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'tax-software-or-professional' }) }}" class="next-card">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Tax Software or a Professional?</h3>
+                    <p>Decide whether to DIY with software or hire a CPA.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

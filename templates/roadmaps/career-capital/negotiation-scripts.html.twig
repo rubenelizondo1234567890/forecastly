@@ -1,0 +1,260 @@
+{# templates/roadmaps/career-capital/negotiation-scripts.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+    {# Inline script: only live slider value updates (works for everyone) #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = [
+                { slider: 'currentSalary', display: 'currentSalaryVal' },
+                { slider: 'targetRaise', display: 'targetRaiseVal' },
+                { slider: 'yearsExperience', display: 'yearsExperienceVal' }
+            ];
+            sliders.forEach(item => {
+                const s = document.getElementById(item.slider);
+                const d = document.getElementById(item.display);
+                if (s && d) {
+                    s.addEventListener('input', () => { d.textContent = s.value; });
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-hand-holding-usd" style="color: var(--career-color);"></i>
+                </div>
+                <h1>How to Negotiate a Raise or Job Offer <span>Scripts</span></h1>
+                <p class="hero-description">
+                    Word‑for‑word scripts and counter‑offer tactics that actually work — based on real recruiter insights.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 12 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">Why negotiation matters</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Not negotiating your first job offer can cost you over <strong>$1 million</strong> in lifetime earnings.
+                Yet, 58% of millennials never negotiate their salaries. The truth is, employers expect you to negotiate —
+                and those who ask, get.
+            </p>
+            <div class="highlight-box">
+                <i class="fas fa-chart-line"></i>
+                <strong>Did you know?</strong> A single successful negotiation can increase your lifetime earnings by hundreds of thousands of dollars. Every $5,000 you add today compounds over your career.
+            </div>
+        </section>
+
+        <!-- Key principles -->
+        <section class="animate">
+            <h2 class="section-title">🧠 Key principles of negotiation</h2>
+            <div class="rule-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="rule-item">
+                    <h3><i class="fas fa-dove"></i> Be collaborative</h3>
+                    <p>Frame it as working together to find a fair outcome, not a battle. “I’d love to make this work for both of us.”</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-chart-bar"></i> Know your market value</h3>
+                    <p>Research salary data (Glassdoor, Levels.fyi, Payscale) so you have objective evidence.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-clock"></i> Don’t rush</h3>
+                    <p>If you’re put on the spot, say “I’d like to take a day to consider this.” Silence is powerful.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-gift"></i> Look beyond base salary</h3>
+                    <p>Consider bonus, equity, vacation, remote work, professional development, and sign-on bonuses.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scripts section -->
+        <section class="animate">
+            <h2 class="section-title">🎭 Scripts you can use</h2>
+
+            <div class="step-card">
+                <span class="step-number">1</span> <strong>Asking for a raise (current job):</strong>
+                <blockquote style="margin: 15px 0 0 20px; font-style: italic; color: var(--dark-color);">
+                    “I really enjoy working here and I feel I’ve contributed [specific achievement]. I’d like to discuss my compensation.
+                    Based on my research and performance, I’m looking for a base salary of $X. I’m open to talking about the total package.”
+                </blockquote>
+            </div>
+            <div class="step-card">
+                <span class="step-number">2</span> <strong>Job offer – initial response:</strong>
+                <blockquote style="margin: 15px 0 0 20px; font-style: italic; color: var(--dark-color);">
+                    “Thank you so much for the offer! I’m excited about the role and the team. Before I accept, I’d like to discuss the compensation.
+                    Based on my experience and market research, I was hoping for something in the range of $Y. Is there flexibility in the base salary?”
+                </blockquote>
+            </div>
+            <div class="step-card">
+                <span class="step-number">3</span> <strong>Counter‑offer when they say no to more money:</strong>
+                <blockquote style="margin: 15px 0 0 20px; font-style: italic; color: var(--dark-color);">
+                    “I understand the budget constraints. Could we consider a sign‑on bonus, an extra week of vacation, or a performance review in 6 months with potential adjustment?”
+                </blockquote>
+            </div>
+            <div class="step-card">
+                <span class="step-number">4</span> <strong>Closing the deal:</strong>
+                <blockquote style="margin: 15px 0 0 20px; font-style: italic; color: var(--dark-color);">
+                    “Thank you for working with me on this. I’m thrilled to accept and can’t wait to get started.”
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Common mistakes -->
+        <section class="animate">
+            <h2 class="section-title">⚠️ Avoid these mistakes</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-times-circle"></i> <strong>Not negotiating at all</strong> – You leave money on the table.</li>
+                <li><i class="fas fa-times-circle"></i> <strong>Focusing only on salary</strong> – Total compensation matters more.</li>
+                <li><i class="fas fa-times-circle"></i> <strong>Using ultimatums</strong> – “Give me X or I walk” rarely works.</li>
+                <li><i class="fas fa-times-circle"></i> <strong>Accepting the first offer</strong> – It’s usually a starting point, not final.</li>
+                <li><i class="fas fa-times-circle"></i> <strong>Not preparing evidence</strong> – “I need more money” isn’t persuasive.</li>
+            </ul>
+        </section>
+
+        <!-- INTERACTIVE TOOL: Salary Negotiation Simulator -->
+        <div class="calc-card animate">
+            <h2 class="calc-title"><i class="fas fa-robot" style="color: var(--career-color);"></i> Salary Negotiation Simulator</h2>
+            <p>See how a small increase today can compound over your career. Adjust the sliders and click “Calculate”.</p>
+
+            <div class="calc-input">
+                <label for="currentSalary">Current or offered base salary ($)</label>
+                <div class="slider-container">
+                    <input type="range" id="currentSalary" class="cat-input" min="30000" max="200000" value="65000" step="1000">
+                    <span class="slider-value" id="currentSalaryVal">65,000</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="targetRaise">Target raise (%)</label>
+                <div class="slider-container">
+                    <input type="range" id="targetRaise" class="cat-input" min="0" max="30" value="10" step="1">
+                    <span class="slider-value" id="targetRaiseVal">10</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="yearsExperience">Years until retirement (approx.)</label>
+                <div class="slider-container">
+                    <input type="range" id="yearsExperience" class="cat-input" min="1" max="40" value="30" step="1">
+                    <span class="slider-value" id="yearsExperienceVal">30</span>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="negotiationSimulateBtn" class="btn" style="background-color: var(--career-color);">Calculate lifetime gain</button>
+            </div>
+
+            <div class="calc-result" id="negotiationResult" style="border: 2px dashed var(--career-color);">
+                <p class="result-label">Estimated lifetime gain</p>
+                <p style="font-size: 1rem;">Adjust the sliders and click "Calculate" to see your projection.</p>
+            </div>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user who already took the quiz #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'negotiation-scripts', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Quiz for everyone – interactivity blocked by home.js if not logged in #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: negotiation know‑how</h3>
+
+                <div class="quiz-question">1. What’s the first thing you should do when you receive a job offer?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Immediately accept</div>
+                    <div class="quiz-option" data-answer="wrong">Reject it</div>
+                    <div class="quiz-option" data-answer="correct">Thank them and ask for time to review</div>
+                    <div class="quiz-option" data-answer="wrong">Ask for a 50% raise</div>
+                </div>
+
+                <div class="quiz-question">2. Which of these is a valid element to negotiate beyond base salary?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Sign‑on bonus</div>
+                    <div class="quiz-option" data-answer="wrong">Vacation days</div>
+                    <div class="quiz-option" data-answer="wrong">Remote work flexibility</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+
+                <div class="quiz-question">3. Why is it important to research market salary before negotiating?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">To have a number to aim for</div>
+                    <div class="quiz-option" data-answer="wrong">To justify your request with data</div>
+                    <div class="quiz-option" data-answer="wrong">To avoid asking too much or too little</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+
+                <div class="quiz-question">4. If an employer says they can’t increase the salary, what should you do?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Walk away immediately</div>
+                    <div class="quiz-option" data-answer="wrong">Accept without further discussion</div>
+                    <div class="quiz-option" data-answer="correct">Ask about other forms of compensation (bonus, vacation, etc.)</div>
+                    <div class="quiz-option" data-answer="wrong">Complain about the low offer</div>
+                </div>
+
+                <div class="quiz-question">5. What’s a common mistake in negotiation?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Failing to prepare evidence</div>
+                    <div class="quiz-option" data-answer="wrong">Accepting the first offer</div>
+                    <div class="quiz-option" data-answer="wrong">Focusing only on salary</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next articles in Phase 3 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue Phase 3: Practical Execution</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'linkedin-portfolio' }) }}" class="next-card">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn & Portfolio</h3>
+                    <p>Optimize your profile to attract recruiters.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'side-hustle-launch' }) }}" class="next-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Side Hustle Launch</h3>
+                    <p>First 30 days plan for freelancers and creators.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'informational-interviews' }) }}" class="next-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Informational Interviews</h3>
+                    <p>Smart networking without being awkward.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,218 @@
+{# templates/roadmaps/real-state/saving-for-down-payment.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('real_state_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('real_state_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #2f2a24 0%, #5e4b3f 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--real-estate-color);">
+                    <i class="fas fa-piggy-bank"></i>
+                </div>
+                <h1>Step‑by‑Step <span>Saving for Your First Down Payment</span></h1>
+                <p class="hero-description">
+                    A concrete plan to build your down payment faster. Learn where to stash the cash, how much you need, and programs that can help.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(225,112,85,0.2); color: #f7b9a9;">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">🏦 The Biggest Hurdle for First‑Time Buyers</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                For most people, the down payment is the hardest part of buying a home. But with a clear plan, discipline, and the right tools,
+                <strong>you can reach your goal faster than you think.</strong> This guide walks you through the entire process.
+            </p>
+        </section>
+
+        <!-- Step‑by‑Step Guide (using rule-grid) -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-bullseye"></i> Step 1: Know Your Target</h4>
+                <p>How much do you need? For a $300,000 home, 3–20% down is $9,000–$60,000. Research loan types: conventional (3%+), FHA (3.5%), VA/USDA (0%).</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-chart-pie"></i> Step 2: Create a Dedicated Account</h4>
+                <p>Open a high‑yield savings account (HYSA) separate from your everyday checking. This reduces temptation and earns some interest.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-calendar-check"></i> Step 3: Automate Your Savings</h4>
+                <p>Set up automatic transfers on payday – even $100 a week adds up. Treat it like a non‑negotiable bill.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-gift"></i> Step 4: Boost Your Income</h4>
+                <p>Side hustles, tax refunds, bonuses, and gifts from family can accelerate your timeline.</p>
+            </div>
+        </div>
+
+        <!-- Deeper Dive Card -->
+        <div class="card animate">
+            <h3><i class="fas fa-lightbulb"></i> Where to Keep Your Down Payment Savings</h3>
+            <p><strong>High‑yield savings account (HYSA):</strong> FDIC insured, liquid, currently 4–5% APY. Ideal for short‑term goals (1–5 years).</p>
+            <p><strong>Money market account:</strong> Similar to HYSA, sometimes with check writing.</p>
+            <p><strong>Certificates of deposit (CDs):</strong> Higher rates but lock your money for a term. Use a CD ladder if you have a fixed timeline.</p>
+            <p><strong>Avoid stocks:</strong> Market volatility could shrink your savings right when you need them.</p>
+            <p style="background: var(--light-gray); padding: 15px; border-radius: 12px;">
+                <strong>Pro Tip:</strong> If you're more than 5 years away, a conservative balanced fund might be considered, but most experts recommend cash for down payments.
+            </p>
+        </div>
+
+        <!-- Interactive Tool: Down Payment Savings Planner (disabled for non-logged-in) -->
+        <div class="card animate" id="down-payment-planner">
+            <h3><i class="fas fa-chart-line"></i> Interactive: Down Payment Savings Planner</h3>
+            <p>See how long it will take to reach your goal based on your savings rate.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1 1 200px;">
+                    <label>Target Home Price ($) <span id="targetPriceVal">300000</span></label>
+                    <input type="range" id="targetPrice" min="50000" max="1000000" value="300000" step="5000" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Down Payment (%) <span id="downPercentValDP">10</span></label>
+                    <input type="range" id="downPercentDP" min="3" max="50" value="10" step="1" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Current Savings ($) <span id="currentSavingsVal">5000</span></label>
+                    <input type="range" id="currentSavings" min="0" max="200000" value="5000" step="1000" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Monthly Savings ($) <span id="monthlySavingsVal">500</span></label>
+                    <input type="range" id="monthlySavings" min="0" max="5000" value="500" step="50" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Annual Return on Savings (%) <span id="returnVal">4.0</span></label>
+                    <input type="range" id="annualReturn" min="0" max="10" value="4.0" step="0.5" class="cat-input" style="width:100%;">
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="calcDownPayment" class="btn-outline">Calculate Timeline</button>
+            </div>
+
+            <div id="downPaymentResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                <p>Adjust the values and click the button.</p>
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px;">
+                <i class="fas fa-lightbulb"></i> This calculator assumes you earn the annual return on your entire balance, compounded monthly. It does not account for taxes. Actual results may vary.
+            </p>
+        </div>
+
+        <!-- First‑Time Buyer Programs -->
+        <div class="card animate">
+            <h3><i class="fas fa-hand-holding-heart"></i> Programs That Can Help</h3>
+            <ul>
+                <li><strong>FHA loan:</strong> 3.5% down, credit score as low as 580.</li>
+                <li><strong>Conventional 97:</strong> 3% down for first‑time buyers.</li>
+                <li><strong>VA loan:</strong> 0% down for veterans/military.</li>
+                <li><strong>USDA loan:</strong> 0% down in rural areas.</li>
+                <li><strong>Down payment assistance (DPA):</strong> Grants or low‑interest loans from state/local programs.</li>
+            </ul>
+            <p>Check with a local lender or housing authority to see what's available in your area.</p>
+        </div>
+
+        <!-- Quiz Section -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'saving-for-down-payment', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #e17055; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">📝 Test Your Knowledge: Saving for a Down Payment</h3>
+
+                <div class="quiz-question">1. What is the minimum down payment for a conventional loan?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">5%</div>
+                    <div class="quiz-option" data-answer="correct">3%</div>
+                    <div class="quiz-option" data-answer="wrong">10%</div>
+                    <div class="quiz-option" data-answer="wrong">20%</div>
+                </div>
+
+                <div class="quiz-question">2. Which type of account is safest for a down payment you need in 2 years?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Individual stocks</div>
+                    <div class="quiz-option" data-answer="wrong">Cryptocurrency</div>
+                    <div class="quiz-option" data-answer="correct">High‑yield savings account</div>
+                    <div class="quiz-option" data-answer="wrong">Corporate bonds</div>
+                </div>
+
+                <div class="quiz-question">3. What does PMI stand for?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Primary Mortgage Insurance</div>
+                    <div class="quiz-option" data-answer="correct">Private Mortgage Insurance</div>
+                    <div class="quiz-option" data-answer="wrong">Property Mortgage Interest</div>
+                    <div class="quiz-option" data-answer="wrong">Premium Mortgage Investment</div>
+                </div>
+
+                <div class="quiz-question">4. Which loan program allows 3.5% down and is popular with first‑time buyers?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="correct">FHA</div>
+                    <div class="quiz-option" data-answer="wrong">VA</div>
+                    <div class="quiz-option" data-answer="wrong">USDA</div>
+                    <div class="quiz-option" data-answer="wrong">Jumbo</div>
+                </div>
+
+                <div class="quiz-question">5. True or False: You should invest your down payment savings in the stock market if you plan to buy in 2 years.</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">True</div>
+                    <div class="quiz-option" data-answer="correct">False</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--real-estate-color);">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next Steps in Phase 3 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 3: Practical Execution</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'mortgage-guide' }) }}" class="next-card">
+                    <i class="fas fa-file-signature"></i>
+                    <h3>How to Get a Mortgage</h3>
+                    <p>Credit, pre‑approval, and loan types.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'first-time-buyer-programs' }) }}" class="next-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>First‑Time Buyer Programs</h3>
+                    <p>Grants and assistance you may qualify for.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'analyze-rental-property' }) }}" class="next-card">
+                    <i class="fas fa-chart-simple"></i>
+                    <h3>How to Analyze a Rental Property</h3>
+                    <p>A practical template for investors.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

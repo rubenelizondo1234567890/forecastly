@@ -1,0 +1,103 @@
+{# templates/customer/expense/recurring/_form.html.twig #}
+<div class="form-section">
+    <div class="section-header">
+        <h2 class="section-title">
+            {% if form.vars.value.id %}Edit Recurring Expense{% else %}Add New Recurring Expense{% endif %}
+        </h2>
+    </div>
+
+    {# Set the correct form action based on whether we're editing or creating #}
+    {% set formAction = form.vars.value.id ?
+        path('customer_recurring_expense_edit', {'id': form.vars.value.id}) :
+        path('customer_recurring_expense_new')
+    %}
+
+    {{ form_start(form, {'attr': {'id': 'recurring-expense-form', 'action': formAction}}) }}
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'e.g., Rent, Utilities, Subscription'}}) }}
+        {{ form_errors(form.name) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 3, 'placeholder': 'Expense description'}}) }}
+        {{ form_errors(form.description) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.amount) }}
+        <div class="input-with-icon">
+            <i class="fas fa-dollar-sign"></i>
+            {{ form_widget(form.amount, {'attr': {'class': 'form-control', 'placeholder': '0.00', 'step': '0.01'}}) }}
+        </div>
+        {{ form_errors(form.amount) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.startOn) }}
+        {{ form_widget(form.startOn, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.startOn) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.canceledAfter) }}
+        {{ form_widget(form.canceledAfter, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.canceledAfter) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.account) }}
+        {{ form_widget(form.account, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.account) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.frequency) }}
+        {{ form_widget(form.frequency, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.frequency) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.budgetTrackingGroup) }}
+        {{ form_widget(form.budgetTrackingGroup, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.budgetTrackingGroup) }}
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            {% if form.vars.value.id %}Update Expense{% else %}Add Expense{% endif %}
+        </button>
+        <button type="reset" class="btn btn-secondary">Clear Form</button>
+        {% if form.vars.value.id %}
+            <a href="{{ path('customer_recurring_expense_index') }}" class="btn btn-secondary">Cancel</a>
+        {% endif %}
+    </div>
+    {{ form_end(form) }}
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="loading-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Processing Recurring Expense</h3>
+            </div>
+            <div class="modal-body">
+                <div class="loading-text">
+                    <i class="fas fa-sync-alt fa-spin"></i>
+                    Updating Calendar and re-calculating accounts projected balances...
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">0%</span>
+                </div>
+                <div class="estimated-time">
+                    Estimated time: <span id="estimatedTime">30 seconds</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

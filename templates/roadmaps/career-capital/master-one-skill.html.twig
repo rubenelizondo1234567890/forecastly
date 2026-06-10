@@ -1,0 +1,289 @@
+{# templates/roadmaps/career-capital/master-one-skill.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+    {# Inline script: live slider value updates (works for everyone) #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = [
+                { slider: 'practiceHours', display: 'practiceHoursVal' },
+                { slider: 'feedbackQuality', display: 'feedbackQualityVal' },
+                { slider: 'projectIntensity', display: 'projectIntensityVal' },
+                { slider: 'teachingSharing', display: 'teachingSharingVal' }
+            ];
+            sliders.forEach(item => {
+                const s = document.getElementById(item.slider);
+                const d = document.getElementById(item.display);
+                if (s && d) {
+                    s.addEventListener('input', () => { d.textContent = s.value; });
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-crown" style="color: var(--career-color);"></i>
+                </div>
+                <h1>Master One High‑Income Skill <span>Deeply</span></h1>
+                <p class="hero-description">
+                    Project‑based learning framework to move from intermediate to expert — choose a specialisation and build a standout portfolio.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 13 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">Why deep mastery matters</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                In a world of generalists, deep expertise is rare and highly rewarded. Mastering one high‑income skill can <strong>10x your earning potential</strong> compared to being average at many. The top 1% of performers in any field command premium rates, job offers, and opportunities.
+            </p>
+            <div class="highlight-box">
+                <i class="fas fa-chart-line"></i>
+                <strong>The 80/20 rule of skill development:</strong> 20% of effort gets you to competence; the remaining 80% of effort takes you to mastery — and that’s where the exponential rewards lie.
+            </div>
+        </section>
+
+        <!-- Choosing the right skill -->
+        <section class="animate">
+            <h2 class="section-title">🎯 Choosing the right skill to master</h2>
+            <div class="rule-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                <div class="rule-item">
+                    <h3><i class="fas fa-fire"></i> Passion & interest</h3>
+                    <p>You’ll spend thousands of hours — choose something you genuinely enjoy or find fascinating.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-dollar-sign"></i> Market demand</h3>
+                    <p>Is there a strong, growing market for this skill? Check job boards, freelance platforms, and industry reports.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-trophy"></i> Your natural advantages</h3>
+                    <p>Leverage your existing strengths (from self‑assessment) to accelerate progress.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-road"></i> Learning path clarity</h3>
+                    <p>Are there clear resources, mentors, and projects to guide you from intermediate to expert?</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The path to mastery -->
+        <section class="animate">
+            <h2 class="section-title">🧗 The path to mastery</h2>
+            <div class="step-card">
+                <span class="step-number">1</span> <strong>Deliberate practice</strong> – Focused, goal‑oriented practice with immediate feedback. Not just repeating what you already know.
+            </div>
+            <div class="step-card">
+                <span class="step-number">2</span> <strong>Project‑based learning</strong> – Build real projects that push your boundaries. A portfolio of impressive work speaks louder than certificates.
+            </div>
+            <div class="step-card">
+                <span class="step-number">3</span> <strong>Get expert feedback</strong> – Find a mentor, join a community, or pay for a coach. Blind spots are the enemy of mastery.
+            </div>
+            <div class="step-card">
+                <span class="step-number">4</span> <strong>Teach and share</strong> – Explaining concepts to others deepens your understanding and builds reputation.
+            </div>
+            <div class="step-card">
+                <span class="step-number">5</span> <strong>Iterate and refine</strong> – Mastery is a cycle, not a destination. Continuously seek harder challenges.
+            </div>
+        </section>
+
+        <!-- Project ideas by skill -->
+        <section class="animate">
+            <h2 class="section-title">💡 Portfolio project ideas</h2>
+            <table style="width:100%; border-collapse: collapse; background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow);">
+                <thead style="background-color: var(--career-color); color: white;">
+                <tr>
+                    <th style="padding: 15px; text-align: left;">Skill</th>
+                    <th style="padding: 15px; text-align: left;">Intermediate project</th>
+                    <th style="padding: 15px; text-align: left;">Master‑level project</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 15px;"><strong>Copywriting</strong></td>
+                    <td style="padding: 15px;">Write 10 email sequences for fictional brands</td>
+                    <td style="padding: 15px;">Run a paid campaign and present ROI data</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 15px;"><strong>Coding (Web dev)</strong></td>
+                    <td style="padding: 15px;">Build a full‑stack CRUD app</td>
+                    <td style="padding: 15px;">Contribute to an open‑source project or build a tool used by 100+ people</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 15px;"><strong>Sales</strong></td>
+                    <td style="padding: 15px;">Cold call 100 leads and track conversion</td>
+                    <td style="padding: 15px;">Develop a sales training module and mentor others</td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px;"><strong>AI Prompting</strong></td>
+                    <td style="padding: 15px;">Create a library of 50 high‑quality prompts</td>
+                    <td style="padding: 15px;">Build an automated workflow using AI that saves hours per week</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Common obstacles and how to overcome them -->
+        <section class="animate">
+            <h2 class="section-title">🧱 Overcoming plateaus</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-stopwatch"></i> <strong>The intermediate plateau</strong> – You stop seeing rapid progress. Solution: seek harder challenges and feedback.</li>
+                <li><i class="fas fa-burn"></i> <strong>Burnout</strong> – You overdo it. Solution: schedule deliberate rest and variety.</li>
+                <li><i class="fas fa-compass"></i> <strong>Lack of direction</strong> – You don’t know what to learn next. Solution: follow a curriculum or mentor.</li>
+                <li><i class="fas fa-comment-slash"></i> <strong>No feedback</strong> – You’re practicing alone. Solution: join a community, hire a coach.</li>
+            </ul>
+        </section>
+
+        <!-- INTERACTIVE TOOL: Skill Mastery Scorecard -->
+        <div class="calc-card animate">
+            <h2 class="calc-title"><i class="fas fa-chart-pie" style="color: var(--career-color);"></i> Skill Mastery Scorecard</h2>
+            <p>Rate your current approach to skill development. See your mastery score and get actionable tips to deepen your expertise.</p>
+
+            <div class="calc-input">
+                <label for="practiceHours">Weekly deliberate practice hours</label>
+                <div class="slider-container">
+                    <input type="range" id="practiceHours" class="cat-input" min="0" max="40" value="8" step="1">
+                    <span class="slider-value" id="practiceHoursVal">8</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="feedbackQuality">Quality of feedback (0–100)</label>
+                <div class="slider-container">
+                    <input type="range" id="feedbackQuality" class="cat-input" min="0" max="100" value="50" step="5">
+                    <span class="slider-value" id="feedbackQualityVal">50</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="projectIntensity">Project complexity (1–100)</label>
+                <div class="slider-container">
+                    <input type="range" id="projectIntensity" class="cat-input" min="0" max="100" value="60" step="5">
+                    <span class="slider-value" id="projectIntensityVal">60</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="teachingSharing">Teaching/sharing frequency (1–100)</label>
+                <div class="slider-container">
+                    <input type="range" id="teachingSharing" class="cat-input" min="0" max="100" value="30" step="5">
+                    <span class="slider-value" id="teachingSharingVal">30</span>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="masteryScoreBtn" class="btn" style="background-color: var(--career-color);">Calculate my mastery score</button>
+            </div>
+
+            <div class="calc-result" id="masteryResult" style="border: 2px dashed var(--career-color);">
+                <p class="result-label">Your skill mastery score</p>
+                <p style="font-size: 1rem;">Adjust the sliders and click "Calculate" to see your score and tips.</p>
+            </div>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user who already took the quiz #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'master-one-skill', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Quiz for everyone – interactivity blocked by home.js if not logged in #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: mastering a high‑income skill</h3>
+
+                <div class="quiz-question">1. What is the key difference between intermediate and master level?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">More certificates</div>
+                    <div class="quiz-option" data-answer="wrong">More years of experience</div>
+                    <div class="quiz-option" data-answer="correct">Depth of understanding and ability to handle complex, novel problems</div>
+                    <div class="quiz-option" data-answer="wrong">Having a large network</div>
+                </div>
+
+                <div class="quiz-question">2. Which practice method is most effective for reaching mastery?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Mindless repetition</div>
+                    <div class="quiz-option" data-answer="wrong">Watching tutorials</div>
+                    <div class="quiz-option" data-answer="correct">Deliberate practice with feedback</div>
+                    <div class="quiz-option" data-answer="wrong">Reading books</div>
+                </div>
+
+                <div class="quiz-question">3. Why is teaching others a powerful way to deepen mastery?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">It makes you look smart</div>
+                    <div class="quiz-option" data-answer="wrong">You get paid for it</div>
+                    <div class="quiz-option" data-answer="correct">It forces you to clarify your understanding and fill gaps</div>
+                    <div class="quiz-option" data-answer="wrong">It’s easier than practicing</div>
+                </div>
+
+                <div class="quiz-question">4. What should you do when you hit a learning plateau?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Give up</div>
+                    <div class="quiz-option" data-answer="wrong">Keep doing the same thing</div>
+                    <div class="quiz-option" data-answer="correct">Seek harder challenges and expert feedback</div>
+                    <div class="quiz-option" data-answer="wrong">Take a long break</div>
+                </div>
+
+                <div class="quiz-question">5. Which factor is LEAST important when choosing a skill to master?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Market demand</div>
+                    <div class="quiz-option" data-answer="wrong">Personal interest</div>
+                    <div class="quiz-option" data-answer="wrong">Availability of learning resources</div>
+                    <div class="quiz-option" data-answer="correct">What your friends are learning</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next articles in Phase 4 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue Phase 4: Skill Building</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'leverage-ai-automation' }) }}" class="next-card">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Leverage AI & Automation</h3>
+                    <p>10x your output with modern tools.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'personal-website' }) }}" class="next-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Build a Personal Website</h3>
+                    <p>Establish thought leadership online.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'certifications-vs-experience' }) }}" class="next-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Certifications vs. Experience</h3>
+                    <p>What actually boosts income?</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

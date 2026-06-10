@@ -1,0 +1,209 @@
+{# templates/roadmaps/career-capital/diversify-income.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-random" style="color: var(--career-color);"></i>
+                </div>
+                <h1>Diversify Your Income <span>Side Hustle Fundamentals</span></h1>
+                <p class="hero-description">
+                    How to test a side business without quitting your day job, and the legal/tax basics you need to know.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(156,136,255,0.2); color: #c3b9ff;">
+                    <i class="fas fa-layer-group"></i> Phase 2: Risk Management · 9 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">Why Diversify?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Relying on a single income source is risky. A side hustle not only brings in extra cash but also builds new skills, expands your network, and can become a full‑time venture if you want it to. The key is to start smart — without burning out or breaking the bank.
+            </p>
+            <p>
+                This guide walks you through the fundamentals: choosing a hustle, testing demand, managing time, and handling the legal/financial side. Use the interactive tool below to estimate potential earnings from your idea.
+            </p>
+        </section>
+
+        <!-- interactive profit calculator -->
+        <div class="calc-card animate" style="border: 1px solid rgba(156,136,255,0.3);">
+            <h2 class="calc-title"><i class="fas fa-calculator" style="color: var(--career-color); margin-right: 10px;"></i> Side Hustle Profit Estimator</h2>
+            <p style="font-size: 1.1rem;">Estimate your potential monthly and yearly income.</p>
+
+            <div class="calc-input">
+                <label>Hours per week you can dedicate</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="hoursPerWeek" class="cat-input" min="0" max="40" value="10" step="1">
+                    </div>
+                    <span class="slider-value" id="hoursPerWeekVal">10</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>Estimated hourly rate ($)</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="hourlyRate" class="cat-input" min="0" max="200" value="50" step="5">
+                    </div>
+                    <span class="slider-value" id="hourlyRateVal">50</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label>One‑time startup costs ($)</label>
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex:3; min-width:250px;">
+                        <input type="range" id="startupCosts" class="cat-input" min="0" max="5000" value="500" step="50">
+                    </div>
+                    <span class="slider-value" id="startupCostsVal">500</span>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="sideHustleCalc" class="btn" style="background-color: var(--career-color);">Calculate earnings</button>
+            </div>
+
+            <div class="calc-result" style="border: 2px dashed var(--career-color);">
+                <div id="sideHustleResult" style="font-size:1.2rem; color:var(--dark-color);">Adjust sliders and click Calculate.</div>
+            </div>
+
+            <script>
+                // Live update for displayed values even if not logged in
+                document.querySelectorAll('.calc-input input[type=range]').forEach(slider => {
+                    const display = document.getElementById(slider.id + 'Val');
+                    if (display) {
+                        slider.addEventListener('input', () => { display.textContent = slider.value; });
+                    }
+                });
+            </script>
+        </div>
+
+        <!-- deeper dive: side hustle fundamentals -->
+        <div class="card animate" style="border-top: 4px solid var(--career-color);">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">The Smart Start Framework</h3>
+            <ul class="checklist">
+                <li><i class="fas fa-check-circle"></i> <strong>Validate demand first:</strong> Talk to potential customers, create a simple landing page, or offer a pre‑sale before investing time/money.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Start small, think big:</strong> Begin with a minimal viable product or service. You can always expand later.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Protect your main income:</strong> Keep your day job until your side hustle generates consistent, meaningful revenue.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Track everything:</strong> Use a spreadsheet or app to log income, expenses, and time. This is crucial for taxes and understanding profitability.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Know the legal basics:</strong> Register your business if required, understand local regulations, and consider liability insurance.</li>
+            </ul>
+        </div>
+
+        <!-- tax and legal tips -->
+        <section class="animate">
+            <h2 class="section-title">💰 Tax & Legal Essentials</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-file-invoice" style="color: var(--career-color);"></i> <strong>Structure:</strong> Most side hustles start as sole proprietorships. As you grow, consider an LLC for liability protection.</li>
+                <li><i class="fas fa-calculator" style="color: var(--career-color);"></i> <strong>Estimated taxes:</strong> You may need to pay quarterly estimated taxes if you expect to owe more than $1,000.</li>
+                <li><i class="fas fa-receipt" style="color: var(--career-color);"></i> <strong>Deductible expenses:</strong> Keep receipts for home office, equipment, software, and mileage — these reduce taxable income.</li>
+                <li><i class="fas fa-file-signature" style="color: var(--career-color);"></i> <strong>Contracts:</strong> Always use written agreements with clients to avoid misunderstandings.</li>
+            </ul>
+        </section>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz %}
+            <div class="quiz-container animate" style="background-color: #1e293b;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'diversify-income', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background-color: #1e293b;">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: side hustle fundamentals</h3>
+
+                <div class="quiz-question">1. What should you do first when considering a side hustle?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Quit your day job</div>
+                    <div class="quiz-option" data-answer="wrong">Buy expensive equipment</div>
+                    <div class="quiz-option" data-answer="correct">Validate demand</div>
+                    <div class="quiz-option" data-answer="wrong">Register a company</div>
+                </div>
+
+                <div class="quiz-question">2. How often might you need to pay estimated taxes?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Once a year</div>
+                    <div class="quiz-option" data-answer="correct">Quarterly</div>
+                    <div class="quiz-option" data-answer="wrong">Monthly</div>
+                    <div class="quiz-option" data-answer="wrong">Only when you file your return</div>
+                </div>
+
+                <div class="quiz-question">3. Which of these is a deductible expense for a side hustle?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Personal groceries</div>
+                    <div class="quiz-option" data-answer="correct">Home office equipment</div>
+                    <div class="quiz-option" data-answer="wrong">Vacation travel</div>
+                    <div class="quiz-option" data-answer="wrong">Clothes for daily wear</div>
+                </div>
+
+                <div class="quiz-question">4. Why should you keep your day job while starting a side hustle?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">You'll have more time</div>
+                    <div class="quiz-option" data-answer="correct">It provides financial stability while you test your idea</div>
+                    <div class="quiz-option" data-answer="wrong">Your employer requires it</div>
+                    <div class="quiz-option" data-answer="wrong">Side hustles are illegal otherwise</div>
+                </div>
+
+                <div class="quiz-question">5. What is a key benefit of having a written contract with clients?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">It guarantees payment</div>
+                    <div class="quiz-option" data-answer="correct">It prevents misunderstandings and clarifies expectations</div>
+                    <div class="quiz-option" data-answer="wrong">It’s required by law for all work</div>
+                    <div class="quiz-option" data-answer="wrong">It makes you look more professional</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next articles in Phase 2 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Risk Management phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'job-security-volatile-economy' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-shield-virus"></i>
+                    <h3>Job Security in a Volatile Economy</h3>
+                    <p style="color: var(--gray-color);">Future‑proof your role by identifying which skills keep you relevant.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'protecting-your-reputation-and-personal-brand' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Protecting Your Reputation & Personal Brand</h3>
+                    <p style="color: var(--gray-color);">Simple habits to maintain a positive digital footprint.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'avoid-burnout' }) }}" class="next-card" style="border-bottom-color: var(--career-color);">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Avoid Burnout While Upskilling</h3>
+                    <p style="color: var(--gray-color);">Set sustainable learning boundaries.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

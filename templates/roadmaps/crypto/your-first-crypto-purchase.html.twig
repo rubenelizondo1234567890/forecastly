@@ -1,0 +1,197 @@
+{# templates/roadmaps/crypto/your-first-crypto-purchase.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('crypto_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('crypto_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – crypto style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-cart-shopping"></i>
+                </div>
+                <h1>Your First Crypto Purchase <span>(Without the Fear)</span></h1>
+                <p class="hero-description">
+                    You've opened your exchange account – now it's time to buy. Learn how to place your first order, understand market vs. limit orders, and avoid common beginner mistakes. We'll walk you through every click.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">💡 It's Easier Than You Think</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                After funding your exchange account, buying crypto is as simple as a few clicks. But fear of making a mistake – buying at the wrong time, paying too much in fees, or sending to the wrong address – can be paralyzing. This guide removes the mystery so you can buy with confidence.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                Remember: start small, use only what you can afford to lose, and never invest based on emotion. Ready? Let's buy your first Bitcoin or Ethereum.
+            </p>
+        </section>
+
+        <!-- order types explanation -->
+        <div class="rule-grid animate" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 40px 0;">
+            <div class="rule-item" style="border-top: 5px solid #3498db; background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-bolt" style="color:#3498db;"></i> Market Order</h3>
+                <p><strong>Best for:</strong> Speed and simplicity.<br>
+                    You buy at the current market price. The order fills immediately (as long as there's liquidity). You pay the ask price, which may include a small spread.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-clock" style="color:var(--crypto-color);"></i> Limit Order</h3>
+                <p><strong>Best for:</strong> Price control.<br>
+                    You set the maximum price you're willing to pay. The order only fills if the market drops to that level. It may never fill, but you avoid overpaying.</p>
+            </div>
+        </div>
+
+        <!-- step‑by‑step visual guide -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🛒 How to Place Your First Buy Order</h3>
+            <ol style="font-size: 1.1rem; padding-left: 20px;">
+                <li style="margin-bottom: 15px;"><strong>Go to the trading page</strong> – Usually labelled “Buy”, “Trade”, or “Markets”.</li>
+                <li style="margin-bottom: 15px;"><strong>Choose your trading pair</strong> – e.g., BTC/USD or ETH/EUR.</li>
+                <li style="margin-bottom: 15px;"><strong>Select order type</strong> – Market (buy now) or Limit (set your price).</li>
+                <li style="margin-bottom: 15px;"><strong>Enter the amount</strong> – In fiat (e.g., $100) or crypto (e.g., 0.002 BTC).</li>
+                <li style="margin-bottom: 15px;"><strong>Review the details</strong> – Check the total cost, fees, and final crypto amount.</li>
+                <li style="margin-bottom: 15px;"><strong>Confirm the purchase</strong> – Click “Buy” and wait a few seconds for confirmation.</li>
+            </ol>
+            <div style="background: #e6f7f2; padding: 20px; border-radius: 16px; margin-top: 20px;">
+                <p><i class="fas fa-lightbulb" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Pro tip:</strong> After buying, the crypto is still on the exchange. For long‑term holding, move it to your own wallet (covered in the next article).</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: First Purchase Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="purchase-simulator">
+            <h3><i class="fas fa-calculator"></i> First Purchase Simulator</h3>
+            <p>Practice buying crypto without spending real money. Select a coin, enter an amount, and see how market and limit orders work.</p>
+
+            <div style="margin: 30px 0;">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600;">🪙 Select Coin:</label>
+                    <select id="coinSelect" class="cat-input" style="width: 100%;">
+                        <option value="btc">Bitcoin (BTC) – $58,430</option>
+                        <option value="eth">Ethereum (ETH) – $2,890</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="fiatAmount" style="display: block; font-weight: 600;">💵 Amount to spend (USD):</label>
+                    <input type="number" id="fiatAmount" class="cat-input" min="10" max="10000" value="100" step="10" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600;">📊 Order Type:</label>
+                    <div style="display: flex; gap: 20px;">
+                        <label><input type="radio" name="orderType" value="market" checked> Market – buy now at current price</label>
+                        <label><input type="radio" name="orderType" value="limit"> Limit – set your price</label>
+                    </div>
+                </div>
+                <div id="limitPriceContainer" style="margin-bottom: 20px; display: none;">
+                    <label for="limitPrice" style="display: block; font-weight: 600;">🎯 Your limit price (USD):</label>
+                    <input type="number" id="limitPrice" class="cat-input" min="10000" max="100000" value="55000" step="100" style="width: 100%;">
+                    <p style="font-size: 0.9rem; color: var(--gray-color);">Current BTC price: $58,430 | ETH: $2,890</p>
+                </div>
+                <button id="simulatePurchaseBtn" class="btn-outline" style="width: 100%;">Simulate Purchase</button>
+            </div>
+
+            <div id="purchaseResult" style="background: #f0f4f8; border-radius: 16px; padding: 25px; min-height: 80px; border-left: 6px solid var(--crypto-color);">
+                <i class="fas fa-arrow-left"></i> Fill in the details and click "Simulate Purchase".
+            </div>
+            <p style="font-style: italic; color: var(--gray-color); margin-top: 20px;">💡 Fees (0.5%) are included for realism. In reality, fees vary by exchange.</p>
+        </div>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Your First Purchase</h3>
+
+                <div class="quiz-question">1. What is a market order?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">An order to buy at a specific price you set</div>
+                    <div class="quiz-option" data-answer="correct">An order to buy immediately at the current market price</div>
+                    <div class="quiz-option" data-answer="wrong">An order that only fills if the price drops</div>
+                    <div class="quiz-option" data-answer="wrong">An order to sell at a loss</div>
+                </div>
+
+                <div class="quiz-question">2. What is the main advantage of a limit order?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">It fills instantly</div>
+                    <div class="quiz-option" data-answer="correct">You control the maximum price you pay</div>
+                    <div class="quiz-option" data-answer="wrong">It has no fees</div>
+                    <div class="quiz-option" data-answer="wrong">It guarantees a fill</div>
+                </div>
+
+                <div class="quiz-question">3. After buying crypto on an exchange, where does it sit initially?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">In your personal hardware wallet</div>
+                    <div class="quiz-option" data-answer="correct">In the exchange's custodial wallet</div>
+                    <div class="quiz-option" data-answer="wrong">In a decentralized exchange</div>
+                    <div class="quiz-option" data-answer="wrong">On the blockchain, directly in your name</div>
+                </div>
+
+                <div class="quiz-question">4. Why should you start with a small amount for your first purchase?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">To avoid paying taxes</div>
+                    <div class="quiz-option" data-answer="correct">To test the process and ensure everything works correctly</div>
+                    <div class="quiz-option" data-answer="wrong">Because exchanges have minimums</div>
+                    <div class="quiz-option" data-answer="wrong">To get a better price</div>
+                </div>
+
+                <div class="quiz-question">5. What is a trading pair like BTC/USD?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">A way to trade Bitcoin for Ethereum</div>
+                    <div class="quiz-option" data-answer="correct">A pairing showing the price of Bitcoin in US dollars</div>
+                    <div class="quiz-option" data-answer="wrong">A type of limit order</div>
+                    <div class="quiz-option" data-answer="wrong">A fee structure</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 3 (practical execution) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue your practical journey</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'moving-crypto-to-wallet' }) }}" class="next-card">
+                    <i class="fas fa-right-left"></i>
+                    <h3>Moving Crypto to Your Wallet</h3>
+                    <p style="color: var(--gray-color);">Step‑by‑step guide to transferring off the exchange.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'tracking-trades-taxes' }) }}" class="next-card">
+                    <i class="fas fa-receipt"></i>
+                    <h3>Tracking Your Trades for Taxes</h3>
+                    <p style="color: var(--gray-color);">Simple methods to record buys, sells, and swaps.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

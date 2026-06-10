@@ -1,0 +1,161 @@
+{# templates/roadmaps/retirement/target-date-funds.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+        {% block stylesheets %}
+        {{ parent() }}
+    {{ encore_entry_link_tags('retirement_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('retirement_js') }}
+    {% endblock %}
+
+    {% block body %}
+    <div class="container">
+    <!-- article hero – retirement style -->
+    <div class="article-hero animate" style="background: linear-gradient(135deg, #1e1a3a 0%, #2d2b55 100%);">
+        <div class="hero-content">
+            <div class="hero-icon" style="background-color: var(--retirement-color);">
+                <i class="fas fa-bullseye"></i>
+            </div>
+            <h1>Target‑Date Funds <span>The Simplest Investment Choice</span></h1>
+            <p class="hero-description">
+                Not sure how to build a portfolio? Target‑date funds do it for you – automatically becoming more conservative as you near retirement. Learn why they're the default choice in many 401(k)s and how to use them wisely.
+            </p>
+            <div class="phase-tag" style="background-color: rgba(108,92,231,0.2); color: #c3b9ff;">
+                <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 6 min read
+            </div>
+        </div>
+    </div>
+
+    <!-- introduction -->
+    <section class="animate">
+        <h2 class="section-title">🎯 What Is a Target‑Date Fund?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 20px;">
+            A <strong>target‑date fund</strong> (also called a lifecycle fund) is a mutual fund that automatically rebalances its asset allocation – the mix of stocks, bonds, and cash – to become more conservative as you approach a specified retirement year. You pick the fund with the year closest to when you plan to retire, and the fund manager handles the rest.
+        </p>
+    </section>
+
+    <!-- key insights in rule‑grid style -->
+    <div class="rule-grid animate">
+        <div class="rule-item">
+            <h4><i class="fas fa-balance-scale"></i> Automatic Rebalancing</h4>
+            <p>The fund gradually shifts from growth-oriented stocks to income-focused bonds, reducing risk as you get closer to retirement.</p>
+        </div>
+        <div class="rule-item">
+            <h4><i class="fas fa-hand-holding-usd"></i> Low Minimums</h4>
+            <p>Most target‑date funds have low initial investment requirements, making them accessible for beginners.</p>
+        </div>
+        <div class="rule-item">
+            <h4><i class="fas fa-chart-pie"></i> One‑Stop Diversification</h4>
+            <p>You get exposure to thousands of stocks and bonds globally in a single fund – instant diversification.</p>
+        </div>
+        <div class="rule-item">
+            <h4><i class="fas fa-exclamation-triangle"></i> Watch the Fees</h4>
+            <p>Not all target‑date funds are equal. Expense ratios can vary significantly; lower fees mean more money in your pocket.</p>
+        </div>
+    </div>
+
+    <!-- interactive tool: Glide Path Visualizer -->
+    <div class="card animate" style="margin: 40px 0;" id="glidepath-tool">
+        <h3><i class="fas fa-chart-line"></i> Interactive: See How a Glide Path Works</h3>
+        <p>Move the slider to see how a typical target‑date fund's allocation changes as you approach retirement.</p>
+
+        <div style="margin: 30px 0;">
+            <label>Years until retirement: <span id="yearsToRetireVal">30</span></label>
+            <input type="range" id="yearsToRetire" min="0" max="40" value="30" step="1" class="cat-input" style="width:100%;">
+        </div>
+
+        <div style="background: var(--light-color); border-radius: 12px; padding: 20px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span><strong>Stocks</strong> <span id="stockPct">85</span>%</span>
+                <span><strong>Bonds</strong> <span id="bondPct">15</span>%</span>
+            </div>
+            <div style="height: 30px; display: flex; border-radius: 20px; overflow: hidden;">
+                <div id="stockBar" style="width: 85%; background-color: var(--retirement-color);"></div>
+                <div id="bondBar" style="width: 15%; background-color: #4a5568;"></div>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9rem;">
+                This is a simplified illustration. Actual glide paths vary by fund family (e.g., Vanguard, Fidelity, T. Rowe Price).
+            </p>
+        </div>
+
+        <p class="pro-tip" style="margin-top: 15px; background-color: #e9e5ff; border-left-color: var(--retirement-color);">
+            <i class="fas fa-lightbulb"></i> Many target‑date funds continue to adjust even after retirement (through the "to" vs. "through" distinction). Always check the fund's prospectus.
+        </p>
+    </div>
+
+    <!-- quiz section -->
+    <div class="quiz-container animate" data-page-id="{{ page.id | default(51) }}" style="background: #1e1a3a;">
+        <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Target‑Date Funds</h3>
+
+        <div class="quiz-question">1. What is a target‑date fund?</div>
+        <div class="quiz-options" data-question="1">
+            <div class="quiz-option" data-answer="wrong">A fund that tries to hit a specific return target each year</div>
+            <div class="quiz-option" data-answer="correct">A fund that automatically adjusts its asset allocation based on a target retirement year</div>
+            <div class="quiz-option" data-answer="wrong">A fund that only invests in bonds</div>
+            <div class="quiz-option" data-answer="wrong">A fund that guarantees your retirement income</div>
+        </div>
+
+        <div class="quiz-question">2. As you approach retirement, a target‑date fund typically becomes:</div>
+        <div class="quiz-options" data-question="2">
+            <div class="quiz-option" data-answer="wrong">More aggressive (more stocks)</div>
+            <div class="quiz-option" data-answer="correct">More conservative (more bonds)</div>
+            <div class="quiz-option" data-answer="wrong">Riskier</div>
+            <div class="quiz-option" data-answer="wrong">Unchanged</div>
+        </div>
+
+        <div class="quiz-question">3. Which of the following is a major advantage of target‑date funds?</div>
+        <div class="quiz-options" data-question="3">
+            <div class="quiz-option" data-answer="wrong">Guaranteed returns</div>
+            <div class="quiz-option" data-answer="wrong">Tax-free withdrawals</div>
+            <div class="quiz-option" data-answer="correct">Automatic diversification and rebalancing</div>
+            <div class="quiz-option" data-answer="wrong">No fees</div>
+        </div>
+
+        <div class="quiz-question">4. What should you pay most attention to when choosing a target‑date fund?</div>
+        <div class="quiz-options" data-question="4">
+            <div class="quiz-option" data-answer="wrong">The fund's recent performance</div>
+            <div class="quiz-option" data-answer="correct">The expense ratio (fees)</div>
+            <div class="quiz-option" data-answer="wrong">The fund manager's name</div>
+            <div class="quiz-option" data-answer="wrong">The fund's ticker symbol</div>
+        </div>
+
+        <div class="quiz-question">5. If you plan to retire in 2045, which target‑date fund should you choose?</div>
+        <div class="quiz-options" data-question="5">
+            <div class="quiz-option" data-answer="wrong">2035 fund</div>
+            <div class="quiz-option" data-answer="correct">2045 fund</div>
+            <div class="quiz-option" data-answer="wrong">2055 fund</div>
+            <div class="quiz-option" data-answer="wrong">Any fund – they're all the same</div>
+        </div>
+
+        <div class="quiz-actions">
+            <button id="quiz-submit" class="btn" style="background-color: var(--retirement-color);">Get score & submit</button>
+        </div>
+        <div class="quiz-result"></div>
+    </div>
+
+    <!-- next steps in Phase 3 (Practical Execution) -->
+    <section style="margin: 60px 0;">
+        <h2 class="section-title" style="text-align: center;">📘 Continue Phase 3: Practical Execution</h2>
+        <div class="next-steps">
+            <a href="{{ path('app_page_show', { journey: 'retirement', slug: 'open-first-retirement-account' }) }}" class="next-card">
+                <i class="fas fa-file-signature"></i>
+                <h3>Open Your First Account</h3>
+                <p>Step‑by‑step guide to opening an IRA or 401(k).</p>
+            </a>
+            <a href="{{ path('app_page_show', { journey: 'retirement', slug: 'automate-savings' }) }}" class="next-card">
+                <i class="fas fa-robot"></i>
+                <h3>Set It and Forget It</h3>
+                <p>Automate your contributions for consistent growth.</p>
+            </a>
+            <a href="{{ path('app_page_show', { journey: 'retirement', slug: 'employer-match' }) }}" class="next-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Employer Match 101</h3>
+                <p>Don't leave free money on the table.</p>
+            </a>
+        </div>
+    </section>
+    </div>
+{% endblock %}

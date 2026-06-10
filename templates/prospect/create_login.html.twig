@@ -1,0 +1,128 @@
+{# templates/prospect/create_login.html.twig #}
+{% extends 'base_prospect.html.twig' %}
+
+{% block title %}Create Login - WealthGrow System{% endblock %}
+
+{% block body %}
+    <div class="hero-section bg-gradient-light py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-header bg-primary text-white py-4">
+                            <div class="d-flex align-items-center">
+                                <a href="{{ path('create_account') }}" class="text-white me-3">
+                                    <i class="bi bi-arrow-left"></i>
+                                </a>
+                                <h2 class="mb-0">Set Up Your Login</h2>
+                            </div>
+                            <p class="mb-0 mt-2">Step 2: Create your secure login credentials</p>
+                        </div>
+                        <div class="card-body p-4 p-md-5">
+                            <div class="text-center mb-5">
+                                <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                    <i class="bi bi-check-lg" style="font-size: 2.5rem;"></i>
+                                </div>
+                                <h3 class="text-success">Account Created Successfully!</h3>
+                                <p class="lead">Your investment account <strong>{{ account_name }}</strong> is ready</p>
+                            </div>
+
+                            {{ form_start(form) }}
+                            <div class="mb-4">
+                                <h4 class="mb-3">Login Credentials</h4>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        {{ form_label(form.username) }}
+                                        {{ form_widget(form.username, {'attr': {'class': 'form-control', 'placeholder': 'Choose a username'}}) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form_label(form.email) }}
+                                        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'your@email.com'}}) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form_label(form.plainPassword.first) }}
+                                        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form_label(form.plainPassword.second) }}
+                                        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h4 class="mb-3">Personal Information</h4>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        {{ form_label(form.firstName) }}
+                                        {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form_label(form.lastName) }}
+                                        {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form_label(form.phoneNumber) }}
+                                        {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-check mb-4">
+                                {{ form_widget(form.agreeTerms) }}
+                                {{ form_label(form.agreeTerms) }}
+                                <a href="#" class="ms-1">Terms of Service</a>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-5">
+                                <a href="{{ path('create_account') }}" class="btn btn-outline-secondary">
+                                    <i class="bi bi-arrow-left me-2"></i> Back
+                                </a>
+                                <button type="submit" class="btn btn-primary px-4">
+                                    Complete Registration <i class="bi bi-check-lg ms-2"></i>
+                                </button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <p class="text-muted">By creating an account, you agree to our <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .password-strength {
+            height: 5px;
+            margin-top: 5px;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.querySelector('#{{ form.plainPassword.first.vars.id }}');
+            const strengthMeter = document.createElement('div');
+            strengthMeter.className = 'password-strength';
+            passwordInput.parentNode.appendChild(strengthMeter);
+
+            passwordInput.addEventListener('input', function() {
+                const password = passwordInput.value;
+                let strength = 0;
+
+                if (password.length > 7) strength += 25;
+                if (/[A-Z]/.test(password)) strength += 25;
+                if (/[0-9]/.test(password)) strength += 25;
+                if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+
+                strengthMeter.style.width = strength + '%';
+                strengthMeter.style.backgroundColor = strength < 50 ? '#dc3545' :
+                    strength < 75 ? '#ffc107' : '#28a745';
+            });
+        });
+    </script>
+{% endblock %}

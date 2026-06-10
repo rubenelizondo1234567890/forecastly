@@ -1,0 +1,208 @@
+{# templates/roadmaps/personal-finance/503020-budgeting.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h1>Budgeting Made Simple: <span>The 50/30/20 Rule</span></h1>
+                <p class="hero-description">
+                    A straightforward framework to manage your after‑tax income — without spreadsheets or stress.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">What is the 50/30/20 rule?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Popularized by Senator Elizabeth Warren in her book <em>All Your Worth</em>, the 50/30/20 rule is a
+                simple yet powerful way to budget your <strong>after‑tax income</strong> (your take‑home pay).
+                Instead of tracking every penny, you divide your money into three broad categories:
+            </p>
+        </section>
+
+        <!-- 3 categories grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item needs">
+                <h3><i class="fas fa-home"></i> Needs</h3>
+                <div class="percentage">50%</div>
+                <p>Essentials you must pay: rent/mortgage, utilities, groceries, insurance, minimum loan payments. These are non‑negotiable.</p>
+            </div>
+            <div class="rule-item wants">
+                <h3><i class="fas fa-utensils"></i> Wants</h3>
+                <div class="percentage">30%</div>
+                <p>Dining out, streaming services, hobbies, travel, shopping. Things you <em>could</em> live without, but make life enjoyable.</p>
+            </div>
+            <div class="rule-item savings">
+                <h3><i class="fas fa-piggy-bank"></i> Savings</h3>
+                <div class="percentage">20%</div>
+                <p>Debt repayment above minimums, emergency fund, retirement (401k/IRA), investments. Build your future.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Why it works</h3>
+            <p style="margin-bottom: 20px;">The 50/30/20 rule gives you guardrails without rigidity. It’s flexible enough for any income level and forces you to prioritize saving while still enjoying life. Here’s a realistic example:</p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px;">
+                <p><i class="fas fa-user-check" style="color: var(--personal-color); margin-right: 10px;"></i> <strong>Maria’s monthly take‑home: $3,200</strong></p>
+                <ul style="margin-top: 15px; list-style: none;">
+                    <li><i class="fas fa-check-circle" style="color: #2c3e50;"></i> Needs (50%): $1,600 – rent $950, utilities $150, groceries $350, car insurance $150.</li>
+                    <li><i class="fas fa-check-circle" style="color: #f39c12;"></i> Wants (30%): $960 – dining out $300, Netflix $15, gym $40, shopping $200, travel $405.</li>
+                    <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Savings (20%): $640 – extra debt $200, emergency fund $200, Roth IRA $240.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- interactive calculator -->
+        <div class="calc-card animate">
+            <h2 class="calc-title"><i class="fas fa-sliders-h" style="color: var(--personal-color); margin-right: 10px;"></i> Try it yourself</h2>
+            <p style="font-size: 1.1rem;">Enter your monthly after‑tax income and see your 50/30/20 breakdown instantly.</p>
+
+            <div class="calc-input">
+                <label for="income">Your monthly take‑home pay ($)</label>
+                <div class="input-group">
+                    <input type="number" id="income" placeholder="e.g., 3500" value="3500" step="50" min="0">
+                    <button id="calculateBtn">Calculate</button>
+                </div>
+            </div>
+
+            <div class="calc-results" id="results">
+                <div class="result-box needs">
+                    <div class="result-label">Needs (50%)</div>
+                    <div class="result-value" id="needsAmount">$1,750</div>
+                    <div class="result-sub" id="needsSub">rent, groceries, utilities</div>
+                </div>
+                <div class="result-box wants">
+                    <div class="result-label">Wants (30%)</div>
+                    <div class="result-value" id="wantsAmount">$1,050</div>
+                    <div class="result-sub" id="wantsSub">dining, fun, shopping</div>
+                </div>
+                <div class="result-box savings">
+                    <div class="result-label">Savings (20%)</div>
+                    <div class="result-value" id="savingsAmount">$700</div>
+                    <div class="result-sub" id="savingsSub">debt, emergency, invest</div>
+                </div>
+            </div>
+            <p style="margin-top: 25px; font-size: 0.95rem; color: var(--gray-color);"><i class="fas fa-lightbulb" style="color: #f39c12;"></i> Adjust the income and see how each category changes. This is your starting point.</p>
+        </div>
+
+        <!-- tips for success -->
+        <section class="animate">
+            <h2 class="section-title">🔧 Make it work for you</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-check-circle"></i> <strong>Needs > 50%?</strong> Look for ways to reduce fixed costs: roommates, cheaper insurance, or government assistance. Even small cuts help.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Wants are flexible</strong> – if you’re in debt, temporarily lower wants to 20% and put extra toward savings.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Savings first</strong>: automate a transfer on payday. You’ll adjust your wants to what’s left.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Use the rule as a compass, not a cage.</strong> If you spend 28% on wants one month, don’t stress – nudge it back next month.</li>
+            </ul>
+        </section>
+
+        <!-- Quick quiz -->
+        {% if app.user and quiz %}
+            {# Logged in user #}
+            {# Quiz already taken – show summary and retake button #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your 50/30/20 knowledge</h3>
+                <div class="quiz-question">1. What does the 50% category represent?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="correct">Needs</div>
+                    <div class="quiz-option" data-answer="wrong">Wants</div>
+                    <div class="quiz-option" data-answer="wrong">Savings</div>
+                    <div class="quiz-option" data-answer="wrong">Investments</div>
+                </div>
+                <div class="quiz-question">2. According to the 50/30/20 rule, what percentage of after‑tax income should go to savings?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">10%</div>
+                    <div class="quiz-option" data-answer="correct">20%</div>
+                    <div class="quiz-option" data-answer="wrong">30%</div>
+                    <div class="quiz-option" data-answer="wrong">50%</div>
+                </div>
+                <div class="quiz-question">3. Which of the following is considered a "want"?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Rent</div>
+                    <div class="quiz-option" data-answer="wrong">Groceries</div>
+                    <div class="quiz-option" data-answer="correct">Netflix subscription</div>
+                    <div class="quiz-option" data-answer="wrong">Minimum loan payment</div>
+                </div>
+                <div class="quiz-question">4. If your needs exceed 50%, what should you do?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Reduce wants</div>
+                    <div class="quiz-option" data-answer="wrong">Increase income</div>
+                    <div class="quiz-option" data-answer="wrong">Cut fixed costs</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+                <div class="quiz-question">5. The 50/30/20 rule is based on what type of income?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Gross income</div>
+                    <div class="quiz-option" data-answer="correct">After‑tax income</div>
+                    <div class="quiz-option" data-answer="wrong">Pre‑tax income</div>
+                    <div class="quiz-option" data-answer="wrong">Household income</div>
+                </div>
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+
+        <!-- call to action / next articles in phase -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Foundation First phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'zero-based-budgeting' }) }}" class="next-card">
+                    <i class="fas fa-coins"></i>
+                    <h3>Zero‑Based Budgeting</h3>
+                    <p style="color: var(--gray-color);">Give every dollar a job – the next level of budgeting.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'emergency-fund-101' }) }}" class="next-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Emergency Fund 101</h3>
+                    <p style="color: var(--gray-color);">Build your safety net after mastering the 50/30/20.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'understanding-your-credit-score' }) }}" class="next-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Credit Score Basics</h3>
+                    <p style="color: var(--gray-color);">Understand what affects your score.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,155 @@
+{# templates/customer/dashboard/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Login - Forecastly. Grow your Wealth.{% endblock %}
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('customer_dashboard_css') }}
+    {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_dashboard_js') }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="header">
+        <div class="page-title">
+            <h1>Financial Dashboard</h1>
+        </div>
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search transactions...">
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="dashboard-cards">
+        <div class="card stat-card income">
+            <div class="card-icon">
+                <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="card-value">$8,450</div>
+            <div class="card-label">Total Income</div>
+        </div>
+        <div class="card stat-card expenses">
+            <div class="card-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="card-value">$3,210</div>
+            <div class="card-label">Total Expenses</div>
+        </div>
+        <div class="card stat-card assets">
+            <div class="card-icon">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="card-value">$245,800</div>
+            <div class="card-label">Total Assets</div>
+        </div>
+        <div class="card stat-card liabilities">
+            <div class="card-icon">
+                <i class="fas fa-credit-card"></i>
+            </div>
+            <div class="card-value">$72,500</div>
+            <div class="card-label">Total Liabilities</div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="charts-row">
+        <div class="chart-container">
+            <div class="chart-header">
+                <div class="chart-title">Income vs Expenses</div>
+                <div class="chart-actions">
+                    <button><i class="fas fa-calendar"></i> Monthly</button>
+                    <button><i class="fas fa-download"></i> Export</button>
+                </div>
+            </div>
+            <div class="chart-placeholder">
+                Income vs Expenses Chart Visualization
+            </div>
+        </div>
+        <div class="chart-container">
+            <div class="chart-header">
+                <div class="chart-title">Net Worth Trend</div>
+                <div class="chart-actions">
+                    <button><i class="fas fa-ellipsis-h"></i></button>
+                </div>
+            </div>
+            <div class="chart-placeholder">
+                Net Worth Growth Chart
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Transactions -->
+    <div class="transactions">
+        <div class="transactions-header">
+            <div class="transactions-title">Recent Transactions</div>
+            <a href="#" class="view-all">View All</a>
+        </div>
+        <ul class="transaction-list">
+            <li class="transaction-item income-transaction">
+                <div class="transaction-info">
+                    <div class="transaction-icon">
+                        <i class="fas fa-money-check"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <h4>Salary Deposit</h4>
+                        <p>May 15, 2023 • ACME Corp</p>
+                    </div>
+                </div>
+                <div class="transaction-amount" style="color: var(--positive);">+$4,500.00</div>
+            </li>
+            <li class="transaction-item expense-transaction">
+                <div class="transaction-info">
+                    <div class="transaction-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <h4>Mortgage Payment</h4>
+                        <p>May 14, 2023 • Bank of America</p>
+                    </div>
+                </div>
+                <div class="transaction-amount" style="color: var(--negative);">-$1,850.00</div>
+            </li>
+            <li class="transaction-item expense-transaction">
+                <div class="transaction-info">
+                    <div class="transaction-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <h4>Restaurant</h4>
+                        <p>May 12, 2023 • La Bella Vita</p>
+                    </div>
+                </div>
+                <div class="transaction-amount" style="color: var(--negative);">-$120.50</div>
+            </li>
+            <li class="transaction-item income-transaction">
+                <div class="transaction-info">
+                    <div class="transaction-icon">
+                        <i class="fas fa-sticky-note"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <h4>Freelance Work</h4>
+                        <p>May 10, 2023 • XYZ Design</p>
+                    </div>
+                </div>
+                <div class="transaction-amount" style="color: var(--positive);">+$1,200.00</div>
+            </li>
+            <li class="transaction-item expense-transaction">
+                <div class="transaction-info">
+                    <div class="transaction-icon">
+                        <i class="fas fa-gas-pump"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <h4>Gasoline</h4>
+                        <p>May 8, 2023 • Shell Station</p>
+                    </div>
+                </div>
+                <div class="transaction-amount" style="color: var(--negative);">-$65.75</div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

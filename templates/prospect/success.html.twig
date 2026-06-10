@@ -1,0 +1,56 @@
+{# templates/prospect/success.html.twig #}
+{% extends 'base_prospect.html.twig' %}
+
+{% block title %}Forecastly - Account Created Successfully{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('prospectCss') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('prospectJs') }}
+{% endblock %}
+
+{% block body %}
+    <div class="landing-page">
+        <section class="landing-hero" style="padding: 40px 0;">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Welcome to Forecastly!</h1>
+                    <p class="hero-subtitle">Your financial journey begins now</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="success-container">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+
+                <h2 class="success-title">Account Created Successfully!</h2>
+
+                <p class="success-message">
+                    Thank you for joining Forecastly! We're excited to help you take control of your financial future.<br />
+                    We sent an activation link email, please check your email inbox.
+                </p>
+
+                <div class="plan-info">
+                    <h3><i class="fas fa-crown"></i> Your Selected Plan</h3>
+                    <p>
+                        You've selected the <strong>{{ plan|capitalize }}</strong> plan.
+                        {% if plan == 'free' %}
+                            Enjoy all our basic features at no cost.
+                        {% elseif plan == 'standard' %}
+                            Get ready to experience our premium features with enhanced capabilities.
+                        {% else %}
+                            You're all set with our professional package including priority support.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

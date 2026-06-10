@@ -1,0 +1,283 @@
+{# templates/roadmaps/career-capital/informational-interviews.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+    {# Inline script: live slider value updates (works for everyone) #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = [
+                { slider: 'outreachComfort', display: 'outreachComfortVal' },
+                { slider: 'questionSkill', display: 'questionSkillVal' },
+                { slider: 'followUpSkill', display: 'followUpSkillVal' },
+                { slider: 'relationshipSkill', display: 'relationshipSkillVal' }
+            ];
+            sliders.forEach(item => {
+                const s = document.getElementById(item.slider);
+                const d = document.getElementById(item.display);
+                if (s && d) {
+                    s.addEventListener('input', () => { d.textContent = s.value; });
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-handshake" style="color: var(--career-color);"></i>
+                </div>
+                <h1>Informational Interviews & <span>Smart Networking</span></h1>
+                <p class="hero-description">
+                    How to reach out to strangers, ask great questions, and build relationships that open doors — without being awkward.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 9 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">Why networking matters</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Up to <strong>85% of jobs are filled through networking</strong> (LinkedIn). Yet many professionals avoid it because it feels awkward or pushy. The truth is, networking is simply building genuine relationships — and informational interviews are one of the most effective ways to start.
+            </p>
+            <div class="highlight-box">
+                <i class="fas fa-users"></i>
+                <strong>Did you know?</strong> People are far more willing to help than you think. A study found that only 3% of people ignore a polite request for an informational interview.
+            </div>
+        </section>
+
+        <!-- What is an informational interview? -->
+        <section class="animate">
+            <h2 class="section-title">🤔 What is an informational interview?</h2>
+            <p>It's a short conversation (15–30 minutes) with someone who works in a field, company, or role you're curious about. You ask questions, learn about their career path, and seek advice — not a job. Done well, it builds rapport and can lead to referrals down the line.</p>
+        </section>
+
+        <!-- How to find people -->
+        <section class="animate">
+            <h2 class="section-title">🔍 How to find the right people</h2>
+            <div class="rule-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="rule-item">
+                    <h3><i class="fab fa-linkedin"></i> LinkedIn</h3>
+                    <p>Search by job title, company, or industry. Look for alumni from your school or mutual connections.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-graduation-cap"></i> Alumni networks</h3>
+                    <p>Your university’s career center or alumni directory is a goldmine.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-calendar-alt"></i> Industry events</h3>
+                    <p>Conferences, webinars, meetups – attend and connect afterwards.</p>
+                </div>
+                <div class="rule-item">
+                    <h3><i class="fas fa-users"></i> Warm introductions</h3>
+                    <p>Ask a mutual contact to introduce you – it’s the most effective way.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to reach out (templates) -->
+        <section class="animate">
+            <h2 class="section-title">✉️ Cold outreach templates</h2>
+            <div class="step-card">
+                <span class="step-number">1</span> <strong>LinkedIn message:</strong>
+                <blockquote style="margin: 10px 0 0 20px; font-style: italic;">
+                    “Hi [Name], I’ve been following your work in [industry/field] and I’m very impressed by [specific detail]. I’m exploring a career in this area and would love to hear about your journey. Would you be open to a quick 15‑minute chat? Thanks for considering!”
+                </blockquote>
+            </div>
+            <div class="step-card">
+                <span class="step-number">2</span> <strong>Email (with connection):</strong>
+                <blockquote style="margin: 10px 0 0 20px; font-style: italic;">
+                    “Dear [Name], [Mutual contact] suggested I reach out. I’m researching careers in [field] and your experience at [company] stood out. I’d be grateful for 15 minutes of your time to ask a few questions. Let me know if you’re available. Best, [Your name]”
+                </blockquote>
+            </div>
+            <p style="margin-top: 15px;">Keep it short, respectful of their time, and focused on learning, not asking for a job.</p>
+        </section>
+
+        <!-- Sample questions -->
+        <section class="animate">
+            <h2 class="section-title">❓ Great questions to ask</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-question-circle"></i> What does a typical day look like in your role?</li>
+                <li><i class="fas fa-question-circle"></i> What skills are most important to succeed in this field?</li>
+                <li><i class="fas fa-question-circle"></i> How did you get started? What would you do differently?</li>
+                <li><i class="fas fa-question-circle"></i> What trends do you see shaping the industry?</li>
+                <li><i class="fas fa-question-circle"></i> Can you recommend any resources (books, courses, people) to learn more?</li>
+                <li><i class="fas fa-question-circle"></i> Who else would you suggest I talk to?</li>
+            </ul>
+        </section>
+
+        <!-- After the interview: follow‑up -->
+        <section class="animate">
+            <h2 class="section-title">📬 Follow‑up & relationship building</h2>
+            <div class="pro-tip">
+                <i class="fas fa-envelope"></i>
+                <strong>Always send a thank‑you note within 24 hours:</strong>
+                <blockquote style="margin: 10px 0 0 20px; font-style: italic;">
+                    “Thank you so much for your time today. I really appreciated your insights about [specific topic]. I’ll definitely look into [resource they mentioned]. Hope we can stay in touch!”
+                </blockquote>
+                <p style="margin-top: 10px;">Then, keep the connection warm: share an article they might like, comment on their posts, or check in every few months.</p>
+            </div>
+        </section>
+
+        <!-- Mistakes to avoid -->
+        <section class="animate">
+            <h2 class="section-title">🚫 Common networking mistakes</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-times-circle"></i> <strong>Asking for a job directly</strong> – It’s an informational interview, not a job interview.</li>
+                <li><i class="fas fa-times-circle"></i> <strong>Not preparing questions</strong> – Wasting their time shows lack of respect.</li>
+                <li><i class="fas fa-times-circle"></i> <strong>Going over the agreed time</strong> – Respect their schedule.</li>
+                <li><i class="fas fa-times-circle"></i> <strong>Never following up</strong> – A one‑off chat doesn’t build a relationship.</li>
+            </ul>
+        </section>
+
+        <!-- INTERACTIVE TOOL: Networking Confidence Meter -->
+        <div class="calc-card animate">
+            <h2 class="calc-title"><i class="fas fa-chart-line" style="color: var(--career-color);"></i> Networking Confidence Meter</h2>
+            <p>Rate your comfort with each networking skill. Get a score and personalized tips.</p>
+
+            <div class="calc-input">
+                <label for="outreachComfort">Reaching out to strangers</label>
+                <div class="slider-container">
+                    <input type="range" id="outreachComfort" class="cat-input" min="0" max="100" value="50" step="5">
+                    <span class="slider-value" id="outreachComfortVal">50</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="questionSkill">Asking great questions</label>
+                <div class="slider-container">
+                    <input type="range" id="questionSkill" class="cat-input" min="0" max="100" value="60" step="5">
+                    <span class="slider-value" id="questionSkillVal">60</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="followUpSkill">Following up effectively</label>
+                <div class="slider-container">
+                    <input type="range" id="followUpSkill" class="cat-input" min="0" max="100" value="40" step="5">
+                    <span class="slider-value" id="followUpSkillVal">40</span>
+                </div>
+            </div>
+            <div class="calc-input">
+                <label for="relationshipSkill">Building long‑term relationships</label>
+                <div class="slider-container">
+                    <input type="range" id="relationshipSkill" class="cat-input" min="0" max="100" value="55" step="5">
+                    <span class="slider-value" id="relationshipSkillVal">55</span>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; text-align: center;">
+                <button id="networkingMeterBtn" class="btn" style="background-color: var(--career-color);">Calculate my score</button>
+            </div>
+
+            <div class="calc-result" id="networkingResult" style="border: 2px dashed var(--career-color);">
+                <p class="result-label">Your networking confidence score</p>
+                <p style="font-size: 1rem;">Adjust the sliders and click "Calculate" to see your score and tips.</p>
+            </div>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user who already took the quiz #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'informational-interviews', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Quiz for everyone – interactivity blocked by home.js if not logged in #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: informational interviews & networking</h3>
+
+                <div class="quiz-question">1. What is the primary goal of an informational interview?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">To ask for a job</div>
+                    <div class="quiz-option" data-answer="wrong">To pitch your resume</div>
+                    <div class="quiz-option" data-answer="correct">To learn about a career or industry</div>
+                    <div class="quiz-option" data-answer="wrong">To get a referral immediately</div>
+                </div>
+
+                <div class="quiz-question">2. How long should an informational interview typically last?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">5 minutes</div>
+                    <div class="quiz-option" data-answer="correct">15–30 minutes</div>
+                    <div class="quiz-option" data-answer="wrong">1 hour</div>
+                    <div class="quiz-option" data-answer="wrong">As long as they’re willing to talk</div>
+                </div>
+
+                <div class="quiz-question">3. What’s the best way to find people for informational interviews?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Cold emailing random CEOs</div>
+                    <div class="quiz-option" data-answer="correct">LinkedIn, alumni networks, and warm introductions</div>
+                    <div class="quiz-option" data-answer="wrong">Walking into company offices</div>
+                    <div class="quiz-option" data-answer="wrong">Asking on Twitter</div>
+                </div>
+
+                <div class="quiz-question">4. What should you do immediately after an informational interview?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Send your resume</div>
+                    <div class="quiz-option" data-answer="wrong">Ask for a job referral</div>
+                    <div class="quiz-option" data-answer="correct">Send a thank‑you note</div>
+                    <div class="quiz-option" data-answer="wrong">Post about it on LinkedIn</div>
+                </div>
+
+                <div class="quiz-question">5. Which question is most appropriate to ask during an informational interview?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">“Can you get me a job?”</div>
+                    <div class="quiz-option" data-answer="wrong">“How much do you earn?”</div>
+                    <div class="quiz-option" data-answer="correct">“What skills are most important in your role?”</div>
+                    <div class="quiz-option" data-answer="wrong">“Do you like your boss?”</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next articles in Phase 3 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue Phase 3: Practical Execution</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'negotiation-scripts' }) }}" class="next-card">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Negotiation Scripts</h3>
+                    <p>Word‑for‑word scripts for raises and job offers.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'linkedin-portfolio' }) }}" class="next-card">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn & Portfolio</h3>
+                    <p>Optimize your profile to attract recruiters.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'side-hustle-launch' }) }}" class="next-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Side Hustle Launch</h3>
+                    <p>First 30 days plan for freelancers and creators.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

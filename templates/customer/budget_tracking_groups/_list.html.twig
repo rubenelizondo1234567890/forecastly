@@ -1,0 +1,77 @@
+{# templates/customer/budget_tracking_groups/_list.html.twig #}
+<div class="groups-table-container">
+    {% if groups is not empty %}
+        <table class="groups-table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for group in groups %}
+                {% set isInUse = groupsInUse[group.id] is defined ? groupsInUse[group.id] : false %}
+                <tr class="{{ group.isIncomeOrExpense }}">
+                    <td data-label="Name">
+                        <div class="group-type">
+                            <div class="group-type-icon">
+                                {% if group.isIncomeOrExpense == 'income' %}
+                                    <i class="fas fa-arrow-down"></i>
+                                {% elseif group.isIncomeOrExpense == 'expense' %}
+                                    <i class="fas fa-arrow-up"></i>
+                                {% else %}
+                                    <i class="fas fa-building"></i>
+                                {% endif %}
+                            </div>
+                            {{ group.name }}
+                            {% if isInUse %}
+                                <span class="in-use-badge" title="This group is being used by one or more accounts">
+                                    <i class="fas fa-link"></i> In Use
+                                </span>
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td data-label="Type" class="{{ group.isIncomeOrExpense }}-type">
+                        {% if group.isIncomeOrExpense == 'income' %}
+                            Income
+                        {% elseif group.isIncomeOrExpense == 'expense' %}
+                            Expense
+                        {% else %}
+                            Fixed Asset
+                        {% endif %}
+                    </td>
+                    <td data-label="Actions">
+                        <div class="action-buttons">
+                            <button class="action-btn edit-btn" data-id="{{ group.id }}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+
+                            {% if isInUse %}
+                                <!-- Button to open modal and show accounts using this group -->
+                            {% else %}
+                                <!-- Button is disabled -->
+                            {% endif %}
+
+                            {% if not isInUse %}
+                                <button type="button" class="action-btn delete-btn" data-id="{{ group.id }}" data-name="{{ group.name }}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            {% else %}
+                                <button type="button" class="action-btn delete-btn disabled" disabled title="Cannot delete - group is in use">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty-state">
+            <i class="fas fa-folder"></i>
+            <p>No groups found. Load master groups or create your own.</p>
+        </div>
+    {% endif %}
+</div>

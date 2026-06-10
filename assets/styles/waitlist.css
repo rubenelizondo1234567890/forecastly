@@ -1,0 +1,499 @@
+/* assets/styles/waitlist.css */
+body.waitlist-body {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    display: block !important;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.waitlist-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.waitlist-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.waitlist-header {
+    text-align: center;
+    margin-bottom: 50px;
+    color: white;
+}
+
+.waitlist-header .logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.waitlist-header .logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.waitlist-header .logo i {
+    font-size: 2.5rem;
+    margin-right: 15px;
+}
+
+.waitlist-header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.waitlist-header .hero-subtitle {
+    font-size: 1.4rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.waitlist-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 50px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.waitlist-form-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.waitlist-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card-header h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.card-header p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.waitlist-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.waitlist-form .form-group {
+    margin-bottom: 25px;
+}
+
+.waitlist-form .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.waitlist-form .input-with-icon {
+    position: relative;
+}
+
+.waitlist-form .input-with-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    z-index: 2;
+}
+
+.waitlist-form .form-control {
+    width: 100%;
+    padding: 15px 15px 15px 50px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.waitlist-form .form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(94, 96, 206, 0.1);
+    background-color: var(--white);
+}
+
+/* Checkbox Styles */
+.waitlist-form .checkbox-group {
+    background-color: rgba(94, 96, 206, 0.03);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+
+.waitlist-form .checkbox-item {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.waitlist-form .checkbox-item:last-child {
+    margin-bottom: 0;
+}
+
+.waitlist-form .checkbox-item input[type="checkbox"] {
+    display: none;
+}
+
+.waitlist-form .checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text);
+    transition: color 0.3s;
+    padding-left: 35px;
+    position: relative;
+    min-height: 24px;
+}
+
+.waitlist-form .checkbox-label i {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    background: var(--white);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: transparent;
+}
+
+.waitlist-form .checkbox-item input[type="checkbox"]:checked + .checkbox-label i {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+}
+
+.waitlist-form .checkbox-item input[type="checkbox"]:checked + .checkbox-label {
+    color: var(--primary);
+}
+
+.waitlist-form .form-actions {
+    margin: 30px 0 20px;
+}
+
+.waitlist-form .btn-full {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 10px;
+}
+
+.form-footer {
+    text-align: center;
+}
+
+.privacy-note {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+}
+
+/* Benefits Section */
+.waitlist-benefits {
+    text-align: center;
+    color: white;
+    margin-top: 60px;
+}
+
+.waitlist-benefits h3 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.benefit-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2rem;
+}
+
+.benefit-item h4 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.benefit-item p {
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* Success Page Styles */
+body.waitlist-success-body {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.waitlist-success {
+    width: 100%;
+    max-width: 800px;
+}
+
+.success-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.success-icon {
+    font-size: 80px;
+    color: var(--positive);
+    margin-bottom: 30px;
+}
+
+.success-card h1 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.success-message {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.next-steps {
+    margin: 40px 0;
+    text-align: left;
+}
+
+.next-steps h3 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.step-content p {
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+.share-section {
+    margin: 40px 0;
+    padding: 30px;
+    background: rgba(94, 96, 206, 0.05);
+    border-radius: 15px;
+}
+
+.share-section h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-twitter {
+    background: #1DA1F2 !important;
+    color: white !important;
+}
+
+.btn-linkedin {
+    background: #0077B5 !important;
+    color: white !important;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .waitlist-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .waitlist-header .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .waitlist-stats {
+        gap: 30px;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .waitlist-card {
+        padding: 30px 25px;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .success-card {
+        padding: 30px 25px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .share-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .waitlist-header h1 {
+        font-size: 2rem;
+    }
+
+    .waitlist-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .waitlist-card {
+        padding: 25px 20px;
+    }
+}

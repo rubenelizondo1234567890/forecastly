@@ -1,0 +1,234 @@
+/* assets/styles/customer_dashboard.css */
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 8px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    width: 250px;
+    background: transparent;
+}
+
+.search-bar i {
+    color: var(--text-light);
+}
+
+/* Dashboard Cards */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.income .card-icon {
+    background-color: rgba(114, 239, 221, 0.2);
+    color: var(--positive);
+}
+
+.expenses .card-icon {
+    background-color: rgba(255, 158, 109, 0.2);
+    color: var(--negative);
+}
+
+.assets .card-icon {
+    background-color: rgba(94, 96, 206, 0.2);
+    color: var(--primary);
+}
+
+.liabilities .card-icon {
+    background-color: rgba(86, 207, 225, 0.2);
+    color: var(--secondary);
+}
+
+.card-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 5px 0;
+}
+
+.card-label {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Charts Section */
+.charts-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.chart-container {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.chart-title {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.chart-actions button {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.chart-placeholder {
+    height: 250px;
+    background-color: rgba(86, 207, 225, 0.1);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+/* Recent Transactions */
+.transactions {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.transactions-title {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.view-all {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.transaction-list {
+    list-style: none;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-info {
+    display: flex;
+    align-items: center;
+}
+
+.transaction-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+.transaction-details h4 {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.transaction-details p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.transaction-amount {
+    font-weight: 600;
+}
+
+.income-transaction .transaction-icon {
+    background-color: rgba(114, 239, 221, 0.2);
+    color: var(--positive);
+}
+
+.expense-transaction .transaction-icon {
+    background-color: rgba(255, 158, 109, 0.2);
+    color: var(--negative);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .charts-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+}

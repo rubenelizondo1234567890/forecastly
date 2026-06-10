@@ -1,0 +1,214 @@
+{# templates/roadmaps/crypto/portfolio-allocation.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('crypto_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('crypto_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – crypto style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-scale-balanced"></i>
+                </div>
+                <h1>Portfolio Allocation: <span>How Much Crypto Is Too Much?</span></h1>
+                <p class="hero-description">
+                    Crypto can offer life‑changing gains, but also gut‑wrenching losses. Finding the right allocation for your portfolio is key to sleeping well at night while still participating in the upside.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 2: Risk Management · 7 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🧮 The Allocation Question</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Financial experts generally recommend that crypto should be a <strong>small, speculative part</strong> of a diversified portfolio – typically between 1% and 10%, depending on your risk tolerance, age, and financial goals. But the “right” number is personal.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                Too little, and you might miss out on growth. Too much, and a market crash could derail your financial plans. This article helps you find your sweet spot.
+            </p>
+        </section>
+
+        <!-- key factors grid -->
+        <div class="rule-grid animate" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 40px 0;">
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-clock"></i> Time Horizon</h3>
+                <p>The longer you can leave your money untouched, the more risk you can take. If you need the money in 2 years, crypto may not be for you.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-heart"></i> Risk Tolerance</h3>
+                <p>Can you handle 80% drops without panic selling? Be honest – your emotional resilience matters more than any formula.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-piggy-bank"></i> Financial Stability</h3>
+                <p>Only invest what you can afford to lose. If you have high‑interest debt or no emergency fund, crypto should wait.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-briefcase"></i> Other Investments</h3>
+                <p>Consider crypto as part of your “alternative” or “speculative” bucket, alongside things like angel investing or collectibles.</p>
+            </div>
+        </div>
+
+        <!-- rule of thumb table -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">📊 General Guidelines by Profile</h3>
+            <table style="width:100%; border-collapse: collapse; background: white; border-radius: 16px; overflow: hidden;">
+                <thead>
+                <tr style="background: var(--crypto-color); color: white;">
+                    <th style="padding: 12px;">Investor Profile</th>
+                    <th style="padding: 12px;">Suggested Crypto Allocation</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 12px;">Conservative (near retirement, low risk)</td>
+                    <td style="padding: 12px;">1% – 3%</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 12px;">Moderate (mid‑career, balanced)</td>
+                    <td style="padding: 12px;">3% – 6%</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--light-gray);">
+                    <td style="padding: 12px;">Aggressive (young, high risk tolerance)</td>
+                    <td style="padding: 12px;">6% – 10%</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px;">Very Aggressive / Crypto‑Native</td>
+                    <td style="padding: 12px;">Up to 15% (but be prepared for wild swings)</td>
+                </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 20px; font-style: italic; color: var(--gray-color);">These are just starting points – your personal situation may differ.</p>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Crypto Allocation Calculator -->
+        <div class="card animate" style="margin: 40px 0;" id="allocation-calculator">
+            <h3><i class="fas fa-calculator"></i> Crypto Allocation Calculator</h3>
+            <p>Answer a few quick questions to get a personalized allocation suggestion.</p>
+
+            <div style="margin: 30px 0;">
+                <div style="margin-bottom: 20px;">
+                    <label for="ageSlider" style="display: block; font-weight: 600;">🎂 Your Age: <span id="ageValue">35</span></label>
+                    <input type="range" id="ageSlider" class="cat-input" min="18" max="80" value="35" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="riskSlider" style="display: block; font-weight: 600;">⚡ Risk Tolerance (1 = very low, 10 = very high): <span id="riskValue">5</span></label>
+                    <input type="range" id="riskSlider" class="cat-input" min="1" max="10" value="5" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="savingsSlider" style="display: block; font-weight: 600;">💰 Monthly Savings (% of income): <span id="savingsValue">10</span>%</label>
+                    <input type="range" id="savingsSlider" class="cat-input" min="0" max="50" value="10" style="width: 100%;">
+                </div>
+            </div>
+
+            <button id="calculateAllocationBtn" class="btn-outline" style="width: 100%;">Calculate My Allocation</button>
+
+            <div id="allocationResult" style="background: #f0f4f8; border-radius: 16px; padding: 25px; margin-top: 30px; min-height: 80px; border-left: 6px solid var(--crypto-color);">
+                <i class="fas fa-arrow-left"></i> Adjust the sliders and click the button.
+            </div>
+            <p style="font-style: italic; color: var(--gray-color); margin-top: 20px;">💡 This is a simplified educational tool. Consult a financial advisor before making decisions.</p>
+        </div>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Portfolio Allocation</h3>
+
+                <div class="quiz-question">1. What is a typical recommended crypto allocation for a conservative investor?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">10% – 20%</div>
+                    <div class="quiz-option" data-answer="wrong">15% – 25%</div>
+                    <div class="quiz-option" data-answer="correct">1% – 3%</div>
+                    <div class="quiz-option" data-answer="wrong">30% – 50%</div>
+                </div>
+
+                <div class="quiz-question">2. Which factor is MOST important when deciding your crypto allocation?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">What your friends are doing</div>
+                    <div class="quiz-option" data-answer="wrong">The current Bitcoin price</div>
+                    <div class="quiz-option" data-answer="correct">Your personal risk tolerance and time horizon</div>
+                    <div class="quiz-option" data-answer="wrong">The number of crypto Twitter influencers</div>
+                </div>
+
+                <div class="quiz-question">3. Before investing in crypto, you should FIRST:</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Buy a hardware wallet</div>
+                    <div class="quiz-option" data-answer="correct">Build an emergency fund and pay off high‑interest debt</div>
+                    <div class="quiz-option" data-answer="wrong">Open an exchange account</div>
+                    <div class="quiz-option" data-answer="wrong">Follow crypto news for a week</div>
+                </div>
+
+                <div class="quiz-question">4. Why is time horizon important for crypto investing?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Because prices only go up over time</div>
+                    <div class="quiz-option" data-answer="wrong">Because you need to trade frequently</div>
+                    <div class="quiz-option" data-answer="correct">Crypto is highly volatile, so you need time to recover from downturns</div>
+                    <div class="quiz-option" data-answer="wrong">Because exchanges close at night</div>
+                </div>
+
+                <div class="quiz-question">5. What does "only invest what you can afford to lose" mean in practice?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Invest money you need for rent</div>
+                    <div class="quiz-option" data-answer="wrong">Borrow money to invest bigger</div>
+                    <div class="quiz-option" data-answer="correct">Use discretionary funds that won't affect your lifestyle if lost</div>
+                    <div class="quiz-option" data-answer="wrong">Invest your entire savings</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 2 (risk management) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue strengthening your defenses</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'understanding-crypto-volatility' }) }}" class="next-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Volatility & Emotions</h3>
+                    <p style="color: var(--gray-color);">Master your psychology during market swings.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'common-crypto-scams' }) }}" class="next-card">
+                    <i class="fas fa-skull-crosswind"></i>
+                    <h3>Common Crypto Scams</h3>
+                    <p style="color: var(--gray-color);">Learn to spot red flags.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'hardware-wallets' }) }}" class="next-card">
+                    <i class="fas fa-hard-drive"></i>
+                    <h3>Hardware Wallets</h3>
+                    <p style="color: var(--gray-color);">Your crypto fortress.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

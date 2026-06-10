@@ -1,0 +1,730 @@
+{# templates/prospect/landing.html.twig #}
+{% extends 'base_prospect.html.twig' %}
+
+{% block title %}Forecastly - Take Control of Your Financial Future{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('prospectCss') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('prospectJs') }}
+{% endblock %}
+
+{% block body %}
+    <div class="landing-page">
+        <!-- Hero Section -->
+        <section class="landing-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Take Control of Your Financial Future with Forecastly.</h1>
+                    <p class="hero-subtitle">Track income, forecast expenses, and build wealth with our all-in-one financial platform.</p>
+                    <div class="hero-cta">
+                        <a href="#cta-section" class="btn btn-primary btn-large">Start Your Free Trial</a>
+                        <p class="cta-note">No credit card required • Cancel anytime</p>
+                    </div>
+                    <div class="hero-dashboard">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="landing-features">
+            <div class="container">
+                <h2>Everything You Need to Master Your Finances</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>Income & Expense Tracking</h3>
+                        <p>Monitor cash flow with customizable categories and visual reports that help you understand your spending patterns.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <h3>Wealth Forecasting</h3>
+                        <p>Project your net worth years into the future with scenario planning and what-if analysis tools.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3>Smart Alerts</h3>
+                        <p>Get notified about unusual spending, bill reminders, and opportunities to save based on your habits.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Bank-Level Security</h3>
+                        <p>Your financial data is encrypted and protected with the same security measures used by major banks.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Anywhere Access</h3>
+                        <p>Access your financial dashboard from any device - desktop, tablet, or smartphone.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cloud-download-alt"></i>
+                        </div>
+                        <h3>Automated Backups</h3>
+                        <p>Your financial data is automatically backed up daily, so you never lose your financial history.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="landing-testimonials">
+            <div class="container">
+                <h2>Trusted by Thousands of Users</h2>
+                <div class="testimonials-container">
+                    <div class="testimonials-track">
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Forecastly helped me save over $5,000 in my first year by identifying unnecessary subscriptions and spending patterns I hadn't noticed."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Sarah Johnson</h4>
+                                    <p>Marketing Director</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The forecasting tools allowed me to confidently plan for a major career change. I could see exactly how it would impact my finances months in advance."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Michael Chen</h4>
+                                    <p>Software Engineer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 3 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"As a freelancer with variable income, Forecastly's tools have been invaluable for managing cash flow and planning for taxes and retirement."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jessica Williams">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Jessica Williams</h4>
+                                    <p>Freelance Designer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 4 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"I've tried many budgeting apps, but Forecastly's forecasting feature is what sets it apart. I can now plan for big purchases without stress."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="David Wilson">
+                                </div>
+                                <div class="author-details">
+                                    <h4>David Wilson</h4>
+                                    <p>Teacher</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 5 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The smart alerts feature has saved me from late fees multiple times. It's like having a personal financial assistant."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Emily Rodriguez">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Emily Rodriguez</h4>
+                                    <p>Nurse</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 6 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"I've been able to pay off $15,000 in debt using Forecastly's planning tools. The visual reports made it easy to stay motivated."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="James Thompson">
+                                </div>
+                                <div class="author-details">
+                                    <h4>James Thompson</h4>
+                                    <p>Sales Manager</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 7 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The security features give me peace of mind. I know my financial data is safe while still being accessible from all my devices."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Amanda Lee">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Amanda Lee</h4>
+                                    <p>Accountant</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 8 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Forecastly helped me realize I could retire 5 years earlier than I thought. The long-term forecasting is incredibly accurate."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Robert Martinez">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Robert Martinez</h4>
+                                    <p>Retired Engineer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 9 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"As a small business owner, Forecastly has been essential for managing both personal and business finances in one place."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Jennifer Kim">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Jennifer Kim</h4>
+                                    <p>Business Owner</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 10 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The automated backups ensure I never lose my financial history. I switched from Mint and couldn't be happier with Forecastly."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Thomas Brown">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Thomas Brown</h4>
+                                    <p>Project Manager</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 11 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"I recommended Forecastly to all my colleagues. The wealth forecasting feature helped me plan for my children's education with confidence."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Maria Garcia">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Maria Garcia</h4>
+                                    <p>Financial Advisor</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 12 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The customer support team is exceptional. They helped me set up custom categories that perfectly match my small business needs."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Kevin Lewis">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Kevin Lewis</h4>
+                                    <p>Restaurant Owner</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 13 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Forecastly's mobile app is so intuitive. I can track expenses on the go and it syncs seamlessly with the web version."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Sophia Turner">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Sophia Turner</h4>
+                                    <p>Real Estate Agent</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 14 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The 'what-if' analysis feature helped me make an informed decision about buying a house versus renting. Incredibly valuable!"</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/29.jpg" alt="Daniel Kim">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Daniel Kim</h4>
+                                    <p>Architect</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 15 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"I love how Forecastly visualizes my financial progress. The charts and graphs make complex data easy to understand."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/56.jpg" alt="Olivia Parker">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Olivia Parker</h4>
+                                    <p>Graphic Designer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 16 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The retirement planning tools are worth the subscription alone. I can now see exactly when I'll be able to retire comfortably."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/63.jpg" alt="Richard Moore">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Richard Moore</h4>
+                                    <p>Retirement Planner</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 17 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Forecastly helped me negotiate a better salary by showing exactly how different compensation packages would affect my long-term wealth."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/37.jpg" alt="Emma Watson">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Emma Watson</h4>
+                                    <p>HR Manager</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 18 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The tax planning features saved me thousands last year. I was able to optimize my deductions and plan my expenses strategically."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/51.jpg" alt="Michael Scott">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Michael Scott</h4>
+                                    <p>Tax Consultant</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 19 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"I've been using Forecastly for three years now, and it's been amazing to watch my net worth grow according to the predictions."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/62.jpg" alt="Lisa Johnson">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Lisa Johnson</h4>
+                                    <p>Entrepreneur</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 20 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The investment tracking feature is fantastic. I can see all my accounts in one place and how they contribute to my financial goals."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Andrew Wilson">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Andrew Wilson</h4>
+                                    <p>Investment Analyst</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Duplicate testimonials for seamless loop -->
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Forecastly helped me save over $5,000 in my first year by identifying unnecessary subscriptions and spending patterns I hadn't noticed."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Sarah Johnson</h4>
+                                    <p>Marketing Director</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The forecasting tools allowed me to confidently plan for a major career change. I could see exactly how it would impact my finances months in advance."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Michael Chen</h4>
+                                    <p>Software Engineer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 3 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"As a freelancer with variable income, Forecastly's tools have been invaluable for managing cash flow and planning for taxes and retirement."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jessica Williams">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Jessica Williams</h4>
+                                    <p>Freelance Designer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 4 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"I've tried many budgeting apps, but Forecastly's forecasting feature is what sets it apart. I can now plan for big purchases without stress."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="David Wilson">
+                                </div>
+                                <div class="author-details">
+                                    <h4>David Wilson</h4>
+                                    <p>Teacher</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 5 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The smart alerts feature has saved me from late fees multiple times. It's like having a personal financial assistant."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Emily Rodriguez">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Emily Rodriguez</h4>
+                                    <p>Nurse</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 6 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"I've been able to pay off $15,000 in debt using Forecastly's planning tools. The visual reports made it easy to stay motivated."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="James Thompson">
+                                </div>
+                                <div class="author-details">
+                                    <h4>James Thompson</h4>
+                                    <p>Sales Manager</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 7 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The security features give me peace of mind. I know my financial data is safe while still being accessible from all my devices."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Amanda Lee">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Amanda Lee</h4>
+                                    <p>Accountant</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 8 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Forecastly helped me realize I could retire 5 years earlier than I thought. The long-term forecasting is incredibly accurate."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Robert Martinez">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Robert Martinez</h4>
+                                    <p>Retired Engineer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 9 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"As a small business owner, Forecastly has been essential for managing both personal and business finances in one place."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Jennifer Kim">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Jennifer Kim</h4>
+                                    <p>Business Owner</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 10 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The automated backups ensure I never lose my financial history. I switched from Mint and couldn't be happier with Forecastly."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Thomas Brown">
+                                </div>
+                                <div class="author-details">
+                                    <h4>Thomas Brown</h4>
+                                    <p>Project Manager</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonials-controls">
+                    <button class="control-btn" id="pause-btn">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button class="control-btn" id="play-btn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing CTA Section -->
+        <section class="landing-pricing" id="cta-section">
+            <div class="container">
+                <div class="pricing-content">
+                    <h2>Start Your Financial Journey Today</h2>
+                    <p class="pricing-subtitle">Join thousands of users who have transformed their financial lives with Forecastly</p>
+                    <div class="pricing-cards">
+                        <!-- Free Plan -->
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>Free Forever</h3>
+                                <div class="price">$0<span>/Month</span></div>
+                            </div>
+                            <ul class="pricing-features">
+                                <li><i class="fas fa-check"></i> Track up to 3 accounts</li>
+                                <li><i class="fas fa-check"></i> Up to 3 years of Forecasting</li>
+                                <li><i class="fas fa-check"></i> Basic Email support</li>
+                            </ul>
+                            <a href="{{ path('create_combined_account', {'plan': 'free'}) }}" class="btn btn-primary">Get Started</a>
+                        </div>
+
+                        <!-- Standard Plan (Featured) -->
+                        <div class="pricing-card featured">
+                            <div class="pricing-badge">Most Popular</div>
+                            <div class="pricing-header">
+                                <h3>Standard</h3>
+                                <div class="price">$12.99<span>/month</span></div>
+                                <div class="price">$9.10<span>/yearly subscription</span></div>
+                            </div>
+                            <ul class="pricing-features">
+                                <li><i class="fas fa-check"></i> Up to 10 accounts</li>
+                                <li><i class="fas fa-check"></i> Up to 7 years of Forecasting</li>
+                                <li><i class="fas fa-check"></i> Export to Excel</li>
+                                <li><i class="fas fa-check"></i> Priority Email support</li>
+                            </ul>
+                            <a href="{{ path('create_combined_account', {'plan': 'standard'}) }}" class="btn btn-primary">Start 30 Days Free Trial</a>
+                        </div>
+
+                        <!-- Professional Plan -->
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>Premium</h3>
+                                <div class="price">$29.99<span>/month</span></div>
+                                <div class="price">$20.99<span>/yearly subscription</span></div>
+                            </div>
+                            <ul class="pricing-features">
+                                <li><i class="fas fa-check"></i> Unlimited accounts</li>
+                                <li><i class="fas fa-check"></i> Up to 15 years of Forecasting</li>
+                                <li><i class="fas fa-check"></i> Sync your Bank and Credit Accounts Balances through Plaid*</li>
+                                <li><i class="fas fa-check"></i> Export to Excel</li>
+                                <li><i class="fas fa-check"></i> Priority Email support</li>
+                                <li><i class="fas fa-check"></i> Priority Support via live chat</li>
+                            </ul>
+                            <a href="{{ path('create_combined_account', {'plan': 'premium'}) }}" class="btn btn-primary">Start 30 Days Free Trial</a>
+                        </div>
+                    </div>
+                    <p class="pricing-note">No credit card required for the free forever. Cancel anytime. Upgrade or Downgrade anytime.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="landing-faq">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>Is my financial data secure?</h3>
+                        <p>Yes, we use bank-level encryption and security protocols to protect your data. We never store your banking credentials on our servers.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Do I need a credit card to sign up?</h3>
+                        <p>No, you can start your free trial without providing a credit card. We'll only ask for payment details if you decide to continue after the trial.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can I cancel anytime?</h3>
+                        <p>Absolutely. You can cancel your subscription at any time with no cancellation fees or hassle.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What happens to my data if I cancel?</h3>
+                        <p>Your data remains safe and accessible for 90 days after cancellation. You can export it at any time during this period.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="landing-final-cta">
+            <div class="container">
+                <div class="final-cta-content">
+                    <h2>Ready to Transform Your Financial Future?</h2>
+                    <p>Join thousands of users who have taken control of their finances with Forecastly</p>
+                    <a href="{{ path('create_combined_account', {'plan': 'free'}) }}" class="btn btn-primary btn-large">Start Your 30 Days Free Trial Now!</a>
+                    <p class="cta-note">No credit card required • Get started in 2 minutes</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="landing-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Forecastly</span>
+                        </div>
+                        <p>Taking the guesswork out of personal finance since 2023</p>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Product</h4>
+                            <ul>
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">Pricing</a></li>
+                                <li><a href="#">Security</a></li>
+                                <li><a href="#">Updates</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Company</h4>
+                            <ul>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="#">Press</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Support</h4>
+                            <ul>
+                                <li><a href="#">Help Center</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms of Service</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Forecastly by Meridian Wealth Technologies, LLC. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+.git
+.idea
+vendor/
+node_modules/
+var/
+.env.local
+.env.*.local
+config/jwt/private.pem
+config/jwt/public.pem
+docker-compose.override.yml
+*.md
+tests/
+docs/

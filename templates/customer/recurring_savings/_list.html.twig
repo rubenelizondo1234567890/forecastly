@@ -1,0 +1,65 @@
+{# templates/customer/recurring_savings/_list.html.twig #}
+<div class="recurring-savings-list">
+    <div class="section-header">
+        <h2 class="section-title">Your Recurring Savings</h2>
+        <span class="accounts-count">{{ recurringSavings|length }} recurring savings</span>
+    </div>
+
+    <div class="accounts-table-container">
+        {% if recurringSavings is not empty %}
+            <table class="accounts-table">
+                <thead>
+                <tr>
+                    <th>Saving Name</th>
+                    <th>Strategy</th>
+                    <th>Saving Day</th>
+                    <th>From Account</th>
+                    <th>To Account</th>
+                    <th>Start Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for saving in recurringSavings %}
+                    <tr>
+                        <td data-label="Saving Name">
+                            <div class="account-type">
+                                <div class="account-type-icon">
+                                    <i class="fas fa-piggy-bank"></i>
+                                </div>
+                                <div>
+                                    <div>{{ saving.name }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Strategy">{{ saving.savingsStrategy }}</td>
+                        <td data-label="Saving Day">{{ saving.dayOfMonthToMakeSaving }}</td>
+                        <td data-label="From Account">{{ saving.accountToWithdraw.name }}</td>
+                        <td data-label="To Account">{{ saving.accountToSave.name }}</td>
+                        <td data-label="Start Date">{{ saving.startOn|date('Y-m-d') }}</td>
+                        <td data-label="Actions">
+                            <div class="action-buttons">
+                                <a href="{{ path('customer_recurring_savings_edit', {'id': saving.id}) }}" class="action-btn edit-btn">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form method="post" action="{{ path('customer_recurring_savings_delete', {'id': saving.id}) }}" onsubmit="return confirm('Are you sure you want to delete this recurring saving?');" style="display: inline-block;">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ saving.id) }}">
+                                    <button type="submit" class="action-btn delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <i class="fas fa-piggy-bank"></i>
+                <p>No recurring savings found.</p>
+                <a href="{{ path('customer_recurring_savings_index') }}" class="btn btn-primary">Add Your First Recurring Saving</a>
+            </div>
+        {% endif %}
+    </div>
+</div>

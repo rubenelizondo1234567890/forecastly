@@ -1,0 +1,195 @@
+{# templates/roadmaps/crypto/introduction-to-defi.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('crypto_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('crypto_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – crypto style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h1>Introduction to DeFi: <span>Decentralised Finance</span></h1>
+                <p class="hero-description">
+                    DeFi is a fast‑growing ecosystem of financial applications built on blockchain. No banks, no brokers – just code. Learn what DeFi is, how it works, and the opportunities (and risks) it offers.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 13 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🧱 What Is DeFi?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Decentralised Finance, or DeFi, refers to financial services that run on public blockchains, mainly Ethereum. Instead of relying on a central authority (like a bank), DeFi uses <strong>smart contracts</strong> – self‑executing code – to facilitate lending, borrowing, trading, and earning interest.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                Anyone with an internet connection and a crypto wallet can access DeFi protocols. Your funds remain in your control (self‑custody) until you interact with a smart contract. But with great power comes great responsibility – and risk.
+            </p>
+        </section>
+
+        <!-- key DeFi components -->
+        <div class="rule-grid animate" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 40px 0;">
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-hand-holding-usd"></i> Lending & Borrowing</h3>
+                <p>Protocols like Aave and Compound let you lend crypto to earn interest, or borrow against your holdings. Rates are determined algorithmically by supply and demand.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-arrows-spin"></i> Decentralised Exchanges (DEX)</h3>
+                <p>Uniswap, Curve, and others allow token swaps directly from your wallet. No order book – you trade against liquidity pools funded by users.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-coins"></i> Stablecoins</h3>
+                <p>DAI, USDC, and others are cryptocurrencies pegged to a stable asset (like the USD). They’re essential for trading and earning without volatility.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-chart-line"></i> Yield Farming</h3>
+                <p>Providing liquidity to protocols in exchange for fees and sometimes extra governance tokens. Can be lucrative but comes with impermanent loss and smart contract risk.</p>
+            </div>
+        </div>
+
+        <!-- risks of DeFi -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">⚠️ Understand the Risks</h3>
+            <ul style="font-size: 1.1rem; list-style: none; padding: 0;">
+                <li style="margin-bottom: 15px;"><i class="fas fa-exclamation-triangle" style="color: #e74c3c; margin-right: 10px;"></i> <strong>Smart contract bugs</strong> – Code can be exploited, leading to loss of funds.</li>
+                <li style="margin-bottom: 15px;"><i class="fas fa-exclamation-triangle" style="color: #e74c3c; margin-right: 10px;"></i> <strong>Impermanent loss</strong> – When providing liquidity, the value of your deposited assets can change relative to holding them.</li>
+                <li style="margin-bottom: 15px;"><i class="fas fa-exclamation-triangle" style="color: #e74c3c; margin-right: 10px;"></i> <strong>Liquidation risk</strong> – If you borrow, a price drop could trigger liquidation of your collateral.</li>
+                <li style="margin-bottom: 15px;"><i class="fas fa-exclamation-triangle" style="color: #e74c3c; margin-right: 10px;"></i> <strong>Regulatory uncertainty</strong> – DeFi may face future regulations.</li>
+            </ul>
+            <div style="background: #e6f7f2; padding: 20px; border-radius: 16px; margin-top: 20px;">
+                <p><i class="fas fa-lightbulb" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Start small!</strong> Only invest what you can afford to lose, and consider using well‑audited, established protocols.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: DeFi Yield Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="defi-simulator">
+            <h3><i class="fas fa-chart-pie"></i> DeFi Yield Simulator</h3>
+            <p>See how your crypto could grow in a DeFi lending protocol. Enter an amount and APY to see potential earnings – remember, APYs can change and risks exist.</p>
+
+            <div style="margin: 30px 0;">
+                <div style="margin-bottom: 20px;">
+                    <label for="defiAmount" style="display: block; font-weight: 600;">💰 Amount to deposit (USD):</label>
+                    <input type="number" id="defiAmount" class="cat-input" min="100" max="100000" value="1000" step="100" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="defiApy" style="display: block; font-weight: 600;">📈 Estimated APY (%):</label>
+                    <input type="number" id="defiApy" class="cat-input" min="0.1" max="50" value="5" step="0.1" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="defiYears" style="display: block; font-weight: 600;">⏳ Time (years):</label>
+                    <input type="number" id="defiYears" class="cat-input" min="0.5" max="10" value="1" step="0.5" style="width: 100%;">
+                </div>
+                <button id="simulateDefiBtn" class="btn-outline" style="width: 100%;">Calculate Potential Returns</button>
+            </div>
+
+            <div id="defiResult" style="background: #f0f4f8; border-radius: 16px; padding: 25px; min-height: 80px; border-left: 6px solid var(--crypto-color);">
+                <i class="fas fa-arrow-left"></i> Fill in the details and click "Calculate Potential Returns".
+            </div>
+            <p style="font-style: italic; color: var(--gray-color); margin-top: 20px;">💡 APYs are variable and not guaranteed. This is a simplified illustration.</p>
+        </div>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: DeFi Basics</h3>
+
+                <div class="quiz-question">1. What does DeFi stand for?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Decentralized Funding</div>
+                    <div class="quiz-option" data-answer="correct">Decentralized Finance</div>
+                    <div class="quiz-option" data-answer="wrong">Digital Finance</div>
+                    <div class="quiz-option" data-answer="wrong">Distributed Financial Infrastructure</div>
+                </div>
+
+                <div class="quiz-question">2. Which technology enables DeFi applications to run without intermediaries?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Central servers</div>
+                    <div class="quiz-option" data-answer="correct">Smart contracts on blockchain</div>
+                    <div class="quiz-option" data-answer="wrong">Traditional banks</div>
+                    <div class="quiz-option" data-answer="wrong">Payment processors</div>
+                </div>
+
+                <div class="quiz-question">3. What is a DEX?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">A type of stablecoin</div>
+                    <div class="quiz-option" data-answer="correct">A decentralized exchange where users trade directly from their wallets</div>
+                    <div class="quiz-option" data-answer="wrong">A centralized exchange like Coinbase</div>
+                    <div class="quiz-option" data-answer="wrong">A hardware wallet</div>
+                </div>
+
+                <div class="quiz-question">4. What is one major risk of providing liquidity to a DeFi pool?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">You cannot withdraw your funds</div>
+                    <div class="quiz-option" data-answer="correct">Impermanent loss – the value of your deposited assets may change relative to holding them</div>
+                    <div class="quiz-option" data-answer="wrong">You lose your private keys</div>
+                    <div class="quiz-option" data-answer="wrong">The exchange rate is fixed</div>
+                </div>
+
+                <div class="quiz-question">5. Which statement about DeFi is TRUE?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">DeFi is regulated like traditional banks</div>
+                    <div class="quiz-option" data-answer="correct">Anyone with an internet connection and a wallet can use DeFi protocols</div>
+                    <div class="quiz-option" data-answer="wrong">DeFi only works on Bitcoin</div>
+                    <div class="quiz-option" data-answer="wrong">DeFi guarantees returns</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 4 (skill building) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue building your skills</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'staking-yield-farming' }) }}" class="next-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Staking & Yield Farming</h3>
+                    <p style="color: var(--gray-color);">How to earn passive income with your crypto – and the risks.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'nfts-hype-or-utility' }) }}" class="next-card">
+                    <i class="fas fa-image"></i>
+                    <h3>NFTs: Hype or Real Utility?</h3>
+                    <p style="color: var(--gray-color);">Understand non‑fungible tokens and their use cases.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'advanced-security' }) }}" class="next-card">
+                    <i class="fas fa-shield-halved"></i>
+                    <h3>Advanced Security</h3>
+                    <p style="color: var(--gray-color);">Multi‑sig, seed backup, and more for larger holdings.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

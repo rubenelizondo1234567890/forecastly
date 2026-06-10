@@ -1,0 +1,181 @@
+{# templates/roadmaps/forex/what-is-forex-trading.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('forex_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('forex_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – forex style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h1>What is Forex Trading? <span>A Beginner’s Guide</span></h1>
+                <p class="hero-description">
+                    The world’s largest financial market – demystified. Learn the language of currency trading and take your first step with confidence.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 9 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🌍 The Forex Market – A Global Giant</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                The foreign exchange market (forex or FX) is where currencies are traded. It’s the largest financial market in the world, with a daily trading volume exceeding <strong>$7.5 trillion</strong>. Unlike stocks, there’s no central exchange – trading happens electronically over‑the‑counter (OTC) 24 hours a day, five days a week.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                In simple terms, you’re always buying one currency while selling another – hoping the one you bought gains value against the one you sold.
+            </p>
+        </section>
+
+        <!-- key terminology grid (like 50/30/20 categories) -->
+        <div class="rule-grid animate">
+            <div class="rule-item needs" style="border-top-color: var(--personal-color);">
+                <h3><i class="fas fa-ruler"></i> Pip</h3>
+                <div class="percentage" style="font-size: 1.8rem;">Percentage in Point</div>
+                <p>The smallest price move a currency pair can make. For most pairs, 1 pip = 0.0001. It’s how you measure profit or loss.</p>
+            </div>
+            <div class="rule-item wants" style="border-top-color: var(--personal-color);">
+                <h3><i class="fas fa-weight-hanging"></i> Lot</h3>
+                <div class="percentage" style="font-size: 1.8rem;">Standard, Mini, Micro</div>
+                <p>A lot is a bundle of currency units: standard = 100,000, mini = 10,000, micro = 1,000. Your lot size determines the dollar value of each pip.</p>
+            </div>
+            <div class="rule-item savings" style="border-top-color: var(--personal-color);">
+                <h3><i class="fas fa-hand-holding-usd"></i> Bid / Ask</h3>
+                <div class="percentage" style="font-size: 1.8rem;">Spread</div>
+                <p><strong>Bid</strong> is the price you sell at, <strong>Ask</strong> is the price you buy at. The difference is the <strong>spread</strong> – the broker’s fee.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive: currency pairs + sessions -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🔁 Currency Pairs & Trading Sessions</h3>
+            <p style="margin-bottom: 20px;">Currencies are quoted in pairs (e.g. EUR/USD). The first is the <strong>base currency</strong>, the second is the <strong>quote currency</strong>. If EUR/USD rises, the Euro is strengthening against the Dollar.</p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <p><i class="fas fa-chart-line" style="color: var(--personal-color); margin-right: 10px;"></i> <strong>Major pairs</strong> include EUR/USD, USD/JPY, GBP/USD – they have the tightest spreads and highest liquidity.</p>
+                <p><i class="fas fa-clock" style="color: var(--personal-color); margin-right: 10px;"></i> <strong>Trading sessions</strong> (London, New York, Tokyo, Sydney) overlap, creating volatility. The best time for beginners is during the London‑New York overlap (13:00‑17:00 GMT).</p>
+            </div>
+        </div>
+
+        <!-- example trade box -->
+        <div class="highlight-box animate">
+            <h3><i class="fas fa-calculator"></i> Example trade – buying EUR/USD</h3>
+            <p>Let’s say you buy 1 standard lot (100,000 units) of EUR/USD at 1.1000. The price moves to 1.1050 – that’s a <strong>50‑pip gain</strong>. For a standard lot on EUR/USD, each pip is worth approximately $10. So your profit would be:</p>
+            <p style="font-size: 1.8rem; font-weight: 800; color: var(--personal-color);">50 pips × $10 = $500</p>
+            <p class="pro-tip" style="margin-top: 15px; background-color: #eef2ff; border-left-color: #3182ce;"><i class="fas fa-lightbulb"></i> If you had used a mini lot (10,000 units), each pip would be $1 – so the same move would give you $50. Lot size controls your risk.</p>
+        </div>
+
+        <!-- leverage & margin warning (critical) -->
+        <div class="pro-tip animate" style="background-color: #fff5f0; border-left-color: #ff6b35;">
+            <h4 style="margin-top: 0;"><i class="fas fa-exclamation-triangle" style="color:#ff6b35;"></i> Leverage: A double‑edged sword</h4>
+            <p>Leverage lets you control a large position with a small deposit. With 50:1 leverage, a $2,000 margin lets you trade $100,000. It magnifies gains – but also losses. <strong>Always use stop‑losses and start with low leverage (e.g. 10:1) as a beginner.</strong></p>
+        </div>
+
+        <!-- Quick quiz -->
+        {% if app.user and quiz %}
+            {# Logged in user #}
+            {# Quiz already taken – show summary and retake button #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">   {# dummy page.id for demo #}
+                <h3 style="color:white; margin-top: 0;">📝 Test your forex basics</h3>
+                <div class="quiz-question">1. What does “forex” stand for?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="correct">Foreign exchange</div>
+                    <div class="quiz-option" data-answer="wrong">Federal exchange</div>
+                    <div class="quiz-option" data-answer="wrong">Forward exchange</div>
+                    <div class="quiz-option" data-answer="wrong">Future exchange</div>
+                </div>
+
+                <div class="quiz-question">2. In the currency pair EUR/USD, which currency is the base?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="correct">EUR</div>
+                    <div class="quiz-option" data-answer="wrong">USD</div>
+                    <div class="quiz-option" data-answer="wrong">Both</div>
+                    <div class="quiz-option" data-answer="wrong">Neither</div>
+                </div>
+
+                <div class="quiz-question">3. What is a “pip” in most currency pairs?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="correct">0.0001</div>
+                    <div class="quiz-option" data-answer="wrong">0.001</div>
+                    <div class="quiz-option" data-answer="wrong">0.01</div>
+                    <div class="quiz-option" data-answer="wrong">0.10</div>
+                </div>
+
+                <div class="quiz-question">4. The difference between the bid and the ask price is called:</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="correct">Spread</div>
+                    <div class="quiz-option" data-answer="wrong">Pip</div>
+                    <div class="quiz-option" data-answer="wrong">Lot</div>
+                    <div class="quiz-option" data-answer="wrong">Margin</div>
+                </div>
+
+                <div class="quiz-question">5. If you buy GBP/USD, you expect the British pound to _______ against the US dollar.</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="correct">rise (appreciate)</div>
+                    <div class="quiz-option" data-answer="wrong">fall (depreciate)</div>
+                    <div class="quiz-option" data-answer="wrong">stay the same</div>
+                    <div class="quiz-option" data-answer="wrong">disappear</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+
+        <!-- next steps in phase 1 (foundation first) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue building your foundation</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'major-minor-exotic-pairs' }) }}" class="next-card">
+                    <i class="fas fa-currency-exchange"></i>
+                    <h3>Major, Minor & Exotic Pairs</h3>
+                    <p style="color: var(--gray-color);">Understand which pairs to trade as a beginner.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'trading-sessions-volatility' }) }}" class="next-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Trading Sessions & Volatility</h3>
+                    <p style="color: var(--gray-color);">When the market moves – and when to stay out.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'leverage-margin-explained' }) }}" class="next-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Leverage & Margin Explained</h3>
+                    <p style="color: var(--gray-color);">Use leverage safely from day one.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+

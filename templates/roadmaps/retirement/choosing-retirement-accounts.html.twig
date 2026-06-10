@@ -1,0 +1,192 @@
+{# templates/roadmaps/retirement/choosing-retirement-accounts.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+
+        {% block stylesheets %}
+        {{ parent() }}
+    {{ encore_entry_link_tags('retirement_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('retirement_js') }}
+    {% endblock %}
+
+    {% block body %}
+    <div class="container">
+    <!-- article hero – retirement style -->
+    <div class="article-hero animate" style="background: linear-gradient(135deg, #1e1a3a 0%, #2d2b55 100%);">
+        <div class="hero-content">
+            <div class="hero-icon" style="background-color: var(--retirement-color);">
+                <i class="fas fa-piggy-bank"></i>
+            </div>
+            <h1>401(k), IRA, Roth <span>Which is Right for You?</span></h1>
+            <p class="hero-description">
+                Traditional 401(k), Roth IRA, or something else? Each account has unique tax rules and benefits. Learn the differences and find the best fit for your financial situation.
+            </p>
+            <div class="phase-tag" style="background-color: rgba(108,92,231,0.2); color: #c3b9ff;">
+                <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 10 min read
+            </div>
+        </div>
+    </div>
+
+    <!-- introduction -->
+    <section class="animate">
+        <h2 class="section-title">🧭 The Account Alphabet Soup</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 20px;">
+            <strong>401(k), Traditional IRA, Roth IRA, Roth 401(k)</strong> – it’s easy to feel overwhelmed. But choosing the right account can save you thousands in taxes and grow your wealth faster. This guide breaks down each option and helps you decide.
+        </p>
+    </section>
+
+    <!-- key points in rule‑grid style -->
+    <div class="rule-grid animate">
+        <div class="rule-item">
+            <h4><i class="fas fa-building"></i> 401(k)</h4>
+            <p><strong>Employer‑sponsored.</strong> Contributions are pre‑tax, reducing your taxable income now. Employers often match a portion – that’s free money! Withdrawals in retirement are taxed as ordinary income.</p>
+        </div>
+        <div class="rule-item">
+            <h4><i class="fas fa-user"></i> Traditional IRA</h4>
+            <p><strong>Individual Retirement Account.</strong> Contributions may be tax‑deductible depending on your income and whether you have a workplace plan. Growth is tax‑deferred; withdrawals are taxed.</p>
+        </div>
+        <div class="rule-item">
+            <h4><i class="fas fa-hand-holding-usd"></i> Roth IRA</h4>
+            <p><strong>After‑tax contributions.</strong> No immediate tax break, but <em>qualified withdrawals</em> in retirement are completely tax‑free. Ideal if you expect to be in a higher tax bracket later.</p>
+        </div>
+        <div class="rule-item">
+            <h4><i class="fas fa-balance-scale"></i> Roth 401(k)</h4>
+            <p><strong>Hybrid option.</strong> Like a Roth IRA, but offered through an employer. High contribution limits, but required minimum distributions (RMDs) apply (unlike Roth IRAs).</p>
+        </div>
+    </div>
+
+    <!-- interactive tool: Retirement Account Selector -->
+    <div class="card animate" style="margin: 40px 0;" id="account-selector-tool">
+        <h3><i class="fas fa-sliders-h"></i> Interactive: Which Account Should You Prioritize?</h3>
+        <p>Answer a few quick questions to get a personalized recommendation and see the potential tax savings.</p>
+
+        <div style="margin: 25px 0;">
+            <div style="margin-bottom: 20px;">
+                <label>Do you have access to a 401(k) with an employer match?</label><br>
+                <select id="hasMatch" class="cat-input" style="width:100%; max-width:300px;">
+                    <option value="yes">Yes, and I contribute enough to get the full match</option>
+                    <option value="yes-not-enough">Yes, but I don't contribute enough to get the full match</option>
+                    <option value="no">No employer plan or no match</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label>What is your current marginal tax bracket? (estimate)</label><br>
+                <select id="taxBracket" class="cat-input" style="width:100%; max-width:300px;">
+                    <option value="10">10%</option>
+                    <option value="12">12%</option>
+                    <option value="22" selected>22%</option>
+                    <option value="24">24%</option>
+                    <option value="32">32%+</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label>Do you expect your tax rate in retirement to be:</label><br>
+                <select id="futureTax" class="cat-input" style="width:100%; max-width:300px;">
+                    <option value="lower">Lower than today</option>
+                    <option value="same" selected>About the same</option>
+                    <option value="higher">Higher than today</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label>Your age (to check IRA eligibility):</label><br>
+                <input type="number" id="age" value="35" min="18" max="75" class="cat-input" style="width:100%; max-width:150px;">
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label>Annual income (to check Roth IRA phase‑outs):</label><br>
+                <input type="number" id="income" value="60000" step="1000" class="cat-input" style="width:100%; max-width:200px;">
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button id="getRecommendation" class="btn-outline">Get my recommendation</button>
+        </div>
+
+        <div id="recommendationResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+            <p>Fill out the fields and click the button.</p>
+        </div>
+
+        <p class="pro-tip" style="margin-top: 15px; background-color: #e9e5ff; border-left-color: var(--retirement-color);">
+            <i class="fas fa-lightbulb"></i> This tool provides general guidance. Consult a tax professional for your specific situation. Contribution limits and phase‑outs change yearly.
+        </p>
+    </div>
+
+    <!-- quiz section (always shown; login modal will appear if not logged in) -->
+    <div class="quiz-container animate" data-page-id="{{ page.id | default(43) }}" style="background: #1e1a3a;">
+        <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Retirement Accounts</h3>
+
+        <div class="quiz-question">1. What is the main advantage of a traditional 401(k) or IRA?</div>
+        <div class="quiz-options" data-question="1">
+            <div class="quiz-option" data-answer="wrong">Tax‑free withdrawals in retirement</div>
+            <div class="quiz-option" data-answer="correct">Tax‑deductible contributions now (tax‑deferred growth)</div>
+            <div class="quiz-option" data-answer="wrong">No income limits</div>
+            <div class="quiz-option" data-answer="wrong">Employer contributions are guaranteed</div>
+        </div>
+
+        <div class="quiz-question">2. Which account offers tax‑free withdrawals in retirement (qualified distributions)?</div>
+        <div class="quiz-options" data-question="2">
+            <div class="quiz-option" data-answer="wrong">Traditional 401(k)</div>
+            <div class="quiz-option" data-answer="wrong">Traditional IRA</div>
+            <div class="quiz-option" data-answer="correct">Roth IRA</div>
+            <div class="quiz-option" data-answer="wrong">All of the above</div>
+        </div>
+
+        <div class="quiz-question">3. What should you always do first if your employer offers a 401(k) match?</div>
+        <div class="quiz-options" data-question="3">
+            <div class="quiz-option" data-answer="wrong">Open a Roth IRA instead</div>
+            <div class="quiz-option" data-answer="wrong">Invest in taxable accounts</div>
+            <div class="quiz-option" data-answer="correct">Contribute at least enough to get the full match</div>
+            <div class="quiz-option" data-answer="wrong">Ignore it – it's not worth it</div>
+        </div>
+
+        <div class="quiz-question">4. A Roth IRA has income limits for direct contributions. For 2024, a single filer with MAGI above ~$161,000:</div>
+        <div class="quiz-options" data-question="4">
+            <div class="quiz-option" data-answer="correct">Cannot contribute directly to a Roth IRA</div>
+            <div class="quiz-option" data-answer="wrong">Can still contribute the full amount</div>
+            <div class="quiz-option" data-answer="wrong">Must use a traditional IRA instead</div>
+            <div class="quiz-option" data-answer="wrong">Gets a larger tax deduction</div>
+        </div>
+
+        <div class="quiz-question">5. Which statement about Required Minimum Distributions (RMDs) is true?</div>
+        <div class="quiz-options" data-question="5">
+            <div class="quiz-option" data-answer="wrong">Roth IRAs have RMDs</div>
+            <div class="quiz-option" data-answer="correct">Traditional 401(k)s and IRAs have RMDs</div>
+            <div class="quiz-option" data-answer="wrong">RMDs apply only to Roth accounts</div>
+            <div class="quiz-option" data-answer="wrong">RMDs start at age 59½</div>
+        </div>
+
+        <div class="quiz-actions">
+            <button id="quiz-submit" class="btn" style="background-color: var(--retirement-color);">Get score & submit</button>
+        </div>
+        <div class="quiz-result"></div>
+    </div>
+
+    <!-- next steps in Phase 1 (Foundation First) -->
+    <section style="margin: 60px 0;">
+        <h2 class="section-title" style="text-align: center;">📘 Continue Phase 1: Foundation First</h2>
+        <div class="next-steps">
+            <a href="{{ path('app_page_show', { journey: 'retirement', slug: 'retirement-basics' }) }}" class="next-card">
+                <i class="fas fa-seedling"></i>
+                <h3>Retirement Basics</h3>
+                <p>Why starting now is your biggest advantage.</p>
+            </a>
+            <a href="{{ path('app_page_show', { journey: 'retirement', slug: 'compound-interest' }) }}" class="next-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Compound Interest</h3>
+                <p>The 8th wonder of the world, explained simply.</p>
+            </a>
+            <a href="{{ path('app_page_show', { journey: 'retirement', slug: 'the-4-percent-rule' }) }}" class="next-card">
+                <i class="fas fa-calculator"></i>
+                <h3>The 4% Rule</h3>
+                <p>Estimate your retirement number.</p>
+            </a>
+        </div>
+    </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,198 @@
+{# templates/roadmaps/crypto/how-crypto-exchanges-work.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('crypto_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('crypto_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – crypto style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h1>How Crypto Exchanges Work <span>(And How to Choose)</span></h1>
+                <p class="hero-description">
+                    Exchanges are your gateway to buying and selling crypto. Learn the differences between centralized and decentralized platforms, what fees to expect, and how to pick the one that fits your needs.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🏛️ What Is a Crypto Exchange?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                A crypto exchange is a platform where you can buy, sell, or trade cryptocurrencies for other digital assets or traditional fiat money (like USD or EUR). Think of it as the crypto equivalent of a stock exchange – but with important differences in how they operate and who controls your funds.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                Exchanges fall into two main categories: <strong>centralized (CEX)</strong> and <strong>decentralized (DEX)</strong>. Each has its own trade‑offs in security, convenience, and control.
+            </p>
+        </section>
+
+        <!-- comparison: CEX vs DEX -->
+        <div class="rule-grid animate" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 40px 0;">
+            <div class="rule-item" style="border-top: 5px solid #3498db; background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-building" style="color:#3498db;"></i> Centralized (CEX)</h3>
+                <p><strong>Examples:</strong> Coinbase, Binance, Kraken.<br>
+                    ✅ High liquidity, user‑friendly, fiat on‑ramps, customer support.<br>
+                    ❌ You don’t control private keys, risk of hacks or freezes, require KYC.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-project-diagram" style="color:var(--crypto-color);"></i> Decentralized (DEX)</h3>
+                <p><strong>Examples:</strong> Uniswap, PancakeSwap, dYdX.<br>
+                    ✅ No KYC, you control funds (self‑custody), resistant to censorship.<br>
+                    ❌ More complex, lower liquidity for some pairs, you bear full responsibility.</p>
+            </div>
+        </div>
+
+        <!-- how orders work -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">📊 Order Books vs. Automated Market Makers</h3>
+            <p style="margin-bottom: 20px;">Centralized exchanges typically use an <strong>order book</strong> – a list of buy and sell orders from users. When you place an order, the exchange matches you with a counterparty. Decentralized exchanges often use <strong>automated market makers (AMMs)</strong>, where you trade against a liquidity pool (smart contracts) instead of another person.</p>
+            <div style="background: #e6f7f2; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <p><i class="fas fa-lightbulb" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Key takeaway:</strong> On a CEX, the exchange holds your funds during trading. On a DEX, you trade directly from your wallet – but you need to understand gas fees and slippage.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Exchange Matchmaker -->
+        <div class="card animate" style="margin: 40px 0;" id="exchange-matchmaker">
+            <h3><i class="fas fa-handshake"></i> Exchange Matchmaker</h3>
+            <p>What matters most to you? Adjust the sliders and click “Find My Match” to see which type of exchange suits your priorities.</p>
+
+            <div style="margin: 30px 0;">
+                <div style="margin-bottom: 20px;">
+                    <label for="feeSlider" style="display: block; font-weight: 600;">💰 Low Fees</label>
+                    <input type="range" id="feeSlider" class="cat-input" min="0" max="100" value="50" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="securitySlider" style="display: block; font-weight: 600;">🛡️ Security & Control</label>
+                    <input type="range" id="securitySlider" class="cat-input" min="0" max="100" value="50" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="coinSlider" style="display: block; font-weight: 600;">🔀 Wide Coin Selection</label>
+                    <input type="range" id="coinSlider" class="cat-input" min="0" max="100" value="50" style="width: 100%;">
+                </div>
+            </div>
+
+            <button id="matchBtn" class="btn-outline" style="width: 100%;">Find My Exchange Match</button>
+
+            <div id="matchResult" style="background: #f0f4f8; border-radius: 16px; padding: 25px; margin-top: 30px; min-height: 80px; border-left: 6px solid var(--crypto-color);">
+                <i class="fas fa-arrow-left"></i> Adjust the sliders and click the button.
+            </div>
+            <p style="font-style: italic; color: var(--gray-color); margin-top: 20px;">💡 This is a simplified educational tool – always research specific platforms.</p>
+        </div>
+
+        <!-- how to choose an exchange -->
+        <section class="animate">
+            <h2 class="section-title">🧐 How to Choose the Right Exchange</h2>
+            <ul style="font-size: 1.1rem; list-style: none; padding: 0;">
+                <li style="margin-bottom: 20px;"><i class="fas fa-check-circle" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Security:</strong> Look for exchanges with a strong track record, insurance funds, and two‑factor authentication (2FA).</li>
+                <li style="margin-bottom: 20px;"><i class="fas fa-check-circle" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Fees:</strong> Compare trading fees (maker/taker), withdrawal fees, and deposit methods. Some offer discounts for using their native token.</li>
+                <li style="margin-bottom: 20px;"><i class="fas fa-check-circle" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Coins Available:</strong> If you want specific altcoins, check whether the exchange lists them.</li>
+                <li style="margin-bottom: 20px;"><i class="fas fa-check-circle" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>User Experience:</strong> Mobile app, customer support, educational resources – especially important for beginners.</li>
+            </ul>
+        </section>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Crypto Exchanges</h3>
+
+                <div class="quiz-question">1. What is a centralized exchange (CEX)?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">A platform where you trade directly from your wallet without an intermediary</div>
+                    <div class="quiz-option" data-answer="correct">A company that matches buyers and sellers and holds your funds</div>
+                    <div class="quiz-option" data-answer="wrong">A hardware device for storing crypto</div>
+                    <div class="quiz-option" data-answer="wrong">A type of cryptocurrency</div>
+                </div>
+
+                <div class="quiz-question">2. Which statement about decentralized exchanges (DEX) is TRUE?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">They require KYC verification</div>
+                    <div class="quiz-option" data-answer="wrong">They hold your private keys</div>
+                    <div class="quiz-option" data-answer="correct">You trade directly from your self‑custody wallet</div>
+                    <div class="quiz-option" data-answer="wrong">They always have lower fees than CEXs</div>
+                </div>
+
+                <div class="quiz-question">3. What is an order book?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">A list of your past trades</div>
+                    <div class="quiz-option" data-answer="correct">A list of all buy and sell orders on an exchange</div>
+                    <div class="quiz-option" data-answer="wrong">A smart contract that holds liquidity</div>
+                    <div class="quiz-option" data-answer="wrong">A fee schedule</div>
+                </div>
+
+                <div class="quiz-question">4. Which factor is MOST important when choosing an exchange?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">The color of the website</div>
+                    <div class="quiz-option" data-answer="wrong">The number of memes on social media</div>
+                    <div class="quiz-option" data-answer="correct">Security track record and regulatory compliance</div>
+                    <div class="quiz-option" data-answer="wrong">The CEO's Twitter activity</div>
+                </div>
+
+                <div class="quiz-question">5. What does “KY​C” stand for in crypto exchanges?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Keep Your Crypto</div>
+                    <div class="quiz-option" data-answer="correct">Know Your Customer (identity verification)</div>
+                    <div class="quiz-option" data-answer="wrong">Key Yield Custody</div>
+                    <div class="quiz-option" data-answer="wrong">Krypto Yielding Contract</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 1 (foundation first) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue building your foundation</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'what-is-bitcoin' }) }}" class="next-card">
+                    <i class="fab fa-bitcoin"></i>
+                    <h3>What Is Bitcoin?</h3>
+                    <p style="color: var(--gray-color);">Discover the origins and importance of the first cryptocurrency.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'blockchain-basics' }) }}" class="next-card">
+                    <i class="fas fa-link"></i>
+                    <h3>Blockchain Basics</h3>
+                    <p style="color: var(--gray-color);">Understand the technology behind crypto.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'crypto-wallets' }) }}" class="next-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Crypto Wallets</h3>
+                    <p style="color: var(--gray-color);">Learn about custodial vs. self‑custody.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

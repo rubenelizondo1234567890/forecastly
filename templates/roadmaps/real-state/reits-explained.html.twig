@@ -1,0 +1,232 @@
+{# templates/roadmaps/real-state/reits-explained.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('real_state_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('real_state_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #2f2a24 0%, #5e4b3f 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--real-estate-color);">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h1>REITs <span>Invest in Real Estate Without Buying a Property</span></h1>
+                <p class="hero-description">
+                    Want real estate exposure without the headache of being a landlord? Real Estate Investment Trusts (REITs) offer a simple, liquid way to invest in income‑producing properties.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(225,112,85,0.2); color: #f7b9a9;">
+                    <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 7 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">🏢 What is a REIT?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                A Real Estate Investment Trust (REIT) is a company that owns, operates, or finances income‑producing real estate.
+                Think of it as a mutual fund for real estate. By law, REITs must distribute at least 90% of their taxable income to shareholders as dividends, making them popular among income‑focused investors.
+            </p>
+        </section>
+
+        <!-- Types of REITs Grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-building"></i> Equity REITs</h4>
+                <p>Own and operate physical properties (apartments, offices, malls, warehouses). Generate income primarily through rent. Most common type.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-hand-holding-usd"></i> Mortgage REITs (mREITs)</h4>
+                <p>Lend money to real estate owners or invest in mortgage‑backed securities. Earn income from interest. More sensitive to interest rate changes.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-code-branch"></i> Hybrid REITs</h4>
+                <p>Combine the strategies of equity and mortgage REITs – own properties and hold mortgages. Offer diversification within a single REIT.</p>
+            </div>
+        </div>
+
+        <!-- How to Invest -->
+        <div class="card animate">
+            <h3><i class="fas fa-coins"></i> How to Invest in REITs</h3>
+            <p><strong>Publicly Traded REITs:</strong> Buy shares on major stock exchanges like any stock. High liquidity, transparent pricing, but subject to market volatility.</p>
+            <p><strong>Public Non‑Traded REITs:</strong> Registered with SEC but not listed on exchanges. Less liquid, higher fees, but may offer higher yields.</p>
+            <p><strong>Private REITs:</strong> Sold only to accredited investors. Illiquid, often higher risk/reward.</p>
+            <p><strong>REIT ETFs & Mutual Funds:</strong> Instant diversification across many REITs. Low cost, easy to buy.</p>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="card animate">
+            <h3><i class="fas fa-ruler"></i> Key Metrics to Evaluate REITs</h3>
+            <ul style="list-style: none; padding-left: 0;">
+                <li><strong>FFO (Funds From Operations):</strong> REITs' equivalent of earnings. Starts with net income, adds back depreciation, subtracts gains on sales. A better measure of cash flow.</li>
+                <li><strong>AFFO (Adjusted FFO):</strong> FFO adjusted for recurring capital expenditures – a more conservative cash flow metric.</li>
+                <li><strong>Dividend Yield:</strong> Annual dividends ÷ share price. REITs often yield 3–10%.</li>
+                <li><strong>P/FFO:</strong> Price divided by FFO per share – like P/E for stocks. Lower may indicate undervaluation.</li>
+            </ul>
+        </div>
+
+        <!-- Interactive Tool: REIT Comparison Simulator (disabled for non-logged-in) -->
+        <div class="card animate" id="reit-simulator">
+            <h3><i class="fas fa-chart-simple"></i> Interactive: REIT Income Simulator</h3>
+            <p>See how different REIT types might perform based on your investment amount and time horizon.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1 1 200px;">
+                    <label>Investment Amount ($) <span id="investAmountVal">10000</span></label>
+                    <input type="range" id="investAmount" min="1000" max="100000" value="10000" step="1000" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Time Horizon (years) <span id="yearsValReit">5</span></label>
+                    <input type="range" id="yearsReit" min="1" max="30" value="5" step="1" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>REIT Type</label>
+                    <select id="reitType" class="cat-input" style="width:100%;">
+                        <option value="equity" selected>Equity REIT (avg. yield 4%, growth 3%)</option>
+                        <option value="mortgage">Mortgage REIT (avg. yield 8%, growth 0%)</option>
+                        <option value="hybrid">Hybrid REIT (avg. yield 6%, growth 2%)</option>
+                        <option value="etf">REIT ETF (avg. yield 4.5%, growth 2.5%)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="simulateReit" class="btn-outline">Calculate Potential Returns</button>
+            </div>
+
+            <div id="reitResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                <p>Adjust the values and click the button.</p>
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px;">
+                <i class="fas fa-lightbulb"></i> This simulator uses historical average yields and growth rates. Actual returns vary. REIT dividends are taxed as ordinary income (unless in a tax‑advantaged account). Always research specific REITs before investing.
+            </p>
+        </div>
+
+        <!-- Pros & Cons -->
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; margin: 30px 0;" class="animate">
+            <div style="flex: 1; background: #e6f7e6; padding: 20px; border-radius: 12px;">
+                <h4 style="color: #2e7d32;"><i class="fas fa-thumbs-up"></i> Pros</h4>
+                <ul>
+                    <li>High liquidity (traded REITs)</li>
+                    <li>Steady dividend income</li>
+                    <li>Diversification without large capital</li>
+                    <li>Professional management</li>
+                    <li>Transparency (public REITs)</li>
+                </ul>
+            </div>
+            <div style="flex: 1; background: #ffebee; padding: 20px; border-radius: 12px;">
+                <h4 style="color: #c62828;"><i class="fas fa-thumbs-down"></i> Cons</h4>
+                <ul>
+                    <li>Dividends taxed as ordinary income</li>
+                    <li>Interest rate sensitivity</li>
+                    <li>Market volatility (traded REITs)</li>
+                    <li>Limited growth potential</li>
+                    <li>Non‑traded REITs can be illiquid</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'reits-explained', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #e17055; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">📝 Test Your Knowledge: REITs</h3>
+
+                <div class="quiz-question">1. What does REIT stand for?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Real Estate Investment Trust</div>
+                    <div class="quiz-option" data-answer="correct">Real Estate Investment Trust</div>
+                    <div class="quiz-option" data-answer="wrong">Real Estate Income Trust</div>
+                    <div class="quiz-option" data-answer="wrong">Residential Equity Investment Trust</div>
+                </div>
+
+                <div class="quiz-question">2. By law, what percentage of taxable income must a REIT distribute to shareholders?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">50%</div>
+                    <div class="quiz-option" data-answer="correct">90%</div>
+                    <div class="quiz-option" data-answer="wrong">75%</div>
+                    <div class="quiz-option" data-answer="wrong">100%</div>
+                </div>
+
+                <div class="quiz-question">3. Which type of REIT primarily owns and operates physical properties?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="correct">Equity REIT</div>
+                    <div class="quiz-option" data-answer="wrong">Mortgage REIT</div>
+                    <div class="quiz-option" data-answer="wrong">Hybrid REIT</div>
+                    <div class="quiz-option" data-answer="wrong">ETF REIT</div>
+                </div>
+
+                <div class="quiz-question">4. What metric is considered the REIT equivalent of earnings per share?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">AFFO</div>
+                    <div class="quiz-option" data-answer="correct">FFO</div>
+                    <div class="quiz-option" data-answer="wrong">NOI</div>
+                    <div class="quiz-option" data-answer="wrong">Cap Rate</div>
+                </div>
+
+                <div class="quiz-question">5. Which of the following is a disadvantage of publicly traded REITs?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Illiquidity</div>
+                    <div class="quiz-option" data-answer="correct">Market volatility</div>
+                    <div class="quiz-option" data-answer="wrong">High minimum investment</div>
+                    <div class="quiz-option" data-answer="wrong">Lack of diversification</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--real-estate-color);">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next Steps in Phase 1 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 1: Foundation First</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'real-estate-basics' }) }}" class="next-card">
+                    <i class="fas fa-school"></i>
+                    <h3>Real Estate Fundamentals</h3>
+                    <p>Learn key terms and concepts every beginner must know.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'rent-vs-buy' }) }}" class="next-card">
+                    <i class="fas fa-scale-balanced"></i>
+                    <h3>Rent vs. Buy</h3>
+                    <p>Make the right decision for your life and finances.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'evaluating-property' }) }}" class="next-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>How to Evaluate a Property</h3>
+                    <p>Cap rate, cash flow, ROI – demystified.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

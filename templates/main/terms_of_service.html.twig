@@ -1,0 +1,259 @@
+{# templates/main/terms_of_service.html.twig #}
+{% extends 'base_prospect.html.twig' %}
+
+{% block title %}Terms of Service - Forecastly{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .terms-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .terms-header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .terms-header .last-updated {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .terms-content {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .terms-section {
+            margin-bottom: 30px;
+        }
+
+        .terms-section h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terms-section h3 {
+            color: var(--text);
+            font-size: 1.2rem;
+            margin: 20px 0 10px 0;
+        }
+
+        .terms-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .terms-section ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .terms-section li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .highlight-box {
+            background: rgba(94, 96, 206, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .highlight-box strong {
+            color: var(--primary);
+        }
+
+        .contact-info {
+            background: var(--background);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(94, 96, 206, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .terms-container {
+                padding: 20px 15px;
+            }
+
+            .terms-content {
+                padding: 25px;
+            }
+
+            .terms-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="prospect-centered-hero-section">
+        <div class="terms-container">
+            <div class="terms-header">
+                <h1><i class="fas fa-scale-balanced"></i> Terms of Service</h1>
+                <p class="last-updated">Last Updated: {{ "now"|date("F j, Y") }}</p>
+            </div>
+
+            <div class="terms-content">
+                <div class="highlight-box">
+                    <p><strong>Important:</strong> Please read these Terms of Service carefully before using Forecastly. By accessing or using our Service, you agree to be bound by these Terms.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2>1. Acceptance of Terms</h2>
+                    <p>Welcome to Forecastly. By accessing or using our mobile application, website, and related services (collectively, the "Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you may not access or use the Service.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2>2. Description of Service</h2>
+                    <p>Forecastly provides a platform for financial forecasting and analysis. Our tools use user-provided data and algorithmic models to generate projections, reports, and insights ("Forecasts"). Forecastly is an automated tool and does not provide personalized financial, legal, or tax advice.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2>3. Important Disclaimers; No Financial Advice</h2>
+                    <p><strong>THE SERVICE AND ALL FORECASTS ARE PROVIDED FOR INFORMATIONAL AND EDUCATIONAL PURPOSES ONLY. THEY ARE NOT INTENDED AS FINANCIAL, INVESTMENT, TAX, OR LEGAL ADVICE.</strong></p>
+
+                    <h3>Not a Substitute for Professional Advice</h3>
+                    <p>You should not rely on the Service or its Forecasts as a substitute for professional advice from a qualified financial planner, accountant, or lawyer. The forecasts are based on automated models and assumptions that may be incorrect or not apply to your specific situation.</p>
+
+                    <h3>No Guarantee of Accuracy</h3>
+                    <p>We do not guarantee the accuracy, completeness, or usefulness of any Forecasts. Financial markets and personal circumstances are inherently unpredictable. Past performance, whether real or forecasted, is not indicative of future results.</p>
+
+                    <h3>Your Responsibility</h3>
+                    <p>Any decisions you make based on information from the Service are solely your responsibility. Forecastly and its affiliates shall not be liable for any financial loss or damage arising from your reliance on the Service.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2>4. User Accounts and Data</h2>
+                    <h3>Account Creation</h3>
+                    <p>You may need to create an account to access certain features. You agree to provide accurate and complete information and to keep your login credentials secure.</p>
+
+                    <h3>Your Data</h3>
+                    <p>You retain all rights to the financial data, transactions, and information you input into the Service ("User Data"). By using the Service, you grant Forecastly a limited license to use, process, and store your User Data solely for the purpose of providing and improving the Service.</p>
+
+                    <h3>Data Accuracy</h3>
+                    <p>You are solely responsible for the accuracy and completeness of the User Data you provide. Garbage in, garbage out. Inaccurate data will lead to inaccurate forecasts.</p>
+
+                    <h3>Privacy</h3>
+                    <p>Your privacy is important to us. Our collection and use of your data is governed by our Privacy Policy, which is incorporated into these Terms.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2>5. User Responsibilities</h2>
+                    <p>You agree not to:</p>
+                    <ul>
+                        <li>Use the Service for any illegal or unauthorized purpose</li>
+                        <li>Upload any data that is infringing, unlawful, or contains viruses or malicious code</li>
+                        <li>Attempt to gain unauthorized access to the Service or its related systems</li>
+                        <li>Use the Service to provide forecasting services to third parties as a service bureau</li>
+                        <li>Copy, reverse engineer, or distribute any part of the Service without our express permission</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section">
+                    <h2>6. Intellectual Property</h2>
+                    <p>The Forecastly app, its original content, features, functionality, and all Forecasts generated by our proprietary models are and will remain the exclusive property of Forecastly and its licensors. Your User Data remains your property.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2>7. Subscription and Fees</h2>
+                    <h3>Free and Paid Tiers</h3>
+                    <p>The Service may be offered in both free and paid subscription tiers.</p>
+
+                    <h3>Fees</h3>
+                    <p>Paid subscription fees ("Fees") are as stated within the app. You authorize us to charge your chosen payment method for these Fees.</p>
+
+                    <h3>Auto-Renewal</h3>
+                    <p>Subscriptions automatically renew until you cancel. You can cancel your subscription at any time through your app store account settings.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2>8. Termination</h2>
+                    <p>We may suspend or terminate your account and access to the Service at our sole discretion if you violate these Terms. You may terminate your account at any time by deleting it within the app.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2>9. Limitation of Liability</h2>
+                    <p>TO THE FULLEST EXTENT PERMITTED BY LAW, FORECASTLY, ITS OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS, DATA LOSS, OR FINANCIAL LOSS, ARISING FROM YOUR USE OF THE SERVICE OR RELIANCE ON ANY FORECAST.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2>10. Changes to Terms</h2>
+                    <p>We reserve the right to modify these Terms at any time. We will provide notice of changes by updating the "Last Updated" date. Your continued use of the Service after any change constitutes your acceptance of the new Terms.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h2>11. Governing Law</h2>
+                    <p>These Terms shall be governed by the laws of the State of Delaware, without regard to its conflict of law provisions.</p>
+                </div>
+
+                <div class="contact-info">
+                    <h3><i class="fas fa-envelope"></i> Contact Information</h3>
+                    <p>If you have any questions about these Terms of Service, please contact us at:</p>
+                    <p><a href="{{path('main_contact_support')}}"><strong>Contact support</strong></a></p>
+                </div>
+
+                <div class="back-to-home">
+                    <a href="{{ path('main_index') }}" class="back-link">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

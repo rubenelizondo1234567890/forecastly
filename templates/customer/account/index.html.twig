@@ -1,0 +1,51 @@
+{# templates/customer/account/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Manage Accounts - Forecastly{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_accounts_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_accounts_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <div class="page-title">
+            <h1>Manage {{ isIncomeOrExpense == 'income' ? 'Income' : 'Expense' }} Accounts</h1>
+            <p>Add and manage your financial accounts</p>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="accounts-container">
+        <!-- Add/Edit Account Form -->
+        {% include 'customer/account/_form.html.twig' with {
+            'form': form,
+            'isIncomeOrExpense': isIncomeOrExpense
+        } %}
+
+        <!-- Accounts List -->
+        {% include 'customer/account/_list.html.twig' with {
+            'accounts': accounts,
+            'isIncomeOrExpense': isIncomeOrExpense
+        } %}
+    </div>
+{% endblock %}

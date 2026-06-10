@@ -1,0 +1,220 @@
+{# templates/roadmaps/personal-finance/opening-your-first-bank-account.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-piggy-bank"></i>
+                </div>
+                <h1>Opening Your First <span>Bank & Savings</span> Accounts</h1>
+                <p class="hero-description">
+                    🏦 Overwhelmed by bank choices? This step‑by‑step guide walks you through opening your first checking <strong>and</strong> savings account — and how to set them up so they work <em>for</em> you, not against you.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-flag-checkered"></i> PHASE 3 · PRACTICAL EXECUTION · 9 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- table of contents (interactive) -->
+        <div class="toc">
+            <h3><i class="fas fa-list-ul" style="color: var(--personal-color);"></i> What you'll learn (click to jump)</h3>
+            <div class="toc-grid">
+                <a href="#why-bank-account"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> Why you need both accounts</a>
+                <a href="#choose-bank"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> How to choose a bank</a>
+                <a href="#docs-needed"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> Documents & requirements</a>
+                <a href="#step-by-step"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> Step‑by‑step opening</a>
+                <a href="#first-tasks"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> First 3 things to do</a>
+                <a href="#fees"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> Avoid fees & fine print</a>
+                <a href="#direct-deposit"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> Set up direct deposit</a>
+                <a href="#next-steps"><i class="fas fa-chevron-right" style="font-size: 0.8rem; color: var(--personal-color);"></i> Automate & next steps</a>
+            </div>
+        </div>
+
+        <!-- content starts -->
+        <h2 id="why-bank-account"><i class="fas fa-piggy-bank"></i> Why you need a checking <em>and</em> a savings account</h2>
+        <p>A <strong>checking account</strong> is your financial headquarters — money flows in (paycheck) and out (bills, rent, daily spending). A <strong>savings account</strong> is where you store your emergency fund and short‑term goals. Keeping them separate helps you avoid accidentally spending what you're saving. </p>
+        <div class="highlight-box">
+            <strong><i class="fas fa-lightbulb"></i> Did you know?</strong> The average American with a dedicated savings account has 3x more emergency savings than those without. (Federal Reserve, 2024)
+        </div>
+
+        <h2 id="choose-bank"><i class="fas fa-building-columns"></i> How to choose the right bank (online vs. traditional)</h2>
+        <p>You have three main options: traditional brick‑and‑mortar banks (e.g., Chase, Wells Fargo), online banks (Ally, SoFi), or credit unions. Consider these factors:</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+            <div style="flex: 1; min-width: 200px; background: #f9f9f9; padding: 20px; border-radius: 16px;">
+                <i class="fas fa-check-circle" style="color: var(--personal-color); font-size: 1.6rem;"></i>
+                <h4 style="margin: 10px 0;">No or low fees</h4>
+                <p>Look for “no monthly maintenance fee” or easy waiver (e.g., direct deposit).</p>
+            </div>
+            <div style="flex: 1; min-width: 200px; background: #f9f9f9; padding: 20px; border-radius: 16px;">
+                <i class="fas fa-percent" style="color: var(--personal-color); font-size: 1.6rem;"></i>
+                <h4 style="margin: 10px 0;">Competitive APY</h4>
+                <p>Savings accounts should earn interest. Online banks often offer 4–5% APY.</p>
+            </div>
+            <div style="flex: 1; min-width: 200px; background: #f9f9f9; padding: 20px; border-radius: 16px;">
+                <i class="fas fa-wifi" style="color: var(--personal-color); font-size: 1.6rem;"></i>
+                <h4 style="margin: 10px 0;">Digital tools</h4>
+                <p>App, mobile check deposit, Zelle, and budgeting features.</p>
+            </div>
+        </div>
+        <div class="pro-tip">
+            <i class="fas fa-rocket"></i> <strong>Pro tip:</strong> You’re not married to one bank. Many people use a local credit union for checking and an online high‑yield savings account (HYSA) for the best interest.
+        </div>
+
+        <h2 id="docs-needed"><i class="fas fa-passport"></i> Documents & requirements</h2>
+        <p>To open an account in the U.S., you’ll typically need:</p>
+        <ul class="checklist" style="margin-bottom: 20px;">
+            <li><i class="fas fa-id-card"></i> Government‑issued ID (driver’s license, passport)</li>
+            <li><i class="fas fa-hashtag"></i> Social Security Number or ITIN</li>
+            <li><i class="fas fa-envelope"></i> Proof of address (utility bill, lease) – sometimes waived if your ID has current address</li>
+            <li><i class="fas fa-mobile-alt"></i> Email and phone number</li>
+            <li><i class="fas fa-dollar-sign"></i> Initial deposit (as low as $0–$25 for many online banks)</li>
+        </ul>
+
+        <h2 id="step-by-step"><i class="fas fa-list-check"></i> Step‑by‑step: opening your accounts</h2>
+        <div class="step-card">
+            <span class="step-number">1</span> <strong>Compare 2–3 banks</strong> using the factors above. Check recent app reviews.
+        </div>
+        <div class="step-card">
+            <span class="step-number">2</span> <strong>Visit the website or app</strong> and click “Open Account.” Choose individual account.
+        </div>
+        <div class="step-card">
+            <span class="step-number">3</span> <strong>Fill in personal info</strong> – name, address, SSN, employment info (sometimes optional).
+        </div>
+        <div class="step-card">
+            <span class="step-number">4</span> <strong>Select account type:</strong> Checking (spending) and/or Savings. Many banks let you open both at once.
+        </div>
+        <div class="step-card">
+            <span class="step-number">5</span> <strong>Make the initial deposit</strong> – you can often link an existing bank account or transfer from a debit card.
+        </div>
+        <div class="step-card">
+            <span class="step-number">6</span> <strong>Accept disclosures</strong> and e‑sign. You’ll receive confirmation within minutes.
+        </div>
+        <p>✅ Your account numbers and routing number will be available immediately (or within one business day).</p>
+
+        <h2 id="first-tasks"><i class="fas fa-clipboard-list"></i> First 3 things to do after opening</h2>
+        <ol style="margin-left: 20px;">
+            <li><strong>Download the banking app</strong> and set up biometric login (fingerprint / face ID).</li>
+            <li><strong>Set up online bill pay</strong> for rent, utilities, credit cards.</li>
+            <li><strong>Link your accounts</strong> – connect your checking to your savings for easy transfers, and link to external accounts if needed.</li>
+        </ol>
+        <div class="pro-tip">
+            <i class="fas fa-bell"></i> <strong>Security first:</strong> Enable two‑factor authentication (2FA) and alerts for any transaction over $0.01 – you’ll know immediately if anything happens.
+        </div>
+
+        <h2 id="fees"><i class="fas fa-ban"></i> How to avoid common fees</h2>
+        <div style="background-color: #fef2f2; border-radius: 16px; padding: 20px; margin: 20px 0;">
+            <ul class="checklist">
+                <li><i class="fas fa-circle-exclamation" style="color:#c53030;"></i> <strong>Monthly maintenance fee</strong> – waive by maintaining minimum balance or setting up direct deposit.</li>
+                <li><i class="fas fa-circle-exclamation" style="color:#c53030;"></i> <strong>Overdraft fee</strong> – opt out of overdraft coverage or link a savings account for free overdraft transfer.</li>
+                <li><i class="fas fa-circle-exclamation" style="color:#c53030;"></i> <strong>ATM fee</strong> – use in‑network ATMs; many online banks reimburse fees.</li>
+                <li><i class="fas fa-circle-exclamation" style="color:#c53030;"></i> <strong>Excessive withdrawal fee</strong> – savings accounts are limited to 6 “convenient” transfers per month (Regulation D).</li>
+            </ul>
+        </div>
+
+        <h2 id="direct-deposit"><i class="fas fa-arrow-right-to-bracket"></i> Setting up direct deposit (get paid faster)</h2>
+        <p>Ask your employer for a direct deposit form (or find it in your payroll portal). You’ll need your <strong>routing number</strong> and <strong>account number</strong>. Some banks even let you split your paycheck: e.g., 80% into checking, 20% into savings. That’s the easiest way to “pay yourself first.”</p>
+
+        <h2 id="next-steps"><i class="fas fa-robot"></i> Automate & what’s next</h2>
+        <p>Once your accounts are open, set up an automatic transfer from checking to savings on payday — even $25 adds up. You’ve just completed a major step in your financial foundation.</p>
+
+        <!-- Quick quiz -->
+        {% if app.user and quiz %}
+            {# Logged in user #}
+            {# Quiz already taken – show summary and retake button #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your banking knowledge</h3>
+                <div class="quiz-question">1. What is the main purpose of a checking account?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="correct">Daily spending</div>
+                    <div class="quiz-option" data-answer="wrong">Long‑term savings</div>
+                    <div class="quiz-option" data-answer="wrong">Investing</div>
+                    <div class="quiz-option" data-answer="wrong">Retirement</div>
+                </div>
+                <div class="quiz-question">2. Which type of account typically offers the highest interest rate for savings?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Traditional bank savings</div>
+                    <div class="quiz-option" data-answer="correct">High‑yield savings account</div>
+                    <div class="quiz-option" data-answer="wrong">Checking account</div>
+                    <div class="quiz-option" data-answer="wrong">Money market</div>
+                </div>
+                <div class="quiz-question">3. What document is typically required to open a bank account?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Driver's license</div>
+                    <div class="quiz-option" data-answer="wrong">Social Security number</div>
+                    <div class="quiz-option" data-answer="wrong">Proof of address</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+                <div class="quiz-question">4. How can you avoid monthly maintenance fees?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Maintain minimum balance</div>
+                    <div class="quiz-option" data-answer="wrong">Set up direct deposit</div>
+                    <div class="quiz-option" data-answer="correct">Both</div>
+                    <div class="quiz-option" data-answer="wrong">None</div>
+                </div>
+                <div class="quiz-question">5. What is the first thing you should do after opening an account?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Download the app</div>
+                    <div class="quiz-option" data-answer="wrong">Set up bill pay</div>
+                    <div class="quiz-option" data-answer="wrong">Link accounts</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+                <div class="quiz-feedback">👉 Click any answer to check yourself.</div>
+            </div>
+        {% endif %}
+
+
+        <!-- Next steps: continue Phase 3 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Practical Execution phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'automate-your-finances' }) }}" class="next-card">
+                    <i class="fas fa-robot" style="color: var(--personal-color);"></i>
+                    <h3>Automate Your Finances</h3>
+                    <p style="color: var(--gray-color);">Walk through automating bill payments, savings transfers, and investments – the ultimate tool for consistency.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'creating-a-personal-financial-statement' }) }}" class="next-card">
+                    <i class="fas fa-file-invoice" style="color: var(--personal-color);"></i>
+                    <h3>Creating a Personal Financial Statement</h3>
+                    <p style="color: var(--gray-color);">Track your net worth with a simple balance sheet and income statement. Know exactly where you stand.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'how-to-negotiate-bills' }) }}" class="next-card">
+                    <i class="fas fa-phone-alt" style="color: var(--personal-color);"></i>
+                    <h3>How to Negotiate Bills</h3>
+                    <p style="color: var(--gray-color);">Scripts and tactics to reduce phone, internet, and subscription costs. Most people save $300+ in the first year.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

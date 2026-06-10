@@ -1,0 +1,49 @@
+{# templates/customer/recurring_savings/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Savings Management - Forecastly{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_recurring_savings_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_recurring_savings_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <div class="page-title">
+            <h1>Generate Recurring Savings</h1>
+            <p>Add and manage monthly savings for building wealth.</p>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="recurring-savings-container">
+        <!-- Add/Edit Recurring Savings Form -->
+        {% include 'customer/recurring_savings/_form.html.twig' with {
+            'form': form
+        } %}
+
+        <!-- Recurring Savings List -->
+        {% include 'customer/recurring_savings/_list.html.twig' with {
+            'recurringSavings': recurringSavings
+        } %}
+    </div>
+{% endblock %}

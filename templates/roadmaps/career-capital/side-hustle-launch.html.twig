@@ -1,0 +1,311 @@
+{# templates/roadmaps/career-capital/side-hustle-launch.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+    {# Inline script to initialize the checklist (will be replaced by career_capital.js) #}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon" style="font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-store" style="color: var(--career-color);"></i>
+                </div>
+                <h1>Side Hustle Launch: <span>First 30 Days Plan</span></h1>
+                <p class="hero-description">
+                    From idea validation to first paying customer — a week‑by‑week checklist for freelancers and creators.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 10 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">Why a 30‑day plan?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                A side hustle can easily fizzle out without structure. The first 30 days are critical: they set the foundation, build momentum, and turn an idea into a real income stream. This plan breaks down each week into actionable steps so you stay focused and motivated.
+            </p>
+            <div class="highlight-box">
+                <i class="fas fa-rocket"></i>
+                <strong>Success story:</strong> Sarah, a teacher, used this 30‑day plan to launch her Etsy shop. She made her first sale on day 19 and now earns $500/month in her spare time.
+            </div>
+        </section>
+
+        <!-- Week 1: Validate & Plan -->
+        <section class="animate">
+            <h2 class="section-title">📅 Week 1: Validate & Plan</h2>
+            <div class="step-card">
+                <span class="step-number">1</span> <strong>Identify your offer</strong> – What skill, product, or service will you sell? Be specific.
+            </div>
+            <div class="step-card">
+                <span class="step-number">2</span> <strong>Research demand</strong> – Check if people are already buying. Look at competitor offerings, search trends, and forums.
+            </div>
+            <div class="step-card">
+                <span class="step-number">3</span> <strong>Define your target audience</strong> – Who has the problem you solve? Create a simple customer avatar.
+            </div>
+            <div class="step-card">
+                <span class="step-number">4</span> <strong>Set a SMART goal</strong> – e.g., “Earn $300 from 3 clients by day 30.”
+            </div>
+        </section>
+
+        <!-- Week 2: Set Up Basics -->
+        <section class="animate">
+            <h2 class="section-title">🛠️ Week 2: Set Up Basics</h2>
+            <div class="step-card">
+                <span class="step-number">5</span> <strong>Create a simple online presence</strong> – A free Carrd site, LinkedIn profile, or Instagram business page.
+            </div>
+            <div class="step-card">
+                <span class="step-number">6</span> <strong>Set up payment methods</strong> – PayPal, Stripe, or Venmo business. Know the fees.
+            </div>
+            <div class="step-card">
+                <span class="step-number">7</span> <strong>Define your pricing</strong> – Research competitor rates. Start with a competitive intro offer.
+            </div>
+            <div class="step-card">
+                <span class="step-number">8</span> <strong>Prepare your first pitch or product sample</strong> – A portfolio piece, a free consultation offer, or a prototype.
+            </div>
+        </section>
+
+        <!-- Week 3: Find Your First Customer -->
+        <section class="animate">
+            <h2 class="section-title">🤝 Week 3: Find Your First Customer</h2>
+            <div class="step-card">
+                <span class="step-number">9</span> <strong>Leverage your network</strong> – Tell friends, family, and former colleagues. Ask for referrals.
+            </div>
+            <div class="step-card">
+                <span class="step-number">10</span> <strong>Reach out to warm leads</strong> – Send personalized messages to 10–20 potential customers.
+            </div>
+            <div class="step-card">
+                <span class="step-number">11</span> <strong>Offer a launch discount</strong> – “20% off for the first 5 clients” creates urgency.
+            </div>
+            <div class="step-card">
+                <span class="step-number">12</span> <strong>Collect feedback and testimonials</strong> – Even if it’s free or discounted, ask for a short review.
+            </div>
+        </section>
+
+        <!-- Week 4: Deliver & Refine -->
+        <section class="animate">
+            <h2 class="section-title">📈 Week 4: Deliver & Refine</h2>
+            <div class="step-card">
+                <span class="step-number">13</span> <strong>Deliver exceptional work</strong> – Over‑deliver to create raving fans.
+            </div>
+            <div class="step-card">
+                <span class="step-number">14</span> <strong>Ask for referrals</strong> – “If you’re happy, would you mind introducing me to one person who could use this?”
+            </div>
+            <div class="step-card">
+                <span class="step-number">15</span> <strong>Document your process</strong> – Write down what worked and what didn’t. Start building systems.
+            </div>
+            <div class="step-card">
+                <span class="step-number">16</span> <strong>Plan next steps</strong> – Should you raise prices, expand your offer, or invest more time?
+            </div>
+        </section>
+
+        <!-- Common pitfalls -->
+        <section class="animate">
+            <h2 class="section-title">⚠️ Avoid these common pitfalls</h2>
+            <ul class="tip-list">
+                <li><i class="fas fa-exclamation-triangle"></i> <strong>Perfectionism</strong> – Your first website doesn’t need to be perfect. Launch fast, iterate later.</li>
+                <li><i class="fas fa-exclamation-triangle"></i> <strong>Underpricing</strong> – Don’t sell yourself too short. Value your time.</li>
+                <li><i class="fas fa-exclamation-triangle"></i> <strong>No boundaries</strong> – Set specific hours for your side hustle to avoid burnout.</li>
+                <li><i class="fas fa-exclamation-triangle"></i> <strong>Ignoring taxes</strong> – Set aside 20–30% of earnings for taxes from day one.</li>
+            </ul>
+        </section>
+
+        <!-- INTERACTIVE TOOL: Side Hustle Launch Tracker -->
+        <div class="launch-checklist animate">
+            <h2 class="calc-title"><i class="fas fa-clipboard-list" style="color: var(--career-color);"></i> Side Hustle Launch Tracker</h2>
+            <p>Check off tasks as you complete them. See your progress and stay on track.</p>
+
+            <div class="progress-stats">
+                <span><span id="completedCount">0</span>/<span id="totalCount">16</span> tasks done</span>
+                <button class="reset-checklist" id="resetChecklistBtn"><i class="fas fa-undo-alt"></i> Reset</button>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+            </div>
+
+            <div class="checklist-week">
+                <h3><i class="fas fa-search"></i> Week 1: Validate & Plan</h3>
+                <div class="checklist-item" data-week="1" data-task="1">
+                    <input type="checkbox" id="task1" class="task-checkbox">
+                    <label for="task1">Identify your offer</label>
+                </div>
+                <div class="checklist-item" data-week="1" data-task="2">
+                    <input type="checkbox" id="task2" class="task-checkbox">
+                    <label for="task2">Research demand</label>
+                </div>
+                <div class="checklist-item" data-week="1" data-task="3">
+                    <input type="checkbox" id="task3" class="task-checkbox">
+                    <label for="task3">Define target audience</label>
+                </div>
+                <div class="checklist-item" data-week="1" data-task="4">
+                    <input type="checkbox" id="task4" class="task-checkbox">
+                    <label for="task4">Set a SMART goal</label>
+                </div>
+            </div>
+
+            <div class="checklist-week">
+                <h3><i class="fas fa-tools"></i> Week 2: Set Up Basics</h3>
+                <div class="checklist-item" data-week="2" data-task="5">
+                    <input type="checkbox" id="task5" class="task-checkbox">
+                    <label for="task5">Create online presence</label>
+                </div>
+                <div class="checklist-item" data-week="2" data-task="6">
+                    <input type="checkbox" id="task6" class="task-checkbox">
+                    <label for="task6">Set up payment methods</label>
+                </div>
+                <div class="checklist-item" data-week="2" data-task="7">
+                    <input type="checkbox" id="task7" class="task-checkbox">
+                    <label for="task7">Define pricing</label>
+                </div>
+                <div class="checklist-item" data-week="2" data-task="8">
+                    <input type="checkbox" id="task8" class="task-checkbox">
+                    <label for="task8">Prepare pitch/sample</label>
+                </div>
+            </div>
+
+            <div class="checklist-week">
+                <h3><i class="fas fa-handshake"></i> Week 3: Find First Customer</h3>
+                <div class="checklist-item" data-week="3" data-task="9">
+                    <input type="checkbox" id="task9" class="task-checkbox">
+                    <label for="task9">Leverage network</label>
+                </div>
+                <div class="checklist-item" data-week="3" data-task="10">
+                    <input type="checkbox" id="task10" class="task-checkbox">
+                    <label for="task10">Reach out to warm leads</label>
+                </div>
+                <div class="checklist-item" data-week="3" data-task="11">
+                    <input type="checkbox" id="task11" class="task-checkbox">
+                    <label for="task11">Offer launch discount</label>
+                </div>
+                <div class="checklist-item" data-week="3" data-task="12">
+                    <input type="checkbox" id="task12" class="task-checkbox">
+                    <label for="task12">Collect feedback</label>
+                </div>
+            </div>
+
+            <div class="checklist-week">
+                <h3><i class="fas fa-chart-line"></i> Week 4: Deliver & Refine</h3>
+                <div class="checklist-item" data-week="4" data-task="13">
+                    <input type="checkbox" id="task13" class="task-checkbox">
+                    <label for="task13">Deliver exceptional work</label>
+                </div>
+                <div class="checklist-item" data-week="4" data-task="14">
+                    <input type="checkbox" id="task14" class="task-checkbox">
+                    <label for="task14">Ask for referrals</label>
+                </div>
+                <div class="checklist-item" data-week="4" data-task="15">
+                    <input type="checkbox" id="task15" class="task-checkbox">
+                    <label for="task15">Document process</label>
+                </div>
+                <div class="checklist-item" data-week="4" data-task="16">
+                    <input type="checkbox" id="task16" class="task-checkbox">
+                    <label for="task16">Plan next steps</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user who already took the quiz #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'career-capital', slug: 'side-hustle-launch', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: var(--career-color); color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Quiz for everyone – interactivity blocked by home.js if not logged in #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: side hustle launch</h3>
+
+                <div class="quiz-question">1. What should you do in Week 1 of your side hustle launch?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Create a website</div>
+                    <div class="quiz-option" data-answer="wrong">Find your first customer</div>
+                    <div class="quiz-option" data-answer="correct">Validate your idea and plan</div>
+                    <div class="quiz-option" data-answer="wrong">Deliver your service</div>
+                </div>
+
+                <div class="quiz-question">2. Why is it important to set up payment methods early?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">So you look professional</div>
+                    <div class="quiz-option" data-answer="wrong">To avoid delays when a client wants to pay</div>
+                    <div class="quiz-option" data-answer="wrong">To understand fees</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+
+                <div class="quiz-question">3. How can you find your first customer in Week 3?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Buying expensive ads</div>
+                    <div class="quiz-option" data-answer="correct">Leveraging your network and offering discounts</div>
+                    <div class="quiz-option" data-answer="wrong">Waiting for them to find you</div>
+                    <div class="quiz-option" data-answer="wrong">Spamming social media</div>
+                </div>
+
+                <div class="quiz-question">4. What should you do after delivering your first project?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Stop marketing</div>
+                    <div class="quiz-option" data-answer="wrong">Raise prices immediately</div>
+                    <div class="quiz-option" data-answer="correct">Ask for feedback and referrals</div>
+                    <div class="quiz-option" data-answer="wrong">Quit your day job</div>
+                </div>
+
+                <div class="quiz-question">5. What’s a common pitfall to avoid in the first 30 days?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Perfectionism</div>
+                    <div class="quiz-option" data-answer="wrong">Underpricing</div>
+                    <div class="quiz-option" data-answer="wrong">No boundaries</div>
+                    <div class="quiz-option" data-answer="correct">All of the above</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--career-color);">Get Score and Submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next articles in Phase 3 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue Phase 3: Practical Execution</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'negotiation-scripts' }) }}" class="next-card">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Negotiation Scripts</h3>
+                    <p>Word‑for‑word scripts for raises and job offers.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'linkedin-portfolio' }) }}" class="next-card">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn & Portfolio</h3>
+                    <p>Optimize your profile to attract recruiters.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'informational-interviews' }) }}" class="next-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Informational Interviews</h3>
+                    <p>Smart networking without being awkward.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

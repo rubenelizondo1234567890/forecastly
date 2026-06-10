@@ -1,0 +1,291 @@
+/* assets/styles/psychology.css */
+
+/* ----- GLOBAL STYLES (Behavioural Finance colour palette preserved) ----- */
+:root {
+    --primary-color: #1d7ca1;        /* main blue from original */
+    --primary-dark: #146084;
+    --accent-blue: #1f7faa;
+    --dark-color: #0b2f44;
+    --light-color: #f6f9fc;
+    --gray-color: #2c506a;
+    --light-gray: #c2d9ea;
+    --card-bg: #ffffff;
+    --shadow: 0 10px 15px -3px rgba(0,35,65,0.1), 0 4px 6px -2px rgba(0,35,65,0.05);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: var(--light-color);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ----- reusable components (matching FIRE structure) ----- */
+.back-link {
+    display: inline-block;
+    margin: 30px 0 10px;
+    color: var(--gray-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+.back-link i {
+    margin-right: 8px;
+}
+.back-link:hover {
+    color: var(--primary-color);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--dark-color);
+    text-align: center;
+}
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--gray-color);
+    max-width: 700px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+/* ----- hero (behavioural finance palette) ----- */
+.journey-hero {
+    background: linear-gradient(135deg, #0B2A40 0%, #1D4E6F 100%);
+    color: white;
+    padding: 60px 0 50px;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+}
+.journey-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: var(--primary-color);
+    opacity: 0.2;
+    border-radius: 50%;
+    transform: translate(100px, -100px);
+}
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+.journey-icon {
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 2.8rem;
+    color: white;
+    box-shadow: 0 10px 20px rgba(29,124,161,0.3);
+}
+.journey-hero h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+.journey-hero h1 span {
+    color: var(--primary-color);
+    background: rgba(255,255,255,0.1);
+    padding: 0 12px;
+    border-radius: 40px;
+    display: inline-block;
+}
+.hero-description {
+    font-size: 1.2rem;
+    color: #d4e8f5;
+    max-width: 700px;
+    margin: 20px auto 0;
+}
+
+/* ----- phase cards (primary colour accents) ----- */
+.phase-wrapper {
+    margin: 70px 0;
+}
+.phase-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 3px solid rgba(29,124,161,0.2);
+    padding-bottom: 15px;
+}
+.phase-number {
+    background-color: var(--primary-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.article-card {
+    background-color: var(--card-bg);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-top: 5px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+}
+.article-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(0,35,65,0.15), 0 10px 10px -5px rgba(0,35,65,0.1);
+}
+.article-icon {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+.article-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--dark-color);
+}
+.article-brief {
+    color: var(--gray-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--gray-color);
+    border-top: 1px dashed var(--light-gray);
+    padding-top: 15px;
+}
+.article-meta i {
+    color: var(--primary-color);
+    width: 18px;
+}
+.read-link {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.read-link:hover {
+    text-decoration: underline;
+}
+
+/* ----- journey CTA (blue gradient) ----- */
+.journey-cta {
+    background: linear-gradient(145deg, #e6f0fa, #ffffff);
+    border-radius: 40px;
+    padding: 50px 40px;
+    text-align: center;
+    margin: 60px 0;
+    border: 1px solid rgba(29,124,161,0.2);
+}
+.journey-cta h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #0B2A40;
+}
+.journey-cta .cta-button {
+    display: inline-block;
+    padding: 16px 40px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(29,124,161,0.3);
+}
+.journey-cta .cta-button:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.03);
+}
+
+/* ----- mini footer (matches main site vibe, with blue hint) ----- */
+.footer-mini {
+    text-align: center;
+    padding: 40px 0 30px;
+    color: var(--gray-color);
+    border-top: 1px solid var(--light-gray);
+    margin-top: 30px;
+}
+.footer-mini .footer-logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--dark-color);
+}
+.footer-mini .footer-logo span {
+    color: var(--primary-color);
+}
+
+/* animations (same as FIRE) */
+.animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* responsive */
+@media (max-width: 700px) {
+    .journey-hero h1 { font-size: 2.4rem; }
+    .section-title { font-size: 2rem; }
+    .phase-title { font-size: 1.6rem; }
+}
+@media (max-width: 500px) {
+    .article-grid { grid-template-columns: 1fr; }
+}

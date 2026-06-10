@@ -1,0 +1,201 @@
+{# templates/roadmaps/crypto/what-is-bitcoin.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('crypto_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('crypto_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – crypto style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fab fa-bitcoin"></i>
+                </div>
+                <h1>What Is Bitcoin & <span>Why Does It Matter?</span></h1>
+                <p class="hero-description">
+                    Bitcoin is more than just a digital currency – it’s a revolution in money. Discover how it works, why it was created, and why it’s called digital gold.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 1: Foundation First · 10 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction: the problem Bitcoin solves -->
+        <section class="animate">
+            <h2 class="section-title">🧾 The Birth of Bitcoin</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                In 2008, a mysterious person (or group) named Satoshi Nakamoto published a white paper titled <em>“Bitcoin: A Peer-to-Peer Electronic Cash System”</em>. The goal was simple yet radical: create a form of money that doesn’t rely on banks or governments – money that anyone, anywhere, can use without permission.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                On January 3, 2009, the first Bitcoin block was mined (the Genesis Block). Embedded in it was a headline from The Times: <em>“Chancellor on brink of second bailout for banks.”</em> That message made it clear: Bitcoin was born as a response to the financial crisis – a system built on trust in code, not institutions.
+            </p>
+        </section>
+
+        <!-- key concepts grid (like rule-grid but crypto) -->
+        <div class="rule-grid animate">
+            <div class="rule-item" style="border-top-color: var(--crypto-color);">
+                <h3><i class="fas fa-link"></i> Blockchain</h3>
+                <p>A public ledger where every Bitcoin transaction is recorded. It’s maintained by thousands of computers (nodes) worldwide, making it nearly impossible to cheat.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--crypto-color);">
+                <h3><i class="fas fa-cubes"></i> Mining</h3>
+                <p>Powerful computers compete to solve complex math problems. The winner gets to add a new block to the chain and is rewarded with newly created bitcoins. This process also secures the network.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--crypto-color);">
+                <h3><i class="fas fa-coins"></i> 21 Million</h3>
+                <p>There will only ever be 21 million bitcoins. This fixed supply makes Bitcoin scarce – unlike traditional money, which governments can print indefinitely.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--crypto-color);">
+                <h3><i class="fas fa-shield-alt"></i> Decentralization</h3>
+                <p>No single person, company, or country controls Bitcoin. It’s run by its users. This makes it censorship‑resistant – no one can freeze your coins or stop you from sending them.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive: why it matters -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🌍 Why Bitcoin Matters</h3>
+            <p style="margin-bottom: 20px;">Bitcoin is often called “digital gold” because it shares gold’s best properties: it’s durable, portable, divisible, and scarce. But it also improves on gold – you can send it anywhere in the world in minutes, with low fees.</p>
+            <div style="background: #e6f7f2; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <p><i class="fas fa-bolt" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Financial inclusion</strong> – Over a billion people lack access to banks. With Bitcoin, anyone with a smartphone can store and transfer value.</p>
+                <p><i class="fas fa-lock" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Sovereignty</strong> – You truly own your bitcoin if you hold the private keys. No bank can block your account.</p>
+                <p><i class="fas fa-chart-line" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Store of value</strong> – Because of its fixed supply, many see Bitcoin as a hedge against inflation and currency debasement.</p>
+            </div>
+        </div>
+
+        <!-- example box: the pizza story -->
+        <div class="highlight-box animate" style="border-left-color: var(--crypto-color);">
+            <h3><i class="fas fa-utensils"></i> The Infamous Bitcoin Pizza</h3>
+            <p>On May 22, 2010, a programmer named Laszlo Hanyecz paid 10,000 bitcoins for two pizzas. At the time, that was worth about $41. Today, those bitcoins would be worth over $300 million. That day is now celebrated as “Bitcoin Pizza Day” – a reminder of how early we still are.</p>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Bitcoin Purchasing Power Simulator -->
+        <div class="card animate" style="margin: 40px 0;">
+            <h3><i class="fas fa-chart-line"></i> Bitcoin Purchasing Power Simulator</h3>
+            <p>See what a hypothetical investment in Bitcoin at different times would be worth today. (Based on approximate historical prices.)</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end;">
+                <div style="flex: 1 1 200px;">
+                    <label for="btcAmount" style="display: block; margin-bottom: 8px; font-weight: 600;">Investment amount (USD)</label>
+                    <input type="number" id="btcAmount" class="cat-input" value="100" min="1" step="1" style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--light-gray);">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label for="yearSelect" style="display: block; margin-bottom: 8px; font-weight: 600;">Year of investment</label>
+                    <select id="yearSelect" class="cat-input" style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--light-gray);">
+                        <option value="2020">2020 (price ~$7,200)</option>
+                        <option value="2017">2017 (price ~$1,000)</option>
+                        <option value="2015">2015 (price ~$300)</option>
+                        <option value="2013">2013 (price ~$100)</option>
+                        <option value="2011">2011 (price ~$5)</option>
+                    </select>
+                </div>
+                <div style="flex: 0 0 auto;">
+                    <button id="simulateBtn" class="btn-outline" style="padding: 12px 30px;">Calculate</button>
+                </div>
+            </div>
+            <div id="simulatorResult" style="margin-top: 25px; padding: 15px; background: var(--light-color); border-radius: 12px; font-size: 1.2rem; text-align: center;">
+                Click calculate to see the result.
+            </div>
+        </div>
+
+        <!-- Quiz section (conditional, same pattern as forex) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Not logged in or quiz not taken – show quiz (interactivity blocked by JS) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Bitcoin Basics</h3>
+
+                <div class="quiz-question">1. Who created Bitcoin?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Elon Musk</div>
+                    <div class="quiz-option" data-answer="correct">Satoshi Nakamoto</div>
+                    <div class="quiz-option" data-answer="wrong">Vitalik Buterin</div>
+                    <div class="quiz-option" data-answer="wrong">The U.S. government</div>
+                </div>
+
+                <div class="quiz-question">2. What is the maximum number of bitcoins that can ever exist?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">100 million</div>
+                    <div class="quiz-option" data-answer="correct">21 million</div>
+                    <div class="quiz-option" data-answer="wrong">1 billion</div>
+                    <div class="quiz-option" data-answer="wrong">Unlimited</div>
+                </div>
+
+                <div class="quiz-question">3. What is the name of the underlying technology that records Bitcoin transactions?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Hashgraph</div>
+                    <div class="quiz-option" data-answer="wrong">Tangle</div>
+                    <div class="quiz-option" data-answer="correct">Blockchain</div>
+                    <div class="quiz-option" data-answer="wrong">Distributed ledger (only)</div>
+                </div>
+
+                <div class="quiz-question">4. Why is Bitcoin often called "digital gold"?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">It's yellow</div>
+                    <div class="quiz-option" data-answer="correct">It's scarce, durable, and acts as a store of value</div>
+                    <div class="quiz-option" data-answer="wrong">It's backed by physical gold</div>
+                    <div class="quiz-option" data-answer="wrong">It's only used for jewelry</div>
+                </div>
+
+                <div class="quiz-question">5. What significant event is celebrated on "Bitcoin Pizza Day"?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="correct">The first real-world purchase using Bitcoin (two pizzas)</div>
+                    <div class="quiz-option" data-answer="wrong">The day Bitcoin price hit $1</div>
+                    <div class="quiz-option" data-answer="wrong">The release of the Bitcoin white paper</div>
+                    <div class="quiz-option" data-answer="wrong">The first Bitcoin block mined</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 1 (foundation first) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue building your foundation</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'blockchain-basics' }) }}" class="next-card">
+                    <i class="fas fa-link"></i>
+                    <h3>Blockchain Basics</h3>
+                    <p style="color: var(--gray-color);">Understand the technology behind Bitcoin in simple terms.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'crypto-wallets' }) }}" class="next-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Crypto Wallets: Custodial vs. Self‑Custody</h3>
+                    <p style="color: var(--gray-color);">Learn how to store your bitcoin safely.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'how-crypto-exchanges-work' }) }}" class="next-card">
+                    <i class="fas fa-store"></i>
+                    <h3>How Crypto Exchanges Work</h3>
+                    <p style="color: var(--gray-color);">A beginner’s guide to buying and selling.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

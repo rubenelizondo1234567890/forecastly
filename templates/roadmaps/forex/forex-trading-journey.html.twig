@@ -1,0 +1,231 @@
+{# templates/roadmaps/forex/forex-trading-journey.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('forex_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('forex_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- hero section specific for forex trading -->
+        <div class="journey-hero animate">
+            <div class="hero-content">
+                <div class="journey-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h1>Forex Trading <span>Journey</span></h1>
+                <p class="hero-description">
+                    Learn to trade currencies with confidence — from your first pip to a solid risk management system.
+                    Follow the four‑phase roadmap built for beginners.
+                </p>
+            </div>
+        </div>
+
+        <!-- intro text: how our roadmaps work (forex version) -->
+        <div style="text-align: center; margin: 40px 0 20px;" class="animate">
+            <h2 class="section-title">🧭 Your 4‑phase forex roadmap</h2>
+            <p class="section-subtitle">
+                Each phase follows the <strong>Foundation → Risk → Execution → Skill Building</strong> structure.
+                Complete the articles in order or jump to what you need most.
+            </p>
+        </div>
+
+        <!-- ===== PHASE 1 – FOUNDATION FIRST ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">1</span>
+                <span>Foundation First · Forex basics & terminology</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-globe"></i></div>
+                    <h3>What is Forex Trading? – A Beginner’s Guide</h3>
+                    <p class="article-brief">Understand the global currency market, how trading works, and key terminology (pips, lots, bid/ask).</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'what-is-forex-trading' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-currency-exchange"></i></div>
+                    <h3>Major, Minor and Exotic Currency Pairs Explained</h3>
+                    <p class="article-brief">Learn the difference between currency pair categories and which ones are best for beginners.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'major-minor-exotic-pairs' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-clock"></i></div>
+                    <h3>When the Market is Open: Trading Sessions & Volatility</h3>
+                    <p class="article-brief">Discover the four major trading sessions and how they affect price movement and opportunity.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'trading-sessions-volatility' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Understanding Leverage and Margin</h3>
+                    <p class="article-brief">Grasp how leverage amplifies gains and losses, and how to use it safely as a beginner.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'leverage-margin-explained' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 2 – RISK MANAGEMENT ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">2</span>
+                <span>Risk Management · Protect your capital</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>The Golden Rule: Stop Losses and Take Profits</h3>
+                    <p class="article-brief">Essential order types that protect your capital and lock in profits. Learn where to place them.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'stop-losses-take-profits' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3>Position Sizing: How Much to Risk Per Trade</h3>
+                    <p class="article-brief">Calculate optimal lot sizes based on account balance and risk percentage – the key to long‑term survival.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'position-sizing' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Risk-Reward Ratio: Setting Realistic Targets</h3>
+                    <p class="article-brief">Balance potential profit against risk to build a strategy that wins over time.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'risk-reward-ratio' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Common Psychological Traps in Forex</h3>
+                    <p class="article-brief">Overconfidence, revenge trading, and fear – identify and avoid these emotional pitfalls.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'psychological-traps' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 3 – PRACTICAL EXECUTION ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">3</span>
+                <span>Practical Execution · Take real trades (demo first)</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-laptop"></i></div>
+                    <h3>Setting Up Your First Demo Account</h3>
+                    <p class="article-brief">Step‑by‑step guide to opening a risk‑free demo account with MetaTrader or cTrader.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'setting-up-demo-account' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-hand-pointer"></i></div>
+                    <h3>Placing Your First Trades: Market Orders and Pending Orders</h3>
+                    <p class="article-brief">Learn the difference between market execution and limit/stop orders with practical examples.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'placing-first-trades' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Introduction to Technical Analysis: Support, Resistance & Trends</h3>
+                    <p class="article-brief">Understand basic chart patterns and how to identify entry/exit signals.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 11 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'intro-technical-analysis' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Keeping a Trading Journal: Track Your Progress</h3>
+                    <p class="article-brief">Why recording every trade is crucial and what to include for continuous improvement.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'trading-journal' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 4 – SKILL BUILDING ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">4</span>
+                <span>Skill Building · Become a confident trader</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-university"></i></div>
+                    <h3>Fundamental Analysis: Central Banks and Economic Data</h3>
+                    <p class="article-brief">How interest rates, GDP, and employment reports move currencies – and how to trade the news.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'fundamental-analysis-central-banks' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Developing a Simple Trading Strategy</h3>
+                    <p class="article-brief">Combine indicators and rules to create a repeatable plan (e.g., moving average crossover).</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'developing-trading-strategy' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-link"></i></div>
+                    <h3>Advanced Risk Management: Hedging and Correlations</h3>
+                    <p class="article-brief">Explore techniques to reduce risk using correlated pairs and hedging strategies.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'advanced-risk-management' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>From Demo to Live: When and How to Transition</h3>
+                    <p class="article-brief">Signs you’re ready for real money and steps to start small without blowing your account.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'forex', slug: 'demo-to-live' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- call to action – start journey / community -->
+        <div class="journey-cta animate">
+            <h2>Ready to master the forex market?</h2>
+            <p style="font-size: 1.2rem; color: #2d3748; margin-bottom: 10px;">Start with phase 1 – no risk, just clear steps and a demo account.</p>
+            <a href="{{ url('app_page_show', { journey: 'forex', slug: 'what-is-forex-trading' }) }}" class="cta-button"><i class="fas fa-road"></i> Begin the forex journey</a>
+            <p style="margin-top: 25px; color: #718096;"><i class="fas fa-users"></i> 12,000+ members started here</p>
+        </div>
+    </div>
+{% endblock %}

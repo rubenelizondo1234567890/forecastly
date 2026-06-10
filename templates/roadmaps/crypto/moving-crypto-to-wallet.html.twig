@@ -1,0 +1,170 @@
+{# templates/roadmaps/crypto/moving-crypto-to-wallet.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('crypto_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('crypto_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – crypto style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-right-left"></i>
+                </div>
+                <h1>Moving Crypto to <span>Your Own Wallet</span></h1>
+                <p class="hero-description">
+                    You bought crypto on an exchange – now it's time to take control. Learn how to withdraw your coins to a personal wallet, understand network fees, and avoid costly mistakes.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 10 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🔑 Why Move Your Crypto?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                When you leave crypto on an exchange, you don't truly own it – the exchange holds the private keys. If the exchange gets hacked, freezes withdrawals, or goes bankrupt, your funds are at risk. Moving your coins to a wallet where <strong>you control the private keys</strong> is the foundation of self‑custody.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                The process is called a <strong>withdrawal</strong>. You send crypto from the exchange to your wallet address. It’s simple but requires careful attention – one wrong address and your funds could be lost forever.
+            </p>
+        </section>
+
+        <!-- step‑by‑step guide -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">📤 How to Withdraw: Step by Step</h3>
+            <ol style="font-size: 1.1rem; padding-left: 20px;">
+                <li style="margin-bottom: 15px;"><strong>Get your wallet address</strong> – Open your wallet app, select the coin you want to receive, and tap “Receive”. Copy the long address (starts with 1, 3, bc1 for Bitcoin; 0x for Ethereum).</li>
+                <li style="margin-bottom: 15px;"><strong>On the exchange, go to Withdraw</strong> – Find the withdrawal section, select the same coin, and paste the address. Double‑check every character!</li>
+                <li style="margin-bottom: 15px;"><strong>Enter the amount</strong> – Consider leaving a small amount on the exchange for future trading if you wish. Be aware of minimum withdrawal limits.</li>
+                <li style="margin-bottom: 15px;"><strong>Review network fees</strong> – The exchange will show a network fee (e.g., miner fee, gas). This goes to the blockchain, not the exchange. You can sometimes choose slower/cheaper options.</li>
+                <li style="margin-bottom: 15px;"><strong>Confirm and wait</strong> – After confirmation, the transaction is broadcast. It may take minutes to hours depending on network congestion. You can track it with a block explorer.</li>
+            </ol>
+            <div style="background: #e6f7f2; padding: 20px; border-radius: 16px; margin-top: 20px;">
+                <p><i class="fas fa-lightbulb" style="color: var(--crypto-color); margin-right: 10px;"></i> <strong>Always send a small test transaction first!</strong> If you're moving a large amount, send a tiny amount (e.g., $5 worth) to verify the address works before sending the rest.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Withdrawal Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="withdrawal-simulator">
+            <h3><i class="fas fa-truck"></i> Withdrawal Simulator</h3>
+            <p>Practice withdrawing crypto without risking real funds. Select a coin, enter an amount, and see how the process works – including fees and confirmations.</p>
+
+            <div style="margin: 30px 0;">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600;">🪙 Select Coin:</label>
+                    <select id="withdrawCoinSelect" class="cat-input" style="width: 100%;">
+                        <option value="btc">Bitcoin (BTC) – network fee ~$2.50</option>
+                        <option value="eth">Ethereum (ETH) – network fee ~$1.80</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="withdrawAmount" style="display: block; font-weight: 600;">💵 Amount to withdraw (USD):</label>
+                    <input type="number" id="withdrawAmount" class="cat-input" min="10" max="10000" value="200" step="10" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="walletAddress" style="display: block; font-weight: 600;">📬 Destination Address (simulated):</label>
+                    <input type="text" id="walletAddress" class="cat-input" value="bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" style="width: 100%; font-family: monospace;">
+                    <p style="font-size: 0.9rem; color: var(--gray-color);">In reality, you would paste your actual wallet address here.</p>
+                </div>
+                <button id="simulateWithdrawBtn" class="btn-outline" style="width: 100%;">Simulate Withdrawal</button>
+            </div>
+
+            <div id="withdrawResult" style="background: #f0f4f8; border-radius: 16px; padding: 25px; min-height: 80px; border-left: 6px solid var(--crypto-color);">
+                <i class="fas fa-arrow-left"></i> Fill in the details and click "Simulate Withdrawal".
+            </div>
+            <p style="font-style: italic; color: var(--gray-color); margin-top: 20px;">💡 Network fees are estimates. Real fees vary with congestion.</p>
+        </div>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Moving Crypto to Your Wallet</h3>
+
+                <div class="quiz-question">1. Why is it risky to leave large amounts of crypto on an exchange?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Exchanges charge high storage fees</div>
+                    <div class="quiz-option" data-answer="correct">The exchange holds your private keys; if it gets hacked or freezes withdrawals, you could lose access</div>
+                    <div class="quiz-option" data-answer="wrong">Crypto prices are higher on exchanges</div>
+                    <div class="quiz-option" data-answer="wrong">Exchanges only allow withdrawals once a month</div>
+                </div>
+
+                <div class="quiz-question">2. What should you do before sending a large amount to a new wallet address?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Call the exchange support</div>
+                    <div class="quiz-option" data-answer="correct">Send a small test transaction first to verify the address works</div>
+                    <div class="quiz-option" data-answer="wrong">Wait for a weekend when fees are lower</div>
+                    <div class="quiz-option" data-answer="wrong">Nothing – just send it all</div>
+                </div>
+
+                <div class="quiz-question">3. What is the network fee (miner's fee) used for?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">It's a fee paid to the exchange</div>
+                    <div class="quiz-option" data-answer="correct">It compensates miners/validators for including your transaction in a block</div>
+                    <div class="quiz-option" data-answer="wrong">It's a tax to the government</div>
+                    <div class="quiz-option" data-answer="wrong">It's an optional tip</div>
+                </div>
+
+                <div class="quiz-question">4. What information do you need from your wallet to receive crypto?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">Your wallet password</div>
+                    <div class="quiz-option" data-answer="wrong">Your seed phrase</div>
+                    <div class="quiz-option" data-answer="correct">Your public wallet address (a long string of letters and numbers)</div>
+                    <div class="quiz-option" data-answer="wrong">The wallet's brand name</div>
+                </div>
+
+                <div class="quiz-question">5. If you send Bitcoin to an Ethereum address, what happens?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">It arrives but takes longer</div>
+                    <div class="quiz-option" data-answer="wrong">It is automatically converted</div>
+                    <div class="quiz-option" data-answer="correct">The transaction will likely fail, and you could lose your funds (wrong network)</div>
+                    <div class="quiz-option" data-answer="wrong">The exchange will reverse it</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 3 (practical execution) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue your practical journey</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'tracking-trades-taxes' }) }}" class="next-card">
+                    <i class="fas fa-receipt"></i>
+                    <h3>Tracking Your Trades for Taxes</h3>
+                    <p style="color: var(--gray-color);">Simple methods to record buys, sells, and swaps.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

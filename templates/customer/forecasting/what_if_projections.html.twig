@@ -1,0 +1,550 @@
+{# templates/customer/forecasting/what_if_projections.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}What-If Projections - Forecastly. Grow your Wealth.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_what_if_forecasting_css') }}
+    <style>
+        .what-if-container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .scenario-form-section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .scenario-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 0;
+        }
+
+        .scenario-description {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .transaction-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .transaction-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid;
+        }
+
+        .income-card {
+            border-left-color: var(--positive);
+        }
+
+        .expense-card {
+            border-left-color: var(--negative);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .add-item-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .add-item-btn:hover {
+            background: #0069d9;
+        }
+
+        .transaction-item {
+            background: white;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .remove-item-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: white;
+        }
+
+        .submit-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        .submit-btn:hover {
+            background: #0069d9;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .legend-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+        }
+
+        .legend-income {
+            background-color: var(--positive);
+        }
+
+        .legend-expense {
+            background-color: var(--negative);
+        }
+
+        .section-divider {
+            margin: 40px 0 20px;
+            border-top: 2px solid #eee;
+            position: relative;
+        }
+
+        .section-divider-text {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 15px;
+            color: #666;
+            font-weight: 500;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_what_if_forecasting_js') }}
+    <script>
+        // Prepare account data for JavaScript
+        const incomeAccounts = [
+            {% for account in incomeAccounts %}
+            { id: {{ account.id }}, name: "{{ account.name }}", type: "{{ account.budgetTrackingGroup.isIncomeOrExpense }}" }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        const expenseAccounts = [
+            {% for account in expenseAccounts %}
+            { id: {{ account.id }}, name: "{{ account.name }}", type: "{{ account.budgetTrackingGroup.isIncomeOrExpense }}" }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Counter for unique IDs
+            let recurringIncomeCounter = 0;
+            let recurringExpenseCounter = 0;
+            let nonRecurringIncomeCounter = 0;
+            let nonRecurringExpenseCounter = 0;
+
+            // Add recurring income item
+            document.getElementById('add-recurring-income-btn').addEventListener('click', function() {
+                addRecurringTransactionItem('income');
+            });
+
+            // Add recurring expense item
+            document.getElementById('add-recurring-expense-btn').addEventListener('click', function() {
+                addRecurringTransactionItem('expense');
+            });
+
+            // Add non-recurring income item
+            document.getElementById('add-non-recurring-income-btn').addEventListener('click', function() {
+                addNonRecurringTransactionItem('income');
+            });
+
+            // Add non-recurring expense item
+            document.getElementById('add-non-recurring-expense-btn').addEventListener('click', function() {
+                addNonRecurringTransactionItem('expense');
+            });
+
+            // Function to add a new recurring transaction item
+            function addRecurringTransactionItem(type) {
+                const container = document.getElementById(`recurring-${type}-items-container`);
+                const counter = type === 'income' ? recurringIncomeCounter++ : recurringExpenseCounter++;
+                const id = `recurring_${type}_${counter}`;
+
+                // Get appropriate accounts for this type
+                const accounts = type === 'income' ? incomeAccounts : expenseAccounts;
+
+                // Generate account options HTML
+                let accountOptions = '<option value="">Select Account</option>';
+                accounts.forEach(account => {
+                    accountOptions += `<option value="${account.id}">${account.name} -- ${account.type}</option>`;
+                });
+
+                const itemHTML = `
+                    <div class="transaction-item" id="${id}">
+                        <button type="button" class="remove-item-btn" onclick="removeItem('${id}')">&times;</button>
+                        <div class="form-row-3">
+                            <div class="form-group">
+                                <label for="${id}_name">Name</label>
+                                <input type="text" name="recurring_${type}[${counter}][name]" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="${id}_amount">Amount ($)</label>
+                                <input type="number" name="recurring_${type}[${counter}][amount]" class="form-control" step="0.01" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="${id}_account">Account</label>
+                                <select name="recurring_${type}[${counter}][account]" class="form-select" required>
+                                    ${accountOptions}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row-3">
+                            <div class="form-group">
+                                <label for="${id}_frequency">Frequency</label>
+                                <select name="recurring_${type}[${counter}][frequency]" class="form-select" required>
+                                    <option value="">Select Frequency</option>
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="biweekly">Bi-weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                    <option value="quarterly">Quarterly</option>
+                                    <option value="yearly">Yearly</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="${id}_start_date">Start Date</label>
+                                <input type="date" name="recurring_${type}[${counter}][start_date]" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="${id}_end_date">Cancel After Date (Optional)</label>
+                                <input type="date" name="recurring_${type}[${counter}][end_date]" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.insertAdjacentHTML('beforeend', itemHTML);
+
+                // Set today's date as default for date inputs
+                const today = new Date().toISOString().split('T')[0];
+                const startDateInput = document.getElementById(`${id}_start_date`);
+                if (startDateInput && !startDateInput.value) {
+                    startDateInput.value = today;
+                }
+
+                // Hide empty state if it's visible
+                const emptyState = container.querySelector('.empty-state');
+                if (emptyState) {
+                    emptyState.style.display = 'none';
+                }
+            }
+
+            // Function to add a new non-recurring transaction item
+            function addNonRecurringTransactionItem(type) {
+                const container = document.getElementById(`non-recurring-${type}-items-container`);
+                const counter = type === 'income' ? nonRecurringIncomeCounter++ : nonRecurringExpenseCounter++;
+                const id = `non_recurring_${type}_${counter}`;
+
+                // Get appropriate accounts for this type
+                const accounts = type === 'income' ? incomeAccounts : expenseAccounts;
+
+                // Generate account options HTML
+                let accountOptions = '<option value="">Select Account</option>';
+                accounts.forEach(account => {
+                    accountOptions += `<option value="${account.id}">${account.name} -- ${account.type}</option>`;
+                });
+
+                const itemHTML = `
+                    <div class="transaction-item" id="${id}">
+                        <button type="button" class="remove-item-btn" onclick="removeItem('${id}')">&times;</button>
+                        <div class="form-row-3">
+                            <div class="form-group">
+                                <label for="${id}_name">Name</label>
+                                <input type="text" name="non_recurring_${type}[${counter}][name]" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="${id}_amount">Amount ($)</label>
+                                <input type="number" name="non_recurring_${type}[${counter}][amount]" class="form-control" step="0.01" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="${id}_account">Account</label>
+                                <select name="non_recurring_${type}[${counter}][account]" class="form-select" required>
+                                    ${accountOptions}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="${id}_date">Date to Apply</label>
+                            <input type="date" name="non_recurring_${type}[${counter}][date_to_apply]" class="form-control" required>
+                        </div>
+                    </div>
+                `;
+
+                container.insertAdjacentHTML('beforeend', itemHTML);
+
+                // Set today's date as default for date inputs
+                const today = new Date().toISOString().split('T')[0];
+                const dateInput = document.getElementById(`${id}_date`);
+                if (dateInput && !dateInput.value) {
+                    dateInput.value = today;
+                }
+
+                // Hide empty state if it's visible
+                const emptyState = container.querySelector('.empty-state');
+                if (emptyState) {
+                    emptyState.style.display = 'none';
+                }
+            }
+
+            // Function to remove an item
+            window.removeItem = function(id) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.remove();
+
+                    // Check if container is empty and show empty state if needed
+                    const container = element.parentElement;
+                    if (container.children.length === 0 ||
+                        (container.children.length === 1 && container.querySelector('.empty-state'))) {
+                        const emptyState = document.createElement('div');
+                        emptyState.className = 'empty-state';
+
+                        // Determine the type based on container ID
+                        let typeText = '';
+                        if (container.id.includes('recurring-income')) typeText = 'recurring income';
+                        else if (container.id.includes('recurring-expense')) typeText = 'recurring expense';
+                        else if (container.id.includes('non-recurring-income')) typeText = 'non-recurring income';
+                        else if (container.id.includes('non-recurring-expense')) typeText = 'non-recurring expense';
+
+                        emptyState.textContent = `No ${typeText} items added yet`;
+                        container.appendChild(emptyState);
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="what-if-container">
+        <div class="header">
+            <div class="page-title">
+                <h1>What-If Projections</h1>
+                <p>Simulate different financial scenarios by adding hypothetical income and expenses</p>
+            </div>
+        </div>
+
+        <!-- Flash Messages -->
+        <div class="flash-messages">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i> {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <form action="{{ path('customer_forecasting_what_if_projections_page') }}" method="post">
+            <div class="scenario-form-section">
+                <div class="scenario-header">
+                    <div>
+                        <h2 class="scenario-title">Scenario Details</h2>
+                        <p class="scenario-description">Define your hypothetical financial scenario</p>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="scenario_name">Scenario Name</label>
+                        <input type="text" id="scenario_name" name="scenario_name" class="form-control" placeholder="e.g., Job Change, New Car Purchase" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="scenario_period">Projection Period (Years)</label>
+                        <select id="scenario_period" name="scenario_period" class="form-select" required>
+                            <option value="1">1 Year</option>
+                            <option value="3">3 Years</option>
+                            <option value="5" selected>5 Years</option>
+                            <option value="10">10 Years</option>
+                            <option value="15">15 Years</option>
+                            <option value="20">20 Years</option>
+                            <option value="30">30 Years</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Recurring Transactions</h2>
+            <div class="transaction-cards">
+                <div class="transaction-card income-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recurring Income Sources</h3>
+                        <button type="button" id="add-recurring-income-btn" class="add-item-btn">
+                            <i class="fas fa-plus"></i> Add Income
+                        </button>
+                    </div>
+                    <div id="recurring-income-items-container">
+                        <div class="empty-state">No recurring income items added yet</div>
+                    </div>
+                </div>
+
+                <div class="transaction-card expense-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recurring Expenses</h3>
+                        <button type="button" id="add-recurring-expense-btn" class="add-item-btn">
+                            <i class="fas fa-plus"></i> Add Expense
+                        </button>
+                    </div>
+                    <div id="recurring-expense-items-container">
+                        <div class="empty-state">No recurring expense items added yet</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider">
+                <span class="section-divider-text">Non-Recurring Transactions</span>
+            </div>
+
+            <div class="transaction-cards">
+                <div class="transaction-card income-card">
+                    <div class="card-header">
+                        <h3 class="card-title">One-Time Income Sources</h3>
+                        <button type="button" id="add-non-recurring-income-btn" class="add-item-btn">
+                            <i class="fas fa-plus"></i> Add Income
+                        </button>
+                    </div>
+                    <div id="non-recurring-income-items-container">
+                        <div class="empty-state">No one-time income items added yet</div>
+                    </div>
+                </div>
+
+                <div class="transaction-card expense-card">
+                    <div class="card-header">
+                        <h3 class="card-title">One-Time Expenses</h3>
+                        <button type="button" id="add-non-recurring-expense-btn" class="add-item-btn">
+                            <i class="fas fa-plus"></i> Add Expense
+                        </button>
+                    </div>
+                    <div id="non-recurring-expense-items-container">
+                        <div class="empty-state">No one-time expense items added yet</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend-container">
+                <div class="legend-item">
+                    <div class="legend-color legend-income"></div>
+                    <span>Income</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-expense"></div>
+                    <span>Expense</span>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Run Projection</button>
+        </form>
+    </div>
+{% endblock %}

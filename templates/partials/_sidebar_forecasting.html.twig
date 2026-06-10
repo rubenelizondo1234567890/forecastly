@@ -1,0 +1,46 @@
+{# templates/partials/_sidebar_forecasting.html.twig #}
+<div class="sidebar">
+    <div class="logo">
+        <i class="fas fa-chart-line"></i>
+        <span>Forecastly</span>
+    </div>
+    <ul class="menu">
+        <li>
+            <a href="{{ path('customer_dash') }}"
+               class="{% if app.request.attributes.get('_route') == 'customer_dash' %}active{% endif %}">
+                <i class="fas fa-home"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-landmark"></i> <span>Accounts Forecasting</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-money-bill-wave"></i> <span>Income - Expense Forecasting</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-chart-pie"></i> <span>Assets Forecasting</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-crown"></i> <span>Wealth Forecasting</span>
+            </a>
+        </li>
+    </ul>
+    <div class="user-section">
+        <div class="user-info">
+            <div class="user-avatar">{{ app.user.firstName|first|upper }}{{ app.user.lastName|first|upper }}</div>
+            <div class="user-details">
+                <div class="user-name">{{ app.user.firstName }} {{ app.user.lastName }}</div>
+                <div class="user-role">{{ app.user.customersAccount.subscriptionPlan.planName|capitalize }} Member</div>
+            </div>
+        </div>
+        <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button>
+        <br/><p style="font-size: smaller;">&copy; 2025 Meridian Wealth Technologies, LLC.</p>
+    </div>
+</div>

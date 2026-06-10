@@ -1,0 +1,235 @@
+{# templates/roadmaps/real-state/brrrr-method.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('real_state_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('real_state_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Article Hero -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #2f2a24 0%, #5e4b3f 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--real-estate-color);">
+                    <i class="fas fa-arrows-rotate"></i>
+                </div>
+                <h1>BRRRR Method <span>Buy, Rehab, Rent, Refinance, Repeat</span></h1>
+                <p class="hero-description">
+                    A powerful strategy to recycle your capital and grow a portfolio faster. We explain each step and show you a real‑world example.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(225,112,85,0.2); color: #f7b9a9;">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 11 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="animate">
+            <h2 class="section-title">🔄 The BRRRR Strategy Explained</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                BRRRR stands for <strong>Buy, Rehab, Rent, Refinance, Repeat</strong>. It's a method to acquire rental properties with little of your own money permanently tied up.
+                You buy a distressed property, fix it up, rent it out, then refinance based on the new value to pull your cash out – and do it again.
+            </p>
+        </section>
+
+        <!-- The 5 Steps Grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-hand-holding-usd"></i> 1. Buy</h4>
+                <p>Find a property below market value – often a fixer‑upper. Use cash, hard money, or a creative financing to acquire it quickly.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-tools"></i> 2. Rehab</h4>
+                <p>Renovate to increase the property's value. Focus on cost‑effective improvements that boost rent and appraisal.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-key"></i> 3. Rent</h4>
+                <p>Place a tenant to generate rental income. The property should now cash flow at market rents.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-hand-holding-dollar"></i> 4. Refinance</h4>
+                <p>Get a new mortgage based on the after‑repair value (ARV). Pull out cash to repay your initial investment (and possibly more).</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-repeat"></i> 5. Repeat</h4>
+                <p>Use the recycled cash to buy your next property. Build a portfolio with the same capital.</p>
+            </div>
+        </div>
+
+        <!-- Deeper Dive Card -->
+        <div class="card animate">
+            <h3><i class="fas fa-chart-pie"></i> Why BRRRR Works</h3>
+            <p>The magic is in the refinance. If you buy at $100k, put $30k into rehab, and the ARV is $180k, you can often refinance at 75% LTV ($135k). That pays off your original loan and rehab costs, leaving you with little to no money left in the deal – plus a cash‑flowing property.</p>
+            <p style="background: var(--light-gray); padding: 15px; border-radius: 12px;">
+                <strong>Example:</strong> Purchase $100k (20% down = $20k), rehab $30k, ARV $180k. Refinance at 75% = $135k. Pay off original loan ($80k) + recoup rehab ($30k) = $110k, leaving $25k cash out. You get all your $50k back + $25k extra, and still own the property! (Numbers simplified; actual closing costs apply.)
+            </p>
+        </div>
+
+        <!-- Interactive Tool: BRRRR Calculator (disabled for non-logged-in) -->
+        <div class="card animate" id="brrrr-calculator">
+            <h3><i class="fas fa-calculator"></i> Interactive: BRRRR Deal Analyzer</h3>
+            <p>Enter your numbers to see if a BRRRR deal works and how much cash you can recycle.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1 1 200px;">
+                    <label>Purchase Price ($) <span id="purchaseVal">100000</span></label>
+                    <input type="range" id="purchasePrice" min="30000" max="500000" value="100000" step="1000" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Rehab Costs ($) <span id="rehabVal">30000</span></label>
+                    <input type="range" id="rehabCosts" min="0" max="200000" value="30000" step="1000" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>ARV (After‑Repair Value) ($) <span id="arvVal">180000</span></label>
+                    <input type="range" id="arv" min="50000" max="700000" value="180000" step="1000" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Purchase Down Payment (%) <span id="downValBrrrr">20</span></label>
+                    <input type="range" id="downBrrrr" min="5" max="40" value="20" step="1" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Purchase Interest Rate (%) <span id="purchaseRateVal">8</span></label>
+                    <input type="range" id="purchaseRate" min="4" max="15" value="8" step="0.25" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Refinance LTV (%) <span id="ltvVal">75</span></label>
+                    <input type="range" id="ltv" min="60" max="80" value="75" step="1" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Refinance Interest Rate (%) <span id="refiRateVal">6.5</span></label>
+                    <input type="range" id="refiRate" min="3" max="10" value="6.5" step="0.125" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Refinance Term (years) </label>
+                    <select id="refiTerm" class="cat-input" style="width:100%;">
+                        <option value="15">15 years</option>
+                        <option value="30" selected>30 years</option>
+                    </select>
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Monthly Rent ($) <span id="rentValBrrrr">1500</span></label>
+                    <input type="range" id="rentBrrrr" min="500" max="5000" value="1500" step="50" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Operating Expenses (% of rent) <span id="opExVal">50</span></label>
+                    <input type="range" id="opExPercent" min="30" max="70" value="50" step="1" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 200px;">
+                    <label>Closing Costs (purchase + refi) (%) <span id="closingVal">3</span></label>
+                    <input type="range" id="closingPercent" min="1" max="6" value="3" step="0.5" class="cat-input" style="width:100%;">
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="calcBrrrr" class="btn-outline">Analyze BRRRR Deal</button>
+            </div>
+
+            <div id="brrrrResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                <p>Adjust the values and click the button.</p>
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px;">
+                <i class="fas fa-lightbulb"></i> This calculator estimates the outcome of a BRRRR deal. Actual results depend on many factors including appraisal, lender requirements, and market conditions. Always run numbers with a professional.
+            </p>
+        </div>
+
+        <!-- Quiz Section -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'brrrr-method', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #e17055; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background: #2f2a24;">
+                <h3 style="color:white; margin-top: 0;">📝 Test Your Knowledge: BRRRR Method</h3>
+
+                <div class="quiz-question">1. What does the first "R" in BRRRR stand for?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">Return</div>
+                    <div class="quiz-option" data-answer="correct">Rehab</div>
+                    <div class="quiz-option" data-answer="wrong">Rent</div>
+                    <div class="quiz-option" data-answer="wrong">Refinance</div>
+                </div>
+
+                <div class="quiz-question">2. In the BRRRR method, what does the refinance step accomplish?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Lower the interest rate</div>
+                    <div class="quiz-option" data-answer="correct">Pull cash out based on the increased value</div>
+                    <div class="quiz-option" data-answer="wrong">Extend the loan term</div>
+                    <div class="quiz-option" data-answer="wrong">Remove PMI</div>
+                </div>
+
+                <div class="quiz-question">3. ARV stands for:</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Annual Rental Value</div>
+                    <div class="quiz-option" data-answer="wrong">Adjusted Return Value</div>
+                    <div class="quiz-option" data-answer="correct">After‑Repair Value</div>
+                    <div class="quiz-option" data-answer="wrong">Appraised Rental Value</div>
+                </div>
+
+                <div class="quiz-question">4. Why is the BRRRR method attractive for building a portfolio?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">It requires no money down</div>
+                    <div class="quiz-option" data-answer="correct">It allows you to recycle your capital into new deals</div>
+                    <div class="quiz-option" data-answer="wrong">It avoids all risks</div>
+                    <div class="quiz-option" data-answer="wrong">It guarantees appreciation</div>
+                </div>
+
+                <div class="quiz-question">5. A typical LTV for a cash‑out refinance on an investment property might be:</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">90%</div>
+                    <div class="quiz-option" data-answer="wrong">85%</div>
+                    <div class="quiz-option" data-answer="correct">75%</div>
+                    <div class="quiz-option" data-answer="wrong">50%</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--real-estate-color);">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- Next Steps in Phase 4 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 4: Skill Building</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'house-hacking' }) }}" class="next-card">
+                    <i class="fas fa-people-roof"></i>
+                    <h3>House Hacking</h3>
+                    <p>Live for free and build wealth.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'syndications-crowdfunding' }) }}" class="next-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Real Estate Syndications</h3>
+                    <p>Pool money to buy larger properties.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'real-state', slug: 'scaling-real-estate-portfolio' }) }}" class="next-card">
+                    <i class="fas fa-chart-gantt"></i>
+                    <h3>Scaling Your Portfolio</h3>
+                    <p>Grow without burning out.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

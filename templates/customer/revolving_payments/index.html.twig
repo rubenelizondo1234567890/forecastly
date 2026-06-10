@@ -1,0 +1,49 @@
+{# templates/customer/revolving_payments/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Debt Management - Forecastly{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_revolving_payments_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_revolving_payments_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <div class="page-title">
+            <h1>Generate Accounts Pay off Monthly Payments</h1>
+            <p>Add and manage monthly payments for paying off debt.</p>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="revolving-payments-container">
+        <!-- Add/Edit Revolving Payments  Form -->
+        {% include 'customer/revolving_payments/_form.html.twig' with {
+            'form': form
+        } %}
+
+        <!--  Revolving Payments List -->
+        {% include 'customer/revolving_payments/_list.html.twig' with {
+            'revolvingPayments': revolvingPayments
+        } %}
+    </div>
+{% endblock %}

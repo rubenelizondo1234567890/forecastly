@@ -1,0 +1,214 @@
+{# templates/roadmaps/forex/risk-reward-ratio.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('forex_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('forex_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – forex style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h1>Risk-Reward Ratio: <span>Setting Realistic Targets</span></h1>
+                <p class="hero-description">
+                    A positive risk‑reward ratio is the secret to long‑term profitability. Learn how to calculate it,
+                    what ratios make sense, and how to combine it with your win rate.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 2: Risk Management · 7 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">📊 What is Risk‑Reward Ratio?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                The <strong>risk‑reward ratio (R:R)</strong> compares the potential loss of a trade to its potential gain.
+                If you risk 20 pips to make 40 pips, your ratio is 1:2 (you stand to gain twice what you risk).
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                A good R:R doesn’t guarantee profits – you still need a decent win rate – but it ensures that you can
+                be wrong more often than right and still come out ahead. This article shows you how to set realistic targets
+                and why the ratio matters more than the direction of a single trade.
+            </p>
+        </section>
+
+        <!-- key concepts grid -->
+        <div class="rule-grid animate">
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-divide"></i> R:R Formula</h3>
+                <div class="percentage" style="font-size: 1.4rem;">Reward ÷ Risk</div>
+                <p>If risk = 20 pips and reward = 40 pips, R:R = 40/20 = 2 (written as 1:2).</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-check-double"></i> Common Ratios</h3>
+                <div class="percentage" style="font-size: 1.4rem;">1:1.5 to 1:3</div>
+                <p>Most professionals aim for at least 1:2. Scalpers may use 1:1, but need a very high win rate.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-chart-line"></i> Win Rate Connection</h3>
+                <div class="percentage" style="font-size: 1.4rem;">Break‑even formula</div>
+                <p>Break‑even win rate = 1 / (1 + R:R). For 1:2, you need only 33.3% wins to break even.</p>
+            </div>
+            <div class="rule-item" style="border-top-color: var(--forex-color);">
+                <h3><i class="fas fa-bullseye"></i> Setting Targets</h3>
+                <div class="percentage" style="font-size: 1.4rem;">Based on structure</div>
+                <p>Don’t pick random ratios. Use support/resistance, Fibonacci, or ATR to set realistic take‑profit levels.</p>
+            </div>
+        </div>
+
+        <!-- deeper dive with formula -->
+        <div class="card animate">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🧮 The Math of Long‑Term Profitability</h3>
+            <p style="margin-bottom: 20px;">
+                Your overall profitability depends on both your win rate and your average risk‑reward ratio.
+                The formula for expected value per trade:
+            </p>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <p style="font-size: 1.4rem; text-align: center; font-weight: 700;">
+                    Expectancy = (Win% × Avg Win) – (Loss% × Avg Loss)
+                </p>
+                <p style="margin-top: 15px;"><strong>Example:</strong> You win 40% of trades, with an average R:R of 1:2. Assume risk = 1 unit, reward = 2 units.</p>
+                <p>Expectancy = (0.4 × 2) – (0.6 × 1) = 0.8 – 0.6 = +0.2 units per trade. Positive!</p>
+                <p class="pro-tip" style="margin-top: 15px; background-color: #eef2ff; border-left-color: #3182ce;"><i class="fas fa-lightbulb"></i> Even with a 40% win rate, you’re profitable because your wins are twice as large as your losses.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Risk‑Reward Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="rr-simulator">
+            <h3><i class="fas fa-sliders-h"></i> Risk‑Reward Simulator</h3>
+            <p>Adjust the sliders to see how risk and reward affect your required win rate.</p>
+            <div style="margin: 25px 0;">
+                <div style="margin-bottom: 20px;">
+                    <label for="riskPips" style="display: block; margin-bottom: 8px; font-weight: 600;">Risk (pips): <span id="riskValue">20</span></label>
+                    <input type="range" id="riskPips" min="5" max="100" value="20" step="1" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="rewardPips" style="display: block; margin-bottom: 8px; font-weight: 600;">Reward (pips): <span id="rewardValue">40</span></label>
+                    <input type="range" id="rewardPips" min="5" max="200" value="40" step="1" style="width: 100%;">
+                </div>
+                <button id="rrCalcBtn" class="btn-outline" style="padding: 12px 30px;">Calculate</button>
+            </div>
+            <div id="rrResult" style="margin-top: 25px; padding: 15px; background: var(--light-color); border-radius: 12px; font-size: 1.2rem; text-align: center;">
+                Adjust sliders and click calculate.
+            </div>
+        </div>
+
+        <!-- example trade box -->
+        <div class="highlight-box animate">
+            <h3><i class="fas fa-bolt"></i> Example – USD/JPY Trade</h3>
+            <p>You identify a support level at 148.00 and resistance at 149.00. You enter at 148.20, stop loss at 147.90 (30 pips), take profit at 149.10 (90 pips). Your R:R is 90/30 = 3 (1:3). You risk $300 on a standard lot to make $900.</p>
+            <p>If your win rate is just 30%, expectancy = (0.3×3) – (0.7×1) = 0.9 – 0.7 = +0.2 units. Still profitable!</p>
+        </div>
+
+        <!-- pro tip: chasing high ratios -->
+        <div class="pro-tip animate" style="background-color: #fff5f0; border-left-color: #ff6b35;">
+            <h4 style="margin-top: 0;"><i class="fas fa-exclamation-triangle" style="color:#ff6b35;"></i> The High‑Ratio Trap</h4>
+            <p>It’s tempting to aim for 1:5 or 1:10, but such trades rarely hit. If your take profit is too far away, your win rate plummets. <strong>Find a balance – a realistic 1:2 with a 50% win rate is better than a 1:5 that wins only 10% of the time.</strong></p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            {# Logged in user – quiz already taken #}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Show quiz (interactivity blocked by JS if not logged in) #}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Risk‑Reward Ratio</h3>
+
+                <div class="quiz-question">1. If you risk 20 pips to make 60 pips, what is your risk‑reward ratio?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">1:1</div>
+                    <div class="quiz-option" data-answer="wrong">1:2</div>
+                    <div class="quiz-option" data-answer="correct">1:3</div>
+                    <div class="quiz-option" data-answer="wrong">3:1</div>
+                </div>
+
+                <div class="quiz-question">2. What win rate do you need to break even with a 1:2 risk‑reward ratio?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">50%</div>
+                    <div class="quiz-option" data-answer="correct">33.3%</div>
+                    <div class="quiz-option" data-answer="wrong">66.7%</div>
+                    <div class="quiz-option" data-answer="wrong">25%</div>
+                </div>
+
+                <div class="quiz-question">3. Which of the following statements is TRUE?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">A higher R:R always means higher profits</div>
+                    <div class="quiz-option" data-answer="correct">R:R must be balanced with win rate</div>
+                    <div class="quiz-option" data-answer="wrong">You should aim for at least 1:5 on every trade</div>
+                    <div class="quiz-option" data-answer="wrong">Stop loss size doesn’t affect R:R</div>
+                </div>
+
+                <div class="quiz-question">4. If your win rate is 40% and your average R:R is 1:2, what is your expectancy per trade (risk = 1 unit)?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">-0.2 units</div>
+                    <div class="quiz-option" data-answer="correct">+0.2 units</div>
+                    <div class="quiz-option" data-answer="wrong">+0.4 units</div>
+                    <div class="quiz-option" data-answer="wrong">-0.4 units</div>
+                </div>
+
+                <div class="quiz-question">5. Why is it dangerous to set a take profit too far away?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">It increases your risk</div>
+                    <div class="quiz-option" data-answer="correct">It lowers your win rate, possibly making the strategy unprofitable</div>
+                    <div class="quiz-option" data-answer="wrong">It requires a wider stop loss</div>
+                    <div class="quiz-option" data-answer="wrong">It violates broker regulations</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 2 (risk management) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue mastering risk</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'stop-losses-take-profits' }) }}" class="next-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Stop Losses & Take Profits</h3>
+                    <p style="color: var(--gray-color);">Master the essential orders that protect your capital.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'position-sizing' }) }}" class="next-card">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Position Sizing</h3>
+                    <p style="color: var(--gray-color);">Learn how much to risk per trade.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'forex', slug: 'psychological-traps' }) }}" class="next-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Common Psychological Traps</h3>
+                    <p style="color: var(--gray-color);">Avoid emotional mistakes that ruin accounts.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

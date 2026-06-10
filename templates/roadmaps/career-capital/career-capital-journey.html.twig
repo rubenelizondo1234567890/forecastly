@@ -1,0 +1,231 @@
+{# templates/roadmaps/career-capital/career-capital-journey.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('career_capital_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('career_capital_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- hero section (career capital) -->
+        <div class="journey-hero animate">
+            <div class="hero-content">
+                <div class="journey-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h1>Career Capital <span>& High-Income Skills</span></h1>
+                <p class="hero-description">
+                    Increase your earning potential strategically — from identifying skills to negotiating offers.
+                    A four‑phase roadmap designed for ambitious beginners.
+                </p>
+            </div>
+        </div>
+
+        <!-- intro: how our roadmaps work -->
+        <div style="text-align: center; margin: 40px 0 20px;" class="animate">
+            <h2 class="section-title">🧭 Your 4‑phase roadmap</h2>
+            <p class="section-subtitle">
+                Each phase follows the <strong>Foundation → Risk → Execution → Skill Building</strong> structure.
+                Move through the articles in order or jump to what you need most.
+            </p>
+        </div>
+
+        <!-- ===== PHASE 1 – FOUNDATION FIRST ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">1</span>
+                <span>Foundation First · Identify & understand career capital</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-dharmachakra"></i></div>
+                    <h3>What is Career Capital? (Skills, Network, Reputation)</h3>
+                    <p class="article-brief">Define the three pillars of career capital and why they matter more than your current job title. Start building your inventory.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'what-is-career-capital' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-network"></i></div>
+                    <h3>High‑Income Skills: Which Ones Actually Pay?</h3>
+                    <p class="article-brief">Data‑driven overview of skills with the highest ROI: sales, copywriting, coding, AI prompting, and more. Find your fit.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 11 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'high-income-skills' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-smile"></i></div>
+                    <h3>Self‑Assessment: Discover Your Natural Advantages</h3>
+                    <p class="article-brief">Worksheets and prompts to uncover your strengths, interests, and the skills you can build fastest — so you don’t fight your nature.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'self-assessment' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Growth Mindset for Career Builders</h3>
+                    <p class="article-brief">How to cultivate resilience, embrace feedback, and turn setbacks into skill‑building fuel. Essential before you start.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'growth-mindset' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 2 – RISK MANAGEMENT ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">2</span>
+                <span>Risk Management · Protect & diversify your career</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-shield-virus"></i></div>
+                    <h3>Job Security in a Volatile Economy</h3>
+                    <p class="article-brief">Future‑proof your role by identifying which skills keep you relevant and how to monitor industry shifts without panic.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'job-security-volatile-economy' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Protecting Your Reputation & Personal Brand</h3>
+                    <p class="article-brief">Simple habits to maintain a positive digital footprint, handle disagreements professionally, and build trust.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'protecting-your-reputation-and-personal-brand' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3>Avoid Burnout While Upskilling</h3>
+                    <p class="article-brief">Set sustainable learning boundaries, avoid “hustle culture” traps, and maintain energy for the long haul.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'avoid-burnout' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-random"></i></div>
+                    <h3>Diversify Your Income: Side Hustle Fundamentals</h3>
+                    <p class="article-brief">How to test a side business without quitting your day job, and the legal/tax basics you need to know.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'diversify-income' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 3 – PRACTICAL EXECUTION ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">3</span>
+                <span>Practical Execution · Take real‑world action</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h3>How to Negotiate a Raise or Job Offer (Scripts)</h3>
+                    <p class="article-brief">Word‑for‑word scripts and counter‑offer tactics that actually work — based on real recruiter insights.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'negotiation-scripts' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fab fa-linkedin"></i></div>
+                    <h3>LinkedIn & Portfolio That Attract Recruiters</h3>
+                    <p class="article-brief">Optimize your profile with keywords, create a simple portfolio site, and share content that showcases your skills.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 11 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'linkedin-portfolio' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-store"></i></div>
+                    <h3>Side Hustle Launch: First 30 Days Plan</h3>
+                    <p class="article-brief">From idea validation to first paying customer — a week‑by‑week checklist for freelancers and creators.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'side-hustle-launch' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Informational Interviews & Smart Networking</h3>
+                    <p class="article-brief">How to reach out to strangers, ask great questions, and build relationships that open doors — without being awkward.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'informational-interviews' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PHASE 4 – SKILL BUILDING ===== -->
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">4</span>
+                <span>Skill Building · Go deeper & compound your value</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-crown"></i></div>
+                    <h3>Master One High‑Income Skill Deeply</h3>
+                    <p class="article-brief">Project‑based learning framework to move from intermediate to expert — choose a specialisation and build a standout portfolio.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 13 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'master-one-skill' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Leverage AI & Automation to 10x Your Output</h3>
+                    <p class="article-brief">Practical ways to use AI tools for research, writing, coding, and admin — saving hours while increasing quality.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'leverage-ai-automation' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Build a Personal Website / Thought Leadership</h3>
+                    <p class="article-brief">Step‑by‑step guide to creating a simple site, writing articles or making content that positions you as an authority.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 11 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'personal-website' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Certifications vs. Experience: What Moves the Needle?</h3>
+                    <p class="article-brief">Evaluate which credentials actually boost income in your field, and how to signal competence without wasting money.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'certifications-vs-experience' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- call to action -->
+        <div class="journey-cta animate">
+            <h2>Ready to invest in your most valuable asset?</h2>
+            <p style="font-size: 1.2rem; color: #2d3748; margin-bottom: 10px;">Start with phase 1 – no credit card, just clear steps.</p>
+            <a href="{{ url('app_page_show', { journey: 'career-capital', slug: 'what-is-career-capital' }) }}" class="cta-button"><i class="fas fa-road"></i> Begin the journey now</a>
+            <p style="margin-top: 25px; color: #718096;"><i class="fas fa-users"></i> 15,000+ members started here</p>
+        </div>
+    </div>
+{% endblock %}

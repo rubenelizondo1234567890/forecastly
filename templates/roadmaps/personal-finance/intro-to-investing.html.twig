@@ -1,0 +1,195 @@
+{# templates/roadmaps/personal-finance/intro-to-investing.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="article-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h1>Introduction to Investing: <span>From Savings to Stocks</span></h1>
+                <p class="hero-description">
+                    You’ve mastered saving — now learn how to put your money to work. This guide walks you through the first steps of investing, with zero jargon.
+                </p>
+                <span class="read-time"><i class="far fa-clock"></i> 12 min read · Skill building</span>
+            </div>
+        </div>
+
+        <!-- main article content -->
+        <article class="article-body animate">
+            <h2>Why move from savings to investing?</h2>
+            <p>Keeping all your money in a savings account feels safe, but inflation silently eats away your purchasing power. Investing allows your money to grow and outpace inflation over time. The shift from <strong>saver</strong> to <strong>investor</strong> is the moment you start building long-term wealth.</p>
+
+            <div class="highlight-box">
+                <p><i class="fas fa-lightbulb"></i> <strong>The magic ingredient: compound interest.</strong> Albert Einstein reportedly called it the “eighth wonder of the world.” When you invest, you earn returns not only on your original money but also on the returns you’ve already earned. The earlier you start, the more powerful it becomes.</p>
+            </div>
+
+            <h2>Key concepts every beginner must know</h2>
+            <h3>📉 Risk vs. return</h3>
+            <p>Higher potential returns usually come with higher risk. Stocks have historically returned ~7-9% per year after inflation, but they can drop 30% in a bad year. Savings accounts are safe but earn ~0.5-1%. You’ll need to find your comfort zone.</p>
+
+            <h3>🧺 Diversification</h3>
+            <p>Don’t put all your eggs in one basket. By owning a mix of different investments (stocks, bonds, real estate), you reduce the impact of any single one falling. Index funds make this easy — more on that later.</p>
+
+            <div class="tip-box">
+                <div class="tip-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <div class="tip-content">
+                    <h4>Beginner tip: start with what you understand</h4>
+                    <p>Never invest in something you can’t explain in one sentence. If it sounds too complex, it’s probably too risky for a starter.</p>
+                </div>
+            </div>
+
+            <h2>Types of investments (the building blocks)</h2>
+            <table class="comparison-table">
+                <thead>
+                <tr><th>Investment</th><th>What it is</th><th>Risk level</th><th>Typical return</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Stocks (equities)</td><td>Ownership in a company</td><td>Medium-high</td><td>7-10% p.a.</td></tr>
+                <tr><td>Bonds</td><td>Loans to governments or corporations</td><td>Low-medium</td><td>2-5% p.a.</td></tr>
+                <tr><td>ETFs / Index funds</td><td>Basket of stocks/bonds that track an index (like S&P 500)</td><td>Medium (diversified)</td><td>~ market return</td></tr>
+                <tr><td>Real estate (REITs)</td><td>Own property through shares</td><td>Medium</td><td>4-8% p.a.</td></tr>
+                </tbody>
+            </table>
+            <p>As a beginner, your best friend is likely a <strong>low‑cost index fund</strong> that tracks the whole stock market. It’s instant diversification.</p>
+
+            <h2>How to start investing — step by step</h2>
+            <ol>
+                <li><strong>Build your emergency fund first.</strong> Save 3-6 months of expenses in a high‑yield savings account. This ensures you won’t have to sell investments prematurely.</li>
+                <li><strong>Pay off high‑interest debt.</strong> Credit card debt (15-25% interest) is an emergency — kill it before investing.</li>
+                <li><strong>Open a brokerage account.</strong> Choose a reputable, low‑fee provider like Vanguard, Fidelity, Schwab, or a beginner‑friendly app (Robinhood, Wealthsimple).</li>
+                <li><strong>Decide your “why” and time horizon.</strong> Money for retirement (20+ years) can handle more stocks; money for a house in 3 years should be safer (bonds, CDs).</li>
+                <li><strong>Pick your first investment.</strong> Start with a broad market index fund (e.g., VOO, VTI, or a target‑date fund). Set up automatic monthly contributions — even $50 is a start.</li>
+                <li><strong>Ignore the noise.</strong> Don’t check your portfolio every day. Investing is a marathon, not a sprint.</li>
+            </ol>
+
+            <div class="highlight-box">
+                <p><i class="fas fa-rocket"></i> <strong>Action step today:</strong> If you already have a savings buffer, open a brokerage account and buy $10 of an S&P 500 ETF. The goal is not the amount, but to experience the process.</p>
+            </div>
+
+            <h2>Common beginner mistakes to avoid</h2>
+            <ul>
+                <li><strong>Trying to time the market:</strong> “I’ll wait until prices drop” usually means missing the best days. <em>Time in the market beats timing the market.</em></li>
+                <li><strong>Investing in individual stocks you don’t understand:</strong> That hot tip from a friend? Probably already priced in.</li>
+                <li><strong>Checking prices obsessively:</strong> It triggers emotional decisions. Set automatic investing and review once a quarter.</li>
+                <li><strong>Forgetting fees:</strong> A 1% fee might not sound like much, but over 30 years it eats ~25% of your potential returns. Stick to low‑cost index funds.</li>
+            </ul>
+
+            <h2>Your first investment: why index funds win</h2>
+            <p>Imagine buying a tiny slice of the 500 largest US companies. That’s what an S&P 500 index fund does. You instantly own Apple, Microsoft, Amazon, and 497 others. No need to pick winners — you get the average return of the whole market, which has historically gone up over the long term.</p>
+            <p>Warren Buffett famously said that a low‑cost index fund is the best investment most people can make. We agree.</p>
+
+            <div class="callout">
+                <p>📊 <strong>Hypothetical example:</strong> If you invest $200/month in an S&P 500 fund averaging 8% annually, after 25 years you’d have over <strong>$175,000</strong> (vs. $60,000 if you just saved). That’s compound interest at work.</p>
+            </div>
+
+            <h2>Next steps on your journey</h2>
+            <p>You’ve just learned the fundamentals. Now it’s time to go deeper:</p>
+            <ul>
+                <li><a href="#">Tax‑Advantaged Accounts: 401(k), IRA, HSA</a> (next article in this phase)</li>
+                <li><a href="#">Goal Setting: Short, Medium & Long‑Term</a></li>
+                <li><a href="#">Mindset Shift: Building Wealth Habits That Stick</a></li>
+            </ul>
+            <p>Remember: the hardest part is starting. You’ve already taken that step by reading this guide.</p>
+
+            <!-- Quick quiz -->
+            {% if app.user and quiz %}
+                {# Logged in user #}
+                {# Quiz already taken – show summary and retake button #}
+                <div class="quiz-container animate">
+                    <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                    <p style="color: #e2e8f0; font-size: 1.2rem;">
+                        Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                    </p>
+                    <p style="color: #cbd5e0;">
+                        You can retake the quiz to improve your score. Click the button below to reset it.
+                    </p>
+                    <div class="quiz-actions">
+                        <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                           class="btn"
+                           style="background-color: #ff6b35; color: white; text-decoration: none;">
+                            Retake Quiz
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+                <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                    <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your investing knowledge</h3>
+                    <div class="quiz-question">1. What is compound interest?</div>
+                    <div class="quiz-options" data-question="1">
+                        <div class="quiz-option" data-answer="wrong">Interest earned only on principal</div>
+                        <div class="quiz-option" data-answer="correct">Interest earned on principal and accumulated interest</div>
+                        <div class="quiz-option" data-answer="wrong">A type of bond</div>
+                        <div class="quiz-option" data-answer="wrong">A fee</div>
+                    </div>
+                    <div class="quiz-question">2. Which investment is best for beginners seeking diversification?</div>
+                    <div class="quiz-options" data-question="2">
+                        <div class="quiz-option" data-answer="wrong">Individual stocks</div>
+                        <div class="quiz-option" data-answer="correct">Index funds</div>
+                        <div class="quiz-option" data-answer="wrong">Real estate</div>
+                        <div class="quiz-option" data-answer="wrong">Commodities</div>
+                    </div>
+                    <div class="quiz-question">3. What should you do before you start investing?</div>
+                    <div class="quiz-options" data-question="3">
+                        <div class="quiz-option" data-answer="wrong">Build an emergency fund</div>
+                        <div class="quiz-option" data-answer="wrong">Pay off high‑interest debt</div>
+                        <div class="quiz-option" data-answer="wrong">Open a brokerage account</div>
+                        <div class="quiz-option" data-answer="correct">All of the above</div>
+                    </div>
+                    <div class="quiz-question">4. Historically, the stock market has returned about what per year after inflation?</div>
+                    <div class="quiz-options" data-question="4">
+                        <div class="quiz-option" data-answer="wrong">1–3%</div>
+                        <div class="quiz-option" data-answer="wrong">4–5%</div>
+                        <div class="quiz-option" data-answer="correct">7–9%</div>
+                        <div class="quiz-option" data-answer="wrong">10–12%</div>
+                    </div>
+                    <div class="quiz-question">5. What is a common beginner mistake?</div>
+                    <div class="quiz-options" data-question="5">
+                        <div class="quiz-option" data-answer="correct">Trying to time the market</div>
+                        <div class="quiz-option" data-answer="wrong">Investing in index funds</div>
+                        <div class="quiz-option" data-answer="wrong">Automating contributions</div>
+                        <div class="quiz-option" data-answer="wrong">Diversifying</div>
+                    </div>
+                    <div class="quiz-feedback">👉 Click any answer to check yourself.</div>
+                </div>
+            {% endif %}
+
+        </article>
+
+
+        <!-- Next steps: continue Phase 4 -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">Continue your Skill Building phase</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'tax-advantaged-accounts' }) }}" class="next-card">
+                    <i class="fas fa-landmark" style="color: var(--personal-color);"></i>
+                    <h3>Tax‑Advantaged Accounts</h3>
+                    <p style="color: var(--gray-color);">Understand retirement and health accounts to maximise tax benefits. Demystify Roth vs. traditional.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'goal-setting-short-medium-long-term' }) }}" class="next-card">
+                    <i class="fas fa-bullseye" style="color: var(--personal-color);"></i>
+                    <h3>Goal Setting</h3>
+                    <p style="color: var(--gray-color);">Framework to define and prioritise financial goals – from a vacation to buying a home to early retirement.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'personal-finance', slug: 'mindset-shifting-building-wealth-habits' }) }}" class="next-card">
+                    <i class="fas fa-brain" style="color: var(--personal-color);"></i>
+                    <h3>Mindset Shift</h3>
+                    <p style="color: var(--gray-color);">Psychological strategies to maintain discipline, avoid lifestyle inflation, and keep growing.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

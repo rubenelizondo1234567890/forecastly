@@ -1,0 +1,24 @@
+{# json-schema.html.twig #}
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{ page.title }}",
+        "description": "{{ page.seoDescription }}",
+        "author": {
+            "@type": "Organization",
+            "name": "Forecastly"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Forecastly",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://forecastly.online/template/img/forecastly_logo_64x64.png"
+            }
+        },
+        "datePublished": "{{ page.updatedAt | date('Y-m-d') }}",
+        "mainEntityOfPage": "{{ app.request.uri }}"
+    }
+</script>

@@ -1,0 +1,51 @@
+{# templates/customer/income/non_recurring/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Manage Non-Recurring Income - Forecastly{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('customer_non_recurring_incomes_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('customer_non_recurring_incomes_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <div class="page-title">
+            <h1>Manage Non-Recurring Income</h1>
+            <p>Add and manage your one-time income sources</p>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="non-recurring-incomes-container">
+        <!-- Add/Edit Income Form -->
+        {% include 'customer/income/non_recurring/_form.html.twig' with {
+            'form': form,
+            'isIncomeOrExpense': isIncomeOrExpense
+        } %}
+
+        <!-- Incomes List -->
+        {% include 'customer/income/non_recurring/_list.html.twig' with {
+            'incomes': incomes,
+            'isIncomeOrExpense': isIncomeOrExpense
+        } %}
+    </div>
+{% endblock %}

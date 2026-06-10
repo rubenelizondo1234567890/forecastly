@@ -1,0 +1,218 @@
+{# templates/roadmaps/tax/tax-software-or-professional.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('tax_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('tax_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – tax style -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #1e2b37 0%, #2c3e50 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--tax-smart-color);">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h1>Tax Software or a Professional? <span>What You Need</span></h1>
+                <p class="hero-description">
+                    Deciding whether to file your taxes yourself or hire a professional can save you time, money, and stress.
+                    Learn the factors to consider, the costs involved, and get a personalized recommendation based on your situation.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(44,62,80,0.2); color: #b0c4de;">
+                    <i class="fas fa-layer-group"></i> Phase 3: Practical Execution · 8 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">📖 DIY or Delegate?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Every year, millions of taxpayers face the same question: Should I use tax software or hire a professional?
+                The answer depends on the complexity of your finances, your comfort level, and how much you value your time.
+                This guide helps you make an informed decision and prepares you for tax season.
+            </p>
+        </section>
+
+        <!-- key takeaways in rule‑grid style -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-desktop"></i> Tax Software (DIY)</h4>
+                <p>Best for simple returns: W‑2 income, standard deduction, few investments. Costs $50‑$150. Good for confident filers.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-user-tie"></i> Tax Professional (CPA/EA)</h4>
+                <p>Ideal for complex situations: business income, rental properties, stock options, crypto, or if you want peace of mind. Costs $200‑$500+.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-balance-scale"></i> Hybrid Approach</h4>
+                <p>Some software offers on‑demand expert review, or you can use a professional only for planning while filing yourself.</p>
+            </div>
+        </div>
+
+        <!-- interactive tool: Tax Filing Decision Assistant -->
+        <div class="card animate" style="margin: 40px 0;" id="tax-decision-tool">
+            <h3><i class="fas fa-question-circle"></i> Interactive: Should You Use Software or Hire a Pro?</h3>
+            <p>Answer a few questions to get a personalized recommendation.</p>
+
+            <div style="margin: 25px 0;">
+                <div class="decision-question">
+                    <label><strong>1. What is your primary source of income?</strong></label>
+                    <select id="incomeSource" class="cat-input" style="width:100%; max-width:400px;">
+                        <option value="w2">W‑2 employee (single employer)</option>
+                        <option value="multipleW2">Multiple W‑2 jobs</option>
+                        <option value="selfEmployed">Self‑employed / freelancer (1099)</option>
+                        <option value="business">Business owner (LLC, S‑Corp, etc.)</option>
+                        <option value="investments">Primarily investment income</option>
+                    </select>
+                </div>
+
+                <div class="decision-question" style="margin-top: 15px;">
+                    <label><strong>2. Do you own a home?</strong></label>
+                    <select id="homeOwner" class="cat-input" style="width:100%; max-width:400px;">
+                        <option value="no">No</option>
+                        <option value="mortgage">Yes, with a mortgage</option>
+                        <option value="owned">Yes, owned outright</option>
+                    </select>
+                </div>
+
+                <div class="decision-question" style="margin-top: 15px;">
+                    <label><strong>3. Do you have any of the following?</strong> (Select all that apply)</label>
+                    <div style="margin-top: 5px;">
+                        <label><input type="checkbox" id="hasRental" value="rental"> Rental property</label><br>
+                        <label><input type="checkbox" id="hasCrypto" value="crypto"> Cryptocurrency transactions</label><br>
+                        <label><input type="checkbox" id="hasOptions" value="options"> Stock options / RSUs</label><br>
+                        <label><input type="checkbox" id="hasForeign" value="foreign"> Foreign accounts / income</label><br>
+                        <label><input type="checkbox" id="hasKiddie" value="kiddie"> Kiddie tax / dependent investments</label>
+                    </div>
+                </div>
+
+                <div class="decision-question" style="margin-top: 15px;">
+                    <label><strong>4. How comfortable are you with tax forms and calculations?</strong></label>
+                    <select id="comfortLevel" class="cat-input" style="width:100%; max-width:400px;">
+                        <option value="low">Not comfortable – I prefer expert guidance</option>
+                        <option value="medium">Somewhat comfortable – I can follow instructions</option>
+                        <option value="high">Very comfortable – I've done my own taxes before</option>
+                    </select>
+                </div>
+
+                <div class="decision-question" style="margin-top: 15px;">
+                    <label><strong>5. Do you expect any major life changes this year?</strong> (marriage, divorce, new child, etc.)</label>
+                    <select id="lifeChanges" class="cat-input" style="width:100%; max-width:400px;">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="getRecommendation" class="btn-outline">Get My Recommendation</button>
+            </div>
+
+            <div id="recommendationResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                <p>Answer the questions and click the button to see your personalized recommendation.</p>
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px; background-color: #eef2f5; border-left-color: var(--tax-smart-color);">
+                <i class="fas fa-lightbulb"></i> This tool provides general guidance based on common factors. For definitive advice, consult a tax professional.
+            </p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate" style="background: #1e1a3a;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'tax', slug: 'tax-software-or-professional', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #2c3e50; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background: #1e2b37;">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Tax Software vs. Professional</h3>
+
+                <div class="quiz-question">1. Which of the following tax situations is generally best suited for DIY tax software?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="correct">Single W‑2 employee with no investments</div>
+                    <div class="quiz-option" data-answer="wrong">Self‑employed business owner with multiple income streams</div>
+                    <div class="quiz-option" data-answer="wrong">Investor with cryptocurrency and stock options</div>
+                    <div class="quiz-option" data-answer="wrong">Landlord with multiple rental properties</div>
+                </div>
+
+                <div class="quiz-question">2. What is a key advantage of hiring a tax professional?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">Lower cost than software</div>
+                    <div class="quiz-option" data-answer="correct">Expertise in complex situations and representation during audits</div>
+                    <div class="quiz-option" data-answer="wrong">Guaranteed maximum refund</div>
+                    <div class="quiz-option" data-answer="wrong">No need to keep records</div>
+                </div>
+
+                <div class="quiz-question">3. Which of the following could make your tax return complex enough to consider a professional?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="correct">Rental real estate with depreciation and expenses</div>
+                    <div class="quiz-option" data-answer="wrong">One W‑2 job with no other income</div>
+                    <div class="quiz-option" data-answer="wrong">Using the standard deduction</div>
+                    <div class="quiz-option" data-answer="wrong">Having only interest income from a savings account</div>
+                </div>
+
+                <div class="quiz-question">4. Approximately how much does tax software typically cost for a federal return (plus state)?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">$0‑$50</div>
+                    <div class="quiz-option" data-answer="correct">$50‑$150</div>
+                    <div class="quiz-option" data-answer="wrong">$200‑$400</div>
+                    <div class="quiz-option" data-answer="wrong">$500+</div>
+                </div>
+
+                <div class="quiz-question">5. If you receive a notice from the IRS after filing, which option provides representation?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Tax software (basic version)</div>
+                    <div class="quiz-option" data-answer="correct">A CPA or Enrolled Agent</div>
+                    <div class="quiz-option" data-answer="wrong">Online tax forums</div>
+                    <div class="quiz-option" data-answer="wrong">The IRS website</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--tax-smart-color);">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 3 (Practical Execution) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 3: Practical Execution</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'step-by-step-harvesting-your-first-tax-loss' }) }}" class="next-card">
+                    <i class="fas fa-check-double"></i>
+                    <h3>Harvesting Your First Tax Loss</h3>
+                    <p>Step‑by‑step guide with checklist and simulator.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'how-to-set-up-maximize-tax-advantaged-accounts' }) }}" class="next-card">
+                    <i class="fas fa-gear"></i>
+                    <h3>Set Up & Maximize Tax‑Advantaged Accounts</h3>
+                    <p>Practical guide to opening and optimizing accounts.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'year-end-tax-planning-checklist' }) }}" class="next-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Year‑End Tax Planning Checklist</h3>
+                    <p>What to do in November/December to optimize taxes.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

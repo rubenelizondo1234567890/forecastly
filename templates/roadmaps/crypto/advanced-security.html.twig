@@ -1,0 +1,174 @@
+{# templates/roadmaps/crypto/advanced-security.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('crypto_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('crypto_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – crypto style -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <h1>Advanced Security: <span>Multi‑Sig & Seed Phrase Backup</span></h1>
+                <p class="hero-description">
+                    As your crypto holdings grow, so does the need for fortress‑level security. Learn about multi‑signature wallets, seed phrase splitting, and other advanced techniques to protect against theft, loss, and disasters.
+                </p>
+                <div class="phase-tag">
+                    <i class="fas fa-layer-group"></i> Phase 4: Skill Building · 9 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">🏰 Beyond the Basics</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                A hardware wallet is a great start, but for significant sums, you need redundancy and distributed trust. <strong>Multi‑signature (multi‑sig)</strong> wallets require multiple private keys to authorize a transaction, while advanced <strong>seed phrase backup</strong> methods protect against a single point of failure.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--gray-color);">
+                These techniques are used by exchanges, institutions, and savvy individuals to ensure that even if one key is compromised or lost, your funds remain safe.
+            </p>
+        </section>
+
+        <!-- key concepts -->
+        <div class="rule-grid animate" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 40px 0;">
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-key"></i> Multi‑Sig Wallets</h3>
+                <p>A wallet that requires M‑of‑N signatures to move funds. Example: 2‑of‑3 – you need two out of three keys. Protects against single key theft or loss.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-share-alt"></i> Seed Phrase Splitting</h3>
+                <p>Using Shamir's Secret Sharing, you can split your seed into parts (e.g., 3 shares, need 2 to recover). Store each share in a different secure location.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-fire-extinguisher"></i> Metal Backups</h3>
+                <p>Seed phrases on paper can burn or get wet. Metal backup solutions (steel plates) ensure your seed survives fire, flood, or impact.</p>
+            </div>
+            <div class="rule-item" style="border-top: 5px solid var(--crypto-color); background: var(--card-bg); padding: 20px; border-radius: 18px; box-shadow: var(--shadow);">
+                <h3><i class="fas fa-plus-circle"></i> Passphrase (25th Word)</h3>
+                <p>Add an extra word to your seed phrase (BIP39 passphrase). Even if someone finds your seed, they can't access funds without the passphrase. But lose it, and funds are gone.</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE TOOL: Advanced Security Simulator -->
+        <div class="card animate" style="margin: 40px 0;" id="advanced-security-simulator">
+            <h3><i class="fas fa-microchip"></i> Advanced Security Simulator</h3>
+            <p>Click on each method to see how it works and when to use it.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 30px 0; justify-content: center;">
+                <button id="securitySingleBtn" class="btn-outline" style="min-width: 180px;">🔑 Single Key (Baseline)</button>
+                <button id="securityMulti2of3Btn" class="btn-outline" style="min-width: 180px;">🔐 Multi‑Sig 2-of-3</button>
+                <button id="securityMulti3of5Btn" class="btn-outline" style="min-width: 180px;">🔐 Multi‑Sig 3-of-5</button>
+                <button id="securityShamirBtn" class="btn-outline" style="min-width: 180px;">✂️ Shamir Backup</button>
+                <button id="securityMetalBtn" class="btn-outline" style="min-width: 180px;">🪨 Metal Backup</button>
+                <button id="securityPassphraseBtn" class="btn-outline" style="min-width: 180px;">🔢 Passphrase (25th word)</button>
+            </div>
+
+            <div id="securityResult" style="background: #f0f4f8; border-radius: 16px; padding: 25px; min-height: 100px; border-left: 6px solid var(--crypto-color);">
+                <i class="fas fa-arrow-left"></i> Click any button above to learn about that security method.
+            </div>
+            <p style="font-style: italic; color: var(--gray-color); margin-top: 20px;">💡 For significant holdings, combine multiple methods. Always test your recovery process.</p>
+        </div>
+
+        <!-- Quiz section -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #ff6b35; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Advanced Security</h3>
+
+                <div class="quiz-question">1. What is a multi‑signature (multi‑sig) wallet?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="wrong">A wallet that requires a password and 2FA</div>
+                    <div class="quiz-option" data-answer="correct">A wallet that requires multiple private keys to authorize a transaction</div>
+                    <div class="quiz-option" data-answer="wrong">A wallet with multiple seed phrases</div>
+                    <div class="quiz-option" data-answer="wrong">A hardware wallet with a backup</div>
+                </div>
+
+                <div class="quiz-question">2. In a 2‑of‑3 multi‑sig setup, how many keys are needed to move funds?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">1</div>
+                    <div class="quiz-option" data-answer="correct">2</div>
+                    <div class="quiz-option" data-answer="wrong">3</div>
+                    <div class="quiz-option" data-answer="wrong">All three</div>
+                </div>
+
+                <div class="quiz-question">3. What is Shamir's Secret Sharing used for?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">Encrypting transactions</div>
+                    <div class="quiz-option" data-answer="correct">Splitting a seed phrase into multiple parts that must be combined to recover</div>
+                    <div class="quiz-option" data-answer="wrong">Creating a multi‑sig address</div>
+                    <div class="quiz-option" data-answer="wrong">Backing up a hardware wallet</div>
+                </div>
+
+                <div class="quiz-question">4. Why might you use a metal backup for your seed phrase?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">It's cheaper than paper</div>
+                    <div class="quiz-option" data-answer="correct">It protects against fire, water, and physical damage</div>
+                    <div class="quiz-option" data-answer="wrong">It's easier to hide</div>
+                    <div class="quiz-option" data-answer="wrong">It can be connected to a computer</div>
+                </div>
+
+                <div class="quiz-question">5. What is a BIP39 passphrase (25th word)?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">A second seed phrase</div>
+                    <div class="quiz-option" data-answer="correct">An extra word you add to your seed phrase for additional security</div>
+                    <div class="quiz-option" data-answer="wrong">A password for your exchange account</div>
+                    <div class="quiz-option" data-answer="wrong">The 25th word in the BIP39 word list</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 4 (skill building) – return to overview or previous articles -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue building your skills</h2>
+            <div class="next-steps">
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'introduction-to-defi' }) }}" class="next-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Introduction to DeFi</h3>
+                    <p style="color: var(--gray-color);">Decentralized finance basics.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'staking-yield-farming' }) }}" class="next-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Staking & Yield Farming</h3>
+                    <p style="color: var(--gray-color);">Earn passive income.</p>
+                </a>
+                <a href="{{ url('app_page_show', { journey: 'crypto', slug: 'nfts-hype-or-utility' }) }}" class="next-card">
+                    <i class="fas fa-image"></i>
+                    <h3>NFTs: Hype or Utility?</h3>
+                    <p style="color: var(--gray-color);">Understanding digital collectibles.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

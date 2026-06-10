@@ -1,0 +1,14 @@
+/* assets/styles/recurring_incomes.css */
+
+/* Recurring Incomes Styles */
+.recurring-incomes-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 992px) {
+    .recurring-incomes-container {
+        grid-template-columns: 1fr;
+    }
+}

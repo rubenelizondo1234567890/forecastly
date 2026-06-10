@@ -1,0 +1,21 @@
+{# templates/help/page.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ doc_page.title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('help_index') }}">Help & Documentation</a></li>
+                <li class="breadcrumb-item active">{{ doc_page.title }}</li>
+            </ol>
+        </nav>
+
+        <h1>{{ doc_page.title }}</h1>
+
+        <div class="doc-content">
+            {{ doc_page.content|raw }}
+        </div>
+    </div>
+{% endblock %}

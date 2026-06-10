@@ -1,0 +1,183 @@
+{# templates/roadmaps/tax/tax-loss-harvesting.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('tax_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('tax_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero – tax style -->
+        <div class="article-hero animate" style="background: linear-gradient(135deg, #1e2b37 0%, #2c3e50 100%);">
+            <div class="hero-content">
+                <div class="hero-icon" style="background-color: var(--tax-smart-color);">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h1>Tax‑Loss Harvesting <span>Turn Losses into Savings</span></h1>
+                <p class="hero-description">
+                    Learn how to use investment losses to offset gains and reduce your tax bill. Discover the rules, limitations,
+                    and strategies to keep your portfolio tax‑efficient – even in down markets.
+                </p>
+                <div class="phase-tag" style="background-color: rgba(44,62,80,0.2); color: #b0c4de;">
+                    <i class="fas fa-layer-group"></i> Phase 2: Risk Management · 12 min read
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <section class="animate">
+            <h2 class="section-title">📖 Turning Lemons into Lemonade</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Market downturns are painful, but they present a silver lining: <strong>tax‑loss harvesting</strong>.
+                By selling investments at a loss, you can offset capital gains – and even ordinary income – reducing your overall tax liability.
+                This article explains how it works, the rules you need to know, and how to implement it without falling into common traps.
+            </p>
+        </section>
+
+        <!-- key takeaways in rule‑grid style -->
+        <div class="rule-grid animate">
+            <div class="rule-item">
+                <h4><i class="fas fa-chart-line"></i> How It Works</h4>
+                <p>Sell investments that are trading below your purchase price to realize a capital loss. Use that loss to offset capital gains (first short‑term, then long‑term). Any excess loss can offset up to $3,000 of ordinary income per year.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-exclamation-triangle"></i> Wash Sale Rule</h4>
+                <p>If you buy a "substantially identical" security within 30 days before or after the sale, the loss is disallowed. Always wait 31 days or buy a different but similar investment.</p>
+            </div>
+            <div class="rule-item">
+                <h4><i class="fas fa-calculator"></i> Carryforward Losses</h4>
+                <p>Unused capital losses can be carried forward indefinitely to offset future gains. This makes tax‑loss harvesting valuable even if you have no gains this year.</p>
+            </div>
+        </div>
+
+        <!-- interactive tool: Tax‑Loss Harvesting Savings Calculator -->
+        <div class="card animate" style="margin: 40px 0;" id="loss-harvesting-tool">
+            <h3><i class="fas fa-calculator"></i> Interactive: See Your Potential Tax Savings</h3>
+            <p>Estimate how much you could save by harvesting losses. Adjust your realized gains, losses, and tax bracket.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1 1 300px;">
+                    <label>Realized Capital Gains ($) <span id="gainsVal">10,000</span></label>
+                    <input type="range" id="realizedGains" min="0" max="50000" value="10000" step="500" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 300px;">
+                    <label>Realized Capital Losses ($) <span id="lossesVal">5,000</span></label>
+                    <input type="range" id="realizedLosses" min="0" max="50000" value="5000" step="500" class="cat-input" style="width:100%;">
+                </div>
+                <div style="flex: 1 1 250px;">
+                    <label>Marginal Tax Rate <span id="taxRateHarvestVal">24</span>%</label>
+                    <input type="range" id="taxRateHarvest" min="0" max="37" value="24" step="1" class="cat-input" style="width:100%;">
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="calcLossHarvesting" class="btn-outline">Calculate Tax Savings</button>
+            </div>
+
+            <div id="harvestingResult" style="margin-top: 25px; padding: 20px; background: var(--light-color); border-radius: 12px;">
+                <p>Adjust the values and click the button to see results.</p>
+            </div>
+
+            <p class="pro-tip" style="margin-top: 15px; background-color: #eef2f5; border-left-color: var(--tax-smart-color);">
+                <i class="fas fa-lightbulb"></i> This calculator assumes losses offset gains first, then ordinary income up to $3,000. Unused losses can be carried forward. Real results depend on your specific tax situation.
+            </p>
+        </div>
+
+        <!-- quiz section (conditional) -->
+        {% if app.user and quiz is defined and quiz %}
+            <div class="quiz-container animate" style="background: #1e1a3a;">
+                <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                <p style="color: #e2e8f0; font-size: 1.2rem;">
+                    Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                </p>
+                <p style="color: #cbd5e0;">
+                    You can retake the quiz to improve your score. Click the button below to reset it.
+                </p>
+                <div class="quiz-actions">
+                    <a href="{{ path('app_page_show', { journey: 'tax', slug: 'tax-loss-harvesting', retake: 1 }) }}"
+                       class="btn"
+                       style="background-color: #2c3e50; color: white; text-decoration: none;">
+                        Retake Quiz
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="quiz-container animate" data-page-id="{{ page.id }}" style="background: #1e2b37;">
+                <h3 style="color:white; margin-top: 0;">📝 Test your knowledge: Tax‑Loss Harvesting</h3>
+
+                <div class="quiz-question">1. What is the primary purpose of tax‑loss harvesting?</div>
+                <div class="quiz-options" data-question="1">
+                    <div class="quiz-option" data-answer="correct">To offset capital gains and reduce taxes</div>
+                    <div class="quiz-option" data-answer="wrong">To avoid paying taxes on dividends</div>
+                    <div class="quiz-option" data-answer="wrong">To increase investment returns</div>
+                    <div class="quiz-option" data-answer="wrong">To lock in profits</div>
+                </div>
+
+                <div class="quiz-question">2. How much of capital loss can be used to offset ordinary income in a single tax year?</div>
+                <div class="quiz-options" data-question="2">
+                    <div class="quiz-option" data-answer="wrong">$1,000</div>
+                    <div class="quiz-option" data-answer="correct">$3,000</div>
+                    <div class="quiz-option" data-answer="wrong">$5,000</div>
+                    <div class="quiz-option" data-answer="wrong">No limit</div>
+                </div>
+
+                <div class="quiz-question">3. What is the "wash sale rule"?</div>
+                <div class="quiz-options" data-question="3">
+                    <div class="quiz-option" data-answer="wrong">You cannot sell a stock at a loss</div>
+                    <div class="quiz-option" data-answer="correct">You cannot claim a loss if you buy a substantially identical security within 30 days before or after the sale</div>
+                    <div class="quiz-option" data-answer="wrong">You must hold the stock for at least 30 days to claim a loss</div>
+                    <div class="quiz-option" data-answer="wrong">Losses are only allowed on stocks held for more than a year</div>
+                </div>
+
+                <div class="quiz-question">4. What happens to capital losses that exceed the $3,000 ordinary income limit?</div>
+                <div class="quiz-options" data-question="4">
+                    <div class="quiz-option" data-answer="wrong">They are lost forever</div>
+                    <div class="quiz-option" data-answer="correct">They can be carried forward to future years</div>
+                    <div class="quiz-option" data-answer="wrong">They are refunded as a tax credit</div>
+                    <div class="quiz-option" data-answer="wrong">They reduce your future capital gains rate</div>
+                </div>
+
+                <div class="quiz-question">5. When is the best time to consider tax‑loss harvesting?</div>
+                <div class="quiz-options" data-question="5">
+                    <div class="quiz-option" data-answer="wrong">Only in December</div>
+                    <div class="quiz-option" data-answer="wrong">When you have no gains</div>
+                    <div class="quiz-option" data-answer="correct">Whenever you have unrealized losses, especially near year‑end or after market declines</div>
+                    <div class="quiz-option" data-answer="wrong">Only when you plan to sell the investment anyway</div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="quiz-submit" class="btn" style="background-color: var(--tax-smart-color);">Get score & submit</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+        {% endif %}
+
+        <!-- next steps in phase 2 (Risk Management) -->
+        <section style="margin: 60px 0;">
+            <h2 class="section-title" style="text-align: center;">📘 Continue Phase 2: Risk Management</h2>
+            <div class="next-steps">
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'avoiding-the-wash-sale-rule' }) }}" class="next-card">
+                    <i class="fas fa-broom"></i>
+                    <h3>Avoiding the Wash Sale Rule</h3>
+                    <p>Detailed explanation of the 30‑day window and how to work around it.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'asset-location-which-investments-go-where' }) }}" class="next-card">
+                    <i class="fas fa-location-dot"></i>
+                    <h3>Asset Location</h3>
+                    <p>Why holding bonds in taxable accounts can be inefficient.</p>
+                </a>
+                <a href="{{ path('app_page_show', { journey: 'tax', slug: 'tax-implications-of-rebalancing' }) }}" class="next-card">
+                    <i class="fas fa-arrows-rotate"></i>
+                    <h3>Tax Implications of Rebalancing</h3>
+                    <p>Smart tactics to rebalance without triggering unnecessary taxes.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+{% endblock %}

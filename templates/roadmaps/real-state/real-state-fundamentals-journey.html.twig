@@ -1,0 +1,231 @@
+{# templates/roadmaps/real-state/real-state-fundamentals-journey.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('real_state_css') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('real_state_js') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- hero section specific for real estate journey -->
+        <div class="journey-hero animate">
+            <div class="hero-content">
+                <div class="journey-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h1>Real Estate <span>Fundamentals</span></h1>
+                <p class="hero-description">
+                    From renter to real estate investor — a clear, four‑phase roadmap.
+                    Learn how to evaluate properties, finance your first home, and build long‑term wealth through real estate.
+                </p>
+            </div>
+        </div>
+
+        <!-- intro text: how our roadmaps work -->
+        <div style="text-align: center; margin: 40px 0 20px;" class="animate">
+            <h2 class="section-title">🧭 Your 4‑phase real estate roadmap</h2>
+            <p class="section-subtitle">
+                Each phase follows the <strong>Foundation → Risk → Execution → Skill Building</strong> structure.
+                Start with phase 1 or jump to what you need most.
+            </p>
+        </div>
+
+        {# ===== PHASE 1 – FOUNDATION FIRST ===== #}
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">1</span>
+                <span>Foundation First · Real estate basics & mindset</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-school"></i></div>
+                    <h3>Real Estate Fundamentals: What Every Beginner Must Know</h3>
+                    <p class="article-brief">Overwhelmed by real estate jargon? Start here: learn the key terms, players, and how real estate fits into a balanced financial plan.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'real-estate-basics' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <h3>Rent vs. Buy: Making the Right Decision for Your Life</h3>
+                    <p class="article-brief">Is renting “throwing money away”? We break down the true costs of each option and help you decide based on your goals and lifestyle.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'rent-vs-buy' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>How to Evaluate a Property: Cap Rate, Cash Flow, ROI</h3>
+                    <p class="article-brief">Demystify the numbers that matter. Learn to calculate cap rate, cash‑on‑cash return, and ROI so you can compare properties like a pro.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'evaluating-property' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>REITs: Invest in Real Estate Without Buying a Property</h3>
+                    <p class="article-brief">Want real estate exposure without the hassle of being a landlord? Real Estate Investment Trusts (REITs) offer a simple, liquid alternative.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'reits-explained' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# ===== PHASE 2 – RISK MANAGEMENT ===== #}
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">2</span>
+                <span>Risk Management · Protect your real estate investments</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Market Risk: Understanding Real Estate Cycles</h3>
+                    <p class="article-brief">Real estate markets go up and down. Learn how to spot cycles, avoid buying at the peak, and position yourself for long‑term success.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'real-estate-market-risk' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-wrench"></i></div>
+                    <h3>The Hidden Costs of Homeownership: Taxes, Insurance, Maintenance</h3>
+                    <p class="article-brief">The purchase price is just the beginning. Understand property taxes, homeowners insurance, and the 1% rule for maintenance so you never get surprised.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'hidden-costs' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-door-open"></i></div>
+                    <h3>Vacancy Risk and How to Mitigate It (for landlords)</h3>
+                    <p class="article-brief">An empty property bleeds money. Discover strategies to minimize vacancies, from smart pricing to tenant retention and having a reserve fund.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'vacancy-risk' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-gavel"></i></div>
+                    <h3>Legal & Liability Risks: Insurance and LLCs</h3>
+                    <p class="article-brief">Protect yourself from lawsuits and unforeseen liabilities. Learn about landlord insurance, umbrella policies, and when an LLC makes sense.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'legal-liability' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# ===== PHASE 3 – PRACTICAL EXECUTION ===== #}
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">3</span>
+                <span>Practical Execution · From renter to investor</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <h3>Step‑by‑Step: Saving for Your First Down Payment</h3>
+                    <p class="article-brief">A concrete plan to build your down payment faster. Learn where to stash the cash, how much you need, and programs that can help.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'saving-for-down-payment' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-file-signature"></i></div>
+                    <h3>How to Get a Mortgage: Credit, Pre‑approval, and Loan Types</h3>
+                    <p class="article-brief">Walk through the mortgage process: what credit score you need, how to get pre‑approved, and the differences between conventional, FHA, VA, and more.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'mortgage-guide' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>First‑Time Homebuyer Programs and Grants</h3>
+                    <p class="article-brief">Many buyers leave money on the table. Discover down payment assistance programs, tax credits, and grants available to first‑time buyers.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'first-time-buyer-programs' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-simple"></i></div>
+                    <h3>How to Analyze a Rental Property: A Practical Template</h3>
+                    <p class="article-brief">Use our simple template to run the numbers on any rental property. We’ll show you what to look for and what numbers really matter.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'analyze-rental-property' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# ===== PHASE 4 – SKILL BUILDING ===== #}
+        <div class="phase-wrapper animate">
+            <div class="phase-title">
+                <span class="phase-number">4</span>
+                <span>Skill Building · Advanced strategies & portfolio growth</span>
+            </div>
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-people-roof"></i></div>
+                    <h3>House Hacking: Live for Free and Build Wealth</h3>
+                    <p class="article-brief">Buy a multi‑unit property, live in one unit, and rent the others. Learn how house hacking can drastically reduce your living expenses and jumpstart investing.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'house-hacking' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-arrows-rotate"></i></div>
+                    <h3>BRRRR Method: Buy, Rehab, Rent, Refinance, Repeat</h3>
+                    <p class="article-brief">A powerful strategy to recycle your capital and grow a portfolio faster. We explain each step and show you a real‑world example.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 11 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'brrrr-method' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-users"></i></div>
+                    <h3>Real Estate Syndications and Crowdfunding</h3>
+                    <p class="article-brief">Pool your money with other investors to buy larger properties. Learn how syndications work, the risks, and how to evaluate a deal.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'syndications-crowdfunding' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-icon"><i class="fas fa-chart-gantt"></i></div>
+                    <h3>Building a Real Estate Portfolio: Scaling Up</h3>
+                    <p class="article-brief">You’ve bought your first property – what’s next? Discover how to set goals, manage multiple properties, and scale without burning out.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'scaling-real-estate-portfolio' }) }}" class="read-link">Start <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- call to action – start the real estate journey -->
+        <div class="journey-cta animate">
+            <h2>Ready to build your real estate foundation?</h2>
+            <p style="font-size: 1.2rem; color: #2d3748; margin-bottom: 10px;">Start with phase 1 — clear, step‑by‑step, and completely free.</p>
+            <a href="{{ url('app_page_show', { journey: 'real-state', slug: 'real-estate-basics' }) }}" class="cta-button"><i class="fas fa-road"></i> Begin the journey now</a>
+            <p style="margin-top: 25px; color: #718096;"><i class="fas fa-users"></i> 15,000+ members started here</p>
+        </div>
+    </div>
+{% endblock %}

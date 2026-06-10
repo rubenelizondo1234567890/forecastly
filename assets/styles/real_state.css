@@ -1,0 +1,594 @@
+/* assets/styles/real_state.css */
+/* ----- GLOBAL STYLES (consistent with main hub) ----- */
+:root {
+    --primary-color: #4361ee;
+    --primary-dark: #3a56d4;
+    --real-estate-color: #e17055;      /* terracotta / real estate accent */
+    --real-estate-color-dark: #c95a3d;
+    --dark-color: #1a202c;
+    --light-color: #f7fafc;
+    --gray-color: #718096;
+    --light-gray: #e2e8f0;
+    --card-bg: #ffffff;
+    --shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: var(--light-color);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ----- reusable components ----- */
+.back-link {
+    display: inline-block;
+    margin: 30px 0 10px;
+    color: var(--gray-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+.back-link i {
+    margin-right: 8px;
+}
+.back-link:hover {
+    color: var(--real-estate-color);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--dark-color);
+    text-align: center;
+}
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--gray-color);
+    max-width: 700px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+/* ----- hero (real estate flavour) ----- */
+.journey-hero {
+    background: linear-gradient(135deg, #2f2a24 0%, #5e4b3f 100%);
+    color: white;
+    padding: 60px 0 50px;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+}
+.journey-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: var(--real-estate-color);
+    opacity: 0.15;
+    border-radius: 50%;
+    transform: translate(100px, -100px);
+}
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+.journey-icon {
+    width: 80px;
+    height: 80px;
+    background-color: var(--real-estate-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 2.8rem;
+    color: white;
+    box-shadow: 0 10px 20px rgba(225,112,85,0.3);
+}
+.journey-hero h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+.journey-hero h1 span {
+    color: var(--real-estate-color);
+    background: rgba(255,255,255,0.1);
+    padding: 0 12px;
+    border-radius: 40px;
+    display: inline-block;
+}
+.hero-description {
+    font-size: 1.2rem;
+    color: #e2e8f0;
+    max-width: 700px;
+    margin: 20px auto 0;
+}
+
+/* ----- phase cards ----- */
+.phase-wrapper {
+    margin: 70px 0;
+}
+.phase-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 3px solid rgba(225,112,85,0.2);
+    padding-bottom: 15px;
+}
+.phase-number {
+    background-color: var(--real-estate-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.article-card {
+    background-color: var(--card-bg);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-top: 5px solid var(--real-estate-color);
+    display: flex;
+    flex-direction: column;
+}
+.article-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+}
+.article-icon {
+    font-size: 1.8rem;
+    color: var(--real-estate-color);
+    margin-bottom: 15px;
+}
+.article-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--dark-color);
+}
+.article-brief {
+    color: var(--gray-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--gray-color);
+    border-top: 1px dashed var(--light-gray);
+    padding-top: 15px;
+}
+.article-meta i {
+    color: var(--real-estate-color);
+    width: 18px;
+}
+.read-link {
+    color: var(--real-estate-color);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.read-link:hover {
+    text-decoration: underline;
+}
+
+/* ----- journey CTA ----- */
+.journey-cta {
+    background: linear-gradient(145deg, #f9ede8, #ffffff);
+    border-radius: 40px;
+    padding: 50px 40px;
+    text-align: center;
+    margin: 60px 0;
+    border: 1px solid rgba(225,112,85,0.2);
+}
+.journey-cta h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.journey-cta .cta-button {
+    display: inline-block;
+    padding: 16px 40px;
+    background-color: var(--real-estate-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(225,112,85,0.3);
+}
+.journey-cta .cta-button:hover {
+    background-color: #c95a3d;
+    transform: scale(1.03);
+}
+
+/* ----- footer mini ----- */
+.footer-mini {
+    text-align: center;
+    padding: 40px 0 30px;
+    color: var(--gray-color);
+    border-top: 1px solid var(--light-gray);
+    margin-top: 30px;
+}
+.footer-mini .footer-logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--dark-color);
+}
+.footer-mini .footer-logo span {
+    color: var(--real-estate-color);
+}
+
+/* animations */
+.animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* responsive */
+@media (max-width: 700px) {
+    .journey-hero h1 { font-size: 2.4rem; }
+    .section-title { font-size: 2rem; }
+    .phase-title { font-size: 1.6rem; }
+}
+@media (max-width: 500px) {
+    .article-grid { grid-template-columns: 1fr; }
+}
+
+/* ----- ARTICLE HERO (real estate version) ----- */
+.article-hero {
+    background: linear-gradient(135deg, #2f2a24 0%, #5e4b3f 100%);
+    color: white;
+    padding: 50px 0 40px;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+.article-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: var(--real-estate-color);
+    opacity: 0.15;
+    border-radius: 50%;
+    transform: translate(100px, -100px);
+}
+.hero-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 2.5rem;
+    color: white;
+    box-shadow: 0 10px 20px rgba(225,112,85,0.3);
+}
+.article-hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+.article-hero h1 span {
+    background: rgba(255,255,255,0.15);
+    padding: 0 12px;
+    border-radius: 40px;
+    display: inline-block;
+}
+.phase-tag {
+    display: inline-block;
+    background-color: rgba(225,112,85,0.2);
+    color: #f7b9a9;
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+}
+
+/* ----- RULE GRID (key points) ----- */
+.rule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    margin: 40px 0;
+}
+.rule-item {
+    background: var(--light-color);
+    border-radius: 18px;
+    padding: 25px;
+    border-top: 6px solid var(--real-estate-color);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+}
+.rule-item h4 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ----- CARD (white container) ----- */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    margin: 30px 0;
+}
+
+/* ----- PRO TIP ----- */
+.pro-tip {
+    background-color: #fff1eb;
+    border-radius: 16px;
+    padding: 20px 25px;
+    margin: 30px 0;
+    border-left: 6px solid var(--real-estate-color);
+}
+.pro-tip i {
+    color: var(--real-estate-color);
+    margin-right: 10px;
+}
+
+/* ----- FORM ELEMENTS (reuse cat-input and btn-outline) ----- */
+.cat-input {
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--light-gray);
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: white;
+    transition: var(--transition);
+}
+.cat-input:focus {
+    outline: none;
+    border-color: var(--real-estate-color);
+    box-shadow: 0 0 0 3px rgba(225,112,85,0.1);
+}
+
+/* style range inputs consistently */
+input[type=range].cat-input {
+    -webkit-appearance: none;
+    background: transparent;
+}
+input[type=range].cat-input::-webkit-slider-runnable-track {
+    height: 8px;
+    background: var(--light-gray);
+    border-radius: 10px;
+}
+input[type=range].cat-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: var(--real-estate-color);
+    margin-top: -6px;
+    cursor: pointer;
+}
+input[type=range].cat-input:focus::-webkit-slider-runnable-track {
+    background: var(--light-gray);
+}
+input[type=range].cat-input::-moz-range-track {
+    height: 8px;
+    background: var(--light-gray);
+    border-radius: 10px;
+}
+input[type=range].cat-input::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: var(--real-estate-color);
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Global button style (used for retake button, etc.) */
+.btn {
+    display: inline-block;
+    padding: 16px 38px;
+    background-color: var(--real-estate-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 15px 8px 8px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(255,107,53,0.3);
+}
+.btn:hover {
+    background-color: var(--real-estate-color-dark);
+    transform: translateY(-3px);
+}
+
+/* Outline button for calculator */
+.btn-outline {
+    background-color: transparent;
+    color: var(--real-estate-color);
+    border: 2px solid var(--real-estate-color);
+    padding: 12px 30px;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.btn-outline:hover {
+    background-color: rgba(255,107,53,0.05);
+    transform: translateY(-3px);
+}
+
+/* ----- QUIZ CONTAINER (real estate theme) ----- */
+.quiz-container {
+    background: #2f2a24;
+    color: white;
+    border-radius: 30px;
+    padding: 35px;
+    margin: 50px 0 20px;
+}
+
+.quiz-option.chosen {
+    background: var(--real-estate-color);
+    border-color: var(--real-estate-color);
+    color: white;
+}
+
+.quiz-result {
+    color: white;
+}
+
+.quiz-question {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+.quiz-option {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 60px;
+    padding: 12px 25px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.quiz-option:hover {
+    background: var(--real-estate-color);
+    border-color: var(--real-estate-color);
+}
+.quiz-option.correct {
+    background: #10b981;
+    border-color: #10b981;
+}
+.quiz-option.incorrect {
+    background: #ef4444;
+    border-color: #ef4444;
+}
+.quiz-feedback {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 40px;
+    background: #0f172a;
+    text-align: center;
+}
+.quiz-feedback i {
+    color: var(--real-estate-color);
+    margin-right: 8px;
+}
+.quiz-actions {
+    margin-top: 25px;
+}
+
+/* ----- NEXT STEPS CARDS ----- */
+.next-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    margin-top: 30px;
+}
+.next-card {
+    flex: 1 1 250px;
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    padding: 25px;
+    text-decoration: none;
+    color: var(--dark-color);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-top: 5px solid var(--real-estate-color);
+}
+.next-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+}
+.next-card i {
+    font-size: 2rem;
+    color: var(--real-estate-color);
+    margin-bottom: 15px;
+}
+.next-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+.next-card p {
+    color: var(--gray-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+#rentVsBuyResult div {
+    transition: var(--transition);
+}
+#rentVsBuyResult div:hover {
+    transform: scale(1.02);
+}

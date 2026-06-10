@@ -1,0 +1,201 @@
+{# templates/prospect/create_combined_account.html.twig #}
+{% set plan = app.request.query.get('plan', 'standard') %}
+{% extends 'base_prospect.html.twig' %}
+
+{% block title %}Forecastly - Take Control of Your Financial Future{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('prospectRegistrationCss') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('prospectRegistrationJs') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container" style="margin-top: 40px; margin-bottom: 80px;">
+        <!-- Flash Messages -->
+        <div class="flash-messages">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i> {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <section style="text-align: center; margin-bottom: 40px;">
+            <h1 class="section-title">Create Your Forecastly Account</h1>
+            <p class="section-subtitle">Just a few steps to start your financial journey</p>
+        </section>
+
+        <div class="registration-container">
+            <div class="registration-progress">
+                <div class="progress-step">
+                    <div id="step1Number" class="step-number">1</div>
+                    <div id="step1Label" class="step-label">Account Details</div>
+                </div>
+                <div class="progress-step">
+                    <div id="step2Number" class="step-number">2</div>
+                    <div id="step2Label" class="step-label">Personal Information</div>
+                </div>
+            </div>
+
+            <form id="combinedForm" action="{{ path('process_combined_account') }}" method="POST">
+                {% set form_data = form_data|default({}) %}
+                {% set account_data = form_data.account|default({}) %}
+                {% set customer_data = form_data.customer|default({}) %}
+                <input type="hidden" name="plan" value="{{ plan }}">
+                <input type="hidden" id="account_id" name="account[id]" value="">
+
+                <div id="accountForm" class="form-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Account Information</h2>
+                        <p class="section-subtitle">Tell us about your account</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="account_accountName">Account Name</label>
+                        <input type="text" id="account_accountName" name="account[accountName]" class="form-control" required
+                               value="{{ account_data.accountName|default('') }}">
+                        <p class="form-hint">This could be "Personal Budget", "Family Finances", etc.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Subscription Plan</label>
+                        <input type="hidden" id="account_subscriptionPlan" name="account[subscriptionPlan]" value="{{ plan }}">
+
+                        <div class="plans-container">
+                            {# Standard Plan #}
+                            <div class="plan-card {% if plan == 'standard' %}selected{% endif %}" data-plan="standard">
+                                <div class="plan-badge">🔥 Limited Time Offer</div>
+                                <h3>Standard</h3>
+                                <div class="plan-price promo">$0.99<span>/month</span></div>
+                                <div class="plan-old-price">$12.99/month</div>
+                                <div class="plan-price yearly">Billed annually at $11.88</div>
+                                <ul class="plan-features">
+                                    <li><i class="fas fa-check"></i> All Financial Education Journeys</li>
+                                    <li><i class="fas fa-check"></i> Up to 5 accounts</li>
+                                    <li><i class="fas fa-check"></i> Up to 7 years of Forecasting</li>
+                                    <li><i class="fas fa-check"></i> Export to Excel</li>
+                                    <li><i class="fas fa-check"></i> Email support</li>
+                                </ul>
+                            </div>
+
+                            {# Premium Plan #}
+                            <div class="plan-card {% if plan == 'premium' %}selected{% endif %}" data-plan="premium">
+                                <h3>Premium</h3>
+                                <div class="plan-price">$29.99<span>/month</span></div>
+                                <div class="plan-price yearly">$20.99<span>/month (yearly)</span></div>
+                                <ul class="plan-features">
+                                    <li><i class="fas fa-check"></i> All Financial Education Journeys</li>
+                                    <li><i class="fas fa-check"></i> Unlimited accounts</li>
+                                    <li><i class="fas fa-check"></i> Up to 15 years of Forecasting</li>
+                                    <li><i class="fas fa-check"></i> Sync bank accounts via Plaid*</li>
+                                    <li><i class="fas fa-check"></i> Export to Excel</li>
+                                    <li><i class="fas fa-check"></i> Live chat support</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="{{ path('prospect_landing') }}" class="btn btn-secondary">Back to Home</a>
+                        <button type="button" id="nextBtn" class="btn btn-primary">Continue</button>
+                    </div>
+                </div>
+
+                <div id="customerForm" class="form-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">Personal Information</h2>
+                        <p class="section-subtitle">Tell us about yourself</p>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customer_firstName">First Name</label>
+                            <input type="text" id="customer_firstName" name="customer[firstName]" class="form-control" required
+                                   value="{{ customer_data.firstName|default('') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="customer_lastName">Last Name</label>
+                            <input type="text" id="customer_lastName" name="customer[lastName]" class="form-control" required
+                                   value="{{ customer_data.lastName|default('') }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer_username">Username</label>
+                        <input type="text" id="customer_username" name="customer[username]" class="form-control" required autocomplete="username"
+                               value="{{ customer_data.username|default('') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer_email">Email Address</label>
+                        <input type="email" id="customer_email" name="customer[email]" class="form-control" required
+                               value="{{ customer_data.email|default('') }}">
+                        {% if app.flashes('error') %}
+                            {% for message in app.flashes('error') %}
+                                {% if 'email' in message|lower %}
+                                    <div class="form-error">
+                                        <i class="fas fa-exclamation-circle"></i> {{ message }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer_plainPassword_first">Password</label>
+                        <input type="password" id="customer_plainPassword_first" name="customer[plainPassword][first]" class="form-control" required autocomplete="new-password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer_plainPassword_second">Repeat Password</label>
+                        <input type="password" id="customer_plainPassword_second" name="customer[plainPassword][second]" class="form-control" required autocomplete="new-password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer_phoneNumber">Phone Number (Optional)</label>
+                        <input type="tel" id="customer_phoneNumber" name="customer[phoneNumber]" class="form-control"
+                               value="{{ customer_data.phoneNumber|default('') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check terms-checkbox">
+                            <input type="checkbox" id="customer_agreeTerms" name="customer[agreeTerms]" class="form-check-input" required
+                                   {% if customer_data.agreeTerms is defined %}checked{% endif %}>
+                            <label for="customer_agreeTerms" class="form-check-label">
+                                I agree to the
+                                <a href="{{ path('terms_of_service') }}" target="_blank" class="terms-link">Terms of Service</a>
+                                and
+                                <a href="{{ path('privacy_policy') }}" target="_blank" class="terms-link">Privacy Policy</a>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="backBtn" class="btn btn-secondary" style="display: none;">Back</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary" style="display: none;">Create Account</button>
+                    </div>
+                </div>
+
+                <div id="successMessage" class="form-section" style="display: none;">
+                    <div class="success-message">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>Account Created Successfully!</h2>
+                        <p>Redirecting you to your dashboard...</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{# templates/prospect/resend_activation_token.html.twig #}
+{% extends 'base_prospect.html.twig' %}
+
+{% block title %}Forecastly - Resend Activation Email{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('prospectCss') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('prospectJs') }}
+{% endblock %}
+
+{% block body %}
+    <div class="landing-page">
+        <section class="landing-hero" style="padding: 40px 0;">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Activation Link Expired</h1>
+                    <p class="hero-subtitle">We'll send you a new activation email</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="success-container">
+                <div class="success-icon" style="color: var(--negative);">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+
+                <h2 class="success-title">Activation Link Expired</h2>
+
+                <p class="success-message">
+                    The activation link you used has expired or is invalid.<br />
+                    Don't worry! You can request a new activation email by clicking the button below.
+                </p>
+
+                <div class="plan-info" style="background-color: rgba(255, 158, 109, 0.1); border-left: 4px solid var(--negative);">
+                    <h3><i class="fas fa-envelope"></i> Resend Activation Email</h3>
+                    <p>
+                        We'll send a new activation link to your email address:<br />
+                        <strong>{{ customer.email }}</strong>
+                    </p>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="resendEmail" class="btn btn-primary btn-large">
+                        <i class="fas fa-paper-plane"></i> Resend Activation Email
+                    </button>
+                    <a href="{{ path('prospect_landing') }}" class="btn btn-secondary btn-large" style="margin-left: 10px;">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                </div>
+
+                <div id="resendStatus" style="margin-top: 20px; display: none;">
+                    <!-- Status messages will appear here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store customerId for JavaScript usage
+        const customerId = {{ customer.id }};
+        const resendUrl = "{{ path('resend_activation_email', {'customerId': customer.id}) }}";
+    </script>
+{% endblock %}

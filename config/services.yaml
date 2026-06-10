@@ -1,0 +1,38 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    from_email: 'noreply@forecastly.online'
+    from_name: 'Forecastly App'
+    avatars_directory: '%kernel.project_dir%/public/uploads/avatars'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Api/Transformers'
+
+    api_exception_listener:
+        class: App\Listeners\ApiExceptionListener
+        arguments:
+            - '@logger'
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+
+
+    App\Services\StripeService:
+        arguments:
+            $secretKey: '%stripe_secret_key%'
+            $publishableKey: '%stripe_publishable_key%'

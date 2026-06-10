@@ -1,0 +1,179 @@
+{# templates/roadmaps/journeys/roadmaps-home.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block headmeta %}
+    {{ parent() }}
+    <meta name="description" content="{{ page.seoDescription }}">
+    <meta name="keywords" content="{{ page.seoKeywords }}">
+    <meta property="og:image" content="{{ page.getOgImgUrl }}">
+{% endblock %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('promo_landing_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('promo_landing_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- HERO SECTION – ALL-ACCESS + FORECASTLY BONUS -->
+        <header class="offer-hero">
+            <div class="hero-content">
+                <div class="bonus-tag animate">✨ SPECIAL LAUNCH BONUS ✨</div>
+                <h1 class="animate">
+                    Master your money with <span class="highlight">11 roadmaps</span><br>+ Forecastly Standard included
+                </h1>
+                <p class="hero-subtitle" style="font-size: 1.5rem; color: #cbd5e0; margin-bottom: 20px;">
+                    Education + action. Everything you need to build lasting wealth.
+                </p>
+                <div class="price-tag animate">
+                    <span class="price">$0.99 <small>/month</small></span>
+                    <span class="old-price">$32.98</span>
+                </div>
+                <p class="price-sub animate" style="max-width: 700px; margin: 0 auto 30px;">
+                    Billed annually at $11.88 — that's <strong>$12.99/month Forecastly</strong> included at no extra cost
+                </p>
+                <a href="{{path('create_combined_account', {'plan':'standard'})}}" class="cta-button animate"><i class="fas fa-gift"></i> Get bonus + all-access</a>
+                <div class="journey-stats" style="margin-top: 50px; justify-content: center; display: flex; gap: 40px; flex-wrap: wrap;">
+                    <div class="stat-item"><div class="stat-number">11</div><div class="stat-label">roadmaps</div></div>
+                    <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">lessons</div></div>
+                    <div class="stat-item"><div class="stat-number">1</div><div class="stat-label">forecastly pro</div></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- BONUS SECTION: FORECASTLY STANDARD HIGHLIGHTS -->
+        <section style="margin: 80px 0;">
+            <h2 class="section-title animate">🎁 Your exclusive bonus: Forecastly Standard (value $12.99/month)</h2>
+            <p class="section-subtitle animate">Normally $12.99/month – now included with your $0.99 membership. Forecastly gives you the tools to project, track, and optimise your financial future.</p>
+
+            <div class="bonus-grid">
+                <div class="bonus-card animate">
+                    <div class="bonus-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Wealth Forecasting</h3>
+                    <p>Project your net worth years ahead with scenario planning & "what‑if" analysis. See the impact of big decisions before you make them.</p>
+                </div>
+                <div class="bonus-card animate">
+                    <div class="bonus-icon"><i class="fas fa-wallet"></i></div>
+                    <h3>Income & Expense Tracking</h3>
+                    <p>Custom categories, visual reports, and spending insights that reveal exactly where your money goes.</p>
+                </div>
+                <div class="bonus-card animate">
+                    <div class="bonus-icon"><i class="fas fa-bell"></i></div>
+                    <h3>Smart Alerts</h3>
+                    <p>Get reminders for bills, unusual spending, and personalised saving opportunities – so you never miss a beat.</p>
+                </div>
+                <div class="bonus-card animate">
+                    <div class="bonus-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Bank-Level Security</h3>
+                    <p>Encrypted, protected, and automatically backed up. Your data stays safe while you plan your future.</p>
+                </div>
+            </div>
+
+            <!-- extra Forecastly features in a compact row -->
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px;">
+                <span class="topic-pill"><i class="fas fa-mobile-alt"></i> Anywhere access</span>
+                <span class="topic-pill"><i class="fas fa-cloud-upload-alt"></i> Automated backups</span>
+                <span class="topic-pill"><i class="fas fa-database"></i> Up to 7 years forecasting*</span>
+                <span class="topic-pill"><i class="fas fa-file-excel"></i> Export to Excel</span>
+            </div>
+            <p style="text-align: center; color: var(--gray-color); margin-top: 15px;">*Standard plan includes up to 7 years of forecasting & 10 accounts</p>
+        </section>
+
+        <!-- BUNDLED PRICING & VALUE COMPARISON -->
+        <div class="pricing-card animate">
+            <h3>Complete money bundle</h3>
+            <div class="savings-badge"><i class="fas fa-bolt"></i> 97% off combined value</div>
+            <div class="bonus-highlight">
+                <i class="fas fa-crown" style="color: #f97316;"></i>
+                Forecastly Standard ($12.99/month) included FREE
+            </div>
+            <div class="pricing-display">
+                <span class="dollar">$0.99</span> <span class="period">per month</span>
+            </div>
+            <p style="margin-bottom: 20px; font-size: 1.1rem;"><strong>Billed annually at $11.88</strong> — less than a single month of Forecastly alone.</p>
+            <p style="color: var(--gray-color); margin-bottom: 30px;">🔒 No hidden fees · cancel anytime · full access to 11 roadmaps + Forecastly Standard</p>
+            <a href="{{path('create_combined_account', {'plan':'standard'})}}" class="cta-button" style="font-size: 1.2rem;"><i class="fas fa-check-circle"></i> Get instant access – bonus included</a>
+            <p style="margin-top: 20px; color: #94a3b8;"><i class="fas fa-clock"></i> Introductory pricing – lock it in now</p>
+        </div>
+
+        <!-- ALL 11 ROADMAPS (quick list) + reminder of bonus -->
+        <section style="margin: 70px 0;">
+            <h2 class="section-title animate">All 11 roadmaps + Forecastly = your complete financial OS</h2>
+            <p class="section-subtitle animate">Every journey, every tool – no second subscription needed.</p>
+            <div class="topic-mini-grid">
+                <div class="topic-pill"><i class="fas fa-piggy-bank"></i> Personal Finance</div>
+                <div class="topic-pill"><i class="fas fa-globe-americas"></i> Forex</div>
+                <div class="topic-pill"><i class="fas fa-coins"></i> Crypto</div>
+                <div class="topic-pill"><i class="fas fa-chart-line"></i> Stocks</div>
+                <div class="topic-pill"><i class="fas fa-umbrella-beach"></i> Retirement</div>
+                <div class="topic-pill"><i class="fas fa-home"></i> Real estate</div>
+                <div class="topic-pill"><i class="fas fa-file-invoice-dollar"></i> Tax‑smart</div>
+                <div class="topic-pill"><i class="fas fa-fire"></i> FIRE</div>
+                <div class="topic-pill"><i class="fas fa-hand-holding-usd"></i> Bonds</div>
+                <div class="topic-pill"><i class="fas fa-brain"></i> Psychology</div>
+                <div class="topic-pill"><i class="fas fa-credit-card"></i> Credit & debt</div>
+            </div>
+            <div style="text-align: center; margin-top: 30px; background: #eef2ff; padding: 20px; border-radius: 60px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                <p style="font-weight: 700;"><i class="fas fa-star" style="color: #fbbf24;"></i> Plus Forecastly Standard: wealth forecasting, expense tracking, smart alerts & more</p>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS – mix of roadmaps + forecastly (simulated) -->
+        <section class="testimonials" style="margin: 60px 0;">
+            <h2 class="section-title animate">From learners to planners</h2>
+            <p class="section-subtitle animate">Our members use the roadmaps + Forecastly to take real control.</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card animate">
+                    <div class="testimonial-text">“I took the personal finance roadmap, and then plugged everything into Forecastly. Seeing my net worth projection gave me the motivation to save an extra $200/month.”</div>
+                    <div class="testimonial-author"><div class="author-avatar">NP</div><div class="author-info"><h4>Nadia P.</h4><p>roadmaps: personal finance, FIRE</p></div></div>
+                </div>
+                <div class="testimonial-card animate">
+                    <div class="testimonial-text">“The crypto roadmap taught me self‑custody; now with Forecastly I track all my investments in one place. This bundle is a steal at $0.99.”</div>
+                    <div class="testimonial-author"><div class="author-avatar">JC</div><div class="author-info"><h4>Javier C.</h4><p>roadmaps: crypto, stocks</p></div></div>
+                </div>
+                <div class="testimonial-card animate">
+                    <div class="testimonial-text">“Forecastly’s ‘what‑if’ tool helped me decide to go freelance. I modelled the income change using the roadmap’s advice – now I’m living the dream.”</div>
+                    <div class="testimonial-author"><div class="author-avatar">LR</div><div class="author-info"><h4>Leah R.</h4><p>roadmap: tax‑smart, psychology</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ (updated with bonus questions) -->
+        <section style="margin: 70px 0;">
+            <h2 class="section-title animate">Your questions, answered</h2>
+            <div class="faq-grid" style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item animate" style="background: white; border-radius: 20px; padding: 25px; margin-bottom: 15px; box-shadow: var(--shadow);">
+                    <div class="faq-question">How do I get the Forecastly bonus?</div>
+                    <div class="faq-answer">When you sign up for the all-access pass at $0.99/month, you'll receive instant access credentials for Forecastly Standard (the $12.99/month plan). Use the same email to log in to Forecastly – it's automatically linked.</div>
+                </div>
+                <div class="faq-item animate" style="background: white; border-radius: 20px; padding: 25px; margin-bottom: 15px; box-shadow: var(--shadow);">
+                    <div class="faq-question">Is Forecastly really included forever at $0.99/month?</div>
+                    <div class="faq-answer">Yes – as long as you maintain your Money Moxie all-access membership (at the introductory or renewal rate), you keep Forecastly Standard at no extra cost. No time limit.</div>
+                </div>
+                <div class="faq-item animate" style="background: white; border-radius: 20px; padding: 25px; margin-bottom: 15px; box-shadow: var(--shadow);">
+                    <div class="faq-question">What’s the regular price of Forecastly Standard?</div>
+                    <div class="faq-answer">Forecastly Standard normally costs $12.99/month (or $9.10/month if billed yearly). By bundling, you get it free with your $0.99/month Money Moxie subscription. That's over $155 in annual value.</div>
+                </div>
+                <div class="faq-item animate" style="background: white; border-radius: 20px; padding: 25px; margin-bottom: 15px; box-shadow: var(--shadow);">
+                    <div class="faq-question">Can I use Forecastly without the roadmaps?</div>
+                    <div class="faq-answer">Absolutely. But the magic happens when you combine the education (roadmaps) with the action (Forecastly). You'll understand the "why" behind the numbers.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <div style="text-align: center; margin: 80px 0;">
+            <h2 class="section-title animate">Start your complete financial system today</h2>
+            <p class="animate" style="font-size: 1.2rem; color: var(--gray-color); max-width: 700px; margin: 0 auto 30px;"><strong>11 roadmaps + Forecastly Standard</strong> – one tiny price. Join 15,000+ members who are learning, forecasting, and building wealth.</p>
+            <a href="{{path('create_combined_account', {'plan':'standard'})}}" class="cta-button animate" style="font-size: 1.8rem; padding: 20px 60px;"><i class="fas fa-gem"></i> $0.99/month – claim bundle</a>
+            <p style="margin-top: 20px; color: #94a3b8;"><i class="fas fa-lock"></i> Secure checkout · 30-day money-back guarantee</p>
+        </div>
+    </div>
+{% endblock %}

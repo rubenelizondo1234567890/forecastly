@@ -1,0 +1,207 @@
+{# templates/roadmaps/personal-finance/real-state-fundamentals-journey.html.twig #}
+{% extends 'base-roadmaps.html.twig' %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('personal_finance_css') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('personal_finance_js') }}
+    {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- article hero -->
+        <div class="article-hero animate">
+            <div class="hero-content">
+                <div class="article-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h1>Understanding Your <span>Credit Score</span> & Report</h1>
+                <p class="hero-description">
+                    Decode the three digits that shape your financial life — what they mean, how they're calculated, and exactly how to improve yours.
+                </p>
+                <div class="article-meta-hero">
+                    <span><i class="far fa-clock"></i> 9 min read</span>
+                    <span><i class="fas fa-calendar-alt"></i> Updated March 2025</span>
+                    <span><i class="fas fa-signal"></i> Beginner friendly</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- main article content -->
+        <article class="article-main animate">
+            <h2>🤔 What is a credit score?</h2>
+            <p>A credit score is a three‑digit number (typically 300–850) that lenders use to predict how likely you are to repay borrowed money. It’s a snapshot of your financial trustworthiness — and it influences everything from loan approvals to apartment rentals and even insurance rates.</p>
+
+            <div class="insight-callout">
+                <i class="fas fa-lightbulb"></i>
+                <div><strong>Why it matters:</strong> A higher score can save you tens of thousands in interest over your lifetime. A difference of 50 points might change your mortgage rate by 1% or more.</div>
+            </div>
+
+            <h2>📊 Credit score ranges at a glance</h2>
+            <div class="score-range-grid">
+                <div class="range-card poor"><div class="score-cat">Poor</div><div class="score-numbers">300–579</div></div>
+                <div class="range-card fair"><div class="score-cat">Fair</div><div class="score-numbers">580–669</div></div>
+                <div class="range-card good"><div class="score-cat">Good</div><div class="score-numbers">670–739</div></div>
+                <div class="range-card excellent"><div class="score-cat">Excellent</div><div class="score-numbers">740–850</div></div>
+            </div>
+            <p>Most lenders consider 670+ a "good" score. But don’t worry if you're starting lower — scores change constantly based on your habits.</p>
+
+            <h2>🔍 The 5 factors that make up your score</h2>
+            <p><strong>Click each factor</strong> to see a simple explanation and how to improve it.</p>
+
+            <!-- interactive factor explorer -->
+            <div class="factor-grid" id="factorGrid">
+                <div class="factor-card" data-factor="payment" data-desc="The most important factor. Pay all bills on time, even utilities (some report late payments). Set up autopay or calendar reminders. One 30‑day late stay can drop a good score by 50–100 points.">
+                    <div class="factor-percent">35%</div>
+                    <div class="factor-name">Payment history</div>
+                </div>
+                <div class="factor-card" data-factor="amounts" data-desc="Credit utilization: how much of your limit you use. Aim to use less than 30% of each card. Pay down balances, and ask for credit limit increases (without spending more).">
+                    <div class="factor-percent">30%</div>
+                    <div class="factor-name">Amounts owed</div>
+                </div>
+                <div class="factor-card" data-factor="length" data-desc="Longer credit history = better. Keep old accounts open (even with zero balance). If you're new, become an authorized user on a family member's old card.">
+                    <div class="factor-percent">15%</div>
+                    <div class="factor-name">Length of history</div>
+                </div>
+                <div class="factor-card" data-factor="mix" data-desc="Having different types: credit card, auto loan, student loan (mortgage later). Don't open new ones just for mix, but responsible use of various types helps.">
+                    <div class="factor-percent">10%</div>
+                    <div class="factor-name">Credit mix</div>
+                </div>
+                <div class="factor-card" data-factor="new" data-desc="Opening several accounts in a short time looks risky. Each application causes a small, temporary dip. Space out applications by 6–12 months.">
+                    <div class="factor-percent">10%</div>
+                    <div class="factor-name">New credit</div>
+                </div>
+            </div>
+            <div class="factor-desc-panel" id="factorDescPanel">
+                <p><i class="fas fa-hand-pointer" style="color: #ff6b35; margin-right: 8px;"></i>Tap any factor above to learn more.</p>
+            </div>
+
+            <h2>📄 Your credit report — the source of truth</h2>
+            <p>Your credit score is built from data in your credit reports from Equifax, Experian, and TransUnion. By law you can get one <strong>free</strong> report per week from each bureau at <a href="#" style="color: var(--personal-color);">AnnualCreditReport.com</a>. Always check for errors — dispute anything inaccurate.</p>
+
+            <div class="highlight-box">
+                <i class="fas fa-file-invoice" style="font-size: 2rem; color: var(--personal-color); margin-bottom: 15px; display: inline-block;"></i>
+                <h3 style="margin-top: 0;">What’s inside your report?</h3>
+                <ul style="margin-bottom: 0;">
+                    <li><strong>Personal info:</strong> name, address, SSN (check for misspellings)</li>
+                    <li><strong>Accounts:</strong> credit cards, loans, payment status</li>
+                    <li><strong>Inquiries:</strong> who accessed your report (hard vs soft)</li>
+                    <li><strong>Public records:</strong> bankruptcies, liens (rare nowadays)</li>
+                </ul>
+            </div>
+
+            <h2>🚀 5 proven ways to boost your score</h2>
+            <ol>
+                <li><strong>Pay everything on time, always.</strong> Set up autopay for at least the minimum.</li>
+                <li><strong>Lower your credit utilization.</strong> Pay down credit card balances before the statement closes.</li>
+                <li><strong>Don’t close old cards.</strong> They help your history length and total available credit.</li>
+                <li><strong>Limit new applications.</strong> Only apply for credit when truly needed.</li>
+                <li><strong>Become an authorized user</strong> on a responsible friend’s or family member’s card.</li>
+            </ol>
+
+            <h2>❓ Myth vs. reality</h2>
+            <ul>
+                <li><i class="fas fa-times-circle" style="color:#e74c3c; margin-right: 8px;"></i> <strong>Myth:</strong> Checking your own score hurts it. <strong>Fact:</strong> Soft pulls (like checking your own) have zero impact.</li>
+                <li><i class="fas fa-check-circle" style="color:#2ecc71; margin-right: 8px;"></i> <strong>Myth:</strong> You need to carry a balance to build credit. <strong>Fact:</strong> Paying in full monthly is ideal.</li>
+                <li><i class="fas fa-times-circle" style="color:#e74c3c; margin-right: 8px;"></i> <strong>Myth:</strong> Income affects your score. <strong>Fact:</strong> Your salary doesn’t appear on your credit report.</li>
+            </ul>
+
+            <!-- Quick quiz -->
+            {% if app.user and quiz %}
+                {# Logged in user #}
+                {# Quiz already taken – show summary and retake button #}
+                <div class="quiz-container animate">
+                    <h3 style="color:white; margin-top: 0;">🧠 You've already taken this quiz</h3>
+                    <p style="color: #e2e8f0; font-size: 1.2rem;">
+                        Your score: <strong>{{ quiz.quizzScore }}%</strong>
+                    </p>
+                    <p style="color: #cbd5e0;">
+                        You can retake the quiz to improve your score. Click the button below to reset it.
+                    </p>
+                    <div class="quiz-actions">
+                        <a href="{{ path('app_page_show', { journey: page.journey.name, slug: slug, retake: 1 }) }}"
+                           class="btn"
+                           style="background-color: #ff6b35; color: white; text-decoration: none;">
+                            Retake Quiz
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                {# Not logged in – show quiz (interactivity will be blocked by JS) #}
+                <div class="quiz-container animate" data-page-id="{{ page.id }}">
+                    <h3 style="color:white; margin-top: 0;">🧠 Quick quiz: test your credit IQ</h3>
+                    <div class="quiz-question">1. What is the #1 factor in your credit score?</div>
+                    <div class="quiz-options" data-question="1">
+                        <div class="quiz-option" data-answer="wrong">Credit utilization</div>
+                        <div class="quiz-option" data-answer="correct">Payment history</div>
+                        <div class="quiz-option" data-answer="wrong">Length of credit</div>
+                        <div class="quiz-option" data-answer="wrong">Credit mix</div>
+                    </div>
+                    <div class="quiz-question" style="margin-top: 30px;">2. How often can you check your credit reports for free?</div>
+                    <div class="quiz-options" data-question="2">
+                        <div class="quiz-option" data-answer="wrong">Once a year</div>
+                        <div class="quiz-option" data-answer="wrong">Once a month</div>
+                        <div class="quiz-option" data-answer="correct">Every week</div>
+                        <div class="quiz-option" data-answer="wrong">Every day</div>
+                    </div>
+                    <div class="quiz-question">3. What is a good credit utilization ratio to aim for?</div>
+                    <div class="quiz-options" data-question="3">
+                        <div class="quiz-option" data-answer="wrong">Less than 10%</div>
+                        <div class="quiz-option" data-answer="correct">Less than 30%</div>
+                        <div class="quiz-option" data-answer="wrong">Less than 50%</div>
+                        <div class="quiz-option" data-answer="wrong">Less than 70%</div>
+                    </div>
+                    <div class="quiz-question">4. Which of the following does NOT affect your credit score?</div>
+                    <div class="quiz-options" data-question="4">
+                        <div class="quiz-option" data-answer="wrong">Payment history</div>
+                        <div class="quiz-option" data-answer="correct">Your income</div>
+                        <div class="quiz-option" data-answer="wrong">Credit mix</div>
+                        <div class="quiz-option" data-answer="wrong">Length of history</div>
+                    </div>
+                    <div class="quiz-question">5. If you close a credit card, what happens to your credit score?</div>
+                    <div class="quiz-options" data-question="5">
+                        <div class="quiz-option" data-answer="wrong">It always increases</div>
+                        <div class="quiz-option" data-answer="correct">It may decrease due to lower available credit</div>
+                        <div class="quiz-option" data-answer="wrong">It stays the same</div>
+                        <div class="quiz-option" data-answer="wrong">It only affects your score if you have a balance</div>
+                    </div>
+                    <div class="quiz-actions">
+                        <button id="quiz-submit" class="btn">Get Score and Submit</button>
+                    </div>
+                    <div class="quiz-result"></div>
+                </div>
+            {% endif %}
+
+
+            <h2>📘 Next steps in your journey</h2>
+            <p>You've mastered credit basics — now keep building your foundation with these Phase 1 articles:</p>
+            <div class="mini-related">
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: '503020-budgeting' }) }}" class="mini-card">
+                    <i class="fas fa-calculator" style="color: var(--personal-color);"></i>
+                    <h4>Budgeting: 50/30/20 rule</h4>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'emergency-fund-101' }) }}" class="mini-card">
+                    <i class="fas fa-shield-alt" style="color: var(--personal-color);"></i>
+                    <h4>Emergency fund 101</h4>
+                </a>
+                <a href="{{ url('app_page_show', { journey: page.journey.name, slug: 'zero-based-budgeting' }) }}" class="mini-card">
+                    <i class="fas fa-coins" style="color: var(--personal-color);"></i>
+                    <h4>Zero‑based budgeting</h4>
+                </a>
+            </div>
+        </article>
+
+        <!-- CTA similar to journey -->
+        <div class="journey-cta animate" style="background: linear-gradient(145deg, #fceae5, #ffffff);">
+            <h2>Ready to take action?</h2>
+            <p style="font-size: 1.2rem; color: #2d3748;">Get your free credit report and start building today.</p>
+            <a href="#" class="cta-button" style="background-color: #ff6b35; box-shadow: 0 8px 18px rgba(255,107,53,0.3);"><i class="fas fa-file-signature"></i> Check your reports</a>
+        </div>
+    </div>
+{% endblock %}
