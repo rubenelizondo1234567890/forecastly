@@ -43,6 +43,11 @@ phpstan.neon
 /config/jwt/private.pem
 /config/jwt/public.pem
 
+###> Local env overrides — never commit
+/.env.dev
+/.env.prod
+/.env.staging
+
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
