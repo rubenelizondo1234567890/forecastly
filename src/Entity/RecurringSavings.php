@@ -11,67 +11,37 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'recurring_savings')]
 class RecurringSavings
 {
-    /**
-     * @var int|null
-     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     private ?int $id = null;
 
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'name', type: Types::STRING, length: 45)]
     private string $name;
 
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'savings_strategy', type: Types::STRING, length: 60)]
     private string $savingsStrategy = '';
 
-    /**
-     * @var float|null
-     */
     #[ORM\Column(name: 'chosen_amount', type: Types::FLOAT, nullable: true)]
     private ?float $chosenAmount = null;
-    /**
-     * @var int|null
-     */
     #[ORM\Column(name: 'day_of_month_to_make_saving', type: Types::INTEGER, nullable: true)]
     private ?int $dayOfMonthToMakeSaving = null;//Day of the month will be restricted from 01 to 28
 
-    /**
-     * @var DateTimeInterface
-     */
     #[ORM\Column(name: 'start_on', type: Types::DATETIME_MUTABLE)]
     private DateTimeInterface $startOn;
 
-    /**
-     * @var Account
-     */
     #[ORM\ManyToOne(targetEntity: Account::class)]
     #[ORM\JoinColumn(name: 'account_to_withdraw_id', referencedColumnName: 'id')]
     private Account $accountToWithdraw;
 
-    /**
-     * @var Account
-     */
     #[ORM\ManyToOne(targetEntity: Account::class)]
     #[ORM\JoinColumn(name: 'account_to_save_id', referencedColumnName: 'id')]
     private Account $accountToSave;
 
-    /**
-     * @var CustomersAccount
-     */
     #[ORM\ManyToOne(targetEntity: CustomersAccount::class)]
     #[ORM\JoinColumn(name: 'customer_account_id', referencedColumnName: 'id')]
     private CustomersAccount $customerAccount;
 
-    /**
-     * @var Log|null
-     */
     #[ORM\ManyToOne(targetEntity: Log::class)]
     #[ORM\JoinColumn(name: 'log_id', referencedColumnName: 'id', nullable: true)]
     private ?Log $log = null;
@@ -80,17 +50,11 @@ class RecurringSavings
     {
         $this->startOn = new DateTime('now');
     }
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -106,9 +70,6 @@ class RecurringSavings
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSavingsStrategy(): string
     {
         return $this->savingsStrategy;
@@ -124,9 +85,6 @@ class RecurringSavings
         return $this;
     }
 
-    /**
-     * @return float|null
-     */
     public function getChosenAmount(): ?float
     {
         return $this->chosenAmount;
@@ -142,9 +100,6 @@ class RecurringSavings
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDayOfMonthToMakeSaving(): ?int
     {
         return $this->dayOfMonthToMakeSaving;
@@ -160,9 +115,6 @@ class RecurringSavings
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface
-     */
     public function getStartOn(): DateTimeInterface
     {
         return $this->startOn;
@@ -178,9 +130,6 @@ class RecurringSavings
         return $this;
     }
 
-    /**
-     * @return Account
-     */
     public function getAccountToWithdraw(): Account
     {
         return $this->accountToWithdraw;
@@ -196,9 +145,6 @@ class RecurringSavings
         return $this;
     }
 
-    /**
-     * @return Account
-     */
     public function getAccountToSave(): Account
     {
         return $this->accountToSave;
@@ -214,9 +160,6 @@ class RecurringSavings
         return $this;
     }
 
-    /**
-     * @return CustomersAccount
-     */
     public function getCustomerAccount(): CustomersAccount
     {
         return $this->customerAccount;
@@ -232,9 +175,6 @@ class RecurringSavings
         return $this;
     }
 
-    /**
-     * @return Log|null
-     */
     public function getLog(): ?Log
     {
         return $this->log;

@@ -12,85 +12,46 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Table(name: 'admin_users')]
 class AdminUser implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @var int
-     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     private int $id;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'username', type: Types::STRING, length: 255, unique: true)]
     private string $username;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'password', type: Types::STRING, length: 255)]
     private string $password;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'first_name', type: Types::STRING, length: 255)]
     private string $firstName;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'last_name', type: Types::STRING, length: 255)]
     private string $lastName;
     
-    /**
-     * @var bool
-     */
     #[ORM\Column(name: 'is_active', type: Types::BOOLEAN)]
     private bool $isActive = false;
     
-    /**
-     * @var bool
-     */
     #[ORM\Column(name: 'is_confirmed', type: Types::BOOLEAN)]
     private bool $isConfirmed = false;
     
-    /**
-     * @var string|null
-     */
     #[ORM\Column(name: 'password_reset_token', type: Types::STRING, length: 45, nullable: true)]
     private ?string $passwordResetToken;
     
-    /**
-     * @var DateTimeInterface
-     */
     #[ORM\Column(name: 'created_at', type: Types::DATETIME_MUTABLE)]
     private DateTimeInterface $createdAt;
     
-    /**
-     * @var array
-     */
     #[ORM\Column(name: 'roles', type: Types::JSON, length: 255)]
     private array $roles = [];
     
-    /**
-     * @var string|null
-     */
     #[ORM\Column(name: 'display_name', type: Types::STRING, length: 255, nullable: true)]
     private ?string $displayName;
     
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
     
-    /**
-     * @return string
-     */
     public function getPassword(): string
     {
         return $this->password;
@@ -106,9 +67,6 @@ class AdminUser implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     
-    /**
-     * @return string
-     */
     public function getFirstName(): string
     {
         return $this->firstName;
@@ -124,9 +82,6 @@ class AdminUser implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     
-    /**
-     * @return string
-     */
     public function getLastName(): string
     {
         return $this->lastName;
@@ -142,9 +97,6 @@ class AdminUser implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     
-    /**
-     * @return bool
-     */
     public function isActive(): bool
     {
         return $this->isActive;
@@ -160,9 +112,6 @@ class AdminUser implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     
-    /**
-     * @return bool
-     */
     public function isConfirmed(): bool
     {
         return $this->isConfirmed;
@@ -178,9 +127,6 @@ class AdminUser implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     
-    /**
-     * @return string|null
-     */
     public function getPasswordResetToken(): ?string
     {
         return $this->passwordResetToken;
@@ -196,9 +142,6 @@ class AdminUser implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     
-    /**
-     * @return DateTimeInterface
-     */
     public function getCreatedAt(): DateTimeInterface
     {
         return $this->createdAt;
@@ -214,9 +157,6 @@ class AdminUser implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
@@ -232,9 +172,6 @@ class AdminUser implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     
-    /**
-     * @return array
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -252,9 +189,6 @@ class AdminUser implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     
-    /**
-     * @return string|null
-     */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
@@ -270,26 +204,17 @@ class AdminUser implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     
-    /**
-     * @return void
-     */
     public function eraseCredentials(): void
     {
         // Not needed when using plaintext password storage
     }
     
-    /**
-     * @return string|null
-     */
     public function getSalt(): ?string
     {
         // Not needed when using modern hashing algorithms
         return null;
     }
     
-    /**
-     * @return string
-     */
     public function getUserIdentifier(): string
     {
         return $this->username;

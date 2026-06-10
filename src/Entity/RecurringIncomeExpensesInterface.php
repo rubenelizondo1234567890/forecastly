@@ -73,15 +73,9 @@ interface RecurringIncomeExpensesInterface
      */
     public function setCustomerAccount(CustomersAccount $customerAccount);
     
-    /**
-     * @return Log
-     */
-    public function getLog(): Log;
-    
-    /**
-     * @param Log $log
-     */
-    public function setLog(Log $log);
+    public function getLog(): ?Log;
+
+    public function setLog(?Log $log);
     
     /**
      * @return BudgetTrackingGroup
