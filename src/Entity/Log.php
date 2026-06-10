@@ -12,53 +12,32 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'log')]
 class Log
 {
-    /**
-     * @var int
-     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     private int $id;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'affected_entity_name', type: Types::STRING, length: 45)]
     private string $affectedEntityName;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'action', type: Types::STRING, length: 45)]
     private string $action;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'log_entity_data', type: Types::TEXT, length: 0)]
     private string $logEntityData;
     
     #[ORM\Column(name: 'log_timestamp', type: 'datetime')]
     private DateTimeInterface $logTimestamp;
     
-    /**
-     * @var Customer
-     */
     #[ORM\ManyToOne(targetEntity: Customer::class)]
     #[ORM\JoinColumn(name: 'customer_id', referencedColumnName: 'id')]
     private Customer $customer;
     
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
     
-    /**
-     * @return string
-     */
     public function getAffectedEntityName(): string
     {
         return $this->affectedEntityName;
@@ -74,9 +53,6 @@ class Log
         return $this;
     }
     
-    /**
-     * @return string
-     */
     public function getAction(): string
     {
         return $this->action;
@@ -92,9 +68,6 @@ class Log
         return $this;
     }
     
-    /**
-     * @return string
-     */
     public function getLogEntityData(): string
     {
         return $this->logEntityData;
@@ -110,9 +83,6 @@ class Log
         return $this;
     }
     
-    /**
-     * @return DateTimeInterface
-     */
     public function getLogTimestamp(): DateTimeInterface
     {
         return $this->logTimestamp;
@@ -128,9 +98,6 @@ class Log
         return $this;
     }
     
-    /**
-     * @return Customer
-     */
     public function getCustomer(): Customer
     {
         return $this->customer;

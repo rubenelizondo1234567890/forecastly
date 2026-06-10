@@ -14,122 +14,65 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Table(name: 'customers')]
 class Customer implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @var int
-     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     private int $id;
 
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'username', type: Types::STRING, length: 45, unique: true)]
     private string $username;
 
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'password', type: Types::STRING, length: 255)]
     private string $password;
 
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'first_name', type: Types::STRING, length: 255)]
     private string $firstName;
 
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'last_name', type: Types::STRING, length: 255)]
     private string $lastName;
 
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'email', type: Types::STRING, length: 255, unique: true)]
     private string $email;
 
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'phone_number', type: Types::STRING, length: 255, nullable: true)]
     private string $phoneNumber;
 
-    /**
-     * @var bool
-     */
     #[ORM\Column(name: 'is_active', type: Types::BOOLEAN)]
     private bool $isActive = false;
 
-    /**
-     * @var bool
-     */
     #[ORM\Column(name: 'is_confirmed', type: Types::BOOLEAN)]
     private bool $isConfirmed = false;
 
-    /**
-     * @var bool
-     */
     #[ORM\Column(name: 'is_main', type: Types::BOOLEAN)]
     private bool $isMain = false;//If true, this is the customer for that customer Account responsible for the Subscription management
 
-    /**
-     * @var string|null
-     */
     #[ORM\Column(name: 'avatar_image', type: Types::STRING, length: 255, nullable: true)]
     private ?string $avatarImage = null;
 
-    /**
-     * @var DateTimeInterface|null
-     */
     #[ORM\Column(name: 'updated_at', type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $updatedAt = null;
 
-    /**
-     * @var string|null
-     */
     #[ORM\Column(name: 'password_reset_token', type: Types::STRING, length: 45, nullable: true)]
     private ?string $passwordResetToken = null;
 
-    /**
-     * @var DateTimeInterface
-     */
     #[ORM\Column(name: 'created_at', type: Types::DATETIME_MUTABLE)]
     private DateTimeInterface $createdAt;
 
-    /**
-     * @var array
-     */
     #[ORM\Column(name: 'roles', type: Types::JSON, length: 255)]
     private array $roles = [];
 
-    /**
-     * @var CustomersAccount
-     */
     #[ORM\ManyToOne(targetEntity: CustomersAccount::class)]
     #[ORM\JoinColumn(name: 'customers_account_id', referencedColumnName: 'id')]
     private CustomersAccount $customersAccount;
 
-    /**
-     * @var Collection<int, CustomerQuizzes>
-     */
     #[ORM\OneToMany(targetEntity: CustomerQuizzes::class, mappedBy: 'customer')]
     private Collection $customerQuizzes;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
@@ -145,9 +88,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPassword(): string
     {
         return $this->password;
@@ -163,9 +103,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getFirstName(): string
     {
         return $this->firstName;
@@ -181,9 +118,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getLastName(): string
     {
         return $this->lastName;
@@ -199,9 +133,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
@@ -217,9 +148,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
@@ -235,9 +163,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isActive(): bool
     {
         return $this->isActive;
@@ -253,9 +178,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isConfirmed(): bool
     {
         return $this->isConfirmed;
@@ -271,9 +193,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPasswordResetToken(): ?string
     {
         return $this->passwordResetToken;
@@ -289,9 +208,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isMain(): bool
     {
         return $this->isMain;
@@ -307,9 +223,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAvatarImage(): ?string
     {
         return $this->avatarImage;
@@ -325,9 +238,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
@@ -343,9 +253,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface
-     */
     public function getCreatedAt(): DateTimeInterface
     {
         return $this->createdAt;
@@ -361,9 +268,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -381,9 +285,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return CustomersAccount
-     */
     public function getCustomersAccount(): CustomersAccount
     {
         return $this->customersAccount;
@@ -399,9 +300,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, CustomerQuizzes>
-     */
     public function getCustomerQuizzes(): Collection
     {
         return $this->customerQuizzes;
@@ -427,26 +325,17 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return void
-     */
     public function eraseCredentials(): void
     {
         // Not needed when using plaintext password storage
     }
 
-    /**
-     * @return string|null
-     */
     public function getSalt(): ?string
     {
         // Not needed when using modern hashing algorithms
         return null;
     }
 
-    /**
-     * @return string
-     */
     public function getUserIdentifier(): string
     {
         return $this->username;

@@ -20,9 +20,6 @@ class Journey
     #[Assert\NotBlank]
     private ?string $name = null;
 
-    /**
-     * @var Collection<int, Page>
-     */
     #[ORM\OneToMany(targetEntity: Page::class, mappedBy: 'journey')]
     private Collection $pages;
 
@@ -47,9 +44,6 @@ class Journey
         return $this;
     }
 
-    /**
-     * @return Collection<int, Page>
-     */
     public function getPages(): Collection
     {
         return $this->pages;

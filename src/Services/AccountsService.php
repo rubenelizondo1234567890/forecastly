@@ -1,4 +1,5 @@
 <?php
+// Copyright (c) 2026 Ruben Elizondo. All Rights Reserved. See LICENSE.
 
 namespace App\Services;
 
@@ -24,40 +25,34 @@ use Exception;
 
 class AccountsService implements AccountsServiceInterface
 {
-    private EntityManagerInterface $em;
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $em, EntityManagerInterface $entityManager)
-    {
-        $this->em = $em;
-        $this->entityManager = $entityManager;
-    }
+    public function __construct(private readonly EntityManagerInterface $em) {}
 
     public function addAccountToAccountsTrackingCalendar(Account $account)
     {
-        $conn = $this->em->getConnection();
-        $accountId = $account->getId();
-        $projectedBalance = $account->getProjectedBalance() ?? 0;
-        $createdDate = $account->getCreatedOn()->format('Y-m-d');
+        $accountId         = (string) $account->getId();
+        $balance           = (string) ($account->getProjectedBalance() ?? 0);
+        $createdDate       = $account->getCreatedOn()->format('Y-m-d');
         $customerAccountId = $account->getCustomerAccount()->getId();
 
+        // jsonb_set() is PostgreSQL-native — not MySQL JSON_SET().
+        // We use DBAL here because DQL cannot express jsonb key-level mutation.
         $sql = "
-        UPDATE accounts_tracking_calendar
-        SET accounts_balances = JSON_SET(
-            COALESCE(accounts_balances, '{}'),
-            CONCAT('$.', :accountId),
-            :projectedBalance
-        )
-        WHERE calendar_date >= :createdDate
-        AND customers_account_id = :customerAccountId
-    ";
+            UPDATE accounts_tracking_calendar
+            SET accounts_balances = jsonb_set(
+                COALESCE(accounts_balances, '{}')::jsonb,
+                CAST(ARRAY[:accountId] AS text[]),
+                CAST(:balance AS jsonb)
+            )
+            WHERE calendar_date >= :createdDate
+              AND customers_account_id = :customerAccountId
+        ";
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindValue('accountId', $accountId);
-        $stmt->bindValue('projectedBalance', $projectedBalance);
-        $stmt->bindValue('createdDate', $createdDate);
-        $stmt->bindValue('customerAccountId', $customerAccountId);
-        $stmt->executeStatement();
+        $this->em->getConnection()->executeStatement($sql, [
+            'accountId'         => $accountId,
+            'balance'           => $balance,
+            'createdDate'       => $createdDate,
+            'customerAccountId' => $customerAccountId,
+        ]);
 
         return true;
     }
@@ -68,7 +63,7 @@ class AccountsService implements AccountsServiceInterface
         $incomeExpenseId = $incomeExpense->getId();
         $customerAccountId = $incomeExpense->getCustomerAccount()->getId();
         $incomesExpenses = [];
-        $entry = $this->entityManager->getRepository(AccountsTrackingCalendar::class)->findOneBy(['customersAccount' => $customerAccountId, 'calendarDate' => new DateTime($entryDateStr)]);
+        $entry = $this->em->getRepository(AccountsTrackingCalendar::class)->findOneBy(['customersAccount' => $customerAccountId, 'calendarDate' => new DateTime($entryDateStr)]);
         if ($entry) {
             if ($isIncomeOrExpense == AppConstants::INCOME_TYPE || $isIncomeOrExpense == AppConstants::ASSET_TYPE) {
                 $incomesExpenses = $entry->getNonRecurringIncomes();

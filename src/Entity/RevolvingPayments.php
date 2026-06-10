@@ -11,73 +11,40 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'revolving_payments')]
 class RevolvingPayments
 {
-    /**
-     * @var int|null
-     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     private ?int $id = null;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'name', type: Types::STRING, length: 45)]
     private string $name;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'payment_strategy', type: Types::STRING, length: 60)]
     private string $paymentStrategy = '';
     
-    /**
-     * @var float|null
-     */
     #[ORM\Column(name: 'chosen_amount', type: Types::FLOAT, nullable: true)]
     private ?float $chosenAmount = null;
-    /**
-     * @var int|null
-     */
     #[ORM\Column(name: 'day_of_month_to_make_payment', type: Types::INTEGER, nullable: true)]
     private ?int $dayOfMonthToMakePayment = null;//Day of the month will be restricted from 01 to 28
     
-    /**
-     * @var DateTimeInterface
-     */
     #[ORM\Column(name: 'start_on', type: Types::DATETIME_MUTABLE)]
     private DateTimeInterface $startOn;
     
-    /**
-     * @var DateTimeInterface|null
-     */
     #[ORM\Column(name: 'canceled_after', type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $canceledAfter;
     
-    /**
-     * @var Account
-     */
     #[ORM\ManyToOne(targetEntity: Account::class)]
     #[ORM\JoinColumn(name: 'account_to_withdraw_id', referencedColumnName: 'id')]
     private Account $accountToWithdraw;
     
-    /**
-     * @var Account
-     */
     #[ORM\ManyToOne(targetEntity: Account::class)]
     #[ORM\JoinColumn(name: 'account_to_pay_id', referencedColumnName: 'id')]
     private Account $accountToPay;
     
-    /**
-     * @var CustomersAccount
-     */
     #[ORM\ManyToOne(targetEntity: CustomersAccount::class)]
     #[ORM\JoinColumn(name: 'customer_account_id', referencedColumnName: 'id')]
     private CustomersAccount $customerAccount;
     
-    /**
-     * @var Log|null
-     */
     #[ORM\ManyToOne(targetEntity: Log::class)]
     #[ORM\JoinColumn(name: 'log_id', referencedColumnName: 'id', nullable: true)]
     private ?Log $log = null;
@@ -86,17 +53,11 @@ class RevolvingPayments
     {
         $this->startOn = new DateTime('now');
     }
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
     
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -112,9 +73,6 @@ class RevolvingPayments
         return $this;
     }
     
-    /**
-     * @return string
-     */
     public function getPaymentStrategy(): string
     {
         return $this->paymentStrategy;
@@ -130,9 +88,6 @@ class RevolvingPayments
         return $this;
     }
     
-    /**
-     * @return float|null
-     */
     public function getChosenAmount(): ?float
     {
         return $this->chosenAmount;
@@ -148,9 +103,6 @@ class RevolvingPayments
         return $this;
     }
     
-    /**
-     * @return int|null
-     */
     public function getDayOfMonthToMakePayment(): ?int
     {
         return $this->dayOfMonthToMakePayment;
@@ -166,9 +118,6 @@ class RevolvingPayments
         return $this;
     }
     
-    /**
-     * @return DateTimeInterface
-     */
     public function getStartOn(): DateTimeInterface
     {
         return $this->startOn;
@@ -184,9 +133,6 @@ class RevolvingPayments
         return $this;
     }
     
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getCanceledAfter(): ?DateTimeInterface
     {
         return $this->canceledAfter;
@@ -202,9 +148,6 @@ class RevolvingPayments
         return $this;
     }
     
-    /**
-     * @return Account
-     */
     public function getAccountToWithdraw(): Account
     {
         return $this->accountToWithdraw;
@@ -220,9 +163,6 @@ class RevolvingPayments
         return $this;
     }
     
-    /**
-     * @return Account
-     */
     public function getAccountToPay(): Account
     {
         return $this->accountToPay;
@@ -238,9 +178,6 @@ class RevolvingPayments
         return $this;
     }
     
-    /**
-     * @return CustomersAccount
-     */
     public function getCustomerAccount(): CustomersAccount
     {
         return $this->customerAccount;
@@ -256,9 +193,6 @@ class RevolvingPayments
         return $this;
     }
     
-    /**
-     * @return Log|null
-     */
     public function getLog(): ?Log
     {
         return $this->log;

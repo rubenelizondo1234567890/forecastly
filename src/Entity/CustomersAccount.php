@@ -10,62 +10,37 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'customers_account')]
 class CustomersAccount
 {
-    /**
-     * @var int
-     */
+    // PHP 8.4: public read, private write — Doctrine sets via ReflectionProperty
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
-    private int $id;
-    
-    /**
-     * @var string
-     */
+    public private(set) int $id;
+
     #[ORM\Column(name: 'account_name', type: Types::STRING, length: 255)]
     private string $accountName;
-    
-    /**
-     * @var DateTimeInterface
-     */
+
+    // PHP 8.4: public read, private write
     #[ORM\Column(name: 'created_at', type: Types::DATETIME_MUTABLE)]
-    private DateTimeInterface $createdAt;
+    public private(set) DateTimeInterface $createdAt;
     
-    /**
-     * @var bool
-     */
     #[ORM\Column(name: 'is_active', type: Types::BOOLEAN, nullable: true)]
     private bool $isActive = false;
     
-    /**
-     * @var bool
-     */
     #[ORM\Column(name: 'is_master_budget_tracking_group_loaded', type: Types::BOOLEAN, nullable: true)]
     private bool $isMasterBudgetTrackingGroupLoaded = false;
     
-    /**
-     * @var SubscriptionPlan
-     */
     #[ORM\ManyToOne(targetEntity: SubscriptionPlan::class)]
     #[ORM\JoinColumn(name: 'subscription_plans_id', referencedColumnName: 'id')]
     private SubscriptionPlan $subscriptionPlan;
     
-    /**
-     * @var Subscriptions|null
-     */
     #[ORM\OneToOne(mappedBy: 'customerAccount', targetEntity: Subscriptions::class)]
     private ?Subscriptions $subscription = null;
     
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
     
-    /**
-     * @return string
-     */
     public function getAccountName(): string
     {
         return $this->accountName;
@@ -81,9 +56,6 @@ class CustomersAccount
         return $this;
     }
     
-    /**
-     * @return DateTimeInterface
-     */
     public function getCreatedAt(): DateTimeInterface
     {
         return $this->createdAt;
@@ -99,9 +71,6 @@ class CustomersAccount
         return $this;
     }
     
-    /**
-     * @return bool
-     */
     public function isActive(): bool
     {
         return $this->isActive;
@@ -128,9 +97,6 @@ class CustomersAccount
         return $this;
     }
     
-    /**
-     * @return SubscriptionPlan
-     */
     public function getSubscriptionPlan(): SubscriptionPlan
     {
         return $this->subscriptionPlan;
@@ -146,9 +112,6 @@ class CustomersAccount
         return $this;
     }
     
-    /**
-     * @return Subscriptions|null
-     */
     public function getSubscription(): ?Subscriptions
     {
         return $this->subscription;

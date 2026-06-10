@@ -1,4 +1,5 @@
 <?php
+// Copyright (c) 2026 Ruben Elizondo. All Rights Reserved. See LICENSE.
 
 namespace App\Services;
 

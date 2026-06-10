@@ -12,37 +12,22 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\UniqueConstraint(name: 'unique_recurring_interest_per_account', columns: ['customer_account_id', 'account_id'])]
 class RecurringInterest
 {
-    /**
-     * @var int|null
-     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     private ?int $id = null;
 
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'name', type: Types::STRING, length: 45)]
     private string $name;
 
-    /**
-     * @var Account
-     */
     #[ORM\ManyToOne(targetEntity: Account::class)]
     #[ORM\JoinColumn(name: 'account_id', referencedColumnName: 'id')]
     private Account $account;
 
-    /**
-     * @var CustomersAccount
-     */
     #[ORM\ManyToOne(targetEntity: CustomersAccount::class)]
     #[ORM\JoinColumn(name: 'customer_account_id', referencedColumnName: 'id')]
     private CustomersAccount $customerAccount;
 
-    /**
-     * @var Log
-     */
     #[ORM\ManyToOne(targetEntity: Log::class)]
     #[ORM\JoinColumn(name: 'log_id', referencedColumnName: 'id')]
     private Log $log;
@@ -51,17 +36,11 @@ class RecurringInterest
     {
         $this->startOn  = new DateTime('now');
     }
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -77,9 +56,6 @@ class RecurringInterest
         return $this;
     }
 
-    /**
-     * @return Account
-     */
     public function getAccount(): Account
     {
         return $this->account;
@@ -95,9 +71,6 @@ class RecurringInterest
         return $this;
     }
 
-    /**
-     * @return CustomersAccount
-     */
     public function getCustomerAccount(): CustomersAccount
     {
         return $this->customerAccount;
@@ -113,9 +86,6 @@ class RecurringInterest
         return $this;
     }
 
-    /**
-     * @return Log
-     */
     public function getLog(): Log
     {
         return $this->log;

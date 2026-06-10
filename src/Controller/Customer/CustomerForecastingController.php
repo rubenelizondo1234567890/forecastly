@@ -4,7 +4,8 @@ namespace App\Controller\Customer;
 
 use App\Entity\Account;
 use App\Entity\AccountsTrackingCalendar;
-use App\Entity\Frequency;
+use App\Repository\AccountRepository;
+use App\Repository\AccountsTrackingCalendarRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,16 +53,9 @@ class CustomerForecastingController extends AbstractController
         $endDate = (new DateTime())->modify("+$period years");
 
         // Get ALL calendar entries for this period (we'll filter for Mondays)
-        $calendarEntries = $em->getRepository(AccountsTrackingCalendar::class)
-            ->createQueryBuilder('c')
-            ->where('c.customersAccount = :customerAccount')
-            ->andWhere('c.calendarDate BETWEEN :start AND :end')
-            ->setParameter('customerAccount', $cAcct)
-            ->setParameter('start', $startDate->format('Y-m-d'))
-            ->setParameter('end', $endDate->format('Y-m-d'))
-            ->orderBy('c.calendarDate', 'ASC')
-            ->getQuery()
-            ->getResult();
+        /** @var AccountsTrackingCalendarRepository $calRepo */
+        $calRepo = $em->getRepository(AccountsTrackingCalendar::class);
+        $calendarEntries = $calRepo->findByCustomerAccountInDateRange($cAcct, $startDate, $endDate);
 
         // Create a map of dates to balances for easier lookup
         $balanceMap = [];
@@ -158,16 +152,9 @@ class CustomerForecastingController extends AbstractController
         $endDate = (new DateTime())->modify("+$period years");
 
         // Get calendar entries for this period
-        $calendarEntries = $em->getRepository(AccountsTrackingCalendar::class)
-            ->createQueryBuilder('c')
-            ->where('c.customersAccount = :customerAccount')
-            ->andWhere('c.calendarDate BETWEEN :start AND :end')
-            ->setParameter('customerAccount', $cAcct)
-            ->setParameter('start', $startDate->format('Y-m-d'))
-            ->setParameter('end', $endDate->format('Y-m-d'))
-            ->orderBy('c.calendarDate', 'ASC')
-            ->getQuery()
-            ->getResult();
+        /** @var AccountsTrackingCalendarRepository $calRepo */
+        $calRepo = $em->getRepository(AccountsTrackingCalendar::class);
+        $calendarEntries = $calRepo->findByCustomerAccountInDateRange($cAcct, $startDate, $endDate);
 
         // Get all accounts for the customer
         $accounts = $em->getRepository(Account::class)->findBy(['customerAccount' => $cAcct]);
@@ -233,29 +220,10 @@ class CustomerForecastingController extends AbstractController
     {
         $customerAccount = $this->getUser()->getCustomersAccount();
 
-        // Fetch income accounts
-        $incomeAccounts = $em->getRepository(Account::class)
-            ->createQueryBuilder('a')
-            ->innerJoin('a.budgetTrackingGroup', 'b')
-            ->where('b.isIncomeOrExpense = :incomeType')
-            ->andWhere('a.customerAccount = :customerAccount')
-            ->setParameter('incomeType', 'income')
-            ->setParameter('customerAccount', $customerAccount)
-            ->orderBy('a.name', 'ASC')
-            ->getQuery()
-            ->getResult();
-
-        // Fetch expense accounts
-        $expenseAccounts = $em->getRepository(Account::class)
-            ->createQueryBuilder('a')
-            ->innerJoin('a.budgetTrackingGroup', 'b')
-            ->where('b.isIncomeOrExpense = :expenseType')
-            ->andWhere('a.customerAccount = :customerAccount')
-            ->setParameter('expenseType', 'expense')
-            ->setParameter('customerAccount', $customerAccount)
-            ->orderBy('a.name', 'ASC')
-            ->getQuery()
-            ->getResult();
+        /** @var AccountRepository $accountRepo */
+        $accountRepo = $em->getRepository(Account::class);
+        $incomeAccounts  = $accountRepo->findByTypeAndCustomerAccount($customerAccount, 'income');
+        $expenseAccounts = $accountRepo->findByTypeAndCustomerAccount($customerAccount, 'expense');
 
         return $this->render('customer/forecasting/what_if_projections.html.twig', [
             'incomeAccounts' => $incomeAccounts,

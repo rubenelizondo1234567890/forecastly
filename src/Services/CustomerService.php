@@ -11,20 +11,19 @@ use App\Entity\NonRecurringExpense;
 use App\Entity\NonRecurringIncome;
 use App\Entity\RecurringExpense;
 use App\Entity\RecurringIncome;
+use App\Services\Contract\CustomerServiceInterface;
 use DateInterval;
 use DateTime;
-use App\Services\Contract\CustomerServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Random\RandomException;
 
 class CustomerService implements CustomerServiceInterface
 {
-    private EntityManagerInterface $em;
-    
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
-    }
+    public function __construct(
+        private readonly EntityManagerInterface $em,
+        private readonly LoggerInterface $logger,
+    ) {}
     
     public function getDashboardChartsData(Customer $user): array
     {
@@ -48,13 +47,11 @@ class CustomerService implements CustomerServiceInterface
                 'netWorth' => $this->getTotalNetworthChartData($cAcct),
             ];
         } catch (\Throwable $e) {
-            dd($e);
-            //dont break the dashboard
-            return [
-                'incomes' => [],
-                'expenses' => [],
-                'netWorth' => []
-            ];
+            $this->logger->error('Dashboard charts data failed', [
+                'exception' => $e->getMessage(),
+                'trace'     => $e->getTraceAsString(),
+            ]);
+            return ['incomes' => [], 'totalIncomes' => 0, 'expenses' => [], 'totalExpenses' => 0, 'netWorth' => []];
         }
     }
     

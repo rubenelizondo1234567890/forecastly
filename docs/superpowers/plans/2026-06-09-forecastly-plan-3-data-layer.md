@@ -1,6 +1,6 @@
 # Forecastly Portfolio Demo — Plan 3: Data Layer & DX
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Clean up AccountsService and repositories, fix CustomerService, strip @var docblocks from all entities, load six fixture classes that produce a realistic demo dataset, and write the README with the Technical Review Guide.
 
@@ -16,6 +16,7 @@
 
 | Action | Path |
 |---|---|
+| Create | `LICENSE` |
 | Modify | `src/Services/AccountsService.php` |
 | Modify | `src/Repository/AccountRepository.php` |
 | Modify | `src/Repository/AccountsTrackingCalendarRepository.php` |
@@ -34,12 +35,67 @@
 
 ---
 
+## Task 0: License file
+
+**Files:**
+- Create: `LICENSE`
+
+- [x] **Step 1: Create `LICENSE` with All Rights Reserved terms**
+
+Create a file named `LICENSE` at the project root with the following content:
+
+```
+Copyright (c) 2026 Ruben Elizondo. All Rights Reserved.
+
+This source code is made available for evaluation and review purposes only.
+Recruiters, hiring managers, and technical reviewers are permitted to read this
+code for the sole purpose of assessing the author's skills and experience.
+
+Unauthorized copying, reproduction, modification, distribution, sublicensing,
+or commercial use of this software, in whole or in part, without the express
+written permission of the author, is strictly prohibited.
+
+No ownership, license, or right to use this code beyond the permitted review
+purpose is granted by making this repository visible.
+```
+
+- [x] **Step 2: Add authorship header to the six key showcase files**
+
+Add a one-line comment at the top of each file listed below (after the `<?php` tag, before the `namespace` declaration):
+
+```php
+// Copyright (c) 2026 Ruben Elizondo. All Rights Reserved. See LICENSE.
+```
+
+Files to update:
+- `src/Services/ForecastingEngine.php`
+- `src/Services/AccountsService.php`
+- `src/Services/Contract/ForecastingEngineInterface.php`
+- `src/ValueObject/Money.php`
+- `src/DTO/ProjectionContext.php`
+- `src/Services/Forecasting/Strategy/ForecastStrategyInterface.php`
+
+- [x] **Step 3: Commit**
+
+```bash
+git add LICENSE \
+    src/Services/ForecastingEngine.php \
+    src/Services/AccountsService.php \
+    src/Services/Contract/ForecastingEngineInterface.php \
+    src/ValueObject/Money.php \
+    src/DTO/ProjectionContext.php \
+    src/Services/Forecasting/Strategy/ForecastStrategyInterface.php
+git commit -m "chore: add proprietary LICENSE and authorship headers to showcase files"
+```
+
+---
+
 ## Task 1: AccountsService cleanup
 
 **Files:**
 - Modify: `src/Services/AccountsService.php`
 
-- [ ] **Step 1: Remove duplicate `EntityManagerInterface` injection**
+- [x] **Step 1: Remove duplicate `EntityManagerInterface` injection**
 
 Replace the constructor and property declarations at the top of `src/Services/AccountsService.php`:
 
@@ -61,7 +117,7 @@ grep -n "entityManager" src/Services/AccountsService.php
 # Should return zero results after the fix
 ```
 
-- [ ] **Step 2: Replace MySQL `JSON_SET` with PostgreSQL `jsonb_set()`**
+- [x] **Step 2: Replace MySQL `JSON_SET` with PostgreSQL `jsonb_set()`**
 
 Find the `addAccountToAccountsTrackingCalendar` method and replace the raw SQL block:
 
@@ -96,14 +152,14 @@ public function addAccountToAccountsTrackingCalendar(Account $account): void
 }
 ```
 
-- [ ] **Step 3: Verify the container still compiles**
+- [x] **Step 3: Verify the container still compiles**
 
 ```bash
 docker compose exec app php bin/console debug:container App\\Services\\AccountsService
 # Expected: shows single $em argument
 ```
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/Services/AccountsService.php
@@ -119,7 +175,7 @@ git commit -m "fix: remove duplicate EntityManagerInterface injection and replac
 - Modify: `src/Repository/AccountRepository.php`
 - Modify: `src/Controller/Customer/CustomerForecastingController.php`
 
-- [ ] **Step 1: Add `findByCustomerAccountInDateRange()` to `AccountsTrackingCalendarRepository`**
+- [x] **Step 1: Add `findByCustomerAccountInDateRange()` to `AccountsTrackingCalendarRepository`**
 
 Open `src/Repository/AccountsTrackingCalendarRepository.php` and add:
 
@@ -152,7 +208,7 @@ use App\Entity\AccountsTrackingCalendar;
 use App\Entity\CustomersAccount;
 ```
 
-- [ ] **Step 2: Add `findByCustomerAccountGroupedByType()` to `AccountRepository`**
+- [x] **Step 2: Add `findByCustomerAccountGroupedByType()` to `AccountRepository`**
 
 Open `src/Repository/AccountRepository.php` and add:
 
@@ -178,7 +234,7 @@ public function findByCustomerAccountGroupedByType(CustomersAccount $customerAcc
 }
 ```
 
-- [ ] **Step 3: Move inline `createQueryBuilder` from `CustomerForecastingController` to repositories**
+- [x] **Step 3: Move inline `createQueryBuilder` from `CustomerForecastingController` to repositories**
 
 Open `src/Controller/Customer/CustomerForecastingController.php`. Find any inline `createQueryBuilder` calls and replace them with calls to the new repository methods. Example:
 
@@ -207,7 +263,7 @@ grep -rn "createQueryBuilder" src/Controller/
 
 Move each one to the appropriate repository.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/Repository/ src/Controller/
@@ -222,7 +278,7 @@ git commit -m "refactor: move inline createQueryBuilder calls to repository meth
 - Modify: `src/Services/CustomerService.php`
 - Modify: All entity files under `src/Entity/`
 
-- [ ] **Step 1: Fix `CustomerService::getDashboardChartsData()` — remove `dd($e)`**
+- [x] **Step 1: Fix `CustomerService::getDashboardChartsData()` — remove `dd($e)`**
 
 In `src/Services/CustomerService.php`, find the `getDashboardChartsData` method. The catch block contains `dd($e)`. Replace the entire catch block:
 
@@ -254,7 +310,7 @@ public function __construct(
 ) {}
 ```
 
-- [ ] **Step 2: Remove `@var` docblocks from all entity files**
+- [x] **Step 2: Remove `@var` docblocks from all entity files**
 
 PHP 8.2+ typed properties make `@var` redundant — they're PHP 4-era style. Run this to identify them:
 
@@ -283,7 +339,7 @@ private ?int $id = null;
 
 Keep docblocks that explain non-obvious behaviour. Remove all that just restate the type.
 
-- [ ] **Step 3: Apply PHP 8.4 asymmetric visibility to key entity properties**
+- [x] **Step 3: Apply PHP 8.4 asymmetric visibility to key entity properties**
 
 In `src/Entity/CustomersAccount.php`, update `$id` and `$createdAt`:
 
@@ -299,7 +355,7 @@ public private(set) DateTimeInterface $createdAt;
 
 Do the same for `src/Entity/Account.php` `$id` property.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/Services/CustomerService.php src/Entity/
@@ -318,7 +374,7 @@ git commit -m "fix: remove dd() from CustomerService, inject logger, strip @var 
 - Create: `src/DataFixtures/RecurringItemsFixture.php`
 - Create: `src/DataFixtures/AccountsTrackingCalendarFixture.php`
 
-- [ ] **Step 1: Create `SubscriptionPlanFixture`**
+- [x] **Step 1: Create `SubscriptionPlanFixture`**
 
 ```php
 <?php
@@ -353,7 +409,7 @@ class SubscriptionPlanFixture extends Fixture
 }
 ```
 
-- [ ] **Step 2: Create `BudgetTrackingGroupFixture`**
+- [x] **Step 2: Create `BudgetTrackingGroupFixture`**
 
 ```php
 <?php
@@ -404,7 +460,7 @@ class BudgetTrackingGroupFixture extends Fixture
 }
 ```
 
-- [ ] **Step 3: Create `CustomerFixture`**
+- [x] **Step 3: Create `CustomerFixture`**
 
 ```php
 <?php
@@ -455,7 +511,7 @@ class CustomerFixture extends Fixture implements DependentFixtureInterface
 }
 ```
 
-- [ ] **Step 4: Create `AccountFixture`**
+- [x] **Step 4: Create `AccountFixture`**
 
 ```php
 <?php
@@ -516,7 +572,7 @@ class AccountFixture extends Fixture implements DependentFixtureInterface
 }
 ```
 
-- [ ] **Step 5: Create `RecurringItemsFixture`**
+- [x] **Step 5: Create `RecurringItemsFixture`**
 
 ```php
 <?php
@@ -579,7 +635,7 @@ class RecurringItemsFixture extends Fixture implements DependentFixtureInterface
 }
 ```
 
-- [ ] **Step 6: Create `AccountsTrackingCalendarFixture`**
+- [x] **Step 6: Create `AccountsTrackingCalendarFixture`**
 
 ```php
 <?php
@@ -649,7 +705,7 @@ class AccountsTrackingCalendarFixture extends Fixture implements DependentFixtur
 }
 ```
 
-- [ ] **Step 7: Load fixtures and verify**
+- [x] **Step 7: Load fixtures and verify**
 
 ```bash
 docker compose exec app php bin/console doctrine:fixtures:load --no-interaction
@@ -660,7 +716,7 @@ docker compose exec app php bin/console doctrine:query:sql \
 # Expected: ~396 (13 months × ~30.5 days)
 ```
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add src/DataFixtures/
@@ -674,7 +730,7 @@ git commit -m "feat: add 6 fixture classes generating 13 months of realistic dem
 **Files:**
 - Create: `tests/Integration/Controller/CustomerForecastingControllerTest.php`
 
-- [ ] **Step 1: Create the test**
+- [x] **Step 1: Create the test**
 
 ```php
 <?php
@@ -721,7 +777,7 @@ class CustomerForecastingControllerTest extends WebTestCase
 }
 ```
 
-- [ ] **Step 2: Run the test**
+- [x] **Step 2: Run the test**
 
 ```bash
 docker compose exec app php bin/phpunit tests/Integration/Controller/CustomerForecastingControllerTest.php --testdox
@@ -730,7 +786,7 @@ docker compose exec app php bin/phpunit tests/Integration/Controller/CustomerFor
 
 If it fails due to login path: check the actual login route in `config/routes.yaml` or `security.yaml` and update the POST path accordingly.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add tests/Integration/Controller/CustomerForecastingControllerTest.php
@@ -745,7 +801,7 @@ git commit -m "test: add CustomerForecastingController integration test verifyin
 - Create/Overwrite: `README.md`
 - Modify: `templates/base.html.twig`
 
-- [ ] **Step 1: Write `README.md`**
+- [x] **Step 1: Write `README.md`**
 
 ```markdown
 # Forecastly — Personal Finance Forecasting Platform
@@ -888,7 +944,7 @@ docker compose exec app php bin/phpunit --testdox
 | `make forecast` | Re-generate forecasts for all customers |
 ```
 
-- [ ] **Step 2: Add footer link to `templates/base.html.twig`**
+- [x] **Step 2: Add footer link to `templates/base.html.twig`**
 
 Find the closing `</body>` tag in `templates/base.html.twig` and add the footer just before it:
 
@@ -901,7 +957,7 @@ Find the closing `</body>` tag in `templates/base.html.twig` and add the footer 
 </footer>
 ```
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add README.md templates/base.html.twig

@@ -9,37 +9,22 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'frequencies')]
 class Frequency
 {
-    /**
-     * @var int
-     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     private int $id;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'name', type: Types::STRING, length: 45)]
     private string $name;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'time_period', type: Types::STRING, length: 45)]
     private string $timePeriod;
     
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
     
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -55,9 +40,6 @@ class Frequency
         return $this;
     }
     
-    /**
-     * @return string
-     */
     public function getTimePeriod(): string
     {
         return $this->timePeriod;

@@ -11,85 +11,46 @@ use Doctrine\ORM\Mapping as ORM;
 
 class SubscriptionPlan
 {
-    /**
-     * @var int
-     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     private int $id;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'plan_name', type: Types::STRING, length: 45)]
     private string $planName;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'stripe_interval', type: Types::STRING, length: 45)]
     private string $stripeInterval;//month , year
     
-    /**
-     * @var float
-     */
     #[ORM\Column(name: 'price', type: Types::FLOAT)]
     private float $price;
     
-    /**
-     * @var int
-     */
     #[ORM\Column(name: 'stripe_price', type: Types::INTEGER)]
     private int $stripePrice;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'plan_features', type: Types::TEXT)]
     private string $planFeatures;
     
-    /**
-     * @var DateTimeInterface
-     */
     #[ORM\Column(name: 'created_at', type: Types::DATETIME_MUTABLE)]
     private DateTimeInterface $createdAt;
     
-    /**
-     * @var bool
-     */
     #[ORM\Column(name: 'is_active', type: Types::BOOLEAN, nullable: true)]
     private bool $isActive;
     
-    /**
-     * @var bool
-     */
     #[ORM\Column(name: 'is_stripe_use', type: Types::BOOLEAN, nullable: true)]
     private bool $isStripeUse;
     
-    /**
-     * @var int
-     */
     #[ORM\Column(name: 'ordering', type: Types::INTEGER)]
     private int $ordering;
     
-    /**
-     * @var string
-     */
     #[ORM\Column(name: 'stripe_price_id', type: Types::STRING, length: 45)]
     private string $stripePriceId;
     
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
     
-    /**
-     * @return string
-     */
     public function getPlanName(): string
     {
         return $this->planName;
@@ -105,9 +66,6 @@ class SubscriptionPlan
         return $this;
     }
     
-    /**
-     * @return string
-     */
     public function getStripeInterval(): string
     {
         return $this->stripeInterval;
@@ -123,9 +81,6 @@ class SubscriptionPlan
         return $this;
     }
     
-    /**
-     * @return float
-     */
     public function getPrice(): float
     {
         return $this->price;
@@ -141,9 +96,6 @@ class SubscriptionPlan
         return $this;
     }
     
-    /**
-     * @return int
-     */
     public function getStripePrice(): int
     {
         return $this->stripePrice;
@@ -159,9 +111,6 @@ class SubscriptionPlan
         return $this;
     }
     
-    /**
-     * @return string
-     */
     public function getPlanFeatures(): string
     {
         return $this->planFeatures;
@@ -177,9 +126,6 @@ class SubscriptionPlan
         return $this;
     }
     
-    /**
-     * @return DateTimeInterface
-     */
     public function getCreatedAt(): DateTimeInterface
     {
         return $this->createdAt;
@@ -195,9 +141,6 @@ class SubscriptionPlan
         return $this;
     }
     
-    /**
-     * @return bool
-     */
     public function isActive(): bool
     {
         return $this->isActive;
@@ -213,9 +156,6 @@ class SubscriptionPlan
         return $this;
     }
     
-    /**
-     * @return bool
-     */
     public function isStripeUse(): bool
     {
         return $this->isStripeUse;
@@ -231,9 +171,6 @@ class SubscriptionPlan
         return $this;
     }
     
-    /**
-     * @return int
-     */
     public function getOrdering(): int
     {
         return $this->ordering;
@@ -249,9 +186,6 @@ class SubscriptionPlan
         return $this;
     }
     
-    /**
-     * @return string
-     */
     public function getStripePriceId(): string
     {
         return $this->stripePriceId;
