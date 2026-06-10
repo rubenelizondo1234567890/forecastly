@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use App\Repository\AccountsTrackingCalendarRepository;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: AccountsTrackingCalendarRepository::class)]
 #[ORM\Table(name: 'accounts_tracking_calendar')]
 #[ORM\UniqueConstraint(name: 'UQ_IDX_CALENDAR_DATE', columns: ['customers_account_id', 'calendar_date'])]
 class AccountsTrackingCalendar
