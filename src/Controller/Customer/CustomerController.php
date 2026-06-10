@@ -28,7 +28,7 @@ class CustomerController extends AbstractController
      * @throws RandomException
      */
     #[Route('/dashboard', name: 'customer_dash', methods: ['GET'])]
-    public function customerDashboard(CustomerService $customerService): Response
+    public function customerDashboard(CustomerServiceInterface $customerService): Response
     {
         $this->denyAccessUnlessGranted('ROLE_CUSTOMER');
         $token = $this->container->get('security.token_storage')->getToken();

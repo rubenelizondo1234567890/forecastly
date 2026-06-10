@@ -41,7 +41,7 @@ class RecurringSavingsController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, AccountsService $accountsService): Response|JsonResponse
+    public function new(Request $request, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): Response|JsonResponse
     {
         $cAcct = $this->getUser()->getCustomersAccount();
         $recurringSaving = new RecurringSavings();
@@ -157,7 +157,7 @@ class RecurringSavingsController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, RecurringSavings $recurringSaving, EntityManagerInterface $entityManager, AccountsService $accountsService): Response|JsonResponse
+    public function edit(Request $request, RecurringSavings $recurringSaving, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): Response|JsonResponse
     {
         $cAcct = $this->getUser()->getCustomersAccount();
 
@@ -234,7 +234,7 @@ class RecurringSavingsController extends AbstractController
     }
 
     #[Route('/update-savings/{accountId}', name: 'update_savings_ajax', methods: ['GET','POST'])]
-    public function updateRecurringSavings(int $accountId, EntityManagerInterface $entityManager, AccountsService $accountsService): JsonResponse
+    public function updateRecurringSavings(int $accountId, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): JsonResponse
     {
         $cAcct = $this->getUser()->getCustomersAccount();
         $account = $entityManager->getRepository(Account::class)->findOneBy(['id' => $accountId, 'customerAccount' => $cAcct]);

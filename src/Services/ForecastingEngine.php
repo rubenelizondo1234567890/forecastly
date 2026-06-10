@@ -10,11 +10,12 @@ use App\Entity\RecurringExpense;
 use App\Entity\RecurringIncome;
 use App\Entity\RecurringInterest;
 use App\Entity\RecurringSavings;
+use App\Services\Contract\ForecastingEngineInterface;
 use App\Services\Forecasting\Strategy\ForecastStrategyInterface;
 use App\ValueObject\Money;
 use Doctrine\ORM\EntityManagerInterface;
 
-class ForecastingEngine
+class ForecastingEngine implements ForecastingEngineInterface
 {
     /** @param ForecastStrategyInterface[] $strategies */
     public function __construct(

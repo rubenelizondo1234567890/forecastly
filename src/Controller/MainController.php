@@ -25,7 +25,7 @@ class MainController extends AbstractController
     }
     
     #[Route('/contact-support', name: 'main_contact_support')]
-    public function contactSupport(Request $request, EntityManagerInterface $entityManager, EmailService $emailService): Response
+    public function contactSupport(Request $request, EntityManagerInterface $entityManager, EmailServiceInterface $emailService): Response
     {
         $contactSupport = new ContactSupport();
         $form = $this->createForm(ContactSupportType::class, $contactSupport);
@@ -99,7 +99,7 @@ class MainController extends AbstractController
     }
     
     #[Route('/waitlist', name: 'waitlist')]
-    public function waitlist(Request $request, EntityManagerInterface $entityManager, WaitListRepository $waitListRepository, EmailService $emailService): Response
+    public function waitlist(Request $request, EntityManagerInterface $entityManager, WaitListRepository $waitListRepository, EmailServiceInterface $emailService): Response
     {
         $waitListEntry = new WaitList();
         $waitListEntry->setNotifyEarlyAccess(true);

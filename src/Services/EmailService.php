@@ -10,9 +10,10 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use App\Services\Contract\EmailServiceInterface;
 use Twig\Environment;
 
-class EmailService
+class EmailService implements EmailServiceInterface
 {
     const string MAILTRAP_API_KEY = 'e08136967ed8cdf32a94f2ba4ae746f2';
     private MailerInterface $mailer;

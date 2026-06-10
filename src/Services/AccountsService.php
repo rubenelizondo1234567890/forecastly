@@ -18,10 +18,11 @@ use DateInterval;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Cache;
+use App\Services\Contract\AccountsServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 
-class AccountsService
+class AccountsService implements AccountsServiceInterface
 {
     private EntityManagerInterface $em;
     private EntityManagerInterface $entityManager;

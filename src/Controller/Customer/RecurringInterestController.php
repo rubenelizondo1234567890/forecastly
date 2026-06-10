@@ -36,7 +36,7 @@ class RecurringInterestController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, RecurringInterest $interest, EntityManagerInterface $entityManager, AccountsService $accountsService): Response
+    public function edit(Request $request, RecurringInterest $interest, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): Response
     {
         $cAcct = $this->getUser()->getCustomersAccount();
 
@@ -88,7 +88,7 @@ class RecurringInterestController extends AbstractController
     }
 
     #[Route('/update-account-interest/{accountId}', name: 'update_account_interest_ajax', methods: ['GET','POST'])]
-    public function updateInterestForAccount(int $accountId, EntityManagerInterface $entityManager, AccountsService $accountsService): JsonResponse
+    public function updateInterestForAccount(int $accountId, EntityManagerInterface $entityManager, AccountsServiceInterface $accountsService): JsonResponse
     {
         $cAcct = $this->getUser()->getCustomersAccount();
         $account = $entityManager->getRepository(Account::class)->findOneBy(['id' => $accountId, 'customerAccount' => $cAcct]);
